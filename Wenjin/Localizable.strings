@@ -1,0 +1,14 @@
+/* 
+  Localizable.strings
+  Wenjin
+
+  Created by 秦昱博 on 15/3/29.
+  Copyright (c) 2015年 TWT Studio. All rights reserved.
+*/
+
+"Open in Safari" = "在 Safari 中打开";
+"Save to Calendar" = "添加到日历";
+"Pull to refresh..." = "下拉刷新...";
+"Loading..." = "加载中...";
+"Release to refresh..." = "释放以更新...";
+"Last Updated: %@" = "上次更新：%@";
