@@ -277,8 +277,8 @@
 			children = (
 				E9642E981AC5714800FF7875 /* Main.storyboard */,
 				E9C9C6E81AC6AA8400CC228A /* MainTabBarController */,
-				E9C9C6F71AC71C5200CC228A /* MyViewController */,
 				E9C9C6F01AC6B35B00CC228A /* Home */,
+				E9C9C6F71AC71C5200CC228A /* MyViewController */,
 				E93063BB1ACA4D83000140C1 /* PostQuestion */,
 				E9C9C70B1AC7201800CC228A /* Login */,
 			);

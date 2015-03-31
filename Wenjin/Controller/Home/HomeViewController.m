@@ -11,7 +11,6 @@
 #import "MsgDisplay.h"
 #import "SVPullToRefresh.h"
 #import "wjAccountManager.h"
-#import "HomeTableViewCell.h"
 #import "wjStringProcessor.h"
 
 @interface HomeViewController ()
@@ -33,6 +32,7 @@
     [super viewDidLoad];
     
     self.clearsSelectionOnViewWillAppear = YES;
+    self.tableView.allowsSelection = NO;
     
     //修复下拉刷新位置错误
     if ([self respondsToSelector:@selector(automaticallyAdjustsScrollViewInsets)]) {
@@ -145,7 +145,10 @@
     cell.actionLabel.text = [NSString stringWithFormat:@"%@ %@", (tmp[@"user_info"])[@"user_name"], actionDiction[actionIDString]];
     cell.questionLabel.text = [wjStringProcessor filterHTMLWithString:(tmp[@"question_info"])[@"question_content"]];
     cell.detailLabel.text = [wjStringProcessor processAnswerDetailString:(tmp[@"answer_info"])[@"answer_content"]];
-    
+    cell.actionLabel.tag = row;
+    cell.questionLabel.tag = row;
+    cell.detailLabel.tag = row;
+    cell.delegate = self;
     return cell;
 }
 
@@ -173,6 +176,19 @@
     return size.height;
 }
 
+// HomeTableViewCell delegate
+
+- (void)pushUserControllerWithRow:(NSUInteger)row {
+    NSLog(@"U: %ld", row);
+}
+
+- (void)pushQuestionControllerWithRow:(NSUInteger)row {
+    NSLog(@"Q: %ld", row);
+}
+
+- (void)pushAnswerControllerWithRow:(NSUInteger)row {
+    NSLog(@"A: %ld", row);
+}
 
 #pragma mark - Navigation
 

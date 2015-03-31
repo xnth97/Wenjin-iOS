@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HomeTableViewCell.h"
 
-@interface HomeViewController : UITableViewController
+@interface HomeViewController : UITableViewController<homeTableViewCellDelegate>
 
 @end

@@ -45,7 +45,8 @@
                                      @"password": passwordStr};
         [wjAccountManager loginWithParameters:parameters success:^(NSString *uid, NSString *user_name, NSString *avatar_file) {
             [wjCookieManager loadCookieForKey:@"login"];
-            
+            [MsgDisplay showSuccessMsg:@"Success"];
+            [self dismissViewControllerAnimated:YES completion:nil];
         } failure:^(NSString *errStr) {
             [MsgDisplay showErrorMsg:errStr];
         }];

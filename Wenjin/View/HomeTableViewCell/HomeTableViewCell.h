@@ -8,10 +8,20 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol homeTableViewCellDelegate <NSObject>
+
+- (void)pushUserControllerWithRow:(NSUInteger)row;
+- (void)pushQuestionControllerWithRow:(NSUInteger)row;
+- (void)pushAnswerControllerWithRow:(NSUInteger)row;
+
+@end
+
 @interface HomeTableViewCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UILabel *actionLabel;
 @property (weak, nonatomic) IBOutlet UILabel *questionLabel;
 @property (weak, nonatomic) IBOutlet UILabel *detailLabel;
+
+@property (assign, nonatomic) id<homeTableViewCellDelegate> delegate;
 
 @end

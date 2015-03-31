@@ -20,7 +20,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    // [[self.tabBar.items objectAtIndex:2] setBadgeValue:@"3"];
+    //[[self.tabBar.items objectAtIndex:1] setBadgeValue:@"3"];
     [wjCookieManager loadCookieForKey:@"login"];
 }
 
