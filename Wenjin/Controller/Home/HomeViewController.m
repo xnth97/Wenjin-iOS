@@ -11,6 +11,8 @@
 #import "MsgDisplay.h"
 #import "SVPullToRefresh.h"
 #import "wjAccountManager.h"
+#import "HomeTableViewCell.h"
+#import "wjStringProcessor.h"
 
 @interface HomeViewController ()
 
@@ -128,21 +130,47 @@
     */
     
     static NSString *simpleTableIdentifier = @"SimpleTableCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
+    HomeTableViewCell *cell = (HomeTableViewCell *)[tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
+        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"HomeTableViewCell" owner:self options:nil];
+        cell = [nib objectAtIndex:0];
     }
     NSUInteger row = [indexPath row];
     NSDictionary *tmp = dataInView[row];
-    cell.textLabel.text = (tmp[@"question_info"])[@"question_content"];
-    
-    // Configure the cell...
+    NSString *actionIDString = [tmp[@"associate_action"] stringValue];
+    NSDictionary *actionDiction = @{@"101": @"发布了问题",
+                                    @"105": @"关注了问题",
+                                    @"201": @"回答了问题",
+                                    @"204": @"赞同了问题回答"};
+    cell.actionLabel.text = [NSString stringWithFormat:@"%@ %@", (tmp[@"user_info"])[@"user_name"], actionDiction[actionIDString]];
+    cell.questionLabel.text = [wjStringProcessor filterHTMLWithString:(tmp[@"question_info"])[@"question_content"]];
+    cell.detailLabel.text = [wjStringProcessor processAnswerDetailString:(tmp[@"answer_info"])[@"answer_content"]];
     
     return cell;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSUInteger row = [indexPath row];
+    NSString *questionTitle = ((dataInView[row])[@"question_info"])[@"question_content"];
+    NSString *detailStr = [wjStringProcessor processAnswerDetailString:((dataInView[row])[@"answer_info"])[@"answer_content"]];
+    return 76 + [self heightOfLabelWithTextString:questionTitle] + [self heightOfLabelWithTextString:detailStr];
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
+}
+
+- (CGFloat)heightOfLabelWithTextString:(NSString *)textString {
+    CGFloat width = self.tableView.frame.size.width;
+    
+    UILabel *gettingSizeLabel = [[UILabel alloc]init];
+    gettingSizeLabel.text = textString;
+    gettingSizeLabel.numberOfLines = 0;
+    gettingSizeLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    CGSize maxSize = CGSizeMake(width, 1000.0);
+    
+    CGSize size = [gettingSizeLabel sizeThatFits:maxSize];
+    return size.height;
 }
 
 

@@ -13,7 +13,10 @@
 + (NSString *)login;
 + (NSString *)avatarPath;
 
+// 动态首页
 + (NSString *)homeURL;
 
+// 发布问题
++ (NSString *)postQuestion;
 
 @end

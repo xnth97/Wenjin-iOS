@@ -10,8 +10,9 @@
 
 @interface data : NSObject
 
-//for user
-
+// for posting questions
+@property (retain, nonatomic) NSString *postQuestionDetail;
+@property (retain, nonatomic) NSArray *postQuestionTopics;
 
 + (data *)shareInstance;
 
