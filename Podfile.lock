@@ -20,6 +20,7 @@ PODS:
   - AFNetworking/UIKit (2.5.2):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
+  - ALActionBlocks (1.0.3)
   - JSONKit (1.4)
   - KVOController (1.0.3)
   - pop (1.0.7)
@@ -28,6 +29,7 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking
+  - ALActionBlocks
   - JSONKit
   - KVOController
   - pop
@@ -36,6 +38,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AFNetworking: fefbce9660acb17f48ae0011292d4da0f457bf36
+  ALActionBlocks: 6a899107d2def997caae8de46d82c8fa2421987e
   JSONKit: 2111ac2b11f7ea0d07bb1d9d09e650918336a134
   KVOController: b1139ef1fc373b6757e4b69493fedd7b56eb1272
   pop: 2f14a1ea61339767af9e66741b418c831b3844df

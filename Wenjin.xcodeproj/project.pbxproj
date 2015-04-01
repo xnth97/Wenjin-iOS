@@ -15,12 +15,22 @@
 		E93063C21ACA4E69000140C1 /* PostDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E93063C11ACA4E69000140C1 /* PostDataManager.m */; };
 		E93063C51ACA9258000140C1 /* AddTopicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E93063C41ACA9258000140C1 /* AddTopicViewController.m */; };
 		E93063C81ACA966E000140C1 /* AddDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E93063C71ACA966E000140C1 /* AddDetailViewController.m */; };
+		E93063D21ACAAB81000140C1 /* QuestionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E93063D01ACAAB81000140C1 /* QuestionViewController.m */; };
+		E93063D31ACAAB81000140C1 /* QuestionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E93063D11ACAAB81000140C1 /* QuestionViewController.xib */; };
+		E93063D71ACAABC7000140C1 /* AnswerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E93063D51ACAABC7000140C1 /* AnswerViewController.m */; };
+		E93063D81ACAABC7000140C1 /* AnswerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E93063D61ACAABC7000140C1 /* AnswerViewController.xib */; };
+		E93063DC1ACAABD9000140C1 /* UserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E93063DA1ACAABD9000140C1 /* UserViewController.m */; };
+		E93063DD1ACAABD9000140C1 /* UserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E93063DB1ACAABD9000140C1 /* UserViewController.xib */; };
 		E9642E911AC5714800FF7875 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E9642E901AC5714800FF7875 /* main.m */; };
 		E9642E941AC5714800FF7875 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E9642E931AC5714800FF7875 /* AppDelegate.m */; };
 		E9642E9A1AC5714800FF7875 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9642E981AC5714800FF7875 /* Main.storyboard */; };
 		E9642E9C1AC5714800FF7875 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E9642E9B1AC5714800FF7875 /* Images.xcassets */; };
 		E9642E9F1AC5714800FF7875 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9642E9D1AC5714800FF7875 /* LaunchScreen.xib */; };
 		E9642EAB1AC5714800FF7875 /* WenjinTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E9642EAA1AC5714800FF7875 /* WenjinTests.m */; };
+		E9C1A1C01ACAF21F00892B60 /* QuestionDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E9C1A1BF1ACAF21F00892B60 /* QuestionDataManager.m */; };
+		E9C1A1C41ACBCBB000892B60 /* QuestionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = E9C1A1C31ACBCBB000892B60 /* QuestionHeaderView.m */; };
+		E9C1A1CA1ACC080700892B60 /* bootstrap.css in Resources */ = {isa = PBXBuildFile; fileRef = E9C1A1C81ACC080700892B60 /* bootstrap.css */; };
+		E9C1A1CB1ACC080700892B60 /* bootstrap.min.js in Resources */ = {isa = PBXBuildFile; fileRef = E9C1A1C91ACC080700892B60 /* bootstrap.min.js */; };
 		E9C9C6F31AC6B39200CC228A /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9C9C6F21AC6B39200CC228A /* HomeViewController.m */; };
 		E9C9C6F61AC719FC00CC228A /* MainTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9C9C6F51AC719FC00CC228A /* MainTabBarController.m */; };
 		E9C9C6FA1AC71C7600CC228A /* MyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9C9C6F91AC71C7600CC228A /* MyViewController.m */; };
@@ -34,6 +44,9 @@
 		E9C9C71B1AC7257900CC228A /* wjCookieManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E9C9C71A1AC7257900CC228A /* wjCookieManager.m */; };
 		E9E286C61AC7F632005B6ED7 /* HomeDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E9E286C51AC7F632005B6ED7 /* HomeDataManager.m */; };
 		E9E286C81AC805F2005B6ED7 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E9E286C71AC805F2005B6ED7 /* Localizable.strings */; };
+		E9EB618A1ACC187A001F5DA3 /* QuestionAnswerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E9EB61881ACC187A001F5DA3 /* QuestionAnswerTableViewCell.m */; };
+		E9EB618B1ACC187A001F5DA3 /* QuestionAnswerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9EB61891ACC187A001F5DA3 /* QuestionAnswerTableViewCell.xib */; };
+		E9EB618F1ACC2B2D001F5DA3 /* AnswerDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E9EB618E1ACC2B2D001F5DA3 /* AnswerDataManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +78,15 @@
 		E93063C41ACA9258000140C1 /* AddTopicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AddTopicViewController.m; path = Controller/PostQuestion/AddTopicViewController.m; sourceTree = "<group>"; };
 		E93063C61ACA966E000140C1 /* AddDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddDetailViewController.h; path = Controller/PostQuestion/AddDetailViewController.h; sourceTree = "<group>"; };
 		E93063C71ACA966E000140C1 /* AddDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AddDetailViewController.m; path = Controller/PostQuestion/AddDetailViewController.m; sourceTree = "<group>"; };
+		E93063CF1ACAAB81000140C1 /* QuestionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QuestionViewController.h; path = Controller/Question/QuestionViewController.h; sourceTree = "<group>"; };
+		E93063D01ACAAB81000140C1 /* QuestionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QuestionViewController.m; path = Controller/Question/QuestionViewController.m; sourceTree = "<group>"; };
+		E93063D11ACAAB81000140C1 /* QuestionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = QuestionViewController.xib; path = Controller/Question/QuestionViewController.xib; sourceTree = "<group>"; };
+		E93063D41ACAABC7000140C1 /* AnswerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AnswerViewController.h; path = Controller/Answer/AnswerViewController.h; sourceTree = "<group>"; };
+		E93063D51ACAABC7000140C1 /* AnswerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AnswerViewController.m; path = Controller/Answer/AnswerViewController.m; sourceTree = "<group>"; };
+		E93063D61ACAABC7000140C1 /* AnswerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AnswerViewController.xib; path = Controller/Answer/AnswerViewController.xib; sourceTree = "<group>"; };
+		E93063D91ACAABD9000140C1 /* UserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserViewController.h; path = Controller/User/UserViewController.h; sourceTree = "<group>"; };
+		E93063DA1ACAABD9000140C1 /* UserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserViewController.m; path = Controller/User/UserViewController.m; sourceTree = "<group>"; };
+		E93063DB1ACAABD9000140C1 /* UserViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UserViewController.xib; path = Controller/User/UserViewController.xib; sourceTree = "<group>"; };
 		E9642E8B1AC5714800FF7875 /* Wenjin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wenjin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9642E8F1AC5714800FF7875 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E9642E901AC5714800FF7875 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -76,6 +98,12 @@
 		E9642EA41AC5714800FF7875 /* WenjinTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WenjinTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9642EA91AC5714800FF7875 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E9642EAA1AC5714800FF7875 /* WenjinTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WenjinTests.m; sourceTree = "<group>"; };
+		E9C1A1BE1ACAF21F00892B60 /* QuestionDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QuestionDataManager.h; path = Model/Sections/Question/QuestionDataManager.h; sourceTree = "<group>"; };
+		E9C1A1BF1ACAF21F00892B60 /* QuestionDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QuestionDataManager.m; path = Model/Sections/Question/QuestionDataManager.m; sourceTree = "<group>"; };
+		E9C1A1C21ACBCBB000892B60 /* QuestionHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QuestionHeaderView.h; path = View/QuestionHeaderView/QuestionHeaderView.h; sourceTree = "<group>"; };
+		E9C1A1C31ACBCBB000892B60 /* QuestionHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QuestionHeaderView.m; path = View/QuestionHeaderView/QuestionHeaderView.m; sourceTree = "<group>"; };
+		E9C1A1C81ACC080700892B60 /* bootstrap.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = bootstrap.css; sourceTree = "<group>"; };
+		E9C1A1C91ACC080700892B60 /* bootstrap.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = bootstrap.min.js; sourceTree = "<group>"; };
 		E9C9C6F11AC6B39200CC228A /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomeViewController.h; path = Controller/Home/HomeViewController.h; sourceTree = "<group>"; };
 		E9C9C6F21AC6B39200CC228A /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomeViewController.m; path = Controller/Home/HomeViewController.m; sourceTree = "<group>"; };
 		E9C9C6F41AC719FC00CC228A /* MainTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainTabBarController.h; path = Controller/MainTabBarController/MainTabBarController.h; sourceTree = "<group>"; };
@@ -101,6 +129,11 @@
 		E9E286C41AC7F632005B6ED7 /* HomeDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomeDataManager.h; path = Model/Sections/Home/HomeDataManager.h; sourceTree = "<group>"; };
 		E9E286C51AC7F632005B6ED7 /* HomeDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomeDataManager.m; path = Model/Sections/Home/HomeDataManager.m; sourceTree = "<group>"; };
 		E9E286C71AC805F2005B6ED7 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		E9EB61871ACC187A001F5DA3 /* QuestionAnswerTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QuestionAnswerTableViewCell.h; path = View/QuestionAnswerTableViewCell/QuestionAnswerTableViewCell.h; sourceTree = "<group>"; };
+		E9EB61881ACC187A001F5DA3 /* QuestionAnswerTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QuestionAnswerTableViewCell.m; path = View/QuestionAnswerTableViewCell/QuestionAnswerTableViewCell.m; sourceTree = "<group>"; };
+		E9EB61891ACC187A001F5DA3 /* QuestionAnswerTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = QuestionAnswerTableViewCell.xib; path = View/QuestionAnswerTableViewCell/QuestionAnswerTableViewCell.xib; sourceTree = "<group>"; };
+		E9EB618D1ACC2B2D001F5DA3 /* AnswerDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AnswerDataManager.h; path = Model/Sections/Answer/AnswerDataManager.h; sourceTree = "<group>"; };
+		E9EB618E1ACC2B2D001F5DA3 /* AnswerDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AnswerDataManager.m; path = Model/Sections/Answer/AnswerDataManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +175,8 @@
 		E93063B01ACA394E000140C1 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				E9EB61861ACC1828001F5DA3 /* QuestionAnswerTableViewCell */,
+				E9C1A1C11ACBCB6500892B60 /* QuestionHeaderView */,
 				E93063B11ACA395B000140C1 /* HomeTableViewCell */,
 			);
 			name = View;
@@ -188,6 +223,36 @@
 			name = Post;
 			sourceTree = "<group>";
 		};
+		E93063C91ACAAB1B000140C1 /* UserViewController */ = {
+			isa = PBXGroup;
+			children = (
+				E93063D91ACAABD9000140C1 /* UserViewController.h */,
+				E93063DA1ACAABD9000140C1 /* UserViewController.m */,
+				E93063DB1ACAABD9000140C1 /* UserViewController.xib */,
+			);
+			name = UserViewController;
+			sourceTree = "<group>";
+		};
+		E93063CA1ACAAB33000140C1 /* QuestionViewController */ = {
+			isa = PBXGroup;
+			children = (
+				E93063CF1ACAAB81000140C1 /* QuestionViewController.h */,
+				E93063D01ACAAB81000140C1 /* QuestionViewController.m */,
+				E93063D11ACAAB81000140C1 /* QuestionViewController.xib */,
+			);
+			name = QuestionViewController;
+			sourceTree = "<group>";
+		};
+		E93063CB1ACAAB3C000140C1 /* AnswerViewController */ = {
+			isa = PBXGroup;
+			children = (
+				E93063D41ACAABC7000140C1 /* AnswerViewController.h */,
+				E93063D51ACAABC7000140C1 /* AnswerViewController.m */,
+				E93063D61ACAABC7000140C1 /* AnswerViewController.xib */,
+			);
+			name = AnswerViewController;
+			sourceTree = "<group>";
+		};
 		E9642E821AC5714800FF7875 = {
 			isa = PBXGroup;
 			children = (
@@ -215,6 +280,7 @@
 				E93063B01ACA394E000140C1 /* View */,
 				E9C9C6E71AC694ED00CC228A /* Controller */,
 				E9C9C6E61AC694DE00CC228A /* Model */,
+				E9C1A1C71ACC080700892B60 /* Resource */,
 				E9642E9B1AC5714800FF7875 /* Images.xcassets */,
 			);
 			path = Wenjin;
@@ -244,6 +310,33 @@
 				E9642EA91AC5714800FF7875 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E9C1A1BD1ACAF20300892B60 /* Question */ = {
+			isa = PBXGroup;
+			children = (
+				E9C1A1BE1ACAF21F00892B60 /* QuestionDataManager.h */,
+				E9C1A1BF1ACAF21F00892B60 /* QuestionDataManager.m */,
+			);
+			name = Question;
+			sourceTree = "<group>";
+		};
+		E9C1A1C11ACBCB6500892B60 /* QuestionHeaderView */ = {
+			isa = PBXGroup;
+			children = (
+				E9C1A1C21ACBCBB000892B60 /* QuestionHeaderView.h */,
+				E9C1A1C31ACBCBB000892B60 /* QuestionHeaderView.m */,
+			);
+			name = QuestionHeaderView;
+			sourceTree = "<group>";
+		};
+		E9C1A1C71ACC080700892B60 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				E9C1A1C81ACC080700892B60 /* bootstrap.css */,
+				E9C1A1C91ACC080700892B60 /* bootstrap.min.js */,
+			);
+			path = Resource;
 			sourceTree = "<group>";
 		};
 		E9C9C6E51AC694BB00CC228A /* Main */ = {
@@ -278,6 +371,9 @@
 				E9642E981AC5714800FF7875 /* Main.storyboard */,
 				E9C9C6E81AC6AA8400CC228A /* MainTabBarController */,
 				E9C9C6F01AC6B35B00CC228A /* Home */,
+				E93063CB1ACAAB3C000140C1 /* AnswerViewController */,
+				E93063CA1ACAAB33000140C1 /* QuestionViewController */,
+				E93063C91ACAAB1B000140C1 /* UserViewController */,
 				E9C9C6F71AC71C5200CC228A /* MyViewController */,
 				E93063BB1ACA4D83000140C1 /* PostQuestion */,
 				E9C9C70B1AC7201800CC228A /* Login */,
@@ -374,6 +470,8 @@
 		E9E286C21AC7F611005B6ED7 /* Sections */ = {
 			isa = PBXGroup;
 			children = (
+				E9EB618C1ACC2B0D001F5DA3 /* Answer */,
+				E9C1A1BD1ACAF20300892B60 /* Question */,
 				E93063BF1ACA4E4F000140C1 /* Post */,
 				E9E286C31AC7F617005B6ED7 /* Home */,
 			);
@@ -387,6 +485,25 @@
 				E9E286C51AC7F632005B6ED7 /* HomeDataManager.m */,
 			);
 			name = Home;
+			sourceTree = "<group>";
+		};
+		E9EB61861ACC1828001F5DA3 /* QuestionAnswerTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				E9EB61871ACC187A001F5DA3 /* QuestionAnswerTableViewCell.h */,
+				E9EB61881ACC187A001F5DA3 /* QuestionAnswerTableViewCell.m */,
+				E9EB61891ACC187A001F5DA3 /* QuestionAnswerTableViewCell.xib */,
+			);
+			name = QuestionAnswerTableViewCell;
+			sourceTree = "<group>";
+		};
+		E9EB618C1ACC2B0D001F5DA3 /* Answer */ = {
+			isa = PBXGroup;
+			children = (
+				E9EB618D1ACC2B2D001F5DA3 /* AnswerDataManager.h */,
+				E9EB618E1ACC2B2D001F5DA3 /* AnswerDataManager.m */,
+			);
+			name = Answer;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -473,8 +590,14 @@
 			files = (
 				E9642E9A1AC5714800FF7875 /* Main.storyboard in Resources */,
 				E9E286C81AC805F2005B6ED7 /* Localizable.strings in Resources */,
+				E93063D31ACAAB81000140C1 /* QuestionViewController.xib in Resources */,
 				E9642E9F1AC5714800FF7875 /* LaunchScreen.xib in Resources */,
 				E93063B61ACA3982000140C1 /* HomeTableViewCell.xib in Resources */,
+				E93063DD1ACAABD9000140C1 /* UserViewController.xib in Resources */,
+				E93063D81ACAABC7000140C1 /* AnswerViewController.xib in Resources */,
+				E9C1A1CB1ACC080700892B60 /* bootstrap.min.js in Resources */,
+				E9EB618B1ACC187A001F5DA3 /* QuestionAnswerTableViewCell.xib in Resources */,
+				E9C1A1CA1ACC080700892B60 /* bootstrap.css in Resources */,
 				E9642E9C1AC5714800FF7875 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -526,10 +649,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E9C1A1C41ACBCBB000892B60 /* QuestionHeaderView.m in Sources */,
 				E9C9C6FE1AC71D4A00CC228A /* data.m in Sources */,
 				E9C9C7071AC71E3600CC228A /* wjAPIs.m in Sources */,
+				E9EB618F1ACC2B2D001F5DA3 /* AnswerDataManager.m in Sources */,
 				E93063B51ACA3982000140C1 /* HomeTableViewCell.m in Sources */,
 				E9C9C6FA1AC71C7600CC228A /* MyViewController.m in Sources */,
+				E9EB618A1ACC187A001F5DA3 /* QuestionAnswerTableViewCell.m in Sources */,
 				E9C9C70E1AC7203500CC228A /* LoginViewController.m in Sources */,
 				E9642E941AC5714800FF7875 /* AppDelegate.m in Sources */,
 				E93063BA1ACA47EB000140C1 /* wjStringProcessor.m in Sources */,
@@ -539,10 +665,14 @@
 				E93063C51ACA9258000140C1 /* AddTopicViewController.m in Sources */,
 				E9C9C6F61AC719FC00CC228A /* MainTabBarController.m in Sources */,
 				E9C9C7181AC7256700CC228A /* wjCacheManager.m in Sources */,
+				E9C1A1C01ACAF21F00892B60 /* QuestionDataManager.m in Sources */,
 				E93063C21ACA4E69000140C1 /* PostDataManager.m in Sources */,
+				E93063D71ACAABC7000140C1 /* AnswerViewController.m in Sources */,
 				E9C9C7151AC7249900CC228A /* MsgDisplay.m in Sources */,
+				E93063DC1ACAABD9000140C1 /* UserViewController.m in Sources */,
 				E9E286C61AC7F632005B6ED7 /* HomeDataManager.m in Sources */,
 				E9C9C6F31AC6B39200CC228A /* HomeViewController.m in Sources */,
+				E93063D21ACAAB81000140C1 /* QuestionViewController.m in Sources */,
 				E9642E911AC5714800FF7875 /* main.m in Sources */,
 				E9C9C70A1AC71E4200CC228A /* wpyEncryption.m in Sources */,
 				E93063BE1ACA4DAA000140C1 /* PostViewController.m in Sources */,

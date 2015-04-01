@@ -19,4 +19,10 @@
 // 发布问题
 + (NSString *)postQuestion;
 
+// 阅读问题
++ (NSString *)viewQuestion;
+
+// 阅读答案
++ (NSString *)viewAnswer;
+
 @end

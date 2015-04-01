@@ -12,6 +12,9 @@
 #import "SVPullToRefresh.h"
 #import "wjAccountManager.h"
 #import "wjStringProcessor.h"
+#import "UserViewController.h"
+#import "QuestionViewController.h"
+#import "AnswerViewController.h"
 
 @interface HomeViewController ()
 
@@ -141,7 +144,7 @@
     NSDictionary *actionDiction = @{@"101": @"发布了问题",
                                     @"105": @"关注了问题",
                                     @"201": @"回答了问题",
-                                    @"204": @"赞同了问题回答"};
+                                    @"204": @"赞同了回答"};
     cell.actionLabel.text = [NSString stringWithFormat:@"%@ %@", (tmp[@"user_info"])[@"user_name"], actionDiction[actionIDString]];
     cell.questionLabel.text = [wjStringProcessor filterHTMLWithString:(tmp[@"question_info"])[@"question_content"]];
     cell.detailLabel.text = [wjStringProcessor processAnswerDetailString:(tmp[@"answer_info"])[@"answer_content"]];
@@ -168,6 +171,7 @@
     
     UILabel *gettingSizeLabel = [[UILabel alloc]init];
     gettingSizeLabel.text = textString;
+    gettingSizeLabel.font = [UIFont systemFontOfSize:15];
     gettingSizeLabel.numberOfLines = 0;
     gettingSizeLabel.lineBreakMode = NSLineBreakByWordWrapping;
     CGSize maxSize = CGSizeMake(width, 1000.0);
@@ -184,10 +188,15 @@
 
 - (void)pushQuestionControllerWithRow:(NSUInteger)row {
     NSLog(@"Q: %ld", row);
+    QuestionViewController *qVC = [[QuestionViewController alloc]initWithNibName:@"QuestionViewController" bundle:nil];
+    qVC.questionId = ((rowsData[row])[@"question_info"])[@"question_id"];
+    qVC.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:qVC animated:YES];
 }
 
 - (void)pushAnswerControllerWithRow:(NSUInteger)row {
     NSLog(@"A: %ld", row);
+    
 }
 
 #pragma mark - Navigation

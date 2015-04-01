@@ -6,6 +6,7 @@ pod 'pop'
 pod 'SVPullToRefresh'
 pod 'JSONKit'
 pod 'KVOController'
+pod 'ALActionBlocks'
 
 target 'Wenjin' do
 

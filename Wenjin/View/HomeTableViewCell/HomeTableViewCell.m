@@ -7,6 +7,7 @@
 //
 
 #import "HomeTableViewCell.h"
+#import "ALActionBlocks.h"
 
 @implementation HomeTableViewCell
 
@@ -18,19 +19,28 @@
 
 - (void)awakeFromNib {
     // Initialization code
-    UITapGestureRecognizer *userTapRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(userAction:)];
+    UITapGestureRecognizer *userTapRecognizer = [[UITapGestureRecognizer alloc]initWithBlock:^(id weakSender) {
+        UITapGestureRecognizer *tapRecognizer = (UITapGestureRecognizer *)weakSender;
+        [delegate pushUserControllerWithRow:tapRecognizer.view.tag];
+    }];
     [userTapRecognizer setNumberOfTapsRequired:1];
     [userTapRecognizer setDelegate:self];
     actionLabel.userInteractionEnabled = YES;
     [actionLabel addGestureRecognizer:userTapRecognizer];
     
-    UITapGestureRecognizer *titleTapRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(titleAction:)];
+    UITapGestureRecognizer *titleTapRecognizer = [[UITapGestureRecognizer alloc]initWithBlock:^(id weakSender) {
+        UITapGestureRecognizer *tapRecognizer = (UITapGestureRecognizer *)weakSender;
+        [delegate pushQuestionControllerWithRow:tapRecognizer.view.tag];
+    }];
     [titleTapRecognizer setNumberOfTapsRequired:1];
     [titleTapRecognizer setDelegate:self];
     questionLabel.userInteractionEnabled = YES;
     [questionLabel addGestureRecognizer:titleTapRecognizer];
     
-    UITapGestureRecognizer *detailTapRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(detailAction:)];
+    UITapGestureRecognizer *detailTapRecognizer = [[UITapGestureRecognizer alloc]initWithBlock:^(id weakSender) {
+        UITapGestureRecognizer *tapRecognizer = (UITapGestureRecognizer *)weakSender;
+        [delegate pushAnswerControllerWithRow:tapRecognizer.view.tag];
+    }];
     [detailTapRecognizer setNumberOfTapsRequired:1];
     [detailTapRecognizer setDelegate:self];
     detailLabel.userInteractionEnabled = YES;
@@ -41,21 +51,6 @@
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
-}
-
-- (void)userAction:(id)sender {
-    UITapGestureRecognizer *tapRecognizer = (UITapGestureRecognizer *)sender;
-    [delegate pushUserControllerWithRow:tapRecognizer.view.tag];
-}
-
-- (void)titleAction:(id)sender {
-    UITapGestureRecognizer *tapRecognizer = (UITapGestureRecognizer *)sender;
-    [delegate pushQuestionControllerWithRow:tapRecognizer.view.tag];
-}
-
-- (void)detailAction:(id)sender {
-    UITapGestureRecognizer *tapRecognizer = (UITapGestureRecognizer *)sender;
-    [delegate pushAnswerControllerWithRow:tapRecognizer.view.tag];
 }
 
 @end
