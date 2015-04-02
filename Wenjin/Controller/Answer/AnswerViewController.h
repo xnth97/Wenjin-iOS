@@ -12,6 +12,11 @@
 
 @property (weak, nonatomic) NSString *answerId;
 @property (weak, nonatomic) NSString *username;
-@property (weak, nonatomic) NSString *userSig;
+
+@property (weak, nonatomic) IBOutlet UIImageView *userAvatarView;
+@property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *userSigLabel;
+@property (weak, nonatomic) IBOutlet UIButton *agreeBtn;
+@property (weak, nonatomic) IBOutlet UIWebView *answerContentView;
 
 @end

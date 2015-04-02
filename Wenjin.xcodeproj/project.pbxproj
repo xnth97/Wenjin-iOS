@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3B0615DC3D57B8691C9034B0 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 757BA8EC47203DAF45B2AE0E /* libPods.a */; };
+		E90F42741ACD979500263622 /* UserDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E90F42731ACD979500263622 /* UserDataManager.m */; };
 		E93063B51ACA3982000140C1 /* HomeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E93063B31ACA3982000140C1 /* HomeTableViewCell.m */; };
 		E93063B61ACA3982000140C1 /* HomeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E93063B41ACA3982000140C1 /* HomeTableViewCell.xib */; };
 		E93063BA1ACA47EB000140C1 /* wjStringProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = E93063B91ACA47EB000140C1 /* wjStringProcessor.m */; };
@@ -63,6 +64,8 @@
 		757BA8EC47203DAF45B2AE0E /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		99C1D034404BBB2CDDB8DD79 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		9CFC932D72517F9951FCBB16 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		E90F42721ACD979500263622 /* UserDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserDataManager.h; path = Model/Sections/User/UserDataManager.h; sourceTree = "<group>"; };
+		E90F42731ACD979500263622 /* UserDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserDataManager.m; path = Model/Sections/User/UserDataManager.m; sourceTree = "<group>"; };
 		E92A5B0C1AC5B73E004E71FB /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		E92A5B0D1AC5B73E004E71FB /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		E93063B21ACA3982000140C1 /* HomeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomeTableViewCell.h; path = View/HomeTableViewCell/HomeTableViewCell.h; sourceTree = "<group>"; };
@@ -170,6 +173,15 @@
 				99C1D034404BBB2CDDB8DD79 /* Pods.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		E90F42711ACD978100263622 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				E90F42721ACD979500263622 /* UserDataManager.h */,
+				E90F42731ACD979500263622 /* UserDataManager.m */,
+			);
+			name = User;
 			sourceTree = "<group>";
 		};
 		E93063B01ACA394E000140C1 /* View */ = {
@@ -470,6 +482,7 @@
 		E9E286C21AC7F611005B6ED7 /* Sections */ = {
 			isa = PBXGroup;
 			children = (
+				E90F42711ACD978100263622 /* User */,
 				E9EB618C1ACC2B0D001F5DA3 /* Answer */,
 				E9C1A1BD1ACAF20300892B60 /* Question */,
 				E93063BF1ACA4E4F000140C1 /* Post */,
@@ -673,6 +686,7 @@
 				E9E286C61AC7F632005B6ED7 /* HomeDataManager.m in Sources */,
 				E9C9C6F31AC6B39200CC228A /* HomeViewController.m in Sources */,
 				E93063D21ACAAB81000140C1 /* QuestionViewController.m in Sources */,
+				E90F42741ACD979500263622 /* UserDataManager.m in Sources */,
 				E9642E911AC5714800FF7875 /* main.m in Sources */,
 				E9C9C70A1AC71E4200CC228A /* wpyEncryption.m in Sources */,
 				E93063BE1ACA4DAA000140C1 /* PostViewController.m in Sources */,

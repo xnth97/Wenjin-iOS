@@ -10,6 +10,7 @@
 
 @interface wjAPIs : NSObject
 
++ (NSString *)baseURL;
 + (NSString *)login;
 + (NSString *)avatarPath;
 
@@ -24,5 +25,8 @@
 
 // 阅读答案
 + (NSString *)viewAnswer;
+
+// 查看用户
++ (NSString *)viewUser;
 
 @end

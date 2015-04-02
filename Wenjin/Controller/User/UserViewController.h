@@ -10,4 +10,6 @@
 
 @interface UserViewController : UIViewController
 
+@property (weak, nonatomic) NSString *userId;
+
 @end

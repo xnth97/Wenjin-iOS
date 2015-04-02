@@ -29,6 +29,9 @@
 }
 
 + (NSString *)convertToBootstrapHTMLWithContent:(NSString *)contentStr {
+    // 改一下换行，说不定还要改。。
+    contentStr = [contentStr stringByReplacingOccurrencesOfString:@"\n" withString:@"<br>"];
+    
     NSScanner *imgScanner = [NSScanner scannerWithString:contentStr];
     while (![imgScanner isAtEnd]) {
         
@@ -41,11 +44,11 @@
         [imgScanner scanUpToString:@"'" intoString:&imgPath];
         imgPath = [imgPath stringByReplacingOccurrencesOfString:imgHeaderStr withString:@""];
         
-        NSString *imgStyleHeaderStr = @"\"";
+        NSString *imgStyleHeaderStr = @"'";
         [imgScanner scanUpToString:imgStyleHeaderStr intoString:NULL];
         [imgScanner scanUpToString:@"/>" intoString:&imgStyle];
         
-        NSString *originalImgStr = [NSString stringWithFormat:@"%@%@%@%@",@"<img alt=\"\" src=\"",imgPath,imgStyle,@"/>"];
+        NSString *originalImgStr = [NSString stringWithFormat:@"%@%@%@%@",@"<img src='",imgPath,imgStyle,@"/>"];
         NSString *responsiveImgStr = [NSString stringWithFormat:@"<img class=\"img-responsive\" alt=\"Responsive image\" src=\"%@\" width=100%%/>",imgPath];
         
         contentStr = [contentStr stringByReplacingOccurrencesOfString:originalImgStr withString:responsiveImgStr];

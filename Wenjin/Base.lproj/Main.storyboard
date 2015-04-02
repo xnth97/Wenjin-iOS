@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14D113c" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BH6-Mm-uy7">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14D127a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BH6-Mm-uy7">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -306,11 +306,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="话题" id="EQ9-0R-Z3U">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="UlK-Pb-g9H">
-                            <connections>
-                                <action selector="cancelModal" destination="0vL-lO-FJN" id="nDZ-Ys-TU4"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="leftBarButtonItem" systemItem="done" id="N9u-Af-CXH"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="1f9-IC-hph"/>
                     </navigationItem>
                 </tableViewController>

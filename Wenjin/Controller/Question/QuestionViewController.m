@@ -107,7 +107,6 @@
     AnswerViewController *aVC = [[AnswerViewController alloc]initWithNibName:@"AnswerViewController" bundle:nil];
     aVC.answerId = (questionAnswersData[row])[@"answer_id"];
     aVC.username = (questionAnswersData[row])[@"user_name"];
-    aVC.userSig = (questionAnswersData[row])[@"signature"];
     [self.navigationController pushViewController:aVC animated:YES];
 }
 

@@ -7,6 +7,8 @@
 //
 
 #import "UserViewController.h"
+#import "UserDataManager.h"
+#import "MsgDisplay.h"
 
 @interface UserViewController ()
 
@@ -14,9 +16,17 @@
 
 @implementation UserViewController
 
+@synthesize userId;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    NSLog(@"U %@", userId);
+    [UserDataManager getUserDataWithID:userId success:^(NSDictionary *userData) {
+
+    } failure:^(NSString *errorString) {
+        
+    }];
 }
 
 - (void)didReceiveMemoryWarning {

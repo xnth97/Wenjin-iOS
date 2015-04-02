@@ -184,6 +184,9 @@
 
 - (void)pushUserControllerWithRow:(NSUInteger)row {
     NSLog(@"U: %ld", row);
+    UserViewController *uVC = [[UserViewController alloc]initWithNibName:@"UserViewController" bundle:nil];
+    uVC.userId = [((rowsData[row])[@"user_info"])[@"uid"] stringValue];
+    [self.navigationController pushViewController:uVC animated:YES];
 }
 
 - (void)pushQuestionControllerWithRow:(NSUInteger)row {
@@ -196,7 +199,11 @@
 
 - (void)pushAnswerControllerWithRow:(NSUInteger)row {
     NSLog(@"A: %ld", row);
-    
+    AnswerViewController *aVC = [[AnswerViewController alloc]initWithNibName:@"AnswerViewController" bundle:nil];
+    aVC.hidesBottomBarWhenPushed = YES;
+    aVC.answerId = ((rowsData[row])[@"answer_info"])[@"answer_id"];
+    aVC.username = ((rowsData[row])[@"user_info"])[@"user_name"];
+    [self.navigationController pushViewController:aVC animated:YES];
 }
 
 #pragma mark - Navigation

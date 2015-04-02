@@ -9,6 +9,8 @@
 #import "AnswerViewController.h"
 #import "AnswerDataManager.h"
 #import "wjStringProcessor.h"
+#import "MsgDisplay.h"
+#import "wjAPIs.h"
 
 @interface AnswerViewController ()
 
@@ -18,12 +20,32 @@
 
 @synthesize answerId;
 @synthesize username;
-@synthesize userSig;
+
+@synthesize userAvatarView;
+@synthesize userNameLabel;
+@synthesize userSigLabel;
+@synthesize agreeBtn;
+@synthesize answerContentView;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.title = [NSString stringWithFormat:@"%@ 的回答", username];
+    
+    userNameLabel.text = username;
+    
+    [AnswerDataManager getAnswerDataWithAnswerID:answerId success:^(NSDictionary *ansData) {
+        [answerContentView loadHTMLString:[wjStringProcessor convertToBootstrapHTMLWithContent:ansData[@"answer_content"]] baseURL:[NSURL URLWithString:[wjAPIs baseURL]]];
+        userNameLabel.text = ansData[@"user_name"];
+        userSigLabel.text = ansData[@"signature"];
+        if ([ansData[@"vote_value"] isEqual:@1]) {
+            [agreeBtn setTitle:[NSString stringWithFormat:@"Voted %@", [ansData[@"agree_count"] stringValue]] forState:UIControlStateNormal];
+        } else {
+            [agreeBtn setTitle:[NSString stringWithFormat:@"Vote %@", [ansData[@"agree_count"] stringValue]] forState:UIControlStateNormal];
+        }
+    } failure:^(NSString *errStr) {
+        [MsgDisplay showErrorMsg:errStr];
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
