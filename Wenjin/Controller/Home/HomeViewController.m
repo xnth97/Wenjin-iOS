@@ -15,6 +15,7 @@
 #import "UserViewController.h"
 #import "QuestionViewController.h"
 #import "AnswerViewController.h"
+#import "data.h"
 
 @interface HomeViewController ()
 
@@ -29,6 +30,14 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.navigationController.view.backgroundColor = [UIColor whiteColor];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    if ([[data shareInstance].loginStatus isEqualToString:@"changed"]) {
+        [self.tableView triggerPullToRefresh];
+        [data shareInstance].loginStatus = @"";
+    }
 }
 
 - (void)viewDidLoad {
@@ -83,7 +92,6 @@
         [self.tableView.pullToRefreshView stopAnimating];
         
     } failure:^(NSString *errStr) {
-        
         
         [MsgDisplay showErrorMsg:errStr];
         [self.tableView.infiniteScrollingView stopAnimating];

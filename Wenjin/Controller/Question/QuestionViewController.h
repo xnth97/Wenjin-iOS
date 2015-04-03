@@ -10,7 +10,7 @@
 #import "QuestionHeaderView.h"
 #import "QuestionAnswerTableViewCell.h"
 
-@interface QuestionViewController : UIViewController<UITableViewDelegate, UITableViewDataSource, QuestionCellPushUserDelegate>
+@interface QuestionViewController : UIViewController<UITableViewDelegate, UITableViewDataSource, QuestionCellPushUserDelegate, QuestionHeaderViewDelegate>
 
 @property (strong, nonatomic) NSString *questionId;
 

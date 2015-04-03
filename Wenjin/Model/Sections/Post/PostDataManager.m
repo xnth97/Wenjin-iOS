@@ -36,4 +36,27 @@
     }];
 }
 
++ (void)postAnswerWithParameters:(NSDictionary *)parameters success:(void (^)(NSString *))success failure:(void (^)(NSString *))failure {
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+    [manager POST:[wjAPIs postAnswer] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObj) {
+        
+        NSDictionary *pqDic = [operation.responseString objectFromJSONString];
+        if ([pqDic[@"errno"] isEqual: @1]) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                success((pqDic[@"rsm"])[@"answer_id"]);
+            });
+        } else {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                failure(pqDic[@"err"]);
+            });
+        }
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            failure(error.localizedDescription);
+        });
+    }];
+}
+
 @end

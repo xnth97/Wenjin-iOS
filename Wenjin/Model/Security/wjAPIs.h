@@ -20,6 +20,9 @@
 // 发布问题
 + (NSString *)postQuestion;
 
+// 添加答案
++ (NSString *)postAnswer;
+
 // 阅读问题
 + (NSString *)viewQuestion;
 
@@ -37,5 +40,7 @@
 
 // 回复图片
 + (NSString *)answerImagePath;
+
+
 
 @end

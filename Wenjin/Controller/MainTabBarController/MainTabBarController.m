@@ -11,6 +11,7 @@
 #import "LoginViewController.h"
 #import "data.h"
 #import "wjCacheManager.h"
+#import "wjAccountManager.h"
 
 @interface MainTabBarController ()
 
@@ -23,20 +24,51 @@
     // Do any additional setup after loading the view.
     
     //[[self.tabBar.items objectAtIndex:1] setBadgeValue:@"3"];
-    [wjCookieManager loadCookieForKey:@"login"];
-    [wjCacheManager loadCacheDataWithKey:@"userData" andBlock:^(id userData) {
-        [data shareInstance].myUID = userData[@"uid"];
-    }];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    
+    NSLog(@"here?");
+    
+    if (![wjAccountManager userIsLoggedIn]) {
+        NotLoggedInView *notLoggedView = [[NotLoggedInView alloc]init];
+        notLoggedView.frame = self.view.frame;
+        notLoggedView.delegate = self;
+        [self.view addSubview:notLoggedView];
+    } else {
+        
+        for (UIView *view in self.view.subviews) {
+            if ([view isKindOfClass:[NotLoggedInView class]]) {
+                [view removeFromSuperview];
+            }
+        }
+        
+        [wjCookieManager loadCookieForKey:@"login"];
+        [wjCacheManager loadCacheDataWithKey:@"userData" andBlock:^(id userData) {
+            [data shareInstance].myUID = userData[@"uid"];
+        }];
+        
+        [data shareInstance].loginStatus = @"changed";
+    }
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
     
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+// NotLoggedInViewDelegate
+
+- (void)presentLoginController {
+    LoginViewController *login = [[LoginViewController alloc]initWithNibName:@"LoginViewController" bundle:nil];
+    [self presentViewController:login animated:YES completion:nil];
 }
 
 /*

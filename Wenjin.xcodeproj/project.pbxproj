@@ -31,6 +31,11 @@
 		E9642E9F1AC5714800FF7875 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9642E9D1AC5714800FF7875 /* LaunchScreen.xib */; };
 		E9642EAB1AC5714800FF7875 /* WenjinTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E9642EAA1AC5714800FF7875 /* WenjinTests.m */; };
 		E99079031ACEC9B7008DCA22 /* SettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = E99079021ACEC9B7008DCA22 /* SettingsController.m */; };
+		E99079081ACECCB5008DCA22 /* PostAnswerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E99079061ACECCB5008DCA22 /* PostAnswerViewController.m */; };
+		E99079091ACECCB5008DCA22 /* PostAnswerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E99079071ACECCB5008DCA22 /* PostAnswerViewController.xib */; };
+		E990790B1ACEE1C7008DCA22 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E990790A1ACEE1C7008DCA22 /* LoginViewController.xib */; };
+		E990790F1ACEE371008DCA22 /* NotLoggedInView.m in Sources */ = {isa = PBXBuildFile; fileRef = E990790E1ACEE371008DCA22 /* NotLoggedInView.m */; };
+		E99079111ACEE3A4008DCA22 /* NotLoggedInView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E99079101ACEE3A4008DCA22 /* NotLoggedInView.xib */; };
 		E9C1A1C01ACAF21F00892B60 /* QuestionDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E9C1A1BF1ACAF21F00892B60 /* QuestionDataManager.m */; };
 		E9C1A1C41ACBCBB000892B60 /* QuestionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = E9C1A1C31ACBCBB000892B60 /* QuestionHeaderView.m */; };
 		E9C1A1CA1ACC080700892B60 /* bootstrap.css in Resources */ = {isa = PBXBuildFile; fileRef = E9C1A1C81ACC080700892B60 /* bootstrap.css */; };
@@ -108,6 +113,13 @@
 		E9642EAA1AC5714800FF7875 /* WenjinTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WenjinTests.m; sourceTree = "<group>"; };
 		E99079011ACEC9B7008DCA22 /* SettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingsController.h; path = Controller/Settings/SettingsController.h; sourceTree = "<group>"; };
 		E99079021ACEC9B7008DCA22 /* SettingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingsController.m; path = Controller/Settings/SettingsController.m; sourceTree = "<group>"; };
+		E99079051ACECCB5008DCA22 /* PostAnswerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PostAnswerViewController.h; path = Controller/PostAnswer/PostAnswerViewController.h; sourceTree = "<group>"; };
+		E99079061ACECCB5008DCA22 /* PostAnswerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PostAnswerViewController.m; path = Controller/PostAnswer/PostAnswerViewController.m; sourceTree = "<group>"; };
+		E99079071ACECCB5008DCA22 /* PostAnswerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PostAnswerViewController.xib; path = Controller/PostAnswer/PostAnswerViewController.xib; sourceTree = "<group>"; };
+		E990790A1ACEE1C7008DCA22 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LoginViewController.xib; path = Controller/Login/LoginViewController.xib; sourceTree = "<group>"; };
+		E990790D1ACEE371008DCA22 /* NotLoggedInView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NotLoggedInView.h; path = View/NotLoggedInView/NotLoggedInView.h; sourceTree = "<group>"; };
+		E990790E1ACEE371008DCA22 /* NotLoggedInView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NotLoggedInView.m; path = View/NotLoggedInView/NotLoggedInView.m; sourceTree = "<group>"; };
+		E99079101ACEE3A4008DCA22 /* NotLoggedInView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NotLoggedInView.xib; path = View/NotLoggedInView/NotLoggedInView.xib; sourceTree = "<group>"; };
 		E9C1A1BE1ACAF21F00892B60 /* QuestionDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QuestionDataManager.h; path = Model/Sections/Question/QuestionDataManager.h; sourceTree = "<group>"; };
 		E9C1A1BF1ACAF21F00892B60 /* QuestionDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QuestionDataManager.m; path = Model/Sections/Question/QuestionDataManager.m; sourceTree = "<group>"; };
 		E9C1A1C21ACBCBB000892B60 /* QuestionHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QuestionHeaderView.h; path = View/QuestionHeaderView/QuestionHeaderView.h; sourceTree = "<group>"; };
@@ -202,6 +214,7 @@
 		E93063B01ACA394E000140C1 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				E990790C1ACEE350008DCA22 /* NotLoggedInView */,
 				E90F42751ACE6A3200263622 /* UserHeaderView */,
 				E9EB61861ACC1828001F5DA3 /* QuestionAnswerTableViewCell */,
 				E9C1A1C11ACBCB6500892B60 /* QuestionHeaderView */,
@@ -349,6 +362,26 @@
 			name = Setting;
 			sourceTree = "<group>";
 		};
+		E99079041ACECC97008DCA22 /* PostAnswer */ = {
+			isa = PBXGroup;
+			children = (
+				E99079051ACECCB5008DCA22 /* PostAnswerViewController.h */,
+				E99079061ACECCB5008DCA22 /* PostAnswerViewController.m */,
+				E99079071ACECCB5008DCA22 /* PostAnswerViewController.xib */,
+			);
+			name = PostAnswer;
+			sourceTree = "<group>";
+		};
+		E990790C1ACEE350008DCA22 /* NotLoggedInView */ = {
+			isa = PBXGroup;
+			children = (
+				E990790D1ACEE371008DCA22 /* NotLoggedInView.h */,
+				E990790E1ACEE371008DCA22 /* NotLoggedInView.m */,
+				E99079101ACEE3A4008DCA22 /* NotLoggedInView.xib */,
+			);
+			name = NotLoggedInView;
+			sourceTree = "<group>";
+		};
 		E9C1A1BD1ACAF20300892B60 /* Question */ = {
 			isa = PBXGroup;
 			children = (
@@ -413,6 +446,7 @@
 				E93063C91ACAAB1B000140C1 /* UserViewController */,
 				E99079001ACEC982008DCA22 /* Setting */,
 				E93063BB1ACA4D83000140C1 /* PostQuestion */,
+				E99079041ACECC97008DCA22 /* PostAnswer */,
 				E9C9C70B1AC7201800CC228A /* Login */,
 			);
 			name = Controller;
@@ -481,6 +515,7 @@
 			children = (
 				E9C9C70C1AC7203500CC228A /* LoginViewController.h */,
 				E9C9C70D1AC7203500CC228A /* LoginViewController.m */,
+				E990790A1ACEE1C7008DCA22 /* LoginViewController.xib */,
 			);
 			name = Login;
 			sourceTree = "<group>";
@@ -619,6 +654,7 @@
 			files = (
 				E9642E9A1AC5714800FF7875 /* Main.storyboard in Resources */,
 				E9E286C81AC805F2005B6ED7 /* Localizable.strings in Resources */,
+				E99079111ACEE3A4008DCA22 /* NotLoggedInView.xib in Resources */,
 				E93063D31ACAAB81000140C1 /* QuestionViewController.xib in Resources */,
 				E9642E9F1AC5714800FF7875 /* LaunchScreen.xib in Resources */,
 				E93063B61ACA3982000140C1 /* HomeTableViewCell.xib in Resources */,
@@ -626,8 +662,10 @@
 				E90F427A1ACE6E5D00263622 /* UserHeaderView.xib in Resources */,
 				E93063D81ACAABC7000140C1 /* AnswerViewController.xib in Resources */,
 				E9C1A1CB1ACC080700892B60 /* bootstrap.min.js in Resources */,
+				E99079091ACECCB5008DCA22 /* PostAnswerViewController.xib in Resources */,
 				E9EB618B1ACC187A001F5DA3 /* QuestionAnswerTableViewCell.xib in Resources */,
 				E9C1A1CA1ACC080700892B60 /* bootstrap.css in Resources */,
+				E990790B1ACEE1C7008DCA22 /* LoginViewController.xib in Resources */,
 				E9642E9C1AC5714800FF7875 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -685,8 +723,10 @@
 				E9EB618F1ACC2B2D001F5DA3 /* AnswerDataManager.m in Sources */,
 				E93063B51ACA3982000140C1 /* HomeTableViewCell.m in Sources */,
 				E9EB618A1ACC187A001F5DA3 /* QuestionAnswerTableViewCell.m in Sources */,
+				E990790F1ACEE371008DCA22 /* NotLoggedInView.m in Sources */,
 				E9C9C70E1AC7203500CC228A /* LoginViewController.m in Sources */,
 				E9642E941AC5714800FF7875 /* AppDelegate.m in Sources */,
+				E99079081ACECCB5008DCA22 /* PostAnswerViewController.m in Sources */,
 				E93063BA1ACA47EB000140C1 /* wjStringProcessor.m in Sources */,
 				E93063C81ACA966E000140C1 /* AddDetailViewController.m in Sources */,
 				E9C9C71B1AC7257900CC228A /* wjCookieManager.m in Sources */,

@@ -12,6 +12,8 @@
 #import "wjStringProcessor.h"
 #import "UserViewController.h"
 #import "AnswerViewController.h"
+#import "PostAnswerViewController.h"
+#import "SVPullToRefresh.h"
 
 @interface QuestionViewController ()
 
@@ -34,20 +36,21 @@
     self.questionTableView.delegate = self;
     self.questionTableView.tableFooterView = [[UIView alloc]init];
     
-    [QuestionDataManager getQuestionDataWithID:questionId success:^(NSDictionary *_questionInfo, NSArray *_questionAnswers, NSArray *_questionTopics, NSString *_answerCount) {
-        questionInfo = _questionInfo;
-        questionTopics = [[NSMutableArray alloc]initWithArray:_questionTopics];
-        questionAnswersData = [[NSMutableArray alloc]initWithArray:_questionAnswers];
+    if ([self respondsToSelector:@selector(automaticallyAdjustsScrollViewInsets)]) {
+        self.automaticallyAdjustsScrollViewInsets = NO;
         
-        self.title = [NSString stringWithFormat:@"共 %@ 回答", _answerCount];
-        
-        QuestionHeaderView *headerView = [[QuestionHeaderView alloc]initWithQuestionInfo:questionInfo andTopics:questionTopics];
-        questionTableView.tableHeaderView = headerView;
-        [questionTableView reloadData];
-        
-    } failure:^(NSString *errStr) {
-        [MsgDisplay showErrorMsg:errStr];
+        UIEdgeInsets insets = self.questionTableView.contentInset;
+        insets.top = self.navigationController.navigationBar.bounds.size.height + [UIApplication sharedApplication].statusBarFrame.size.height;
+        self.questionTableView.contentInset = insets;
+        self.questionTableView.scrollIndicatorInsets = insets;
+    }
+    
+    __weak QuestionViewController *weakSelf = self;
+    [self.questionTableView addPullToRefreshWithActionHandler:^{
+        [weakSelf refreshData];
     }];
+    
+    [self.questionTableView triggerPullToRefresh];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -58,6 +61,27 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [questionTableView deselectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:YES];
+}
+
+- (void)refreshData {
+    [QuestionDataManager getQuestionDataWithID:questionId success:^(NSDictionary *_questionInfo, NSArray *_questionAnswers, NSArray *_questionTopics, NSString *_answerCount) {
+        questionInfo = _questionInfo;
+        questionTopics = [[NSMutableArray alloc]initWithArray:_questionTopics];
+        questionAnswersData = [[NSMutableArray alloc]initWithArray:_questionAnswers];
+        
+        self.title = [NSString stringWithFormat:@"共 %@ 回答", _answerCount];
+        
+        QuestionHeaderView *headerView = [[QuestionHeaderView alloc]initWithQuestionInfo:questionInfo andTopics:questionTopics];
+        headerView.delegate = self;
+        questionTableView.tableHeaderView = headerView;
+        [questionTableView reloadData];
+        [questionTableView.pullToRefreshView stopAnimating];
+        
+    } failure:^(NSString *errStr) {
+        [MsgDisplay showErrorMsg:errStr];
+        [questionTableView.pullToRefreshView stopAnimating];
+    }];
+    
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -117,6 +141,14 @@
     UserViewController *uVC = [[UserViewController alloc]initWithNibName:@"UserViewController" bundle:nil];
     uVC.userId = [(questionAnswersData[row])[@"uid"] stringValue];
     [self.navigationController pushViewController:uVC animated:YES];
+}
+
+// Question Header View Delegate
+- (void)presentPostAnswerController {
+    PostAnswerViewController *postAnswer = [[PostAnswerViewController alloc]initWithNibName:@"PostAnswerViewController" bundle:nil];
+    postAnswer.questionId = questionInfo[@"question_id"];
+    UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:postAnswer];
+    [self presentViewController:nav animated:YES completion:nil];
 }
 
 /*

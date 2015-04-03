@@ -14,6 +14,8 @@
     int _borderDist;
 }
 
+@synthesize delegate;
+
 - (id)init {
     if (self = [super init]) {
         // self = [[[NSBundle mainBundle] loadNibNamed:@"QuestionHeaderView" owner:self options:nil] objectAtIndex:0];
@@ -70,6 +72,7 @@
         [addAnswer handleControlEvents:UIControlEventTouchUpInside withBlock:^(id weakSender) {
             NSLog(@"Add answer action");
             // 添加回答
+            [delegate presentPostAnswerController];
         }];
         [self addSubview:addAnswer];
         

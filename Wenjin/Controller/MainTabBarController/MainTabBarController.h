@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NotLoggedInView.h"
 
-@interface MainTabBarController : UITabBarController
+@interface MainTabBarController : UITabBarController<NotLoggedInViewDelegate>
 
 @end

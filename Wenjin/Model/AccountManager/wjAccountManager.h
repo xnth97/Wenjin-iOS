@@ -11,6 +11,7 @@
 @interface wjAccountManager : NSObject
 
 + (void)loginWithParameters:(NSDictionary *)parameters success:(void(^)(NSString *uid, NSString *user_name, NSString *avatar_file))success failure:(void(^)(NSString *errStr))failure;
++ (void)logout;
 + (BOOL)userIsLoggedIn;
 
 @end

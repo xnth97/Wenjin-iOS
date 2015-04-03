@@ -7,8 +7,10 @@
 //
 
 #import "SettingsController.h"
+#import "LoginViewController.h"
 #import "wjCacheManager.h"
 #import "wjCookieManager.h"
+#import "wjAccountManager.h"
 
 @interface SettingsController ()
 
@@ -27,8 +29,12 @@
 }
 
 - (IBAction)logout {
-    [wjCookieManager removeCookieForKey:@"login"];
-    [wjCacheManager removeCacheDataForKey:@"homeCache"];
+    [wjAccountManager logout];
+}
+
+- (IBAction)login {
+    LoginViewController *login = [[LoginViewController alloc]initWithNibName:@"LoginViewController" bundle:nil];
+    [self presentViewController:login animated:YES completion:nil];
 }
 
 /*

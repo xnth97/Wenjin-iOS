@@ -42,6 +42,12 @@
     }];
 }
 
++ (void)logout {
+    [wjCookieManager removeCookieForKey:@"login"];
+    [wjCacheManager removeCacheDataForKey:@"homeCache"];
+    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"userIsLoggedIn"];
+}
+
 + (BOOL)userIsLoggedIn {
     if ([[NSUserDefaults standardUserDefaults] objectForKey:@"userIsLoggedIn"] == nil) {
         return NO;

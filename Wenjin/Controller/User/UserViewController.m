@@ -12,6 +12,7 @@
 #import "UserHeaderView.h"
 #import "data.h"
 #import "wjCacheManager.h"
+#import "SVPullToRefresh.h"
 
 @interface UserViewController ()
 
@@ -28,50 +29,73 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     if (userId == nil) {
-        userId = [data shareInstance].myUID;
         self.title = @"我";
+        if ([data shareInstance].myUID != nil) {
+            userId = [data shareInstance].myUID;
+        }
     }
-    
-    NSLog(@"U %@", userId);
     
     self.userTableView.dataSource = self;
     self.userTableView.delegate = self;
     
     cellArray = @[];
     
-    [UserDataManager getUserDataWithID:userId success:^(NSDictionary *userData) {
+    if ([self respondsToSelector:@selector(automaticallyAdjustsScrollViewInsets)]) {
+        self.automaticallyAdjustsScrollViewInsets = NO;
         
-        UserHeaderView *headerView = [[UserHeaderView alloc]init];
-        headerView.usernameLabel.text = userData[@"user_name"];
-        headerView.userSigLabel.text = userData[@"signature"];
-        headerView.agreeCountLabel.text = userData[@"agree_count"];
-        headerView.thanksCountLabel.text = userData[@"thanks_count"];
-        [headerView loadAvatarImageWithApartURLString:userData[@"avatar_file"]];
-        if ([userData[@"has_focus"] isEqual:@1]) {
-            [headerView.followButton setTitle:@"取消关注" forState:UIControlStateNormal];
-        } else {
-            [headerView.followButton setTitle:@"关注" forState:UIControlStateNormal];
-        }
-        userTableView.tableHeaderView = headerView;
-        
-        if ([userId integerValue] == [[data shareInstance].myUID integerValue]) {
-            headerView.followButton.hidden = YES;
-            cellArray = @[@[@"我关注的", @"关注我的"], @[@"我的提问", @"我的回答"]];
-            self.title = @"我";
-        } else {
-            cellArray = @[@[@"Ta 关注的", @"关注 Ta 的"], @[@"Ta 的提问", @"Ta 的回答"]];
-            self.title = userData[@"user_name"];
-        }
-        
-        [userTableView reloadData];
-    } failure:^(NSString *errorString) {
-        
+        UIEdgeInsets insets = self.userTableView.contentInset;
+        insets.top = self.navigationController.navigationBar.bounds.size.height + [UIApplication sharedApplication].statusBarFrame.size.height;
+        self.userTableView.contentInset = insets;
+        self.userTableView.scrollIndicatorInsets = insets;
+    }
+    
+    __weak UserViewController *weakSelf = self;
+    [self.userTableView addPullToRefreshWithActionHandler:^{
+        [weakSelf refreshData];
     }];
+    
+    [self.userTableView triggerPullToRefresh];
+    
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)refreshData {
+    if (userId != nil) {
+        [UserDataManager getUserDataWithID:userId success:^(NSDictionary *userData) {
+            
+            UserHeaderView *headerView = [[UserHeaderView alloc]init];
+            headerView.usernameLabel.text = userData[@"user_name"];
+            headerView.userSigLabel.text = userData[@"signature"];
+            headerView.agreeCountLabel.text = userData[@"agree_count"];
+            headerView.thanksCountLabel.text = userData[@"thanks_count"];
+            [headerView loadAvatarImageWithApartURLString:userData[@"avatar_file"]];
+            if ([userData[@"has_focus"] isEqual:@1]) {
+                [headerView.followButton setTitle:@"取消关注" forState:UIControlStateNormal];
+            } else {
+                [headerView.followButton setTitle:@"关注" forState:UIControlStateNormal];
+            }
+            userTableView.tableHeaderView = headerView;
+            
+            if ([userId integerValue] == [[data shareInstance].myUID integerValue]) {
+                headerView.followButton.hidden = YES;
+                cellArray = @[@[@"我关注的", @"关注我的"], @[@"我的提问", @"我的回答"]];
+                self.title = @"我";
+            } else {
+                cellArray = @[@[@"Ta 关注的", @"关注 Ta 的"], @[@"Ta 的提问", @"Ta 的回答"]];
+                self.title = userData[@"user_name"];
+            }
+            
+            [userTableView reloadData];
+            [userTableView.pullToRefreshView stopAnimating];
+        } failure:^(NSString *errorString) {
+            [MsgDisplay showErrorMsg:errorString];
+            [userTableView.pullToRefreshView stopAnimating];
+        }];
+    }
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {

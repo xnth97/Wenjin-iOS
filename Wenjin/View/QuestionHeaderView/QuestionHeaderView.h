@@ -8,7 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol QuestionHeaderViewDelegate <NSObject>
+
+- (void)presentPostAnswerController;
+
+@end
+
 @interface QuestionHeaderView : UIView
+
+@property (assign, nonatomic) id<QuestionHeaderViewDelegate> delegate;
 
 - (id)initWithQuestionInfo:(NSDictionary *)questionInfo andTopics:(NSArray *)topics;
 

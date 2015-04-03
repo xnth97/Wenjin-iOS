@@ -10,6 +10,7 @@
 
 @interface SettingsController : UIViewController
 
+- (IBAction)login;
 - (IBAction)logout;
 
 @end
