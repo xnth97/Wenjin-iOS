@@ -10,7 +10,7 @@
 #import "QuestionDataManager.h"
 #import "MsgDisplay.h"
 #import "wjStringProcessor.h"
-#import "QuestionAnswerTableViewCell.h"
+#import "UserViewController.h"
 #import "AnswerViewController.h"
 
 @interface QuestionViewController ()
@@ -85,6 +85,8 @@
     cell.userNameLabel.text = tmp[@"user_name"];
     cell.answerContentLabel.text = [wjStringProcessor processAnswerDetailString:tmp[@"answer_content"]];
     cell.agreeCountLabel.text = [tmp[@"agree_count"] stringValue];
+    cell.userAvatarView.tag = row;
+    cell.delegate = self;
     return cell;
 }
 
@@ -106,8 +108,14 @@
     NSUInteger row = [indexPath row];
     AnswerViewController *aVC = [[AnswerViewController alloc]initWithNibName:@"AnswerViewController" bundle:nil];
     aVC.answerId = (questionAnswersData[row])[@"answer_id"];
-    aVC.username = (questionAnswersData[row])[@"user_name"];
     [self.navigationController pushViewController:aVC animated:YES];
+}
+
+// Question Push User Delegate
+- (void)pushUserControllerWithRow:(NSUInteger)row {
+    UserViewController *uVC = [[UserViewController alloc]initWithNibName:@"UserViewController" bundle:nil];
+    uVC.userId = [(questionAnswersData[row])[@"uid"] stringValue];
+    [self.navigationController pushViewController:uVC animated:YES];
 }
 
 /*

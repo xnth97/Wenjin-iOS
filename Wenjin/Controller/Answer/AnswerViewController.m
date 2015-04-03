@@ -11,6 +11,8 @@
 #import "wjStringProcessor.h"
 #import "MsgDisplay.h"
 #import "wjAPIs.h"
+#import "ALActionBlocks.h"
+#import "UserViewController.h"
 
 @interface AnswerViewController ()
 
@@ -19,30 +21,48 @@
 @implementation AnswerViewController
 
 @synthesize answerId;
-@synthesize username;
 
 @synthesize userAvatarView;
 @synthesize userNameLabel;
 @synthesize userSigLabel;
 @synthesize agreeBtn;
 @synthesize answerContentView;
+@synthesize userInfoView;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.title = [NSString stringWithFormat:@"%@ 的回答", username];
-    
-    userNameLabel.text = username;
+    self.title = @"回答";
+    self.automaticallyAdjustsScrollViewInsets = YES;
     
     [AnswerDataManager getAnswerDataWithAnswerID:answerId success:^(NSDictionary *ansData) {
-        [answerContentView loadHTMLString:[wjStringProcessor convertToBootstrapHTMLWithContent:ansData[@"answer_content"]] baseURL:[NSURL URLWithString:[wjAPIs baseURL]]];
+        NSString *processedHTML = [wjStringProcessor convertToBootstrapHTMLWithContent:ansData[@"answer_content"]];
+        [answerContentView loadHTMLString:processedHTML baseURL:[NSURL URLWithString:[wjAPIs baseURL]]];
         userNameLabel.text = ansData[@"user_name"];
+        self.title = [NSString stringWithFormat:@"%@ 的回答", ansData[@"user_name"]];
         userSigLabel.text = ansData[@"signature"];
+        
         if ([ansData[@"vote_value"] isEqual:@1]) {
             [agreeBtn setTitle:[NSString stringWithFormat:@"Voted %@", [ansData[@"agree_count"] stringValue]] forState:UIControlStateNormal];
+            [agreeBtn handleControlEvents:UIControlEventTouchUpInside withBlock:^(id weakSender) {
+                NSLog(@"VOTED");
+            }];
         } else {
             [agreeBtn setTitle:[NSString stringWithFormat:@"Vote %@", [ansData[@"agree_count"] stringValue]] forState:UIControlStateNormal];
+            [agreeBtn handleControlEvents:UIControlEventTouchUpInside withBlock:^(id weakSender) {
+                NSLog(@"VOTE");
+            }];
         }
+        
+        UITapGestureRecognizer *userTapRecognizer = [[UITapGestureRecognizer alloc]initWithBlock:^(id weakSender) {
+            UserViewController *uVC = [[UserViewController alloc]initWithNibName:@"UserViewController" bundle:nil];
+            uVC.userId = [ansData[@"uid"] stringValue];
+            [self.navigationController pushViewController:uVC animated:YES];
+        }];
+        [userTapRecognizer setNumberOfTapsRequired:1];
+        [userInfoView setUserInteractionEnabled:YES];
+        [userInfoView addGestureRecognizer:userTapRecognizer];
+        
     } failure:^(NSString *errStr) {
         [MsgDisplay showErrorMsg:errStr];
     }];

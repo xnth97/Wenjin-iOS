@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		3B0615DC3D57B8691C9034B0 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 757BA8EC47203DAF45B2AE0E /* libPods.a */; };
 		E90F42741ACD979500263622 /* UserDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E90F42731ACD979500263622 /* UserDataManager.m */; };
+		E90F42781ACE6A4E00263622 /* UserHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = E90F42771ACE6A4E00263622 /* UserHeaderView.m */; };
+		E90F427A1ACE6E5D00263622 /* UserHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E90F42791ACE6E5D00263622 /* UserHeaderView.xib */; };
 		E93063B51ACA3982000140C1 /* HomeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E93063B31ACA3982000140C1 /* HomeTableViewCell.m */; };
 		E93063B61ACA3982000140C1 /* HomeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E93063B41ACA3982000140C1 /* HomeTableViewCell.xib */; };
 		E93063BA1ACA47EB000140C1 /* wjStringProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = E93063B91ACA47EB000140C1 /* wjStringProcessor.m */; };
@@ -66,6 +68,9 @@
 		9CFC932D72517F9951FCBB16 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		E90F42721ACD979500263622 /* UserDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserDataManager.h; path = Model/Sections/User/UserDataManager.h; sourceTree = "<group>"; };
 		E90F42731ACD979500263622 /* UserDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserDataManager.m; path = Model/Sections/User/UserDataManager.m; sourceTree = "<group>"; };
+		E90F42761ACE6A4E00263622 /* UserHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserHeaderView.h; path = View/UserHeaderView/UserHeaderView.h; sourceTree = "<group>"; };
+		E90F42771ACE6A4E00263622 /* UserHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserHeaderView.m; path = View/UserHeaderView/UserHeaderView.m; sourceTree = "<group>"; };
+		E90F42791ACE6E5D00263622 /* UserHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UserHeaderView.xib; path = View/UserHeaderView/UserHeaderView.xib; sourceTree = "<group>"; };
 		E92A5B0C1AC5B73E004E71FB /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		E92A5B0D1AC5B73E004E71FB /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		E93063B21ACA3982000140C1 /* HomeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomeTableViewCell.h; path = View/HomeTableViewCell/HomeTableViewCell.h; sourceTree = "<group>"; };
@@ -184,9 +189,20 @@
 			name = User;
 			sourceTree = "<group>";
 		};
+		E90F42751ACE6A3200263622 /* UserHeaderView */ = {
+			isa = PBXGroup;
+			children = (
+				E90F42761ACE6A4E00263622 /* UserHeaderView.h */,
+				E90F42771ACE6A4E00263622 /* UserHeaderView.m */,
+				E90F42791ACE6E5D00263622 /* UserHeaderView.xib */,
+			);
+			name = UserHeaderView;
+			sourceTree = "<group>";
+		};
 		E93063B01ACA394E000140C1 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				E90F42751ACE6A3200263622 /* UserHeaderView */,
 				E9EB61861ACC1828001F5DA3 /* QuestionAnswerTableViewCell */,
 				E9C1A1C11ACBCB6500892B60 /* QuestionHeaderView */,
 				E93063B11ACA395B000140C1 /* HomeTableViewCell */,
@@ -607,6 +623,7 @@
 				E9642E9F1AC5714800FF7875 /* LaunchScreen.xib in Resources */,
 				E93063B61ACA3982000140C1 /* HomeTableViewCell.xib in Resources */,
 				E93063DD1ACAABD9000140C1 /* UserViewController.xib in Resources */,
+				E90F427A1ACE6E5D00263622 /* UserHeaderView.xib in Resources */,
 				E93063D81ACAABC7000140C1 /* AnswerViewController.xib in Resources */,
 				E9C1A1CB1ACC080700892B60 /* bootstrap.min.js in Resources */,
 				E9EB618B1ACC187A001F5DA3 /* QuestionAnswerTableViewCell.xib in Resources */,
@@ -677,6 +694,7 @@
 				E9C9C7111AC7233B00CC228A /* wjAccountManager.m in Sources */,
 				E93063C51ACA9258000140C1 /* AddTopicViewController.m in Sources */,
 				E9C9C6F61AC719FC00CC228A /* MainTabBarController.m in Sources */,
+				E90F42781ACE6A4E00263622 /* UserHeaderView.m in Sources */,
 				E9C9C7181AC7256700CC228A /* wjCacheManager.m in Sources */,
 				E9C1A1C01ACAF21F00892B60 /* QuestionDataManager.m in Sources */,
 				E93063C21ACA4E69000140C1 /* PostDataManager.m in Sources */,

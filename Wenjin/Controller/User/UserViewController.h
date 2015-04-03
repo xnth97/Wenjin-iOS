@@ -7,9 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UserHeaderView.h"
 
-@interface UserViewController : UIViewController
+@interface UserViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
 
-@property (weak, nonatomic) NSString *userId;
+@property (strong, nonatomic) NSString *userId;
+
+@property (weak, nonatomic) IBOutlet UITableView *userTableView;
 
 @end

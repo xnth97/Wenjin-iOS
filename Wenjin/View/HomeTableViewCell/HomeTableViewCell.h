@@ -21,7 +21,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *actionLabel;
 @property (weak, nonatomic) IBOutlet UILabel *questionLabel;
 @property (weak, nonatomic) IBOutlet UILabel *detailLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *avatarView;
 
 @property (assign, nonatomic) id<homeTableViewCellDelegate> delegate;
+
+- (void)loadImageWithApartURL:(NSString *)urlStr;
 
 @end

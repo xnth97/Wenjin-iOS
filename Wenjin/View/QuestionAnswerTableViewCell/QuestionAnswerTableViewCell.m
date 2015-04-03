@@ -7,6 +7,7 @@
 //
 
 #import "QuestionAnswerTableViewCell.h"
+#import "ALActionBlocks.h"
 
 @implementation QuestionAnswerTableViewCell
 
@@ -15,8 +16,18 @@
 @synthesize userNameLabel;
 @synthesize answerContentLabel;
 
+@synthesize delegate;
+
 - (void)awakeFromNib {
     // Initialization code
+    UITapGestureRecognizer *userAvatarRecognizer = [[UITapGestureRecognizer alloc]initWithBlock:^(id weakSender) {
+        UITapGestureRecognizer *tapRecognizer = (UITapGestureRecognizer *)weakSender;
+        [delegate pushUserControllerWithRow:tapRecognizer.view.tag];
+    }];
+    [userAvatarRecognizer setNumberOfTapsRequired:1];
+    [userAvatarRecognizer setDelegate:self];
+    [userAvatarView setUserInteractionEnabled:YES];
+    [userAvatarView addGestureRecognizer:userAvatarRecognizer];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

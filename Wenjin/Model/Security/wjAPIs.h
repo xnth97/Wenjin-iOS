@@ -12,7 +12,7 @@
 
 + (NSString *)baseURL;
 + (NSString *)login;
-+ (NSString *)avatarPath;
+
 
 // 动态首页
 + (NSString *)homeURL;
@@ -28,5 +28,14 @@
 
 // 查看用户
 + (NSString *)viewUser;
+
+// 话题图片
++ (NSString *)topicImagePath;
+
+// 头像图片
++ (NSString *)avatarPath;
+
+// 回复图片
++ (NSString *)answerImagePath;
 
 @end

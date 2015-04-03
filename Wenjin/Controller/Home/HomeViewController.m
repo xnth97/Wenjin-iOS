@@ -152,6 +152,7 @@
     cell.questionLabel.tag = row;
     cell.detailLabel.tag = row;
     cell.delegate = self;
+    [cell loadImageWithApartURL:(tmp[@"user_info"])[@"avatar_file"]];
     return cell;
 }
 
@@ -185,6 +186,7 @@
 - (void)pushUserControllerWithRow:(NSUInteger)row {
     NSLog(@"U: %ld", row);
     UserViewController *uVC = [[UserViewController alloc]initWithNibName:@"UserViewController" bundle:nil];
+    uVC.hidesBottomBarWhenPushed = YES;
     uVC.userId = [((rowsData[row])[@"user_info"])[@"uid"] stringValue];
     [self.navigationController pushViewController:uVC animated:YES];
 }
@@ -202,7 +204,6 @@
     AnswerViewController *aVC = [[AnswerViewController alloc]initWithNibName:@"AnswerViewController" bundle:nil];
     aVC.hidesBottomBarWhenPushed = YES;
     aVC.answerId = ((rowsData[row])[@"answer_info"])[@"answer_id"];
-    aVC.username = ((rowsData[row])[@"user_info"])[@"user_name"];
     [self.navigationController pushViewController:aVC animated:YES];
 }
 

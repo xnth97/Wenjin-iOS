@@ -8,11 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "QuestionHeaderView.h"
+#import "QuestionAnswerTableViewCell.h"
 
-@interface QuestionViewController : UIViewController<UITableViewDelegate, UITableViewDataSource>
+@interface QuestionViewController : UIViewController<UITableViewDelegate, UITableViewDataSource, QuestionCellPushUserDelegate>
 
-@property (weak, nonatomic) NSString *questionId;
+@property (strong, nonatomic) NSString *questionId;
 
-@property (retain, nonatomic) IBOutlet UITableView *questionTableView;
+@property (weak, nonatomic) IBOutlet UITableView *questionTableView;
 
 @end

@@ -30,7 +30,7 @@
 
 + (NSString *)convertToBootstrapHTMLWithContent:(NSString *)contentStr {
     // 改一下换行，说不定还要改。。
-    contentStr = [contentStr stringByReplacingOccurrencesOfString:@"\n" withString:@"<br>"];
+    contentStr = [contentStr stringByReplacingOccurrencesOfString:@"\n" withString:@""];
     
     NSScanner *imgScanner = [NSScanner scannerWithString:contentStr];
     while (![imgScanner isAtEnd]) {
@@ -67,9 +67,9 @@
                       "<body> \n"
                       "<div class=\"container\"> \n"
                       "<div class=\"row\"> \n"
-                      "<div class=\"col-sm-12\" style=\"margin-left:8px; margin-right:8px; font-size:16px; line-height:1.5;\"> \n"
+                      "<div class=\"col-sm-12\" style=\"margin-left:8px; margin-right:8px; font-size:16px; line-height:1.5;\"> <br><br><br><br> \n" // 这个 br 用来换行到 userInfoView 以下
                       "%@ \n"
-                      "</div></div></div> \n"
+                      "</div></div><br><br><br></div> \n" // 这个 br 用于不被 toolbar 遮挡
                       "<script src=\"%@\"></script> \n"
                       "</body> \n"
                       "</html>" , cssPath, contentStr, jsPath];

@@ -15,17 +15,11 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="user &amp; action" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oN2-7f-pPW">
-                        <rect key="frame" x="8" y="8" width="338" height="21"/>
+                        <rect key="frame" x="8" y="8" width="302" height="21"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="tiI-CI-MtU"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Question" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="52R-Gc-cnl">
-                        <rect key="frame" x="8" y="37" width="338" height="20.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -36,26 +30,45 @@
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Question" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="52R-Gc-cnl">
+                        <rect key="frame" x="8" y="37" width="338" height="20.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tabBarIcon" translatesAutoresizingMaskIntoConstraints="NO" id="k2a-Yo-H13">
+                        <rect key="frame" x="318" y="8" width="28" height="28"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="28" id="2tN-ZX-Ei9"/>
+                            <constraint firstAttribute="width" constant="28" id="leZ-Cn-Zbf"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <gestureRecognizers/>
                 <constraints>
-                    <constraint firstItem="oN2-7f-pPW" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="6bz-4M-b2T"/>
+                    <constraint firstItem="k2a-Yo-H13" firstAttribute="leading" secondItem="oN2-7f-pPW" secondAttribute="trailing" constant="8" id="5oh-xI-q7i"/>
+                    <constraint firstItem="k2a-Yo-H13" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="7oE-7F-Rxx"/>
                     <constraint firstItem="qcZ-fN-dgH" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="7y3-kA-i7P"/>
+                    <constraint firstItem="52R-Gc-cnl" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="95T-h3-Fzy"/>
                     <constraint firstItem="qcZ-fN-dgH" firstAttribute="top" secondItem="52R-Gc-cnl" secondAttribute="bottom" constant="8" id="Cla-yH-4vV"/>
-                    <constraint firstItem="qcZ-fN-dgH" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="FOq-3O-ZFT"/>
-                    <constraint firstItem="52R-Gc-cnl" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="HJc-Za-d9G"/>
-                    <constraint firstItem="oN2-7f-pPW" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="MvH-r0-LSb"/>
                     <constraint firstItem="52R-Gc-cnl" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="fqo-pm-3JQ"/>
                     <constraint firstItem="oN2-7f-pPW" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="otz-i1-emG"/>
+                    <constraint firstItem="qcZ-fN-dgH" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="sMe-Yd-ed2"/>
                     <constraint firstItem="52R-Gc-cnl" firstAttribute="top" secondItem="oN2-7f-pPW" secondAttribute="bottom" constant="8" id="sQE-Ch-IYj"/>
+                    <constraint firstItem="k2a-Yo-H13" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="uWn-0g-gq0"/>
+                    <constraint firstItem="oN2-7f-pPW" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="vu4-xc-lBH"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="actionLabel" destination="oN2-7f-pPW" id="8JH-Km-1IS"/>
+                <outlet property="avatarView" destination="k2a-Yo-H13" id="xsF-0F-XLX"/>
                 <outlet property="detailLabel" destination="qcZ-fN-dgH" id="dZP-6w-Mo2"/>
                 <outlet property="questionLabel" destination="52R-Gc-cnl" id="ySU-o8-HYb"/>
             </connections>
             <point key="canvasLocation" x="510" y="403"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="tabBarIcon" width="30" height="30"/>
+    </resources>
 </document>

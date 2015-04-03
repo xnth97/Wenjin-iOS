@@ -8,12 +8,15 @@
 
 #import "HomeTableViewCell.h"
 #import "ALActionBlocks.h"
+#import "UIImageView+AFNetworking.h"
+#import "wjAPIs.h"
 
 @implementation HomeTableViewCell
 
 @synthesize actionLabel;
 @synthesize questionLabel;
 @synthesize detailLabel;
+@synthesize avatarView;
 
 @synthesize delegate;
 
@@ -51,6 +54,10 @@
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
+}
+
+- (void)loadImageWithApartURL:(NSString *)urlStr {
+    [self.avatarView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", [wjAPIs avatarPath], urlStr]]];
 }
 
 @end

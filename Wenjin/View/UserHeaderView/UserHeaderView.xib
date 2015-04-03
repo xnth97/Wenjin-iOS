@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="14D127a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="UserHeaderView">
+            <rect key="frame" x="0.0" y="0.0" width="478" height="132"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tabBarIcon" translatesAutoresizingMaskIntoConstraints="NO" id="lch-Wz-PrE">
+                    <rect key="frame" x="8" y="8" width="80" height="80"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="80" id="GpD-oV-OrE"/>
+                        <constraint firstAttribute="width" constant="80" id="lh6-Bl-3m7"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZqQ-Pj-IFD">
+                    <rect key="frame" x="102" y="8" width="368" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="hnl-0j-U70"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="That brown fox jumped over a lazy dog." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TFP-Hs-fD8">
+                    <rect key="frame" x="102" y="37" width="368" height="51"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yw3-Y3-qec">
+                    <rect key="frame" x="0.0" y="96" width="380" height="36"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="tabBarIcon" translatesAutoresizingMaskIntoConstraints="NO" id="riA-5M-i8r">
+                            <rect key="frame" x="109" y="5" width="25" height="25"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="25" id="9Y8-Lx-ngs"/>
+                                <constraint firstAttribute="height" constant="25" id="ZrY-yJ-hgy"/>
+                            </constraints>
+                        </imageView>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="tabBarIcon" translatesAutoresizingMaskIntoConstraints="NO" id="mLV-86-SKs">
+                            <rect key="frame" x="8" y="5" width="25" height="25"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="25" id="6c8-VD-u8p"/>
+                                <constraint firstAttribute="width" constant="25" id="9if-Cy-Ub0"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="800" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jH7-wm-gpy">
+                            <rect key="frame" x="41" y="8" width="60" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="800" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VCI-Id-lEk">
+                            <rect key="frame" x="142" y="8" width="60" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="36" id="diB-cT-Oet"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A6b-fn-7LO">
+                    <rect key="frame" x="388" y="96" width="90" height="36"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="36" id="Apc-2C-Xmb"/>
+                        <constraint firstAttribute="width" constant="90" id="VjT-j1-eGw"/>
+                    </constraints>
+                    <state key="normal" title="取消关注">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="TFP-Hs-fD8" firstAttribute="top" secondItem="ZqQ-Pj-IFD" secondAttribute="bottom" constant="8" id="0Nj-KW-IpW"/>
+                <constraint firstItem="yw3-Y3-qec" firstAttribute="top" secondItem="TFP-Hs-fD8" secondAttribute="bottom" constant="8" id="3pQ-Za-PG8"/>
+                <constraint firstItem="ZqQ-Pj-IFD" firstAttribute="leading" secondItem="lch-Wz-PrE" secondAttribute="trailing" constant="14" id="79D-18-hmr"/>
+                <constraint firstItem="A6b-fn-7LO" firstAttribute="top" secondItem="TFP-Hs-fD8" secondAttribute="bottom" constant="8" id="7Ba-8w-Fbt"/>
+                <constraint firstAttribute="bottom" secondItem="yw3-Y3-qec" secondAttribute="bottom" id="AtQ-Q7-ksq"/>
+                <constraint firstAttribute="bottom" secondItem="A6b-fn-7LO" secondAttribute="bottom" id="CgM-At-Rse"/>
+                <constraint firstItem="TFP-Hs-fD8" firstAttribute="leading" secondItem="lch-Wz-PrE" secondAttribute="trailing" constant="14" id="Djp-5O-4De"/>
+                <constraint firstItem="yw3-Y3-qec" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Dpc-Hl-3kz"/>
+                <constraint firstItem="A6b-fn-7LO" firstAttribute="leading" secondItem="yw3-Y3-qec" secondAttribute="trailing" constant="8" id="HXD-rF-PMH"/>
+                <constraint firstItem="lch-Wz-PrE" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="O6y-Ap-pOe"/>
+                <constraint firstAttribute="trailing" secondItem="ZqQ-Pj-IFD" secondAttribute="trailing" constant="8" id="PaK-mv-ypB"/>
+                <constraint firstItem="lch-Wz-PrE" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="Umm-np-Yyg"/>
+                <constraint firstItem="ZqQ-Pj-IFD" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="UsD-4k-ChL"/>
+                <constraint firstAttribute="trailing" secondItem="A6b-fn-7LO" secondAttribute="trailing" id="gEx-vs-YAR"/>
+                <constraint firstAttribute="trailing" secondItem="TFP-Hs-fD8" secondAttribute="trailing" constant="8" id="urr-fR-5lH"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="agreeCountLabel" destination="jH7-wm-gpy" id="tK8-gE-NOP"/>
+                <outlet property="followButton" destination="A6b-fn-7LO" id="zOg-wF-ws6"/>
+                <outlet property="thanksCountLabel" destination="VCI-Id-lEk" id="oGo-hz-9Lu"/>
+                <outlet property="userAvatarView" destination="lch-Wz-PrE" id="dTN-nI-Z52"/>
+                <outlet property="userSigLabel" destination="TFP-Hs-fD8" id="Asd-8u-toQ"/>
+                <outlet property="usernameLabel" destination="ZqQ-Pj-IFD" id="ieZ-id-a9x"/>
+            </connections>
+            <point key="canvasLocation" x="522" y="197"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="tabBarIcon" width="30" height="30"/>
+    </resources>
+</document>
