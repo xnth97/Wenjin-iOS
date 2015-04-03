@@ -1,20 +1,20 @@
 //
-//  MyViewController.m
+//  SettingsController.m
 //  Wenjin
 //
-//  Created by 秦昱博 on 15/3/29.
+//  Created by 秦昱博 on 15/4/3.
 //  Copyright (c) 2015年 TWT Studio. All rights reserved.
 //
 
-#import "MyViewController.h"
-#import "wjCookieManager.h"
+#import "SettingsController.h"
 #import "wjCacheManager.h"
+#import "wjCookieManager.h"
 
-@interface MyViewController ()
+@interface SettingsController ()
 
 @end
 
-@implementation MyViewController
+@implementation SettingsController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -30,7 +30,6 @@
     [wjCookieManager removeCookieForKey:@"login"];
     [wjCacheManager removeCacheDataForKey:@"homeCache"];
 }
-
 
 /*
 #pragma mark - Navigation

@@ -8,6 +8,8 @@
 
 #import "QuestionAnswerTableViewCell.h"
 #import "ALActionBlocks.h"
+#import "UIImageView+AFNetworking.h"
+#import "wjAPIs.h"
 
 @implementation QuestionAnswerTableViewCell
 
@@ -34,6 +36,12 @@
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
+}
+
+- (void)loadAvatarWithURL:(NSString *)urlStr {
+    [userAvatarView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", [wjAPIs avatarPath], urlStr]]];
+    userAvatarView.layer.cornerRadius = userAvatarView.frame.size.width / 2;
+    userAvatarView.clipsToBounds = YES;
 }
 
 @end

@@ -13,6 +13,7 @@
 #import "wjAPIs.h"
 #import "ALActionBlocks.h"
 #import "UserViewController.h"
+#import "UIImageView+AFNetworking.h"
 
 @interface AnswerViewController ()
 
@@ -41,6 +42,9 @@
         userNameLabel.text = ansData[@"user_name"];
         self.title = [NSString stringWithFormat:@"%@ 的回答", ansData[@"user_name"]];
         userSigLabel.text = ansData[@"signature"];
+        [userAvatarView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", [wjAPIs avatarPath], ansData[@"avatar_file"]]]];
+        userAvatarView.layer.cornerRadius = userAvatarView.frame.size.width / 2;
+        userAvatarView.clipsToBounds = YES;
         
         if ([ansData[@"vote_value"] isEqual:@1]) {
             [agreeBtn setTitle:[NSString stringWithFormat:@"Voted %@", [ansData[@"agree_count"] stringValue]] forState:UIControlStateNormal];

@@ -85,6 +85,7 @@
     cell.userNameLabel.text = tmp[@"user_name"];
     cell.answerContentLabel.text = [wjStringProcessor processAnswerDetailString:tmp[@"answer_content"]];
     cell.agreeCountLabel.text = [tmp[@"agree_count"] stringValue];
+    [cell loadAvatarWithURL:tmp[@"avatar_file"]];
     cell.userAvatarView.tag = row;
     cell.delegate = self;
     return cell;

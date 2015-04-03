@@ -11,6 +11,8 @@
 #import "JSONKit.h"
 #import "wjAPIs.h"
 #import "wjCookieManager.h"
+#import "data.h"
+#import "wjCacheManager.h"
 
 @implementation wjAccountManager
 
@@ -25,9 +27,10 @@
             NSString *uid = userData[@"uid"];
             NSString *user_name = userData[@"user_name"];
             NSString *avatar_file = userData[@"avatar_file"];
+            
             success(uid, user_name, avatar_file);
             [wjCookieManager saveCookieForURLString:[wjAPIs login] andKey:@"login"];
-            
+            [wjCacheManager saveCacheData:userData withKey:@"userData"];
             [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"userIsLoggedIn"];
             // save userdata to local cache.
         } else {

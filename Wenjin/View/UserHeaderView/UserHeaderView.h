@@ -17,4 +17,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *followButton;
 @property (weak, nonatomic) IBOutlet UIImageView *userAvatarView;
 
+- (void)loadAvatarImageWithApartURLString:(NSString *)urlStr;
+
 @end

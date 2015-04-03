@@ -9,6 +9,8 @@
 #import "MainTabBarController.h"
 #import "wjCookieManager.h"
 #import "LoginViewController.h"
+#import "data.h"
+#import "wjCacheManager.h"
 
 @interface MainTabBarController ()
 
@@ -22,6 +24,9 @@
     
     //[[self.tabBar.items objectAtIndex:1] setBadgeValue:@"3"];
     [wjCookieManager loadCookieForKey:@"login"];
+    [wjCacheManager loadCacheDataWithKey:@"userData" andBlock:^(id userData) {
+        [data shareInstance].myUID = userData[@"uid"];
+    }];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

@@ -151,6 +151,7 @@
     cell.actionLabel.tag = row;
     cell.questionLabel.tag = row;
     cell.detailLabel.tag = row;
+    cell.avatarView.tag = row;
     cell.delegate = self;
     [cell loadImageWithApartURL:(tmp[@"user_info"])[@"avatar_file"]];
     return cell;

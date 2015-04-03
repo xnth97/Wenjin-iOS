@@ -31,6 +31,15 @@
     actionLabel.userInteractionEnabled = YES;
     [actionLabel addGestureRecognizer:userTapRecognizer];
     
+    UITapGestureRecognizer *userTapRecognizer2 = [[UITapGestureRecognizer alloc]initWithBlock:^(id weakSender) {
+        UITapGestureRecognizer *tapRecognizer = (UITapGestureRecognizer *)weakSender;
+        [delegate pushUserControllerWithRow:tapRecognizer.view.tag];
+    }];
+    [userTapRecognizer2 setNumberOfTapsRequired:1];
+    [userTapRecognizer2 setDelegate:self];
+    avatarView.userInteractionEnabled = YES;
+    [avatarView addGestureRecognizer:userTapRecognizer2];
+    
     UITapGestureRecognizer *titleTapRecognizer = [[UITapGestureRecognizer alloc]initWithBlock:^(id weakSender) {
         UITapGestureRecognizer *tapRecognizer = (UITapGestureRecognizer *)weakSender;
         [delegate pushQuestionControllerWithRow:tapRecognizer.view.tag];
@@ -48,6 +57,9 @@
     [detailTapRecognizer setDelegate:self];
     detailLabel.userInteractionEnabled = YES;
     [detailLabel addGestureRecognizer:detailTapRecognizer];
+    
+    avatarView.layer.cornerRadius = avatarView.frame.size.width / 2;
+    avatarView.clipsToBounds = YES;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

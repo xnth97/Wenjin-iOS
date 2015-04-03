@@ -10,6 +10,7 @@
 #import "wjAccountManager.h"
 #import "MsgDisplay.h"
 #import "wjCookieManager.h"
+#import "data.h"
 
 @interface LoginViewController ()
 

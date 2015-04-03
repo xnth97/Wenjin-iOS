@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14D127a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BH6-Mm-uy7">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14D130a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BH6-Mm-uy7">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -365,7 +365,7 @@
         <!--我-->
         <scene sceneID="v9v-eh-ccY">
             <objects>
-                <viewController id="DE9-zZ-tIq" customClass="MyViewController" sceneMemberID="viewController">
+                <viewController id="DE9-zZ-tIq" customClass="UserViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="XpB-pg-xNc"/>
                         <viewControllerLayoutGuide type="bottom" id="0bB-Lj-xtN"/>
@@ -374,34 +374,76 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hZc-Sb-Gbp">
-                                <rect key="frame" x="34" y="247" width="127" height="30"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="1ex-53-8zL">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="DE9-zZ-tIq" id="gjc-Zh-xda"/>
+                                    <outlet property="delegate" destination="DE9-zZ-tIq" id="c6K-le-SFx"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="1ex-53-8zL" secondAttribute="trailing" constant="-16" id="8GU-J4-aNA"/>
+                            <constraint firstItem="1ex-53-8zL" firstAttribute="bottom" secondItem="4ho-GJ-k8E" secondAttribute="bottomMargin" id="d7z-51-L3X"/>
+                            <constraint firstItem="1ex-53-8zL" firstAttribute="top" secondItem="4ho-GJ-k8E" secondAttribute="topMargin" id="l6B-Dg-XIJ"/>
+                            <constraint firstItem="1ex-53-8zL" firstAttribute="leading" secondItem="4ho-GJ-k8E" secondAttribute="leadingMargin" constant="-16" id="l9f-Bs-NUr"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="我" id="pRK-Ih-5fZ">
+                        <barButtonItem key="rightBarButtonItem" title="设置" id="GrM-7U-YEN">
+                            <connections>
+                                <segue destination="OwB-bb-CiX" kind="push" identifier="pushSettings" id="x2X-kI-fc5"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="userTableView" destination="1ex-53-8zL" id="fD6-ZO-Z5r"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yRB-nO-LE9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1900" y="3261"/>
+        </scene>
+        <!--设置-->
+        <scene sceneID="KMh-RZ-mFR">
+            <objects>
+                <viewController id="OwB-bb-CiX" customClass="SettingsController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="6m3-Kv-i8Z"/>
+                        <viewControllerLayoutGuide type="bottom" id="giT-dj-LYo"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="9cS-gc-eU2">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WJX-t9-IY2">
+                                <rect key="frame" x="107" y="190" width="33" height="30"/>
                                 <state key="normal" title="login">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="reI-x7-Sh7" kind="modal" id="G0j-OM-NCY"/>
+                                    <segue destination="reI-x7-Sh7" kind="modal" id="N2u-VY-d49"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rup-tK-Af3">
-                                <rect key="frame" x="75" y="303" width="44" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0GN-x1-vt8">
+                                <rect key="frame" x="100" y="262" width="44" height="30"/>
                                 <state key="normal" title="logout">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="logout" destination="DE9-zZ-tIq" eventType="touchUpInside" id="oFh-GM-KZX"/>
+                                    <action selector="logout" destination="OwB-bb-CiX" eventType="touchUpInside" id="eDY-5A-dXu"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="我" id="pRK-Ih-5fZ">
-                        <barButtonItem key="rightBarButtonItem" title="设置" id="GrM-7U-YEN"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="设置" id="Lyr-tu-zDa"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="yRB-nO-LE9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZGw-i2-9Co" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1900" y="3261"/>
+            <point key="canvasLocation" x="2572" y="3259"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="7BO-0K-Ji0">
@@ -466,7 +508,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dFg-Ee-Pj0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2646" y="3261"/>
+            <point key="canvasLocation" x="3292" y="3163"/>
         </scene>
         <!--话题-->
         <scene sceneID="cBU-SN-DR5">

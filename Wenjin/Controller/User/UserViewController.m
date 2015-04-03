@@ -10,6 +10,8 @@
 #import "UserDataManager.h"
 #import "MsgDisplay.h"
 #import "UserHeaderView.h"
+#import "data.h"
+#import "wjCacheManager.h"
 
 @interface UserViewController ()
 
@@ -25,6 +27,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    if (userId == nil) {
+        userId = [data shareInstance].myUID;
+        self.title = @"我";
+    }
+    
     NSLog(@"U %@", userId);
     
     self.userTableView.dataSource = self;
@@ -33,13 +40,13 @@
     cellArray = @[];
     
     [UserDataManager getUserDataWithID:userId success:^(NSDictionary *userData) {
-        self.title = userData[@"user_name"];
         
         UserHeaderView *headerView = [[UserHeaderView alloc]init];
         headerView.usernameLabel.text = userData[@"user_name"];
         headerView.userSigLabel.text = userData[@"signature"];
         headerView.agreeCountLabel.text = userData[@"agree_count"];
         headerView.thanksCountLabel.text = userData[@"thanks_count"];
+        [headerView loadAvatarImageWithApartURLString:userData[@"avatar_file"]];
         if ([userData[@"has_focus"] isEqual:@1]) {
             [headerView.followButton setTitle:@"取消关注" forState:UIControlStateNormal];
         } else {
@@ -47,7 +54,15 @@
         }
         userTableView.tableHeaderView = headerView;
         
-        cellArray = @[@[@"Ta 关注的", @"关注 Ta 的"], @[@"Ta 的提问", @"Ta 的回答"]];
+        if ([userId integerValue] == [[data shareInstance].myUID integerValue]) {
+            headerView.followButton.hidden = YES;
+            cellArray = @[@[@"我关注的", @"关注我的"], @[@"我的提问", @"我的回答"]];
+            self.title = @"我";
+        } else {
+            cellArray = @[@[@"Ta 关注的", @"关注 Ta 的"], @[@"Ta 的提问", @"Ta 的回答"]];
+            self.title = userData[@"user_name"];
+        }
+        
         [userTableView reloadData];
     } failure:^(NSString *errorString) {
         
@@ -89,14 +104,14 @@
     }
 }
 
-/*
-#pragma mark - Navigation
-
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqualToString:@"pushSettings"]) {
+        self.navigationController.view.backgroundColor = [UIColor whiteColor];
+        UIViewController *des = segue.destinationViewController;
+        des.hidesBottomBarWhenPushed = YES;
+    }
 }
-*/
+
 
 @end

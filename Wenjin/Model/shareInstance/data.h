@@ -14,6 +14,8 @@
 @property (retain, nonatomic) NSString *postQuestionDetail;
 @property (retain, nonatomic) NSArray *postQuestionTopics;
 
+@property (retain, nonatomic) NSString *myUID;
+
 + (data *)shareInstance;
 
 @end

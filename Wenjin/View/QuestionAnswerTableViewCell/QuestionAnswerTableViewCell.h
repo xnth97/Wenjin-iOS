@@ -23,4 +23,6 @@
 
 @property (assign, nonatomic) id<QuestionCellPushUserDelegate> delegate;
 
+- (void)loadAvatarWithURL:(NSString *)urlStr;
+
 @end

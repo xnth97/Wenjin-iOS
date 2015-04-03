@@ -7,6 +7,8 @@
 //
 
 #import "UserHeaderView.h"
+#import "UIImageView+AFNetworking.h"
+#import "wjAPIs.h"
 
 @implementation UserHeaderView {
     NSDictionary *userData;
@@ -21,11 +23,16 @@
 
 - (id)init {
     if (self = [super init]) {
-        
         self = [[[NSBundle mainBundle] loadNibNamed:@"UserHeaderView" owner:self options:nil] objectAtIndex:0];
         
     }
     return self;
+}
+
+- (void)loadAvatarImageWithApartURLString:(NSString *)urlStr {
+    [userAvatarView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", [wjAPIs avatarPath], urlStr]]];
+    userAvatarView.layer.cornerRadius = userAvatarView.frame.size.width / 2;
+    userAvatarView.clipsToBounds = YES;
 }
 
 /*
