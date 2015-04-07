@@ -41,6 +41,15 @@
 // 回复图片
 + (NSString *)answerImagePath;
 
+// 关注问题
++ (NSString *)followQuestion;
+
+// 赞同答案
++ (NSString *)voteAnswer;
+
+// 关注用户
++ (NSString *)followUser;
+
 
 
 @end

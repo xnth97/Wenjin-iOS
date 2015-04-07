@@ -13,6 +13,7 @@
 #import "data.h"
 #import "wjCacheManager.h"
 #import "SVPullToRefresh.h"
+#import "wjOperationManager.h"
 
 @interface UserViewController ()
 
@@ -68,6 +69,7 @@
         [UserDataManager getUserDataWithID:userId success:^(NSDictionary *userData) {
             
             UserHeaderView *headerView = [[UserHeaderView alloc]init];
+            headerView.delegate = self;
             headerView.usernameLabel.text = userData[@"user_name"];
             headerView.userSigLabel.text = userData[@"signature"];
             headerView.agreeCountLabel.text = userData[@"agree_count"];
@@ -126,6 +128,24 @@
     } else {
         return @"";
     }
+}
+
+// UserHeaderViewDelegate
+
+- (void)followUser {
+    [wjOperationManager followPeopleWithUserID:userId success:^(NSString *operationType) {
+        
+        UserHeaderView *headerView = (UserHeaderView *)self.userTableView.tableHeaderView;
+        
+        if ([operationType isEqualToString:@"add"]) {
+            [headerView.followButton setTitle:@"取消关注" forState:UIControlStateNormal];
+        } else if ([operationType isEqualToString:@"remove"]) {
+            [headerView.followButton setTitle:@"关注" forState:UIControlStateNormal];
+        }
+        
+    } failure:^(NSString *errStr) {
+        [MsgDisplay showErrorMsg:errStr];
+    }];
 }
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation

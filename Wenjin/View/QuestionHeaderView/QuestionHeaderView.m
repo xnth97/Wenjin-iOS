@@ -9,6 +9,8 @@
 #import "QuestionHeaderView.h"
 #import "wjStringProcessor.h"
 #import "ALActionBlocks.h"
+#import "wjOperationManager.h"
+#import "MsgDisplay.h"
 
 @implementation QuestionHeaderView {
     int _borderDist;
@@ -58,11 +60,19 @@
         focusQuestion.frame = CGRectMake(0, 42 + questionFitSize.height + 20 + detailFitSize.height + 20, 0.5 * width, 30);
         [focusQuestion handleControlEvents:UIControlEventTouchUpInside withBlock:^(id weakSender) {
             NSLog(@"Focus Action");
-            if (([questionInfo[@"has_focus"] isEqual:@1])) {
-                // 取消关注
-            } else {
-                // 关注问题
-            }
+            
+            [wjOperationManager followQuestionWithQuestionID:questionInfo[@"question_id"] success:^(NSString *operationType) {
+                
+                if ([operationType isEqualToString:@"remove"]) {
+                    [focusQuestion setTitle:@"关注问题" forState:UIControlStateNormal];
+                } else if ([operationType isEqualToString:@"add"]) {
+                    [focusQuestion setTitle:@"取消关注" forState:UIControlStateNormal];
+                }
+                
+            } failure:^(NSString *errStr) {
+                [MsgDisplay showErrorMsg:errStr];
+            }];
+            
         }];
         [self addSubview:focusQuestion];
         

@@ -36,6 +36,7 @@
 		E990790B1ACEE1C7008DCA22 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E990790A1ACEE1C7008DCA22 /* LoginViewController.xib */; };
 		E990790F1ACEE371008DCA22 /* NotLoggedInView.m in Sources */ = {isa = PBXBuildFile; fileRef = E990790E1ACEE371008DCA22 /* NotLoggedInView.m */; };
 		E99079111ACEE3A4008DCA22 /* NotLoggedInView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E99079101ACEE3A4008DCA22 /* NotLoggedInView.xib */; };
+		E9AC9E561AD3A4840016CA23 /* wjOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E9AC9E551AD3A4840016CA23 /* wjOperationManager.m */; };
 		E9C1A1C01ACAF21F00892B60 /* QuestionDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E9C1A1BF1ACAF21F00892B60 /* QuestionDataManager.m */; };
 		E9C1A1C41ACBCBB000892B60 /* QuestionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = E9C1A1C31ACBCBB000892B60 /* QuestionHeaderView.m */; };
 		E9C1A1CA1ACC080700892B60 /* bootstrap.css in Resources */ = {isa = PBXBuildFile; fileRef = E9C1A1C81ACC080700892B60 /* bootstrap.css */; };
@@ -120,6 +121,8 @@
 		E990790D1ACEE371008DCA22 /* NotLoggedInView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NotLoggedInView.h; path = View/NotLoggedInView/NotLoggedInView.h; sourceTree = "<group>"; };
 		E990790E1ACEE371008DCA22 /* NotLoggedInView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NotLoggedInView.m; path = View/NotLoggedInView/NotLoggedInView.m; sourceTree = "<group>"; };
 		E99079101ACEE3A4008DCA22 /* NotLoggedInView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NotLoggedInView.xib; path = View/NotLoggedInView/NotLoggedInView.xib; sourceTree = "<group>"; };
+		E9AC9E541AD3A4840016CA23 /* wjOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = wjOperationManager.h; path = Model/OperationManager/wjOperationManager.h; sourceTree = "<group>"; };
+		E9AC9E551AD3A4840016CA23 /* wjOperationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = wjOperationManager.m; path = Model/OperationManager/wjOperationManager.m; sourceTree = "<group>"; };
 		E9C1A1BE1ACAF21F00892B60 /* QuestionDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QuestionDataManager.h; path = Model/Sections/Question/QuestionDataManager.h; sourceTree = "<group>"; };
 		E9C1A1BF1ACAF21F00892B60 /* QuestionDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QuestionDataManager.m; path = Model/Sections/Question/QuestionDataManager.m; sourceTree = "<group>"; };
 		E9C1A1C21ACBCBB000892B60 /* QuestionHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QuestionHeaderView.h; path = View/QuestionHeaderView/QuestionHeaderView.h; sourceTree = "<group>"; };
@@ -382,6 +385,15 @@
 			name = NotLoggedInView;
 			sourceTree = "<group>";
 		};
+		E9AC9E531AD3A4500016CA23 /* Operation */ = {
+			isa = PBXGroup;
+			children = (
+				E9AC9E541AD3A4840016CA23 /* wjOperationManager.h */,
+				E9AC9E551AD3A4840016CA23 /* wjOperationManager.m */,
+			);
+			name = Operation;
+			sourceTree = "<group>";
+		};
 		E9C1A1BD1ACAF20300892B60 /* Question */ = {
 			isa = PBXGroup;
 			children = (
@@ -430,6 +442,7 @@
 				E9C9C7041AC71E1C00CC228A /* Security */,
 				E9C9C7001AC71D9F00CC228A /* LocalDataManager */,
 				E9C9C6FB1AC71D2500CC228A /* Account */,
+				E9AC9E531AD3A4500016CA23 /* Operation */,
 				E9C9C6EC1AC6AC5100CC228A /* shareInstance */,
 			);
 			name = Model;
@@ -745,6 +758,7 @@
 				E9C9C6F31AC6B39200CC228A /* HomeViewController.m in Sources */,
 				E93063D21ACAAB81000140C1 /* QuestionViewController.m in Sources */,
 				E90F42741ACD979500263622 /* UserDataManager.m in Sources */,
+				E9AC9E561AD3A4840016CA23 /* wjOperationManager.m in Sources */,
 				E9642E911AC5714800FF7875 /* main.m in Sources */,
 				E9C9C70A1AC71E4200CC228A /* wpyEncryption.m in Sources */,
 				E93063BE1ACA4DAA000140C1 /* PostViewController.m in Sources */,

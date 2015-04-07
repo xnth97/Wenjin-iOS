@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "UserHeaderView.h"
 
-@interface UserViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
+@interface UserViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, UserHeaderViewDelegate>
 
 @property (strong, nonatomic) NSString *userId;
 

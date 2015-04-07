@@ -9,10 +9,9 @@
 #import "UserHeaderView.h"
 #import "UIImageView+AFNetworking.h"
 #import "wjAPIs.h"
+#import "ALActionBlocks.h"
 
-@implementation UserHeaderView {
-    NSDictionary *userData;
-}
+@implementation UserHeaderView
 
 @synthesize userAvatarView;
 @synthesize usernameLabel;
@@ -20,11 +19,14 @@
 @synthesize agreeCountLabel;
 @synthesize thanksCountLabel;
 @synthesize followButton;
+@synthesize delegate;
 
 - (id)init {
     if (self = [super init]) {
         self = [[[NSBundle mainBundle] loadNibNamed:@"UserHeaderView" owner:self options:nil] objectAtIndex:0];
-        
+        [followButton handleControlEvents:UIControlEventTouchUpInside withBlock:^(id weakSender) {
+            [delegate followUser];
+        }];
     }
     return self;
 }

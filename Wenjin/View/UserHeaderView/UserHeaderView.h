@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol UserHeaderViewDelegate <NSObject>
+
+- (void)followUser;
+
+@end
+
 @interface UserHeaderView : UIView
 
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
@@ -16,6 +22,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *thanksCountLabel;
 @property (weak, nonatomic) IBOutlet UIButton *followButton;
 @property (weak, nonatomic) IBOutlet UIImageView *userAvatarView;
+
+@property (assign, nonatomic) id<UserHeaderViewDelegate> delegate;
 
 - (void)loadAvatarImageWithApartURLString:(NSString *)urlStr;
 

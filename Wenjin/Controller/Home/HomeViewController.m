@@ -33,7 +33,6 @@
     [super viewWillAppear:animated];
     self.navigationController.view.backgroundColor = [UIColor whiteColor];
     
-    // 如何让第一次登录刷新数据？kvo？delegate？
     if (shouldRefresh) {
         [self.tableView triggerPullToRefresh];
     }
