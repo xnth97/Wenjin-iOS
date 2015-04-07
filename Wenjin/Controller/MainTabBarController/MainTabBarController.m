@@ -12,6 +12,7 @@
 #import "data.h"
 #import "wjCacheManager.h"
 #import "wjAccountManager.h"
+#import <KVOController/FBKVOController.h>
 
 @interface MainTabBarController ()
 
@@ -19,38 +20,45 @@
 
 @implementation MainTabBarController
 
+@synthesize showNotLoggedInView;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
     //[[self.tabBar.items objectAtIndex:1] setBadgeValue:@"3"];
     
+    FBKVOController *kvoController = [FBKVOController controllerWithObserver:self];
+    self.KVOController = kvoController;
+    [self.KVOController observe:self keyPath:@"showNotLoggedInView" options:NSKeyValueObservingOptionInitial|NSKeyValueObservingOptionNew block:^(id observer, id object, NSDictionary *change) {
+        if (showNotLoggedInView) {
+            NotLoggedInView *notLoggedView = [[NotLoggedInView alloc]init];
+            notLoggedView.frame = self.view.frame;
+            notLoggedView.delegate = self;
+            [self.view addSubview:notLoggedView];
+        } else {
+            for (UIView *view in self.view.subviews) {
+                if ([view isKindOfClass:[NotLoggedInView class]]) {
+                    [view removeFromSuperview];
+                }
+            }
+            
+            [wjCookieManager loadCookieForKey:@"login"];
+            [wjCacheManager loadCacheDataWithKey:@"userData" andBlock:^(id userData) {
+                [data shareInstance].myUID = userData[@"uid"];
+            }];
+        }
+    }];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    NSLog(@"here?");
-    
     if (![wjAccountManager userIsLoggedIn]) {
-        NotLoggedInView *notLoggedView = [[NotLoggedInView alloc]init];
-        notLoggedView.frame = self.view.frame;
-        notLoggedView.delegate = self;
-        [self.view addSubview:notLoggedView];
+        [self setValue:@YES forKey:@"showNotLoggedInView"];
     } else {
-        
-        for (UIView *view in self.view.subviews) {
-            if ([view isKindOfClass:[NotLoggedInView class]]) {
-                [view removeFromSuperview];
-            }
-        }
-        
-        [wjCookieManager loadCookieForKey:@"login"];
-        [wjCacheManager loadCacheDataWithKey:@"userData" andBlock:^(id userData) {
-            [data shareInstance].myUID = userData[@"uid"];
-        }];
-        
-        [data shareInstance].loginStatus = @"changed";
+        [self setValue:@NO forKey:@"showNotLoggedInView"];
     }
 }
 

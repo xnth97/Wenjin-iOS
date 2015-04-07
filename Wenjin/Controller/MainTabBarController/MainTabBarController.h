@@ -11,4 +11,6 @@
 
 @interface MainTabBarController : UITabBarController<NotLoggedInViewDelegate>
 
+@property (nonatomic) BOOL showNotLoggedInView;
+
 @end

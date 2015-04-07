@@ -11,6 +11,7 @@
 #import "wjCacheManager.h"
 #import "wjCookieManager.h"
 #import "wjAccountManager.h"
+#import "NotLoggedInView.h"
 
 @interface SettingsController ()
 
@@ -30,6 +31,9 @@
 
 - (IBAction)logout {
     [wjAccountManager logout];
+    [self.tabBarController setValue:@YES forKey:@"showNotLoggedInView"];
+    [self.navigationController.tabBarController setSelectedIndex:0];
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 - (IBAction)login {

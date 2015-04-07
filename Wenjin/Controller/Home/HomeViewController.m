@@ -34,9 +34,9 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    if ([[data shareInstance].loginStatus isEqualToString:@"changed"]) {
+    // 刷新条件需要更改
+    if ([[self.tabBarController valueForKey:@"showNotLoggedInView"] isEqual: @NO]) {
         [self.tableView triggerPullToRefresh];
-        [data shareInstance].loginStatus = @"";
     }
 }
 

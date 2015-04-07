@@ -16,8 +16,6 @@
 
 @property (retain, nonatomic) NSString *myUID;
 
-@property (retain, nonatomic) NSString *loginStatus;
-
 + (data *)shareInstance;
 
 @end
