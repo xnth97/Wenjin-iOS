@@ -10,7 +10,7 @@
 
 @interface AddDetailViewController : UIViewController
 
-@property (weak, nonatomic) IBOutlet UITextView *detailTextView;
+@property (strong, nonatomic) UITextView *detailTextView;
 
 - (IBAction)cancel;
 - (IBAction)done;

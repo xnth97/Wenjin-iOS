@@ -10,7 +10,7 @@
 
 @interface PostViewController : UIViewController
 
-@property (weak, nonatomic) IBOutlet UITextView *questionView;
+@property (strong, nonatomic) UITextView *questionView;
 
 - (IBAction)postQuestion;
 

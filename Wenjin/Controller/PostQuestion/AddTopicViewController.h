@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AddTopicViewController : UITableViewController
+@interface AddTopicViewController : UITableViewController<UIAlertViewDelegate>
 
 - (IBAction)cancelModal;
 - (IBAction)addTopic;

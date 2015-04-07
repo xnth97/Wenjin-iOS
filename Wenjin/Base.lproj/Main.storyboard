@@ -153,42 +153,7 @@
                     <view key="view" contentMode="scaleToFill" id="WVN-HQ-qX5">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qJ5-YM-1vx">
-                                <rect key="frame" x="0.0" y="-54" width="600" height="318"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" enablesReturnKeyAutomatically="YES"/>
-                            </textView>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vPL-4c-fFe">
-                                <rect key="frame" x="374" y="272" width="90" height="30"/>
-                                <state key="normal" title="添加描述">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="Mj3-BF-HeQ" kind="modal" id="1Kl-ia-zJk"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2DW-Lr-J2m">
-                                <rect key="frame" x="494" y="272" width="90" height="30"/>
-                                <state key="normal" title="添加话题">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="ABH-X5-uEb" kind="modal" id="k0y-sT-cMT"/>
-                                </connections>
-                            </button>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="vPL-4c-fFe" firstAttribute="top" secondItem="qJ5-YM-1vx" secondAttribute="bottom" constant="8" id="7es-lj-aoK"/>
-                            <constraint firstItem="2DW-Lr-J2m" firstAttribute="top" secondItem="qJ5-YM-1vx" secondAttribute="bottom" constant="8" id="N1C-FZ-ema"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="qJ5-YM-1vx" secondAttribute="trailing" constant="-16" id="dih-CA-Ooe"/>
-                            <constraint firstItem="2DW-Lr-J2m" firstAttribute="leading" secondItem="vPL-4c-fFe" secondAttribute="trailing" constant="30" id="fRV-Pv-kjR"/>
-                            <constraint firstItem="qJ5-YM-1vx" firstAttribute="top" secondItem="WVN-HQ-qX5" secondAttribute="topMargin" id="mMn-ph-Ivi"/>
-                            <constraint firstItem="2DW-Lr-J2m" firstAttribute="trailing" secondItem="WVN-HQ-qX5" secondAttribute="trailingMargin" id="p0b-z7-sqk"/>
-                            <constraint firstItem="qJ5-YM-1vx" firstAttribute="leading" secondItem="WVN-HQ-qX5" secondAttribute="leadingMargin" constant="-16" id="yBb-3o-pOF"/>
-                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="发起问题" id="IWJ-L7-CVg">
                         <barButtonItem key="rightBarButtonItem" title="提交" id="b8b-Hl-RRd">
@@ -198,9 +163,6 @@
                         </barButtonItem>
                     </navigationItem>
                     <nil key="simulatedBottomBarMetrics"/>
-                    <connections>
-                        <outlet property="questionView" destination="qJ5-YM-1vx" id="YAE-ty-AG8"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tfv-ct-vyb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -209,11 +171,14 @@
         <!--Navigation Controller-->
         <scene sceneID="SgB-wz-crE">
             <objects>
-                <navigationController id="ABH-X5-uEb" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="topicNav" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ABH-X5-uEb" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="JsL-bF-NdP">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="FSm-fF-N7T">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="0vL-lO-FJN" kind="relationship" relationship="rootViewController" id="hoh-cQ-4wf"/>
                     </connections>
@@ -225,7 +190,7 @@
         <!--Navigation Controller-->
         <scene sceneID="2rr-UB-A49">
             <objects>
-                <navigationController id="Mj3-BF-HeQ" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="detailNav" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Mj3-BF-HeQ" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="m7G-0a-e5s">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -249,20 +214,7 @@
                     <view key="view" contentMode="scaleToFill" id="MV5-kq-izv">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sFS-wA-GtU">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="312"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="sFS-wA-GtU" firstAttribute="leading" secondItem="MV5-kq-izv" secondAttribute="leadingMargin" constant="-16" id="K1g-4w-UQe"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="sFS-wA-GtU" secondAttribute="trailing" constant="-16" id="dYa-TA-fsZ"/>
-                            <constraint firstItem="sFS-wA-GtU" firstAttribute="top" secondItem="MV5-kq-izv" secondAttribute="topMargin" id="kO3-Dn-yYU"/>
-                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="添加描述" id="wFF-KK-ocg">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="HpL-jE-gRz">
@@ -276,9 +228,6 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <connections>
-                        <outlet property="detailTextView" destination="sFS-wA-GtU" id="K7M-PK-HyM"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bX1-zE-eSH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -293,7 +242,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Mlp-vF-CkE">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="reuseIdentifier" id="Mlp-vF-CkE">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Mlp-vF-CkE" id="hyP-Gh-C6G">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -311,7 +260,11 @@
                                 <action selector="cancelModal" destination="0vL-lO-FJN" id="ZQX-Tl-mD4"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="1f9-IC-hph"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="1f9-IC-hph">
+                            <connections>
+                                <action selector="addTopic" destination="0vL-lO-FJN" id="ru3-UN-Lhd"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b41-rH-lg5" userLabel="First Responder" sceneMemberID="firstResponder"/>

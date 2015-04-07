@@ -12,6 +12,6 @@
 
 @property (weak, nonatomic) IBOutlet UITextView *answerView;
 
-@property (retain, nonatomic) NSString *questionId;
+@property (strong, nonatomic) NSString *questionId;
 
 @end

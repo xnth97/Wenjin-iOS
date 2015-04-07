@@ -8,15 +8,23 @@
 
 #import "AddTopicViewController.h"
 #import "PostViewController.h"
+#import "MsgDisplay.h"
+#import "data.h"
 
 @interface AddTopicViewController ()
 
 @end
 
-@implementation AddTopicViewController
+@implementation AddTopicViewController {
+    UIAlertView *topicInputAlert;
+    NSMutableArray *topicsArr;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    topicsArr = [[NSMutableArray alloc]init];
+    
+    self.tableView.tableFooterView = [[UIView alloc]init];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -31,79 +39,67 @@
 }
 
 - (IBAction)cancelModal {
+    [data shareInstance].postQuestionTopics = topicsArr;
     [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)addTopic {
-    
+    topicInputAlert = [[UIAlertView alloc]initWithTitle:@"话题" message:@"请输入话题" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确认", nil];
+    topicInputAlert.alertViewStyle = UIAlertViewStylePlainTextInput;
+    [topicInputAlert show];
 }
 
-#pragma mark - Table view data source
-
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    return [topicsArr count];
 }
 
-/*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    static NSString *simpleCellIdentifier = @"reuseIdentifier";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleCellIdentifier forIndexPath:indexPath];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleCellIdentifier];
+    }
     
-    // Configure the cell...
+    NSUInteger row = [indexPath row];
+    cell.textLabel.text = topicsArr[row];
     
     return cell;
 }
-*/
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    if (alertView == topicInputAlert) {
+        if (buttonIndex == alertView.cancelButtonIndex) {
+            return;
+        } else {
+            if (buttonIndex == 1) {
+                UITextField *topicField = [alertView textFieldAtIndex:0];
+                if ([topicField.text isEqualToString:@""]) {
+                    [MsgDisplay showErrorMsg:@"话题不能为空"];
+                } else {
+                    [topicsArr addObject:topicField.text];
+                    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
+                }
+            }
+        }
+    }
 }
-*/
 
-/*
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSUInteger row = [indexPath row];
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
+        [topicsArr removeObjectAtIndex:row];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }   
 }
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
