@@ -11,5 +11,6 @@
 @interface AnswerDataManager : NSObject
 
 + (void)getAnswerDataWithAnswerID:(NSString *)answerId success:(void(^)(NSDictionary *answerData))success failure:(void(^)(NSString *errorStr))failure;
++ (void)getAnswerCommentWithAnswerID:(NSString *)answerId success:(void(^)(NSArray *commentData))success failure:(void(^)(NSString *errorStr))failure;
 
 @end

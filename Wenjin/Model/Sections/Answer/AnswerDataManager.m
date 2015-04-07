@@ -37,4 +37,22 @@
     }];
 }
 
++ (void)getAnswerCommentWithAnswerID:(NSString *)answerId success:(void (^)(NSArray *))success failure:(void (^)(NSString *))failure {
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+    NSDictionary *parameters = @{@"id": answerId};
+    [manager GET:[wjAPIs answerComment] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        NSDictionary *commentData = [operation.responseString objectFromJSONString];
+        if ([commentData[@"errno"] isEqual:@1]) {
+            success(commentData[@"rsm"]);
+        } else {
+            failure(commentData[@"err"]);
+        }
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        failure(error.localizedDescription);
+    }];
+}
+
 @end

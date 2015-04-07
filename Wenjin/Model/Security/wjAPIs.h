@@ -50,6 +50,8 @@
 // 关注用户
 + (NSString *)followUser;
 
+// 答案评论
++ (NSString *)answerComment;
 
 
 @end

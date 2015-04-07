@@ -47,14 +47,30 @@
         userAvatarView.clipsToBounds = YES;
         
         if ([ansData[@"vote_value"] isEqual:@1]) {
+            // 已投票
             [agreeBtn setTitle:[NSString stringWithFormat:@"Voted %@", [ansData[@"agree_count"] stringValue]] forState:UIControlStateNormal];
             [agreeBtn handleControlEvents:UIControlEventTouchUpInside withBlock:^(id weakSender) {
-                NSLog(@"VOTED");
+                UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"投票" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+                UIAlertAction *agreeAction = [UIAlertAction actionWithTitle:@"取消赞同" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+                    //取消赞同
+                }];
+                UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", nil) style:UIAlertActionStyleCancel handler:nil];
+                [alertController addAction:cancelAction];
+                [alertController addAction:agreeAction];
+                [self presentViewController:alertController animated:YES completion:nil];
             }];
         } else {
+            // 未投票
             [agreeBtn setTitle:[NSString stringWithFormat:@"Vote %@", [ansData[@"agree_count"] stringValue]] forState:UIControlStateNormal];
             [agreeBtn handleControlEvents:UIControlEventTouchUpInside withBlock:^(id weakSender) {
-                NSLog(@"VOTE");
+                UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"投票" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+                UIAlertAction *agreeAction = [UIAlertAction actionWithTitle:@"赞同" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+                    //赞同
+                }];
+                UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", nil) style:UIAlertActionStyleCancel handler:nil];
+                [alertController addAction:cancelAction];
+                [alertController addAction:agreeAction];
+                [self presentViewController:alertController animated:YES completion:nil];
             }];
         }
         

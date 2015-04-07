@@ -16,13 +16,13 @@
 @end
 
 @implementation AddTopicViewController {
-    UIAlertView *topicInputAlert;
+    UIAlertController *topicInputAlert;
     NSMutableArray *topicsArr;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    topicsArr = [[NSMutableArray alloc]init];
+    topicsArr = [[NSMutableArray alloc]initWithArray:[data shareInstance].postQuestionTopics];
     
     self.tableView.tableFooterView = [[UIView alloc]init];
     
@@ -44,9 +44,21 @@
 }
 
 - (IBAction)addTopic {
-    topicInputAlert = [[UIAlertView alloc]initWithTitle:@"话题" message:@"请输入话题" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确认", nil];
-    topicInputAlert.alertViewStyle = UIAlertViewStylePlainTextInput;
-    [topicInputAlert show];
+    topicInputAlert = [UIAlertController alertControllerWithTitle:@"话题" message:@"请输入话题" preferredStyle:UIAlertControllerStyleAlert];
+    [topicInputAlert addTextFieldWithConfigurationHandler:nil];
+    UIAlertAction *inputTopicAction = [UIAlertAction actionWithTitle:@"添加" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        UITextField *topicField = topicInputAlert.textFields[0];
+        if ([topicField.text isEqualToString:@""]) {
+            [MsgDisplay showErrorMsg:@"话题不能为空"];
+        } else {
+            [topicsArr addObject:topicField.text];
+            [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
+        }
+    }];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", nil) style:UIAlertActionStyleCancel handler:nil];
+    [topicInputAlert addAction:cancelAction];
+    [topicInputAlert addAction:inputTopicAction];
+    [self presentViewController:topicInputAlert animated:YES completion:nil];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -70,24 +82,6 @@
     cell.textLabel.text = topicsArr[row];
     
     return cell;
-}
-
-- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
-    if (alertView == topicInputAlert) {
-        if (buttonIndex == alertView.cancelButtonIndex) {
-            return;
-        } else {
-            if (buttonIndex == 1) {
-                UITextField *topicField = [alertView textFieldAtIndex:0];
-                if ([topicField.text isEqualToString:@""]) {
-                    [MsgDisplay showErrorMsg:@"话题不能为空"];
-                } else {
-                    [topicsArr addObject:topicField.text];
-                    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
-                }
-            }
-        }
-    }
 }
 
 // Override to support editing the table view.
