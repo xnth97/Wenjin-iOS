@@ -23,9 +23,17 @@
                         <action selector="login" destination="iN0-l3-epB" eventType="touchDown" id="BGd-SP-FWu"/>
                     </connections>
                 </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="不登录就不让你看" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qZK-I0-LWg">
+                    <rect key="frame" x="232" y="140" width="136" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="qZK-I0-LWg" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="140" id="1QF-oW-e7J"/>
+                <constraint firstAttribute="centerX" secondItem="qZK-I0-LWg" secondAttribute="centerX" id="OFX-bt-gTI"/>
                 <constraint firstAttribute="bottom" secondItem="Hxq-1v-eax" secondAttribute="bottom" constant="60" id="anL-5Y-fhm"/>
                 <constraint firstAttribute="centerX" secondItem="Hxq-1v-eax" secondAttribute="centerX" id="nms-f9-5BT"/>
             </constraints>

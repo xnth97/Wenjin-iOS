@@ -27,17 +27,21 @@
     NSInteger currentPage;
 }
 
+@synthesize shouldRefresh;
+
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.navigationController.view.backgroundColor = [UIColor whiteColor];
+    
+    // 如何让第一次登录刷新数据？kvo？delegate？
+    if (shouldRefresh) {
+        [self.tableView triggerPullToRefresh];
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    // 刷新条件需要更改
-    if ([[self.tabBarController valueForKey:@"showNotLoggedInView"] isEqual: @NO]) {
-        [self.tableView triggerPullToRefresh];
-    }
+    
 }
 
 - (void)viewDidLoad {
@@ -45,6 +49,10 @@
     
     self.clearsSelectionOnViewWillAppear = YES;
     self.tableView.allowsSelection = NO;
+    
+    if ([[self.navigationController.tabBarController valueForKey:@"showNotLoggedInView"] isEqual: @NO]) {
+        [self.tableView triggerPullToRefresh];
+    }
     
     //修复下拉刷新位置错误
     if ([self respondsToSelector:@selector(automaticallyAdjustsScrollViewInsets)]) {
@@ -90,6 +98,8 @@
         
         [self.tableView.infiniteScrollingView stopAnimating];
         [self.tableView.pullToRefreshView stopAnimating];
+        
+        self.shouldRefresh = NO;
         
     } failure:^(NSString *errStr) {
         

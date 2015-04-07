@@ -34,6 +34,10 @@
     [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (IBAction)addTopic {
+    
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {

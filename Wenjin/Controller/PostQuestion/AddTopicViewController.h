@@ -11,5 +11,6 @@
 @interface AddTopicViewController : UITableViewController
 
 - (IBAction)cancelModal;
+- (IBAction)addTopic;
 
 @end

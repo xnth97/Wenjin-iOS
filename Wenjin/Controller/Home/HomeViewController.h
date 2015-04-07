@@ -11,4 +11,6 @@
 
 @interface HomeViewController : UITableViewController<homeTableViewCellDelegate>
 
+@property (nonatomic) BOOL shouldRefresh;
+
 @end
