@@ -10,4 +10,7 @@
 
 @interface PostAnswerCommentViewController : UIViewController
 
+@property (strong, nonatomic) UITextView *commentTextView;
+@property (nonatomic) NSString *answerId;
+
 @end

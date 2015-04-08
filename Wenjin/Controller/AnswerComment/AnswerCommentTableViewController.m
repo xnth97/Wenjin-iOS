@@ -34,6 +34,14 @@
     self.tableView.tableFooterView = [[UIView alloc]init];
     self.title = @"评论";
     
+    UIBarButtonItem *commentBtn = [[UIBarButtonItem alloc]initWithTitle:@"写评论" style:UIBarButtonItemStylePlain block:^(id weakSender) {
+        PostAnswerCommentViewController *pacVC = [[PostAnswerCommentViewController alloc]init];
+        pacVC.answerId = answerId;
+        UINavigationController *pNav = [[UINavigationController alloc]initWithRootViewController:pacVC];
+        [self presentViewController:pNav animated:YES completion:nil];
+    }];
+    [self.navigationItem setRightBarButtonItem:commentBtn];
+    
     if ([self respondsToSelector:@selector(automaticallyAdjustsScrollViewInsets)]) {
         self.automaticallyAdjustsScrollViewInsets = NO;
         
@@ -71,6 +79,7 @@
             [self.tableView reloadData];
         } else {
             NSLog(@"No comments");
+            [self.tableView reloadData];
         }
         [self.tableView.pullToRefreshView stopAnimating];
         shouldRefresh = NO;

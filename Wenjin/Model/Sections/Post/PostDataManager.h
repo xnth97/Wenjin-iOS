@@ -12,5 +12,6 @@
 
 + (void)postQuestionWithParameters:(NSDictionary *)parameters success:(void(^)(NSString *questionId))success failure:(void(^)(NSString *errorString))failure;
 + (void)postAnswerWithParameters:(NSDictionary *)parameters success:(void(^)(NSString *answerId))success failure:(void(^)(NSString *errStr))failure;
++ (void)postAnswerCommentWithAnswerID:(NSString *)answerId andMessage:(NSString *)message success:(void(^)())success failure:(void(^)(NSString *errorStr))failure;
 
 @end

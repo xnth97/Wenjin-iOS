@@ -7,6 +7,10 @@
 //
 
 #import "PostAnswerCommentViewController.h"
+#import "ALActionBlocks.h"
+#import "PostDataManager.h"
+#import "MsgDisplay.h"
+#import "AnswerCommentTableViewController.h"
 
 @interface PostAnswerCommentViewController ()
 
@@ -14,14 +18,57 @@
 
 @implementation PostAnswerCommentViewController
 
+@synthesize commentTextView;
+@synthesize answerId;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.title = @"写评论";
+    self.navigationController.view.backgroundColor = [UIColor whiteColor];
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+    
+    commentTextView = [[UITextView alloc]initWithFrame:CGRectMake(0, 0, 0, 0)];
+    commentTextView.font = [UIFont systemFontOfSize:17.0];
+    [self.view addSubview:commentTextView];
+    
+    UIBarButtonItem *cancelBtn = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemCancel block:^(id weakSender) {
+        [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+    }];
+    [self.navigationItem setLeftBarButtonItem:cancelBtn];
+    
+    UIBarButtonItem *doneBtn = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemDone block:^(id weakSender) {
+        
+        [PostDataManager postAnswerCommentWithAnswerID:answerId andMessage:commentTextView.text success:^{
+            [MsgDisplay showSuccessMsg:@"评论添加成功！"];
+            // what the fuck
+            // 如何让 commentTable 刷新？
+            [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+        } failure:^(NSString *errStr) {
+            [MsgDisplay showErrorMsg:errStr];
+        }];
+        
+    }];
+    [self.navigationItem setRightBarButtonItem:doneBtn];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    
+    [commentTextView becomeFirstResponder];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)keyboardWillShow:(NSNotification *)notification {
+    // float animationDuration = [[[notification userInfo] valueForKey:UIKeyboardAnimationDurationUserInfoKey] floatValue];
+    CGFloat keyboardHeight = [[[notification userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size.height;
+    [commentTextView setFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - keyboardHeight)];
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 /*
