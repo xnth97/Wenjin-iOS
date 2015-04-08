@@ -50,7 +50,20 @@
 }
 
 + (void)voteAnswerWithAnswerID:(NSString *)answerId operation:(NSInteger)operation success:(void (^)())success failure:(void (^)(NSString *))failure {
-    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+    NSDictionary *parameters = @{@"answer_id": answerId,
+                                 @"value": [NSNumber numberWithInteger:operation]};
+    [manager POST:[wjAPIs voteAnswer] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSDictionary *respObj = [operation.responseString objectFromJSONString];
+        if ([respObj[@"errno"] isEqual: @1]) {
+            success();
+        } else {
+            failure(respObj[@"err"]);
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        failure(error.localizedDescription);
+    }];
 }
 
 @end
