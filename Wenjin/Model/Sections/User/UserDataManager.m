@@ -48,10 +48,18 @@
         NSDictionary *dicData = [operation.responseString objectFromJSONString];
         if ([dicData[@"errno"] isEqual:@1]) {
             NSInteger totalRows = [(dicData[@"rsm"])[@"total_rows"] integerValue];
-            NSArray *rowsData = (dicData[@"rsm"])[@"rows"];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                success(totalRows, rowsData);
-            });
+            if (totalRows != 0) {
+                NSArray *rowsData = (dicData[@"rsm"])[@"rows"];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    success(totalRows, rowsData);
+                });
+            } else {
+                NSArray *rowsData = @[];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    success(totalRows, rowsData);
+                });
+            }
+            
         } else {
             dispatch_async(dispatch_get_main_queue(), ^{
                 failure(dicData[@"err"]);
@@ -76,10 +84,17 @@
         NSDictionary *dicData = [operation.responseString objectFromJSONString];
         if ([dicData[@"errno"] isEqual:@1]) {
             NSInteger totalRows = [(dicData[@"rsm"])[@"total_rows"] integerValue];
-            NSArray *rowsData = (dicData[@"rsm"])[@"rows"];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                success(totalRows, rowsData);
-            });
+            if (totalRows != 0) {
+                NSArray *rowsData = (dicData[@"rsm"])[@"rows"];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    success(totalRows, rowsData);
+                });
+            } else {
+                NSArray *rowsData = @[];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    success(totalRows, rowsData);
+                });
+            }
         } else {
             dispatch_async(dispatch_get_main_queue(), ^{
                 failure(dicData[@"err"]);

@@ -45,13 +45,26 @@
         
         NSDictionary *commentData = [operation.responseString objectFromJSONString];
         if ([commentData[@"errno"] isEqual:@1]) {
-            success(commentData[@"rsm"]);
+            id dataObj = commentData[@"rsm"];
+            if ([dataObj isKindOfClass:[NSArray class]]) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    success(commentData[@"rsm"]);
+                });
+            } else {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    success(@[]);
+                });
+            }
         } else {
-            failure(commentData[@"err"]);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                failure(commentData[@"err"]);
+            });
         }
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        failure(error.localizedDescription);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            failure(error.localizedDescription);
+        });
     }];
 }
 

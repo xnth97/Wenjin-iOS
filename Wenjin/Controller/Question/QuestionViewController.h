@@ -16,4 +16,6 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *questionTableView;
 
+@property (nonatomic) BOOL shouldRefresh;
+
 @end

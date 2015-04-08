@@ -10,8 +10,7 @@
 
 @interface PostAnswerViewController : UIViewController
 
-@property (weak, nonatomic) IBOutlet UITextView *answerView;
-
+@property (strong, nonatomic) UITextView *answerView;
 @property (strong, nonatomic) NSString *questionId;
 
 @end

@@ -32,7 +32,6 @@
 		E9642EAB1AC5714800FF7875 /* WenjinTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E9642EAA1AC5714800FF7875 /* WenjinTests.m */; };
 		E99079031ACEC9B7008DCA22 /* SettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = E99079021ACEC9B7008DCA22 /* SettingsController.m */; };
 		E99079081ACECCB5008DCA22 /* PostAnswerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E99079061ACECCB5008DCA22 /* PostAnswerViewController.m */; };
-		E99079091ACECCB5008DCA22 /* PostAnswerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E99079071ACECCB5008DCA22 /* PostAnswerViewController.xib */; };
 		E990790B1ACEE1C7008DCA22 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E990790A1ACEE1C7008DCA22 /* LoginViewController.xib */; };
 		E990790F1ACEE371008DCA22 /* NotLoggedInView.m in Sources */ = {isa = PBXBuildFile; fileRef = E990790E1ACEE371008DCA22 /* NotLoggedInView.m */; };
 		E99079111ACEE3A4008DCA22 /* NotLoggedInView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E99079101ACEE3A4008DCA22 /* NotLoggedInView.xib */; };
@@ -55,6 +54,10 @@
 		E9DB26EA1AD4F44B00C3C60D /* UserListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E9DB26E81AD4F44B00C3C60D /* UserListTableViewCell.m */; };
 		E9DB26EB1AD4F44B00C3C60D /* UserListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9DB26E91AD4F44B00C3C60D /* UserListTableViewCell.xib */; };
 		E9DB26F01AD506BC00C3C60D /* UserFeedTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9DB26EF1AD506BC00C3C60D /* UserFeedTableViewController.m */; };
+		E9DB26F41AD5523B00C3C60D /* AnswerCommentTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9DB26F31AD5523B00C3C60D /* AnswerCommentTableViewController.m */; };
+		E9DB26F91AD55D3E00C3C60D /* AnswerCommentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E9DB26F71AD55D3E00C3C60D /* AnswerCommentTableViewCell.m */; };
+		E9DB26FA1AD55D3E00C3C60D /* AnswerCommentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9DB26F81AD55D3E00C3C60D /* AnswerCommentTableViewCell.xib */; };
+		E9DB26FE1AD562E100C3C60D /* PostAnswerCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9DB26FD1AD562E100C3C60D /* PostAnswerCommentViewController.m */; };
 		E9E286C61AC7F632005B6ED7 /* HomeDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E9E286C51AC7F632005B6ED7 /* HomeDataManager.m */; };
 		E9E286C81AC805F2005B6ED7 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E9E286C71AC805F2005B6ED7 /* Localizable.strings */; };
 		E9EB618A1ACC187A001F5DA3 /* QuestionAnswerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E9EB61881ACC187A001F5DA3 /* QuestionAnswerTableViewCell.m */; };
@@ -120,7 +123,6 @@
 		E99079021ACEC9B7008DCA22 /* SettingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingsController.m; path = Controller/Settings/SettingsController.m; sourceTree = "<group>"; };
 		E99079051ACECCB5008DCA22 /* PostAnswerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PostAnswerViewController.h; path = Controller/PostAnswer/PostAnswerViewController.h; sourceTree = "<group>"; };
 		E99079061ACECCB5008DCA22 /* PostAnswerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PostAnswerViewController.m; path = Controller/PostAnswer/PostAnswerViewController.m; sourceTree = "<group>"; };
-		E99079071ACECCB5008DCA22 /* PostAnswerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PostAnswerViewController.xib; path = Controller/PostAnswer/PostAnswerViewController.xib; sourceTree = "<group>"; };
 		E990790A1ACEE1C7008DCA22 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LoginViewController.xib; path = Controller/Login/LoginViewController.xib; sourceTree = "<group>"; };
 		E990790D1ACEE371008DCA22 /* NotLoggedInView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NotLoggedInView.h; path = View/NotLoggedInView/NotLoggedInView.h; sourceTree = "<group>"; };
 		E990790E1ACEE371008DCA22 /* NotLoggedInView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NotLoggedInView.m; path = View/NotLoggedInView/NotLoggedInView.m; sourceTree = "<group>"; };
@@ -160,6 +162,13 @@
 		E9DB26E91AD4F44B00C3C60D /* UserListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UserListTableViewCell.xib; path = View/UserListTableViewCell/UserListTableViewCell.xib; sourceTree = "<group>"; };
 		E9DB26EE1AD506BC00C3C60D /* UserFeedTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserFeedTableViewController.h; path = Controller/UserFeed/UserFeedTableViewController.h; sourceTree = "<group>"; };
 		E9DB26EF1AD506BC00C3C60D /* UserFeedTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserFeedTableViewController.m; path = Controller/UserFeed/UserFeedTableViewController.m; sourceTree = "<group>"; };
+		E9DB26F21AD5523B00C3C60D /* AnswerCommentTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AnswerCommentTableViewController.h; path = Controller/AnswerComment/AnswerCommentTableViewController.h; sourceTree = "<group>"; };
+		E9DB26F31AD5523B00C3C60D /* AnswerCommentTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AnswerCommentTableViewController.m; path = Controller/AnswerComment/AnswerCommentTableViewController.m; sourceTree = "<group>"; };
+		E9DB26F61AD55D3E00C3C60D /* AnswerCommentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AnswerCommentTableViewCell.h; path = View/AnswerCommentCell/AnswerCommentTableViewCell.h; sourceTree = "<group>"; };
+		E9DB26F71AD55D3E00C3C60D /* AnswerCommentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AnswerCommentTableViewCell.m; path = View/AnswerCommentCell/AnswerCommentTableViewCell.m; sourceTree = "<group>"; };
+		E9DB26F81AD55D3E00C3C60D /* AnswerCommentTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AnswerCommentTableViewCell.xib; path = View/AnswerCommentCell/AnswerCommentTableViewCell.xib; sourceTree = "<group>"; };
+		E9DB26FC1AD562E100C3C60D /* PostAnswerCommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PostAnswerCommentViewController.h; path = Controller/PostAnswerComment/PostAnswerCommentViewController.h; sourceTree = "<group>"; };
+		E9DB26FD1AD562E100C3C60D /* PostAnswerCommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PostAnswerCommentViewController.m; path = Controller/PostAnswerComment/PostAnswerCommentViewController.m; sourceTree = "<group>"; };
 		E9E286C41AC7F632005B6ED7 /* HomeDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomeDataManager.h; path = Model/Sections/Home/HomeDataManager.h; sourceTree = "<group>"; };
 		E9E286C51AC7F632005B6ED7 /* HomeDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomeDataManager.m; path = Model/Sections/Home/HomeDataManager.m; sourceTree = "<group>"; };
 		E9E286C71AC805F2005B6ED7 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
@@ -228,6 +237,7 @@
 		E93063B01ACA394E000140C1 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				E9DB26F51AD55D1E00C3C60D /* AnswerCommentCell */,
 				E990790C1ACEE350008DCA22 /* NotLoggedInView */,
 				E90F42751ACE6A3200263622 /* UserHeaderView */,
 				E9EB61861ACC1828001F5DA3 /* QuestionAnswerTableViewCell */,
@@ -307,6 +317,7 @@
 				E93063D41ACAABC7000140C1 /* AnswerViewController.h */,
 				E93063D51ACAABC7000140C1 /* AnswerViewController.m */,
 				E93063D61ACAABC7000140C1 /* AnswerViewController.xib */,
+				E9DB26F11AD54F5E00C3C60D /* AnswerCommentViewController */,
 			);
 			name = AnswerViewController;
 			sourceTree = "<group>";
@@ -384,7 +395,6 @@
 			children = (
 				E99079051ACECCB5008DCA22 /* PostAnswerViewController.h */,
 				E99079061ACECCB5008DCA22 /* PostAnswerViewController.m */,
-				E99079071ACECCB5008DCA22 /* PostAnswerViewController.xib */,
 			);
 			name = PostAnswer;
 			sourceTree = "<group>";
@@ -474,6 +484,7 @@
 				E99079001ACEC982008DCA22 /* Setting */,
 				E93063BB1ACA4D83000140C1 /* PostQuestion */,
 				E99079041ACECC97008DCA22 /* PostAnswer */,
+				E9DB26FB1AD562B800C3C60D /* PostComment */,
 				E9C9C70B1AC7201800CC228A /* Login */,
 			);
 			name = Controller;
@@ -583,6 +594,34 @@
 				E9DB26EF1AD506BC00C3C60D /* UserFeedTableViewController.m */,
 			);
 			name = UserFeedTable;
+			sourceTree = "<group>";
+		};
+		E9DB26F11AD54F5E00C3C60D /* AnswerCommentViewController */ = {
+			isa = PBXGroup;
+			children = (
+				E9DB26F21AD5523B00C3C60D /* AnswerCommentTableViewController.h */,
+				E9DB26F31AD5523B00C3C60D /* AnswerCommentTableViewController.m */,
+			);
+			name = AnswerCommentViewController;
+			sourceTree = "<group>";
+		};
+		E9DB26F51AD55D1E00C3C60D /* AnswerCommentCell */ = {
+			isa = PBXGroup;
+			children = (
+				E9DB26F61AD55D3E00C3C60D /* AnswerCommentTableViewCell.h */,
+				E9DB26F71AD55D3E00C3C60D /* AnswerCommentTableViewCell.m */,
+				E9DB26F81AD55D3E00C3C60D /* AnswerCommentTableViewCell.xib */,
+			);
+			name = AnswerCommentCell;
+			sourceTree = "<group>";
+		};
+		E9DB26FB1AD562B800C3C60D /* PostComment */ = {
+			isa = PBXGroup;
+			children = (
+				E9DB26FC1AD562E100C3C60D /* PostAnswerCommentViewController.h */,
+				E9DB26FD1AD562E100C3C60D /* PostAnswerCommentViewController.m */,
+			);
+			name = PostComment;
 			sourceTree = "<group>";
 		};
 		E9E286C21AC7F611005B6ED7 /* Sections */ = {
@@ -715,10 +754,10 @@
 				E93063B61ACA3982000140C1 /* HomeTableViewCell.xib in Resources */,
 				E93063DD1ACAABD9000140C1 /* UserViewController.xib in Resources */,
 				E90F427A1ACE6E5D00263622 /* UserHeaderView.xib in Resources */,
+				E9DB26FA1AD55D3E00C3C60D /* AnswerCommentTableViewCell.xib in Resources */,
 				E9DB26EB1AD4F44B00C3C60D /* UserListTableViewCell.xib in Resources */,
 				E93063D81ACAABC7000140C1 /* AnswerViewController.xib in Resources */,
 				E9C1A1CB1ACC080700892B60 /* bootstrap.min.js in Resources */,
-				E99079091ACECCB5008DCA22 /* PostAnswerViewController.xib in Resources */,
 				E9EB618B1ACC187A001F5DA3 /* QuestionAnswerTableViewCell.xib in Resources */,
 				E9C1A1CA1ACC080700892B60 /* bootstrap.css in Resources */,
 				E990790B1ACEE1C7008DCA22 /* LoginViewController.xib in Resources */,
@@ -783,11 +822,13 @@
 				E9C9C70E1AC7203500CC228A /* LoginViewController.m in Sources */,
 				E9642E941AC5714800FF7875 /* AppDelegate.m in Sources */,
 				E99079081ACECCB5008DCA22 /* PostAnswerViewController.m in Sources */,
+				E9DB26F91AD55D3E00C3C60D /* AnswerCommentTableViewCell.m in Sources */,
 				E93063BA1ACA47EB000140C1 /* wjStringProcessor.m in Sources */,
 				E93063C81ACA966E000140C1 /* AddDetailViewController.m in Sources */,
 				E9C9C71B1AC7257900CC228A /* wjCookieManager.m in Sources */,
 				E99079031ACEC9B7008DCA22 /* SettingsController.m in Sources */,
 				E9C9C7111AC7233B00CC228A /* wjAccountManager.m in Sources */,
+				E9DB26F41AD5523B00C3C60D /* AnswerCommentTableViewController.m in Sources */,
 				E93063C51ACA9258000140C1 /* AddTopicViewController.m in Sources */,
 				E9C9C6F61AC719FC00CC228A /* MainTabBarController.m in Sources */,
 				E90F42781ACE6A4E00263622 /* UserHeaderView.m in Sources */,
@@ -805,6 +846,7 @@
 				E9AC9E561AD3A4840016CA23 /* wjOperationManager.m in Sources */,
 				E9642E911AC5714800FF7875 /* main.m in Sources */,
 				E9DB26F01AD506BC00C3C60D /* UserFeedTableViewController.m in Sources */,
+				E9DB26FE1AD562E100C3C60D /* PostAnswerCommentViewController.m in Sources */,
 				E9C9C70A1AC71E4200CC228A /* wpyEncryption.m in Sources */,
 				E9DB26EA1AD4F44B00C3C60D /* UserListTableViewCell.m in Sources */,
 				E93063BE1ACA4DAA000140C1 /* PostViewController.m in Sources */,

@@ -20,4 +20,6 @@
 @property (weak, nonatomic) IBOutlet UIView *userInfoView;
 @property (nonatomic) NSInteger agreeCount;
 
+- (IBAction)pushCommentViewController;
+
 @end

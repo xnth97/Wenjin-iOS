@@ -16,6 +16,7 @@
 #import "UIImageView+AFNetworking.h"
 #import "wjOperationManager.h"
 #import <KVOController/FBKVOController.h>
+#import "AnswerCommentTableViewController.h"
 
 @interface AnswerViewController ()
 
@@ -161,6 +162,12 @@
     [alertController addAction:disagreeAction];
     [alertController addAction:cancelAction];
     [self presentViewController:alertController animated:YES completion:nil];
+}
+
+- (IBAction)pushCommentViewController {
+    AnswerCommentTableViewController *commentVC = [[AnswerCommentTableViewController alloc]initWithStyle:UITableViewStylePlain];
+    commentVC.answerId = answerId;
+    [self.navigationController pushViewController:commentVC animated:YES];
 }
 
 /*

@@ -26,6 +26,9 @@
     // Do any additional setup after loading the view from its nib.
     
     self.title = @"添加回答";
+    self.automaticallyAdjustsScrollViewInsets = YES;
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+    self.navigationController.view.backgroundColor = [UIColor whiteColor];
     
     UIBarButtonItem *cancelBtn = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemCancel block:^(id weakSender) {
         [self.navigationController dismissViewControllerAnimated:YES completion:nil];
@@ -38,10 +41,8 @@
         [PostDataManager postAnswerWithParameters:parameters success:^(NSString *answerId) {
             [MsgDisplay showSuccessMsg:@"答案添加成功！"];
             [self.navigationController dismissViewControllerAnimated:YES completion:^{
-                // 回调以后如何刷新 QuestionViewController
-            
-                
-                
+                // 回调以后刷新 QuestionViewController
+                [self.navigationController.presentingViewController setValue:@YES forKey:@"shouldRefresh"];
             }];
             
         } failure:^(NSString *errorStr) {
@@ -51,6 +52,12 @@
     }];
     [self.navigationItem setRightBarButtonItem:doneBtn];
     
+    answerView = [[UITextView alloc]initWithFrame:CGRectMake(0, 0, 0, 0)];
+    answerView.font = [UIFont systemFontOfSize:17.0];
+    [self.view addSubview:answerView];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    
     [answerView becomeFirstResponder];
     
 }
@@ -58,6 +65,16 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)keyboardWillShow:(NSNotification *)notification {
+    // float animationDuration = [[[notification userInfo] valueForKey:UIKeyboardAnimationDurationUserInfoKey] floatValue];
+    CGFloat keyboardHeight = [[[notification userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size.height;
+    [answerView setFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - keyboardHeight)];
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 /*

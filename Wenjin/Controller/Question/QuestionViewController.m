@@ -27,6 +27,7 @@
 
 @synthesize questionTableView;
 @synthesize questionId;
+@synthesize shouldRefresh;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -61,6 +62,9 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [questionTableView deselectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:YES];
+    if (shouldRefresh) {
+        [self.questionTableView triggerPullToRefresh];
+    }
 }
 
 - (void)refreshData {
@@ -76,6 +80,8 @@
         questionTableView.tableHeaderView = headerView;
         [questionTableView reloadData];
         [questionTableView.pullToRefreshView stopAnimating];
+        
+        shouldRefresh = NO;
         
     } failure:^(NSString *errStr) {
         [MsgDisplay showErrorMsg:errStr];
@@ -145,7 +151,7 @@
 
 // Question Header View Delegate
 - (void)presentPostAnswerController {
-    PostAnswerViewController *postAnswer = [[PostAnswerViewController alloc]initWithNibName:@"PostAnswerViewController" bundle:nil];
+    PostAnswerViewController *postAnswer = [[PostAnswerViewController alloc]init];
     postAnswer.questionId = questionInfo[@"question_id"];
     UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:postAnswer];
     [self presentViewController:nav animated:YES completion:nil];

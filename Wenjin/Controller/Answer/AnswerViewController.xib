@@ -28,7 +28,11 @@
                     <rect key="frame" x="0.0" y="556" width="600" height="44"/>
                     <items>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="6q6-HM-Svg"/>
-                        <barButtonItem title="评论" id="78a-Ac-IP9"/>
+                        <barButtonItem title="评论" id="78a-Ac-IP9">
+                            <connections>
+                                <action selector="pushCommentViewController" destination="-1" id="Wrg-bO-blO"/>
+                            </connections>
+                        </barButtonItem>
                     </items>
                 </toolbar>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LML-qB-C5r">
