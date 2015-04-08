@@ -65,8 +65,32 @@
     }];
 }
 
-+ (void)getFansUserListWithUserID:(NSString *)uid andPage:(NSInteger)page success:(void (^)(NSUInteger, NSArray *))success failure:(void (^)(NSString *))failure {
-    
++ (void)getUserFeedWithType:(NSInteger)feedType userID:(NSString *)uid page:(NSInteger)page success:(void (^)(NSUInteger, NSArray *))success failure:(void (^)(NSString *))failure {
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+    NSDictionary *parameters = @{@"uid": uid,
+                                 @"page": [NSNumber numberWithInteger:page]};
+    NSArray *queueURLArray = @[[wjAPIs myQuestions], [wjAPIs myAnswers], [wjAPIs myFollowQuestions]];
+    [manager GET:queueURLArray[feedType] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        NSDictionary *dicData = [operation.responseString objectFromJSONString];
+        if ([dicData[@"errno"] isEqual:@1]) {
+            NSInteger totalRows = [(dicData[@"rsm"])[@"total_rows"] integerValue];
+            NSArray *rowsData = (dicData[@"rsm"])[@"rows"];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                success(totalRows, rowsData);
+            });
+        } else {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                failure(dicData[@"err"]);
+            });
+        }
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            failure(error.localizedDescription);
+        });
+    }];
 }
 
 @end

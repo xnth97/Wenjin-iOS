@@ -59,4 +59,13 @@
 // 关注我的用户
 + (NSString *)myFansUser;
 
+// 我的提问
++ (NSString *)myQuestions;
+
+// 我的回答
++ (NSString *)myAnswers;
+
+// 我的关注问题
++ (NSString *)myFollowQuestions;
+
 @end

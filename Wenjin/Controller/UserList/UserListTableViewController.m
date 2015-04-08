@@ -32,6 +32,7 @@
     
     self.clearsSelectionOnViewWillAppear = YES;
     self.title = @"关注";
+    self.tableView.tableFooterView = [[UIView alloc]init];
     
     if ([self respondsToSelector:@selector(automaticallyAdjustsScrollViewInsets)]) {
         self.automaticallyAdjustsScrollViewInsets = NO;

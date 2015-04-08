@@ -54,6 +54,7 @@
 		E9DB26E51AD4F32200C3C60D /* UserListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9DB26E41AD4F32200C3C60D /* UserListTableViewController.m */; };
 		E9DB26EA1AD4F44B00C3C60D /* UserListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E9DB26E81AD4F44B00C3C60D /* UserListTableViewCell.m */; };
 		E9DB26EB1AD4F44B00C3C60D /* UserListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9DB26E91AD4F44B00C3C60D /* UserListTableViewCell.xib */; };
+		E9DB26F01AD506BC00C3C60D /* UserFeedTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9DB26EF1AD506BC00C3C60D /* UserFeedTableViewController.m */; };
 		E9E286C61AC7F632005B6ED7 /* HomeDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E9E286C51AC7F632005B6ED7 /* HomeDataManager.m */; };
 		E9E286C81AC805F2005B6ED7 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E9E286C71AC805F2005B6ED7 /* Localizable.strings */; };
 		E9EB618A1ACC187A001F5DA3 /* QuestionAnswerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E9EB61881ACC187A001F5DA3 /* QuestionAnswerTableViewCell.m */; };
@@ -157,6 +158,8 @@
 		E9DB26E71AD4F44B00C3C60D /* UserListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserListTableViewCell.h; path = View/UserListTableViewCell/UserListTableViewCell.h; sourceTree = "<group>"; };
 		E9DB26E81AD4F44B00C3C60D /* UserListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserListTableViewCell.m; path = View/UserListTableViewCell/UserListTableViewCell.m; sourceTree = "<group>"; };
 		E9DB26E91AD4F44B00C3C60D /* UserListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UserListTableViewCell.xib; path = View/UserListTableViewCell/UserListTableViewCell.xib; sourceTree = "<group>"; };
+		E9DB26EE1AD506BC00C3C60D /* UserFeedTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserFeedTableViewController.h; path = Controller/UserFeed/UserFeedTableViewController.h; sourceTree = "<group>"; };
+		E9DB26EF1AD506BC00C3C60D /* UserFeedTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserFeedTableViewController.m; path = Controller/UserFeed/UserFeedTableViewController.m; sourceTree = "<group>"; };
 		E9E286C41AC7F632005B6ED7 /* HomeDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomeDataManager.h; path = Model/Sections/Home/HomeDataManager.h; sourceTree = "<group>"; };
 		E9E286C51AC7F632005B6ED7 /* HomeDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomeDataManager.m; path = Model/Sections/Home/HomeDataManager.m; sourceTree = "<group>"; };
 		E9E286C71AC805F2005B6ED7 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
@@ -282,6 +285,8 @@
 				E93063D91ACAABD9000140C1 /* UserViewController.h */,
 				E93063DA1ACAABD9000140C1 /* UserViewController.m */,
 				E93063DB1ACAABD9000140C1 /* UserViewController.xib */,
+				E9DB26E21AD4F2FB00C3C60D /* UserListTable */,
+				E9DB26ED1AD5069C00C3C60D /* UserFeedTable */,
 			);
 			name = UserViewController;
 			sourceTree = "<group>";
@@ -466,7 +471,6 @@
 				E93063CB1ACAAB3C000140C1 /* AnswerViewController */,
 				E93063CA1ACAAB33000140C1 /* QuestionViewController */,
 				E93063C91ACAAB1B000140C1 /* UserViewController */,
-				E9DB26E21AD4F2FB00C3C60D /* UserListTable */,
 				E99079001ACEC982008DCA22 /* Setting */,
 				E93063BB1ACA4D83000140C1 /* PostQuestion */,
 				E99079041ACECC97008DCA22 /* PostAnswer */,
@@ -570,6 +574,15 @@
 				E9DB26E91AD4F44B00C3C60D /* UserListTableViewCell.xib */,
 			);
 			name = UserListTableViewCell;
+			sourceTree = "<group>";
+		};
+		E9DB26ED1AD5069C00C3C60D /* UserFeedTable */ = {
+			isa = PBXGroup;
+			children = (
+				E9DB26EE1AD506BC00C3C60D /* UserFeedTableViewController.h */,
+				E9DB26EF1AD506BC00C3C60D /* UserFeedTableViewController.m */,
+			);
+			name = UserFeedTable;
 			sourceTree = "<group>";
 		};
 		E9E286C21AC7F611005B6ED7 /* Sections */ = {
@@ -791,6 +804,7 @@
 				E90F42741ACD979500263622 /* UserDataManager.m in Sources */,
 				E9AC9E561AD3A4840016CA23 /* wjOperationManager.m in Sources */,
 				E9642E911AC5714800FF7875 /* main.m in Sources */,
+				E9DB26F01AD506BC00C3C60D /* UserFeedTableViewController.m in Sources */,
 				E9C9C70A1AC71E4200CC228A /* wpyEncryption.m in Sources */,
 				E9DB26EA1AD4F44B00C3C60D /* UserListTableViewCell.m in Sources */,
 				E93063BE1ACA4DAA000140C1 /* PostViewController.m in Sources */,

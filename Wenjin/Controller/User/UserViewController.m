@@ -15,6 +15,7 @@
 #import "SVPullToRefresh.h"
 #import "wjOperationManager.h"
 #import "UserListTableViewController.h"
+#import "UserFeedTableViewController.h"
 
 @interface UserViewController ()
 
@@ -22,6 +23,8 @@
 
 @implementation UserViewController {
     NSArray *cellArray;
+    NSString *userName;
+    NSString *userAvatar;
 }
 
 @synthesize userId;
@@ -78,6 +81,10 @@
             headerView.agreeCountLabel.text = userData[@"agree_count"];
             headerView.thanksCountLabel.text = userData[@"thanks_count"];
             [headerView loadAvatarImageWithApartURLString:userData[@"avatar_file"]];
+            
+            userName = userData[@"user_name"];
+            userAvatar = userData[@"avatar_file"];
+            
             if ([userData[@"has_focus"] isEqual:@1]) {
                 [headerView.followButton setTitle:@"取消关注" forState:UIControlStateNormal];
             } else {
@@ -137,7 +144,14 @@
     NSUInteger section = [indexPath section];
     NSUInteger row = [indexPath row];
     if (section == 0) {
-        
+        UserFeedTableViewController *userFeed = [[UserFeedTableViewController alloc]initWithStyle:UITableViewStylePlain];
+        userFeed.feedType = row;
+        userFeed.userId = userId;
+        userFeed.userName = userName;
+        userFeed.userAvatar = userAvatar;
+        userFeed.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:userFeed animated:YES];
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
     } else if (section == 1) {
         UserListTableViewController *userList = [[UserListTableViewController alloc]initWithStyle:UITableViewStylePlain];
         userList.userType = row;
