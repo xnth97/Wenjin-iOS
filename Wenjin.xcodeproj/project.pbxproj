@@ -51,6 +51,9 @@
 		E9C9C7151AC7249900CC228A /* MsgDisplay.m in Sources */ = {isa = PBXBuildFile; fileRef = E9C9C7141AC7249900CC228A /* MsgDisplay.m */; };
 		E9C9C7181AC7256700CC228A /* wjCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E9C9C7171AC7256700CC228A /* wjCacheManager.m */; };
 		E9C9C71B1AC7257900CC228A /* wjCookieManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E9C9C71A1AC7257900CC228A /* wjCookieManager.m */; };
+		E9DB26E51AD4F32200C3C60D /* UserListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9DB26E41AD4F32200C3C60D /* UserListTableViewController.m */; };
+		E9DB26EA1AD4F44B00C3C60D /* UserListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E9DB26E81AD4F44B00C3C60D /* UserListTableViewCell.m */; };
+		E9DB26EB1AD4F44B00C3C60D /* UserListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9DB26E91AD4F44B00C3C60D /* UserListTableViewCell.xib */; };
 		E9E286C61AC7F632005B6ED7 /* HomeDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E9E286C51AC7F632005B6ED7 /* HomeDataManager.m */; };
 		E9E286C81AC805F2005B6ED7 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E9E286C71AC805F2005B6ED7 /* Localizable.strings */; };
 		E9EB618A1ACC187A001F5DA3 /* QuestionAnswerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E9EB61881ACC187A001F5DA3 /* QuestionAnswerTableViewCell.m */; };
@@ -149,6 +152,11 @@
 		E9C9C7171AC7256700CC228A /* wjCacheManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = wjCacheManager.m; path = Model/LocalDataManager/wjCacheManager.m; sourceTree = "<group>"; };
 		E9C9C7191AC7257900CC228A /* wjCookieManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = wjCookieManager.h; path = Model/LocalDataManager/wjCookieManager.h; sourceTree = "<group>"; };
 		E9C9C71A1AC7257900CC228A /* wjCookieManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = wjCookieManager.m; path = Model/LocalDataManager/wjCookieManager.m; sourceTree = "<group>"; };
+		E9DB26E31AD4F32200C3C60D /* UserListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserListTableViewController.h; path = Controller/UserList/UserListTableViewController.h; sourceTree = "<group>"; };
+		E9DB26E41AD4F32200C3C60D /* UserListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserListTableViewController.m; path = Controller/UserList/UserListTableViewController.m; sourceTree = "<group>"; };
+		E9DB26E71AD4F44B00C3C60D /* UserListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserListTableViewCell.h; path = View/UserListTableViewCell/UserListTableViewCell.h; sourceTree = "<group>"; };
+		E9DB26E81AD4F44B00C3C60D /* UserListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserListTableViewCell.m; path = View/UserListTableViewCell/UserListTableViewCell.m; sourceTree = "<group>"; };
+		E9DB26E91AD4F44B00C3C60D /* UserListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UserListTableViewCell.xib; path = View/UserListTableViewCell/UserListTableViewCell.xib; sourceTree = "<group>"; };
 		E9E286C41AC7F632005B6ED7 /* HomeDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomeDataManager.h; path = Model/Sections/Home/HomeDataManager.h; sourceTree = "<group>"; };
 		E9E286C51AC7F632005B6ED7 /* HomeDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomeDataManager.m; path = Model/Sections/Home/HomeDataManager.m; sourceTree = "<group>"; };
 		E9E286C71AC805F2005B6ED7 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
@@ -222,6 +230,7 @@
 				E9EB61861ACC1828001F5DA3 /* QuestionAnswerTableViewCell */,
 				E9C1A1C11ACBCB6500892B60 /* QuestionHeaderView */,
 				E93063B11ACA395B000140C1 /* HomeTableViewCell */,
+				E9DB26E61AD4F41F00C3C60D /* UserListTableViewCell */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -457,6 +466,7 @@
 				E93063CB1ACAAB3C000140C1 /* AnswerViewController */,
 				E93063CA1ACAAB33000140C1 /* QuestionViewController */,
 				E93063C91ACAAB1B000140C1 /* UserViewController */,
+				E9DB26E21AD4F2FB00C3C60D /* UserListTable */,
 				E99079001ACEC982008DCA22 /* Setting */,
 				E93063BB1ACA4D83000140C1 /* PostQuestion */,
 				E99079041ACECC97008DCA22 /* PostAnswer */,
@@ -541,6 +551,25 @@
 			);
 			name = MessageDisplay;
 			path = Model/MessageDisplay;
+			sourceTree = "<group>";
+		};
+		E9DB26E21AD4F2FB00C3C60D /* UserListTable */ = {
+			isa = PBXGroup;
+			children = (
+				E9DB26E31AD4F32200C3C60D /* UserListTableViewController.h */,
+				E9DB26E41AD4F32200C3C60D /* UserListTableViewController.m */,
+			);
+			name = UserListTable;
+			sourceTree = "<group>";
+		};
+		E9DB26E61AD4F41F00C3C60D /* UserListTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				E9DB26E71AD4F44B00C3C60D /* UserListTableViewCell.h */,
+				E9DB26E81AD4F44B00C3C60D /* UserListTableViewCell.m */,
+				E9DB26E91AD4F44B00C3C60D /* UserListTableViewCell.xib */,
+			);
+			name = UserListTableViewCell;
 			sourceTree = "<group>";
 		};
 		E9E286C21AC7F611005B6ED7 /* Sections */ = {
@@ -673,6 +702,7 @@
 				E93063B61ACA3982000140C1 /* HomeTableViewCell.xib in Resources */,
 				E93063DD1ACAABD9000140C1 /* UserViewController.xib in Resources */,
 				E90F427A1ACE6E5D00263622 /* UserHeaderView.xib in Resources */,
+				E9DB26EB1AD4F44B00C3C60D /* UserListTableViewCell.xib in Resources */,
 				E93063D81ACAABC7000140C1 /* AnswerViewController.xib in Resources */,
 				E9C1A1CB1ACC080700892B60 /* bootstrap.min.js in Resources */,
 				E99079091ACECCB5008DCA22 /* PostAnswerViewController.xib in Resources */,
@@ -751,6 +781,7 @@
 				E9C9C7181AC7256700CC228A /* wjCacheManager.m in Sources */,
 				E9C1A1C01ACAF21F00892B60 /* QuestionDataManager.m in Sources */,
 				E93063C21ACA4E69000140C1 /* PostDataManager.m in Sources */,
+				E9DB26E51AD4F32200C3C60D /* UserListTableViewController.m in Sources */,
 				E93063D71ACAABC7000140C1 /* AnswerViewController.m in Sources */,
 				E9C9C7151AC7249900CC228A /* MsgDisplay.m in Sources */,
 				E93063DC1ACAABD9000140C1 /* UserViewController.m in Sources */,
@@ -761,6 +792,7 @@
 				E9AC9E561AD3A4840016CA23 /* wjOperationManager.m in Sources */,
 				E9642E911AC5714800FF7875 /* main.m in Sources */,
 				E9C9C70A1AC71E4200CC228A /* wpyEncryption.m in Sources */,
+				E9DB26EA1AD4F44B00C3C60D /* UserListTableViewCell.m in Sources */,
 				E93063BE1ACA4DAA000140C1 /* PostViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

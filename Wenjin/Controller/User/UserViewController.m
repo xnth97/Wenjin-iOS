@@ -14,6 +14,7 @@
 #import "wjCacheManager.h"
 #import "SVPullToRefresh.h"
 #import "wjOperationManager.h"
+#import "UserListTableViewController.h"
 
 @interface UserViewController ()
 
@@ -29,6 +30,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    self.navigationController.view.backgroundColor = [UIColor whiteColor];
+    
     if (userId == nil) {
         self.title = @"我";
         if ([data shareInstance].myUID != nil) {
@@ -84,10 +87,10 @@
             
             if ([userId integerValue] == [[data shareInstance].myUID integerValue]) {
                 headerView.followButton.hidden = YES;
-                cellArray = @[@[@"我关注的", @"关注我的"], @[@"我的提问", @"我的回答"]];
+                cellArray = @[@[@"我的提问", @"我的回答", @"我关注的问题"], @[@"我关注的", @"关注我的"]];
                 self.title = @"我";
             } else {
-                cellArray = @[@[@"Ta 关注的", @"关注 Ta 的"], @[@"Ta 的提问", @"Ta 的回答"]];
+                cellArray = @[@[@"Ta 的提问", @"Ta 的回答", @"Ta 关注的问题"], @[@"Ta 关注的", @"关注 Ta 的"]];
                 self.title = userData[@"user_name"];
             }
             
@@ -122,11 +125,26 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     if (section == 0) {
-        return @"关注";
-    } else if (section == 1) {
         return @"动态";
+    } else if (section == 1) {
+        return @"用户";
     } else {
         return @"";
+    }
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSUInteger section = [indexPath section];
+    NSUInteger row = [indexPath row];
+    if (section == 0) {
+        
+    } else if (section == 1) {
+        UserListTableViewController *userList = [[UserListTableViewController alloc]initWithStyle:UITableViewStylePlain];
+        userList.userType = row;
+        userList.userId = userId;
+        userList.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:userList animated:YES];
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
     }
 }
 

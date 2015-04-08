@@ -53,5 +53,10 @@
 // 答案评论
 + (NSString *)answerComment;
 
+// 我关注的用户
++ (NSString *)myFollowUser;
+
+// 关注我的用户
++ (NSString *)myFansUser;
 
 @end
