@@ -68,13 +68,24 @@
 }
 
 - (void)getRowsData {
+    for (UIView *tmpView in self.view.subviews) {
+        if ([tmpView isKindOfClass:[UILabel class]]) {
+            [tmpView removeFromSuperview];
+        }
+    }
+    
     [AnswerDataManager getAnswerCommentWithAnswerID:answerId success:^(NSArray *commentData) {
         rowsData = [[NSMutableArray alloc]initWithArray:commentData];
         if ([rowsData count] > 0) {
             [self.tableView reloadData];
         } else {
-            NSLog(@"No comments");
             [self.tableView reloadData];
+            UILabel *noCLabel = [[UILabel alloc]initWithFrame:CGRectMake((self.view.frame.size.width - 120) / 2, (self.view.frame.size.height - 20 ) / 2 - 44, 120, 20)];
+            noCLabel.text = @"暂无评论";
+            noCLabel.font = [UIFont systemFontOfSize:20];
+            noCLabel.textColor = [UIColor darkGrayColor];
+            noCLabel.textAlignment = NSTextAlignmentCenter;
+            [self.view addSubview:noCLabel];
         }
         [self.tableView.pullToRefreshView stopAnimating];
     } failure:^(NSString *errStr) {
@@ -118,13 +129,13 @@
 }
 
 - (void)tableView:(UITableView *)tableView didHighlightRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSUInteger row = [indexPath row];
     UIAlertController *replyAlert = [UIAlertController alertControllerWithTitle:@"评论回复" message:@"" preferredStyle:UIAlertControllerStyleActionSheet];
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", nil) style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
         [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     }];
     UIAlertAction *replyAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Reply", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
         
-        NSUInteger row = [indexPath row];
         NSString *replyName = (rowsData[row])[@"user_name"];
         
         PostAnswerCommentViewController *postAC = [[PostAnswerCommentViewController alloc]init];
@@ -136,11 +147,11 @@
     [replyAlert addAction:cancelAction];
     [replyAlert addAction:replyAction];
     [replyAlert setModalPresentationStyle:UIModalPresentationPopover];
-    UIPopoverPresentationController *popPresenter = replyAlert.popoverPresentationController;
-    // popPresenter.sourceView =
-    // popPresenter.sourceRect =
+    [replyAlert.popoverPresentationController setPermittedArrowDirections:0];
+    CGRect rect = self.view.frame;
+    replyAlert.popoverPresentationController.sourceView = self.view;
+    replyAlert.popoverPresentationController.sourceRect = rect;
     [self presentViewController:replyAlert animated:YES completion:nil];
-    
 }
 
 - (CGFloat)heightOfLabelWithTextString:(NSString *)textString {

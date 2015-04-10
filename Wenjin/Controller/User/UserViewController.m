@@ -77,7 +77,7 @@
             UserHeaderView *headerView = [[UserHeaderView alloc]init];
             headerView.delegate = self;
             headerView.usernameLabel.text = userData[@"user_name"];
-            headerView.userSigLabel.text = userData[@"signature"];
+            headerView.userSigLabel.text = (userData[@"signature"] == [NSNull null]) ? @"" : userData[@"signature"];
             headerView.agreeCountLabel.text = userData[@"agree_count"];
             headerView.thanksCountLabel.text = userData[@"thanks_count"];
             [headerView loadAvatarImageWithApartURLString:userData[@"avatar_file"]];

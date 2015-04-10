@@ -30,6 +30,7 @@
 		E9642E9C1AC5714800FF7875 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E9642E9B1AC5714800FF7875 /* Images.xcassets */; };
 		E9642E9F1AC5714800FF7875 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9642E9D1AC5714800FF7875 /* LaunchScreen.xib */; };
 		E9642EAB1AC5714800FF7875 /* WenjinTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E9642EAA1AC5714800FF7875 /* WenjinTests.m */; };
+		E96F09241AD7D29700847E5E /* TLTagsControl.m in Sources */ = {isa = PBXBuildFile; fileRef = E96F09231AD7D29700847E5E /* TLTagsControl.m */; };
 		E99079031ACEC9B7008DCA22 /* SettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = E99079021ACEC9B7008DCA22 /* SettingsController.m */; };
 		E99079081ACECCB5008DCA22 /* PostAnswerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E99079061ACECCB5008DCA22 /* PostAnswerViewController.m */; };
 		E990790B1ACEE1C7008DCA22 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E990790A1ACEE1C7008DCA22 /* LoginViewController.xib */; };
@@ -119,6 +120,8 @@
 		E9642EA41AC5714800FF7875 /* WenjinTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WenjinTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9642EA91AC5714800FF7875 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E9642EAA1AC5714800FF7875 /* WenjinTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WenjinTests.m; sourceTree = "<group>"; };
+		E96F09221AD7D29700847E5E /* TLTagsControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLTagsControl.h; sourceTree = "<group>"; };
+		E96F09231AD7D29700847E5E /* TLTagsControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLTagsControl.m; sourceTree = "<group>"; };
 		E99079011ACEC9B7008DCA22 /* SettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingsController.h; path = Controller/Settings/SettingsController.h; sourceTree = "<group>"; };
 		E99079021ACEC9B7008DCA22 /* SettingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingsController.m; path = Controller/Settings/SettingsController.m; sourceTree = "<group>"; };
 		E99079051ACECCB5008DCA22 /* PostAnswerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PostAnswerViewController.h; path = Controller/PostAnswer/PostAnswerViewController.h; sourceTree = "<group>"; };
@@ -237,6 +240,7 @@
 		E93063B01ACA394E000140C1 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				E96F09211AD7D29700847E5E /* TLTagsContol */,
 				E9DB26F51AD55D1E00C3C60D /* AnswerCommentCell */,
 				E990790C1ACEE350008DCA22 /* NotLoggedInView */,
 				E90F42751ACE6A3200263622 /* UserHeaderView */,
@@ -379,6 +383,16 @@
 				E9642EA91AC5714800FF7875 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E96F09211AD7D29700847E5E /* TLTagsContol */ = {
+			isa = PBXGroup;
+			children = (
+				E96F09221AD7D29700847E5E /* TLTagsControl.h */,
+				E96F09231AD7D29700847E5E /* TLTagsControl.m */,
+			);
+			name = TLTagsContol;
+			path = View/TLTagsContol;
 			sourceTree = "<group>";
 		};
 		E99079001ACEC982008DCA22 /* Setting */ = {
@@ -836,6 +850,7 @@
 				E9C1A1C01ACAF21F00892B60 /* QuestionDataManager.m in Sources */,
 				E93063C21ACA4E69000140C1 /* PostDataManager.m in Sources */,
 				E9DB26E51AD4F32200C3C60D /* UserListTableViewController.m in Sources */,
+				E96F09241AD7D29700847E5E /* TLTagsControl.m in Sources */,
 				E93063D71ACAABC7000140C1 /* AnswerViewController.m in Sources */,
 				E9C9C7151AC7249900CC228A /* MsgDisplay.m in Sources */,
 				E93063DC1ACAABD9000140C1 /* UserViewController.m in Sources */,
