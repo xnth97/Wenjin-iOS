@@ -29,7 +29,11 @@
 }
 
 - (void)loadImageWithApartURL:(NSString *)urlStr {
-    [self.avatarView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", [wjAPIs avatarPath], urlStr]]];
+    [self.avatarView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", [wjAPIs avatarPath], urlStr]] placeholderImage:[UIImage imageNamed:@"tabBarIcon"]];
+}
+
+- (void)loadTopicImageWithApartURL:(NSString *)urlStr {
+    [self.avatarView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", [wjAPIs topicImagePath], urlStr]] placeholderImage:[UIImage imageNamed:@"tabBarIcon"]];
 }
 
 @end

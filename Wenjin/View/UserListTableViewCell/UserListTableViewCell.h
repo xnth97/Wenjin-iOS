@@ -15,5 +15,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *userSigLabel;
 
 - (void)loadImageWithApartURL:(NSString *)urlStr;
+- (void)loadTopicImageWithApartURL:(NSString *)urlStr;
 
 @end

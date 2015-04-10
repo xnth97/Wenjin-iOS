@@ -37,7 +37,7 @@
             [topicsArr addObject:(NSString *)tmp[@"topic_title"]];
         }
         
-        TLTagsControl *topicsControl = [[TLTagsControl alloc]initWithFrame:CGRectMake(8, 8, width - 16, 22)];
+        TLTagsControl *topicsControl = [[TLTagsControl alloc]initWithFrame:CGRectMake(16, 8, width - 32, 22)];
         topicsControl.mode = TLTagsControlModeList;
         topicsControl.tags = topicsArr;
         topicsControl.tagsBackgroundColor = [UIColor colorWithRed:75.0/255.0 green:186.0/255.0 blue:251.0/255.0 alpha:1];

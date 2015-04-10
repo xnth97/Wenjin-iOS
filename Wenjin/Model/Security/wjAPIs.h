@@ -71,4 +71,7 @@
 // 发布答案评论
 + (NSString *)postAnswerComment;
 
+// 话题列表
++ (NSString *)topicList;
+
 @end

@@ -127,6 +127,7 @@
     contentSize.height = self.frame.size.height;
     
     self.contentSize = contentSize;
+    self.showsHorizontalScrollIndicator = NO;
     
     tagInputField_.placeholder = tagPlaceholder;
 }
@@ -323,7 +324,7 @@
     }
 }
 
-#pragma mark - other
+# pragma mark - other
 
 - (void)setMode:(TLTagsControlMode)mode {
     _mode = mode;

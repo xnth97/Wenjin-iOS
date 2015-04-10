@@ -30,6 +30,8 @@
 		E9642E9F1AC5714800FF7875 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9642E9D1AC5714800FF7875 /* LaunchScreen.xib */; };
 		E9642EAB1AC5714800FF7875 /* WenjinTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E9642EAA1AC5714800FF7875 /* WenjinTests.m */; };
 		E96F09241AD7D29700847E5E /* TLTagsControl.m in Sources */ = {isa = PBXBuildFile; fileRef = E96F09231AD7D29700847E5E /* TLTagsControl.m */; };
+		E96F09281AD7E2DD00847E5E /* TopicListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E96F09271AD7E2DD00847E5E /* TopicListTableViewController.m */; };
+		E96F092C1AD7E3BA00847E5E /* TopicDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E96F092B1AD7E3B900847E5E /* TopicDataManager.m */; };
 		E99079031ACEC9B7008DCA22 /* SettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = E99079021ACEC9B7008DCA22 /* SettingsController.m */; };
 		E99079081ACECCB5008DCA22 /* PostAnswerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E99079061ACECCB5008DCA22 /* PostAnswerViewController.m */; };
 		E990790B1ACEE1C7008DCA22 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E990790A1ACEE1C7008DCA22 /* LoginViewController.xib */; };
@@ -119,6 +121,10 @@
 		E9642EAA1AC5714800FF7875 /* WenjinTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WenjinTests.m; sourceTree = "<group>"; };
 		E96F09221AD7D29700847E5E /* TLTagsControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLTagsControl.h; sourceTree = "<group>"; };
 		E96F09231AD7D29700847E5E /* TLTagsControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLTagsControl.m; sourceTree = "<group>"; };
+		E96F09261AD7E2DD00847E5E /* TopicListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TopicListTableViewController.h; path = Controller/TopicList/TopicListTableViewController.h; sourceTree = "<group>"; };
+		E96F09271AD7E2DD00847E5E /* TopicListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TopicListTableViewController.m; path = Controller/TopicList/TopicListTableViewController.m; sourceTree = "<group>"; };
+		E96F092A1AD7E3B900847E5E /* TopicDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TopicDataManager.h; path = Model/Sections/Topic/TopicDataManager.h; sourceTree = "<group>"; };
+		E96F092B1AD7E3B900847E5E /* TopicDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TopicDataManager.m; path = Model/Sections/Topic/TopicDataManager.m; sourceTree = "<group>"; };
 		E99079011ACEC9B7008DCA22 /* SettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingsController.h; path = Controller/Settings/SettingsController.h; sourceTree = "<group>"; };
 		E99079021ACEC9B7008DCA22 /* SettingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingsController.m; path = Controller/Settings/SettingsController.m; sourceTree = "<group>"; };
 		E99079051ACECCB5008DCA22 /* PostAnswerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PostAnswerViewController.h; path = Controller/PostAnswer/PostAnswerViewController.h; sourceTree = "<group>"; };
@@ -390,6 +396,24 @@
 			path = View/TLTagsContol;
 			sourceTree = "<group>";
 		};
+		E96F09251AD7E28E00847E5E /* TopicListTableViewController */ = {
+			isa = PBXGroup;
+			children = (
+				E96F09261AD7E2DD00847E5E /* TopicListTableViewController.h */,
+				E96F09271AD7E2DD00847E5E /* TopicListTableViewController.m */,
+			);
+			name = TopicListTableViewController;
+			sourceTree = "<group>";
+		};
+		E96F09291AD7E39F00847E5E /* Topic */ = {
+			isa = PBXGroup;
+			children = (
+				E96F092A1AD7E3B900847E5E /* TopicDataManager.h */,
+				E96F092B1AD7E3B900847E5E /* TopicDataManager.m */,
+			);
+			name = Topic;
+			sourceTree = "<group>";
+		};
 		E99079001ACEC982008DCA22 /* Setting */ = {
 			isa = PBXGroup;
 			children = (
@@ -489,6 +513,7 @@
 				E9C9C6F01AC6B35B00CC228A /* Home */,
 				E93063CB1ACAAB3C000140C1 /* AnswerViewController */,
 				E93063CA1ACAAB33000140C1 /* QuestionViewController */,
+				E96F09251AD7E28E00847E5E /* TopicListTableViewController */,
 				E93063C91ACAAB1B000140C1 /* UserViewController */,
 				E99079001ACEC982008DCA22 /* Setting */,
 				E93063BB1ACA4D83000140C1 /* PostQuestion */,
@@ -636,6 +661,7 @@
 		E9E286C21AC7F611005B6ED7 /* Sections */ = {
 			isa = PBXGroup;
 			children = (
+				E96F09291AD7E39F00847E5E /* Topic */,
 				E90F42711ACD978100263622 /* User */,
 				E9EB618C1ACC2B0D001F5DA3 /* Answer */,
 				E9C1A1BD1ACAF20300892B60 /* Question */,
@@ -837,6 +863,8 @@
 				E9C9C71B1AC7257900CC228A /* wjCookieManager.m in Sources */,
 				E99079031ACEC9B7008DCA22 /* SettingsController.m in Sources */,
 				E9C9C7111AC7233B00CC228A /* wjAccountManager.m in Sources */,
+				E96F09281AD7E2DD00847E5E /* TopicListTableViewController.m in Sources */,
+				E96F092C1AD7E3BA00847E5E /* TopicDataManager.m in Sources */,
 				E9DB26F41AD5523B00C3C60D /* AnswerCommentTableViewController.m in Sources */,
 				E9C9C6F61AC719FC00CC228A /* MainTabBarController.m in Sources */,
 				E90F42781ACE6A4E00263622 /* UserHeaderView.m in Sources */,
