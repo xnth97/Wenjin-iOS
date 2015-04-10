@@ -39,8 +39,9 @@
 - (IBAction)login {
     usernameStr = usernameField.text;
     passwordStr = passwordField.text;
+    [wjCookieManager removeCookieForKey:@"login"];
     if ([usernameStr isEqualToString:@""] || [passwordStr isEqualToString:@""]) {
-        NSLog(@"username or password can't be empty.");
+        [MsgDisplay showErrorMsg:@""];
         return;
     } else {
         NSDictionary *parameters = @{@"user_name": usernameStr,

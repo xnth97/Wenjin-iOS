@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14D130a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BH6-Mm-uy7">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BH6-Mm-uy7">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -60,7 +60,7 @@
                     <navigationItem key="navigationItem" title="动态" id="xuS-cM-48d">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="VpQ-Rw-JgJ">
                             <connections>
-                                <segue destination="ldz-M3-pk8" kind="push" id="p0P-PW-sCJ"/>
+                                <segue destination="ldz-M3-pk8" kind="show" id="p0P-PW-sCJ"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -347,7 +347,7 @@
                     <navigationItem key="navigationItem" title="我" id="pRK-Ih-5fZ">
                         <barButtonItem key="rightBarButtonItem" title="设置" id="GrM-7U-YEN">
                             <connections>
-                                <segue destination="OwB-bb-CiX" kind="push" identifier="pushSettings" id="x2X-kI-fc5"/>
+                                <segue destination="OwB-bb-CiX" kind="show" identifier="pushSettings" id="x2X-kI-fc5"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

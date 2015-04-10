@@ -53,7 +53,7 @@
         [answerContentView loadHTMLString:processedHTML baseURL:[NSURL URLWithString:[wjAPIs baseURL]]];
         userNameLabel.text = ansData[@"user_name"];
         self.title = [NSString stringWithFormat:@"%@ 的回答", ansData[@"user_name"]];
-        userSigLabel.text = ansData[@"signature"];
+        userSigLabel.text = (ansData[@"signature"] == [NSNull null]) ? @"" : ansData[@"signature"];
         [userAvatarView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", [wjAPIs avatarPath], ansData[@"avatar_file"]]]];
         userAvatarView.layer.cornerRadius = userAvatarView.frame.size.width / 2;
         userAvatarView.clipsToBounds = YES;

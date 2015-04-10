@@ -11,6 +11,5 @@
 @interface AnswerCommentTableViewController : UITableViewController
 
 @property (nonatomic) NSString *answerId;
-@property (nonatomic) BOOL shouldRefresh;
 
 @end

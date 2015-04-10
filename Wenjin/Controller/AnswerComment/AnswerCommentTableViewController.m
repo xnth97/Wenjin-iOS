@@ -23,7 +23,6 @@
 }
 
 @synthesize answerId;
-@synthesize shouldRefresh;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -55,16 +54,12 @@
     [self.tableView addPullToRefreshWithActionHandler:^{
         [weakSelf getRowsData];
     }];
-    [self.tableView triggerPullToRefresh];
     
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
-    if (shouldRefresh) {
-        [self.tableView triggerPullToRefresh];
-    }
+    [self.tableView triggerPullToRefresh];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -82,7 +77,6 @@
             [self.tableView reloadData];
         }
         [self.tableView.pullToRefreshView stopAnimating];
-        shouldRefresh = NO;
     } failure:^(NSString *errStr) {
         [MsgDisplay showErrorMsg:errStr];
         [self.tableView.pullToRefreshView stopAnimating];
@@ -102,7 +96,10 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSUInteger row = [indexPath row];
-    return 40 + [self heightOfLabelWithTextString:(rowsData[row])[@"content"]];
+    NSDictionary *tmp = rowsData[row];
+    NSString *replyUserText = (tmp[@"at_user"] != nil) ? [NSString stringWithFormat:@"回复 %@：", (tmp[@"at_user"])[@"user_name"]] : @"";
+    NSString *commentText = [NSString stringWithFormat:@"%@%@", replyUserText, tmp[@"content"]];
+    return 40 + [self heightOfLabelWithTextString:commentText];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -115,13 +112,39 @@
     NSUInteger row = [indexPath row];
     NSDictionary *tmp = rowsData[row];
     cell.usernameLabel.text = tmp[@"user_name"];
-    cell.commentLabel.text = tmp[@"content"];
-    
+    NSString *replyUserText = (tmp[@"at_user"] != nil) ? [NSString stringWithFormat:@"回复 %@：", (tmp[@"at_user"])[@"user_name"]] : @"";
+    cell.commentLabel.text = [NSString stringWithFormat:@"%@%@", replyUserText, tmp[@"content"]];
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didHighlightRowAtIndexPath:(NSIndexPath *)indexPath {
+    UIAlertController *replyAlert = [UIAlertController alertControllerWithTitle:@"评论回复" message:@"" preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", nil) style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+        [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+    }];
+    UIAlertAction *replyAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Reply", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        
+        NSUInteger row = [indexPath row];
+        NSString *replyName = (rowsData[row])[@"user_name"];
+        
+        PostAnswerCommentViewController *postAC = [[PostAnswerCommentViewController alloc]init];
+        postAC.answerId = answerId;
+        postAC.replyText = [NSString stringWithFormat:@"@%@:", replyName];
+        [self presentViewController:[[UINavigationController alloc]initWithRootViewController:postAC] animated:YES completion:nil];
+        [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+    }];
+    [replyAlert addAction:cancelAction];
+    [replyAlert addAction:replyAction];
+    [replyAlert setModalPresentationStyle:UIModalPresentationPopover];
+    UIPopoverPresentationController *popPresenter = replyAlert.popoverPresentationController;
+    // popPresenter.sourceView =
+    // popPresenter.sourceRect =
+    [self presentViewController:replyAlert animated:YES completion:nil];
+    
+}
+
 - (CGFloat)heightOfLabelWithTextString:(NSString *)textString {
-    CGFloat width = self.tableView.frame.size.width;
+    CGFloat width = self.tableView.frame.size.width - 16;
     
     UILabel *gettingSizeLabel = [[UILabel alloc]init];
     gettingSizeLabel.text = textString;

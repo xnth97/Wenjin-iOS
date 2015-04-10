@@ -186,7 +186,7 @@
 }
 
 - (CGFloat)heightOfLabelWithTextString:(NSString *)textString {
-    CGFloat width = self.tableView.frame.size.width;
+    CGFloat width = self.tableView.frame.size.width - 16;
     
     UILabel *gettingSizeLabel = [[UILabel alloc]init];
     gettingSizeLabel.text = textString;

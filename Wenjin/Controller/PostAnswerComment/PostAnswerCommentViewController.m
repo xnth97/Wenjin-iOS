@@ -20,6 +20,7 @@
 
 @synthesize commentTextView;
 @synthesize answerId;
+@synthesize replyText;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -30,6 +31,10 @@
     
     commentTextView = [[UITextView alloc]initWithFrame:CGRectMake(0, 0, 0, 0)];
     commentTextView.font = [UIFont systemFontOfSize:17.0];
+    if (replyText == nil) {
+        replyText = @"";
+    }
+    commentTextView.text = replyText;
     [self.view addSubview:commentTextView];
     
     UIBarButtonItem *cancelBtn = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemCancel block:^(id weakSender) {
@@ -41,7 +46,6 @@
         
         [PostDataManager postAnswerCommentWithAnswerID:answerId andMessage:commentTextView.text success:^{
             [MsgDisplay showSuccessMsg:@"评论添加成功！"];
-            // what the fuck
             // 如何让 commentTable 刷新？
             [self.navigationController dismissViewControllerAnimated:YES completion:nil];
         } failure:^(NSString *errStr) {

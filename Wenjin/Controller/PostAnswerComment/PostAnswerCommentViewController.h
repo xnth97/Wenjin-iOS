@@ -12,5 +12,6 @@
 
 @property (strong, nonatomic) UITextView *commentTextView;
 @property (nonatomic) NSString *answerId;
+@property (nonatomic) NSString *replyText;
 
 @end
