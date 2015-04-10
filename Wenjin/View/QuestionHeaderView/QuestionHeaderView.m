@@ -11,6 +11,7 @@
 #import "ALActionBlocks.h"
 #import "wjOperationManager.h"
 #import "MsgDisplay.h"
+#import "TLTagsControl.h"
 
 @implementation QuestionHeaderView {
     int _borderDist;
@@ -31,10 +32,19 @@
         _borderDist = 14 ;
         CGFloat width = [UIApplication sharedApplication].keyWindow.frame.size.width;
         
-        UIScrollView *topicView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, width - 22, 22)];
-        topicView.showsHorizontalScrollIndicator = NO;
-        topicView.contentSize = CGSizeMake(600, 22);
-        [self addSubview:topicView];
+        NSMutableArray *topicsArr = [[NSMutableArray alloc]init];
+        for (NSDictionary *tmp in topics) {
+            [topicsArr addObject:(NSString *)tmp[@"topic_title"]];
+        }
+        
+        TLTagsControl *topicsControl = [[TLTagsControl alloc]initWithFrame:CGRectMake(8, 8, width - 16, 22)];
+        topicsControl.mode = TLTagsControlModeList;
+        topicsControl.tags = topicsArr;
+        topicsControl.tagsBackgroundColor = [UIColor colorWithRed:75.0/255.0 green:186.0/255.0 blue:251.0/255.0 alpha:1];
+        topicsControl.tagsTextColor = [UIColor whiteColor];
+        topicsControl.tagsDeleteButtonColor = [UIColor whiteColor];
+        [topicsControl reloadTagSubviews];
+        [self addSubview:topicsControl];
         
         UILabel *questionTitle = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 0, 0)];
         questionTitle.numberOfLines = 0;
