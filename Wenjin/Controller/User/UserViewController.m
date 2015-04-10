@@ -29,6 +29,7 @@
 
 @synthesize userId;
 @synthesize userTableView;
+@synthesize userData;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -72,7 +73,8 @@
 
 - (void)refreshData {
     if (userId != nil) {
-        [UserDataManager getUserDataWithID:userId success:^(NSDictionary *userData) {
+        [UserDataManager getUserDataWithID:userId success:^(NSDictionary *_userData) {
+            userData = _userData;
             
             UserHeaderView *headerView = [[UserHeaderView alloc]init];
             headerView.delegate = self;
@@ -119,14 +121,29 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSUInteger section = [indexPath section];
+    NSUInteger row = [indexPath row];
+    
     static NSString *simpleTableIdentifier = @"SimpleTableCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
+        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:simpleTableIdentifier];
     }
-    NSUInteger section = [indexPath section];
-    NSUInteger row = [indexPath row];
+    
     cell.textLabel.text = (cellArray[section])[row];
+    if (section == 0) {
+        if (row == 0) {
+            cell.detailTextLabel.text = userData[@"question_count"];
+        } else if (row == 1) {
+            cell.detailTextLabel.text = userData[@"answer_count"];
+        }
+    } else if (section == 1) {
+        if (row == 0) {
+            cell.detailTextLabel.text = userData[@"friend_count"];
+        } else {
+            cell.detailTextLabel.text = userData[@"fans_count"];
+        }
+    }
     return cell;
 }
 
@@ -182,7 +199,7 @@
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"pushSettings"]) {
+    if ([segue.identifier isEqualToString:@"pushSetting"]) {
         self.navigationController.view.backgroundColor = [UIColor whiteColor];
         UIViewController *des = segue.destinationViewController;
         des.hidesBottomBarWhenPushed = YES;

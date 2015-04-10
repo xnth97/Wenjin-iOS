@@ -32,7 +32,7 @@
 		E96F09241AD7D29700847E5E /* TLTagsControl.m in Sources */ = {isa = PBXBuildFile; fileRef = E96F09231AD7D29700847E5E /* TLTagsControl.m */; };
 		E96F09281AD7E2DD00847E5E /* TopicListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E96F09271AD7E2DD00847E5E /* TopicListTableViewController.m */; };
 		E96F092C1AD7E3BA00847E5E /* TopicDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E96F092B1AD7E3B900847E5E /* TopicDataManager.m */; };
-		E99079031ACEC9B7008DCA22 /* SettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = E99079021ACEC9B7008DCA22 /* SettingsController.m */; };
+		E96F092F1AD7F44100847E5E /* SettingTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E96F092E1AD7F44100847E5E /* SettingTableViewController.m */; };
 		E99079081ACECCB5008DCA22 /* PostAnswerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E99079061ACECCB5008DCA22 /* PostAnswerViewController.m */; };
 		E990790B1ACEE1C7008DCA22 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E990790A1ACEE1C7008DCA22 /* LoginViewController.xib */; };
 		E990790F1ACEE371008DCA22 /* NotLoggedInView.m in Sources */ = {isa = PBXBuildFile; fileRef = E990790E1ACEE371008DCA22 /* NotLoggedInView.m */; };
@@ -125,8 +125,8 @@
 		E96F09271AD7E2DD00847E5E /* TopicListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TopicListTableViewController.m; path = Controller/TopicList/TopicListTableViewController.m; sourceTree = "<group>"; };
 		E96F092A1AD7E3B900847E5E /* TopicDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TopicDataManager.h; path = Model/Sections/Topic/TopicDataManager.h; sourceTree = "<group>"; };
 		E96F092B1AD7E3B900847E5E /* TopicDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TopicDataManager.m; path = Model/Sections/Topic/TopicDataManager.m; sourceTree = "<group>"; };
-		E99079011ACEC9B7008DCA22 /* SettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingsController.h; path = Controller/Settings/SettingsController.h; sourceTree = "<group>"; };
-		E99079021ACEC9B7008DCA22 /* SettingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingsController.m; path = Controller/Settings/SettingsController.m; sourceTree = "<group>"; };
+		E96F092D1AD7F44100847E5E /* SettingTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingTableViewController.h; path = Controller/Settings/SettingTableViewController.h; sourceTree = "<group>"; };
+		E96F092E1AD7F44100847E5E /* SettingTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingTableViewController.m; path = Controller/Settings/SettingTableViewController.m; sourceTree = "<group>"; };
 		E99079051ACECCB5008DCA22 /* PostAnswerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PostAnswerViewController.h; path = Controller/PostAnswer/PostAnswerViewController.h; sourceTree = "<group>"; };
 		E99079061ACECCB5008DCA22 /* PostAnswerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PostAnswerViewController.m; path = Controller/PostAnswer/PostAnswerViewController.m; sourceTree = "<group>"; };
 		E990790A1ACEE1C7008DCA22 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LoginViewController.xib; path = Controller/Login/LoginViewController.xib; sourceTree = "<group>"; };
@@ -417,8 +417,8 @@
 		E99079001ACEC982008DCA22 /* Setting */ = {
 			isa = PBXGroup;
 			children = (
-				E99079011ACEC9B7008DCA22 /* SettingsController.h */,
-				E99079021ACEC9B7008DCA22 /* SettingsController.m */,
+				E96F092D1AD7F44100847E5E /* SettingTableViewController.h */,
+				E96F092E1AD7F44100847E5E /* SettingTableViewController.m */,
 			);
 			name = Setting;
 			sourceTree = "<group>";
@@ -861,11 +861,11 @@
 				E93063BA1ACA47EB000140C1 /* wjStringProcessor.m in Sources */,
 				E93063C81ACA966E000140C1 /* AddDetailViewController.m in Sources */,
 				E9C9C71B1AC7257900CC228A /* wjCookieManager.m in Sources */,
-				E99079031ACEC9B7008DCA22 /* SettingsController.m in Sources */,
 				E9C9C7111AC7233B00CC228A /* wjAccountManager.m in Sources */,
 				E96F09281AD7E2DD00847E5E /* TopicListTableViewController.m in Sources */,
 				E96F092C1AD7E3BA00847E5E /* TopicDataManager.m in Sources */,
 				E9DB26F41AD5523B00C3C60D /* AnswerCommentTableViewController.m in Sources */,
+				E96F092F1AD7F44100847E5E /* SettingTableViewController.m in Sources */,
 				E9C9C6F61AC719FC00CC228A /* MainTabBarController.m in Sources */,
 				E90F42781ACE6A4E00263622 /* UserHeaderView.m in Sources */,
 				E9C9C7181AC7256700CC228A /* wjCacheManager.m in Sources */,
