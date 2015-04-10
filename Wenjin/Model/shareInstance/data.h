@@ -12,7 +12,6 @@
 
 // for posting questions
 @property (strong, nonatomic) NSString *postQuestionDetail;
-@property (strong, nonatomic) NSArray *postQuestionTopics;
 
 @property (strong, nonatomic) NSString *myUID;
 

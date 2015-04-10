@@ -17,6 +17,8 @@
     NSMutableArray              *tagSubviews_;
 }
 
+@synthesize tagPlaceholder;
+
 - (instancetype)init {
     self = [super init];
     
@@ -65,8 +67,9 @@
     tagInputField_.backgroundColor = [UIColor whiteColor];
     tagInputField_.delegate = self;
     tagInputField_.font = [UIFont fontWithName:@"HelveticaNeue" size:14];
-    tagInputField_.placeholder = @"tag";
+    tagInputField_.placeholder = @"tags";
     tagInputField_.autocorrectionType = UITextAutocorrectionTypeNo;
+    tagInputField_.returnKeyType = UIReturnKeyDone;
     
     if (_mode == TLTagsControlModeEdit) {
         [self addSubview:tagInputField_];
@@ -124,6 +127,8 @@
     contentSize.height = self.frame.size.height;
     
     self.contentSize = contentSize;
+    
+    tagInputField_.placeholder = tagPlaceholder;
 }
 
 - (void)addTag:(NSString *)tag {
@@ -161,7 +166,7 @@
     
     [tagSubviews_ removeAllObjects];
     
-    UIColor *tagBackgrounColor = _tagsBackgroungColor != nil ? _tagsBackgroungColor : [UIColor colorWithRed:0.9
+    UIColor *tagBackgrounColor = _tagsBackgroundColor != nil ? _tagsBackgroundColor : [UIColor colorWithRed:0.9
                                                                                                       green:0.91
                                                                                                        blue:0.925
                                                                                                       alpha:1];

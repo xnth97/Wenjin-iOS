@@ -16,7 +16,6 @@
 		E93063BA1ACA47EB000140C1 /* wjStringProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = E93063B91ACA47EB000140C1 /* wjStringProcessor.m */; };
 		E93063BE1ACA4DAA000140C1 /* PostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E93063BD1ACA4DAA000140C1 /* PostViewController.m */; };
 		E93063C21ACA4E69000140C1 /* PostDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E93063C11ACA4E69000140C1 /* PostDataManager.m */; };
-		E93063C51ACA9258000140C1 /* AddTopicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E93063C41ACA9258000140C1 /* AddTopicViewController.m */; };
 		E93063C81ACA966E000140C1 /* AddDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E93063C71ACA966E000140C1 /* AddDetailViewController.m */; };
 		E93063D21ACAAB81000140C1 /* QuestionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E93063D01ACAAB81000140C1 /* QuestionViewController.m */; };
 		E93063D31ACAAB81000140C1 /* QuestionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E93063D11ACAAB81000140C1 /* QuestionViewController.xib */; };
@@ -96,8 +95,6 @@
 		E93063BD1ACA4DAA000140C1 /* PostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PostViewController.m; path = Controller/PostQuestion/PostViewController.m; sourceTree = "<group>"; };
 		E93063C01ACA4E69000140C1 /* PostDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PostDataManager.h; path = Model/Sections/Post/PostDataManager.h; sourceTree = "<group>"; };
 		E93063C11ACA4E69000140C1 /* PostDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PostDataManager.m; path = Model/Sections/Post/PostDataManager.m; sourceTree = "<group>"; };
-		E93063C31ACA9258000140C1 /* AddTopicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddTopicViewController.h; path = Controller/PostQuestion/AddTopicViewController.h; sourceTree = "<group>"; };
-		E93063C41ACA9258000140C1 /* AddTopicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AddTopicViewController.m; path = Controller/PostQuestion/AddTopicViewController.m; sourceTree = "<group>"; };
 		E93063C61ACA966E000140C1 /* AddDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddDetailViewController.h; path = Controller/PostQuestion/AddDetailViewController.h; sourceTree = "<group>"; };
 		E93063C71ACA966E000140C1 /* AddDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AddDetailViewController.m; path = Controller/PostQuestion/AddDetailViewController.m; sourceTree = "<group>"; };
 		E93063CF1ACAAB81000140C1 /* QuestionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QuestionViewController.h; path = Controller/Question/QuestionViewController.h; sourceTree = "<group>"; };
@@ -276,8 +273,6 @@
 			children = (
 				E93063BC1ACA4DAA000140C1 /* PostViewController.h */,
 				E93063BD1ACA4DAA000140C1 /* PostViewController.m */,
-				E93063C31ACA9258000140C1 /* AddTopicViewController.h */,
-				E93063C41ACA9258000140C1 /* AddTopicViewController.m */,
 				E93063C61ACA966E000140C1 /* AddDetailViewController.h */,
 				E93063C71ACA966E000140C1 /* AddDetailViewController.m */,
 			);
@@ -843,7 +838,6 @@
 				E99079031ACEC9B7008DCA22 /* SettingsController.m in Sources */,
 				E9C9C7111AC7233B00CC228A /* wjAccountManager.m in Sources */,
 				E9DB26F41AD5523B00C3C60D /* AnswerCommentTableViewController.m in Sources */,
-				E93063C51ACA9258000140C1 /* AddTopicViewController.m in Sources */,
 				E9C9C6F61AC719FC00CC228A /* MainTabBarController.m in Sources */,
 				E90F42781ACE6A4E00263622 /* UserHeaderView.m in Sources */,
 				E9C9C7181AC7256700CC228A /* wjCacheManager.m in Sources */,

@@ -12,13 +12,18 @@
 #import "data.h"
 #import "MsgDisplay.h"
 #import "ALActionBlocks.h"
+#import "TLTagsControl.h"
+#import "HomeViewController.h"
 
 @interface PostViewController ()
 
 @end
 
 @implementation PostViewController {
+    NSMutableArray *topicsArr;
+    CGFloat tagsControlHeight;
     
+    TLTagsControl *questionTagsControl;
 }
 
 @synthesize questionView;
@@ -29,7 +34,8 @@
     
     // Instaces init.
     [data shareInstance].postQuestionDetail = @"";
-    [data shareInstance].postQuestionTopics = @[];
+    topicsArr = [[NSMutableArray alloc]init];
+    tagsControlHeight = 24.0;
     
     questionView = [[UITextView alloc]initWithFrame:CGRectMake(0, 0, 0, 0)];
     questionView.font = [UIFont systemFontOfSize:17.0];
@@ -46,15 +52,20 @@
         UINavigationController *addDetailNav = [storyboard instantiateViewControllerWithIdentifier:@"detailNav"];
         [self presentViewController:addDetailNav animated:YES completion:nil];
     }];
-    UIBarButtonItem *addTopicBtn = [[UIBarButtonItem alloc]initWithTitle:@"添加话题" style:UIBarButtonItemStylePlain block:^(id weakSender) {
-        UIStoryboard *storyboard = self.storyboard;
-        UINavigationController *addTopicNav = [storyboard instantiateViewControllerWithIdentifier:@"topicNav"];
-        [self presentViewController:addTopicNav animated:YES completion:nil];
-    }];
     UIBarButtonItem *flexibleSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
-    [accessoryToolbar setItems:@[flexibleSpace, flexibleSpace, addDetailBtn, addTopicBtn]];
+    [accessoryToolbar setItems:@[flexibleSpace, flexibleSpace, addDetailBtn]];
     
     questionView.inputAccessoryView = accessoryToolbar;
+    
+    questionTagsControl = [[TLTagsControl alloc]initWithFrame:CGRectMake(0, 0, 0, 0)];
+    questionTagsControl.tags = topicsArr;
+    questionTagsControl.mode = TLTagsControlModeEdit;
+    questionTagsControl.tagsBackgroundColor = [UIColor colorWithRed:75.0/255.0 green:186.0/255.0 blue:251.0/255.0 alpha:1];
+    questionTagsControl.tagsTextColor = [UIColor whiteColor];
+    questionTagsControl.tagPlaceholder = @"添加话题";
+    questionTagsControl.tagsDeleteButtonColor = [UIColor whiteColor];
+    [questionTagsControl reloadTagSubviews];
+    [self.view addSubview:questionTagsControl];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -70,7 +81,8 @@
 - (void)keyboardWillShow:(NSNotification *)notification {
     // float animationDuration = [[[notification userInfo] valueForKey:UIKeyboardAnimationDurationUserInfoKey] floatValue];
     CGFloat keyboardHeight = [[[notification userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size.height;
-    [questionView setFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - keyboardHeight)];
+    [questionView setFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - keyboardHeight - tagsControlHeight - 4)];
+    [questionTagsControl setFrame:CGRectMake(8, questionView.frame.size.height, self.view.frame.size.width - 16, tagsControlHeight)];
 }
 
 - (void)dealloc {
@@ -81,13 +93,15 @@
 
 - (IBAction)postQuestion {
     
+    topicsArr = questionTagsControl.tags;
+    
     NSString *topicsStr = @"";
-    if ([[data shareInstance].postQuestionTopics count] > 0) {
-        for (int i = 0; i < [[data shareInstance].postQuestionTopics count]; i ++) {
+    if ([topicsArr count] > 0) {
+        for (int i = 0; i < [topicsArr count]; i ++) {
             if (i == 0) {
-                topicsStr = ([data shareInstance].postQuestionTopics)[0];
+                topicsStr = (topicsArr)[0];
             } else {
-                NSString *topic = ([data shareInstance].postQuestionTopics)[i];
+                NSString *topic = (topicsArr)[i];
                 topicsStr = [NSString stringWithFormat:@"%@,%@", topicsStr, topic];
             }
         }
@@ -103,21 +117,23 @@
                                      @"topics": topicsStr};
         [PostDataManager postQuestionWithParameters:parameters success:^(NSString *questionId) {
             [MsgDisplay showSuccessMsg:[NSString stringWithFormat:@"Question ID: %@", questionId]];
+            
+            for (UIViewController *navVc in self.navigationController.tabBarController.viewControllers) {
+                if ([navVc isKindOfClass:[UINavigationController class]]) {
+                    UINavigationController *nVC = (UINavigationController *)navVc;
+                    if ([nVC.viewControllers[0] isKindOfClass:[HomeViewController class]]) {
+                        HomeViewController *hVC = (HomeViewController *)nVC.viewControllers[0];
+                        hVC.shouldRefresh = YES;
+                    }
+                }
+            }
+            
             [self.navigationController popToRootViewControllerAnimated:YES];
             [data shareInstance].postQuestionDetail = @"";
-            [data shareInstance].postQuestionTopics = @[];
         } failure:^(NSString *errStr) {
             [MsgDisplay showErrorMsg:errStr];
         }];
     }
-}
-
-- (void)addTopic {
-    
-}
-
-- (void)addDetail {
-    
 }
 
 /*
