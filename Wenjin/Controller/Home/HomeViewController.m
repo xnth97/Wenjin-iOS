@@ -178,19 +178,19 @@
     NSUInteger row = [indexPath row];
     NSString *questionTitle = ((dataInView[row])[@"question_info"])[@"question_content"];
     NSString *detailStr = [wjStringProcessor processAnswerDetailString:((dataInView[row])[@"answer_info"])[@"answer_content"]];
-    return 76 + [self heightOfLabelWithTextString:questionTitle] + [self heightOfLabelWithTextString:detailStr];
+    return 56 + [self heightOfLabelWithTextString:questionTitle andFontSize:17.0] + [self heightOfLabelWithTextString:detailStr andFontSize:15.0];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
 }
 
-- (CGFloat)heightOfLabelWithTextString:(NSString *)textString {
-    CGFloat width = self.tableView.frame.size.width - 16;
+- (CGFloat)heightOfLabelWithTextString:(NSString *)textString andFontSize:(CGFloat)fontSize {
+    CGFloat width = self.tableView.frame.size.width - 32;
     
     UILabel *gettingSizeLabel = [[UILabel alloc]init];
     gettingSizeLabel.text = textString;
-    gettingSizeLabel.font = [UIFont systemFontOfSize:15];
+    gettingSizeLabel.font = [UIFont systemFontOfSize:fontSize];
     gettingSizeLabel.numberOfLines = 0;
     gettingSizeLabel.lineBreakMode = NSLineBreakByWordWrapping;
     CGSize maxSize = CGSizeMake(width, 1000.0);
@@ -202,7 +202,6 @@
 // HomeTableViewCell delegate
 
 - (void)pushUserControllerWithRow:(NSUInteger)row {
-    NSLog(@"U: %ld", row);
     UserViewController *uVC = [[UserViewController alloc]initWithNibName:@"UserViewController" bundle:nil];
     uVC.hidesBottomBarWhenPushed = YES;
     uVC.userId = [((rowsData[row])[@"user_info"])[@"uid"] stringValue];
@@ -210,7 +209,6 @@
 }
 
 - (void)pushQuestionControllerWithRow:(NSUInteger)row {
-    NSLog(@"Q: %ld", row);
     QuestionViewController *qVC = [[QuestionViewController alloc]initWithNibName:@"QuestionViewController" bundle:nil];
     qVC.questionId = ((rowsData[row])[@"question_info"])[@"question_id"];
     qVC.hidesBottomBarWhenPushed = YES;
@@ -218,7 +216,6 @@
 }
 
 - (void)pushAnswerControllerWithRow:(NSUInteger)row {
-    NSLog(@"A: %ld", row);
     AnswerViewController *aVC = [[AnswerViewController alloc]initWithNibName:@"AnswerViewController" bundle:nil];
     aVC.hidesBottomBarWhenPushed = YES;
     aVC.answerId = ((rowsData[row])[@"answer_info"])[@"answer_id"];

@@ -74,4 +74,7 @@
 // 话题列表
 + (NSString *)topicList;
 
+// 发现
++ (NSString *)explore;
+
 @end

@@ -33,6 +33,7 @@
 		E96F09281AD7E2DD00847E5E /* TopicListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E96F09271AD7E2DD00847E5E /* TopicListTableViewController.m */; };
 		E96F092C1AD7E3BA00847E5E /* TopicDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E96F092B1AD7E3B900847E5E /* TopicDataManager.m */; };
 		E96F092F1AD7F44100847E5E /* SettingTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E96F092E1AD7F44100847E5E /* SettingTableViewController.m */; };
+		E96F09361AD8FF7700847E5E /* ExploreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E96F09351AD8FF7700847E5E /* ExploreDataManager.m */; };
 		E99079081ACECCB5008DCA22 /* PostAnswerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E99079061ACECCB5008DCA22 /* PostAnswerViewController.m */; };
 		E990790B1ACEE1C7008DCA22 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E990790A1ACEE1C7008DCA22 /* LoginViewController.xib */; };
 		E990790F1ACEE371008DCA22 /* NotLoggedInView.m in Sources */ = {isa = PBXBuildFile; fileRef = E990790E1ACEE371008DCA22 /* NotLoggedInView.m */; };
@@ -62,6 +63,7 @@
 		E9DB26FE1AD562E100C3C60D /* PostAnswerCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9DB26FD1AD562E100C3C60D /* PostAnswerCommentViewController.m */; };
 		E9E286C61AC7F632005B6ED7 /* HomeDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E9E286C51AC7F632005B6ED7 /* HomeDataManager.m */; };
 		E9E286C81AC805F2005B6ED7 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E9E286C71AC805F2005B6ED7 /* Localizable.strings */; };
+		E9E38F361ADA288400136161 /* ExploreTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9E38F351ADA288400136161 /* ExploreTableViewController.m */; };
 		E9EB618A1ACC187A001F5DA3 /* QuestionAnswerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E9EB61881ACC187A001F5DA3 /* QuestionAnswerTableViewCell.m */; };
 		E9EB618B1ACC187A001F5DA3 /* QuestionAnswerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9EB61891ACC187A001F5DA3 /* QuestionAnswerTableViewCell.xib */; };
 		E9EB618F1ACC2B2D001F5DA3 /* AnswerDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E9EB618E1ACC2B2D001F5DA3 /* AnswerDataManager.m */; };
@@ -127,6 +129,8 @@
 		E96F092B1AD7E3B900847E5E /* TopicDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TopicDataManager.m; path = Model/Sections/Topic/TopicDataManager.m; sourceTree = "<group>"; };
 		E96F092D1AD7F44100847E5E /* SettingTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingTableViewController.h; path = Controller/Settings/SettingTableViewController.h; sourceTree = "<group>"; };
 		E96F092E1AD7F44100847E5E /* SettingTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingTableViewController.m; path = Controller/Settings/SettingTableViewController.m; sourceTree = "<group>"; };
+		E96F09341AD8FF7700847E5E /* ExploreDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ExploreDataManager.h; path = Model/Sections/Explore/ExploreDataManager.h; sourceTree = "<group>"; };
+		E96F09351AD8FF7700847E5E /* ExploreDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ExploreDataManager.m; path = Model/Sections/Explore/ExploreDataManager.m; sourceTree = "<group>"; };
 		E99079051ACECCB5008DCA22 /* PostAnswerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PostAnswerViewController.h; path = Controller/PostAnswer/PostAnswerViewController.h; sourceTree = "<group>"; };
 		E99079061ACECCB5008DCA22 /* PostAnswerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PostAnswerViewController.m; path = Controller/PostAnswer/PostAnswerViewController.m; sourceTree = "<group>"; };
 		E990790A1ACEE1C7008DCA22 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LoginViewController.xib; path = Controller/Login/LoginViewController.xib; sourceTree = "<group>"; };
@@ -178,6 +182,8 @@
 		E9E286C41AC7F632005B6ED7 /* HomeDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomeDataManager.h; path = Model/Sections/Home/HomeDataManager.h; sourceTree = "<group>"; };
 		E9E286C51AC7F632005B6ED7 /* HomeDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomeDataManager.m; path = Model/Sections/Home/HomeDataManager.m; sourceTree = "<group>"; };
 		E9E286C71AC805F2005B6ED7 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		E9E38F341ADA288400136161 /* ExploreTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ExploreTableViewController.h; path = Controller/Explore/ExploreTableViewController.h; sourceTree = "<group>"; };
+		E9E38F351ADA288400136161 /* ExploreTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ExploreTableViewController.m; path = Controller/Explore/ExploreTableViewController.m; sourceTree = "<group>"; };
 		E9EB61871ACC187A001F5DA3 /* QuestionAnswerTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QuestionAnswerTableViewCell.h; path = View/QuestionAnswerTableViewCell/QuestionAnswerTableViewCell.h; sourceTree = "<group>"; };
 		E9EB61881ACC187A001F5DA3 /* QuestionAnswerTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QuestionAnswerTableViewCell.m; path = View/QuestionAnswerTableViewCell/QuestionAnswerTableViewCell.m; sourceTree = "<group>"; };
 		E9EB61891ACC187A001F5DA3 /* QuestionAnswerTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = QuestionAnswerTableViewCell.xib; path = View/QuestionAnswerTableViewCell/QuestionAnswerTableViewCell.xib; sourceTree = "<group>"; };
@@ -414,6 +420,15 @@
 			name = Topic;
 			sourceTree = "<group>";
 		};
+		E96F09301AD8FF1700847E5E /* Explore */ = {
+			isa = PBXGroup;
+			children = (
+				E96F09341AD8FF7700847E5E /* ExploreDataManager.h */,
+				E96F09351AD8FF7700847E5E /* ExploreDataManager.m */,
+			);
+			name = Explore;
+			sourceTree = "<group>";
+		};
 		E99079001ACEC982008DCA22 /* Setting */ = {
 			isa = PBXGroup;
 			children = (
@@ -514,6 +529,7 @@
 				E93063CB1ACAAB3C000140C1 /* AnswerViewController */,
 				E93063CA1ACAAB33000140C1 /* QuestionViewController */,
 				E96F09251AD7E28E00847E5E /* TopicListTableViewController */,
+				E9E38F331ADA284F00136161 /* Explore */,
 				E93063C91ACAAB1B000140C1 /* UserViewController */,
 				E99079001ACEC982008DCA22 /* Setting */,
 				E93063BB1ACA4D83000140C1 /* PostQuestion */,
@@ -661,6 +677,7 @@
 		E9E286C21AC7F611005B6ED7 /* Sections */ = {
 			isa = PBXGroup;
 			children = (
+				E96F09301AD8FF1700847E5E /* Explore */,
 				E96F09291AD7E39F00847E5E /* Topic */,
 				E90F42711ACD978100263622 /* User */,
 				E9EB618C1ACC2B0D001F5DA3 /* Answer */,
@@ -678,6 +695,15 @@
 				E9E286C51AC7F632005B6ED7 /* HomeDataManager.m */,
 			);
 			name = Home;
+			sourceTree = "<group>";
+		};
+		E9E38F331ADA284F00136161 /* Explore */ = {
+			isa = PBXGroup;
+			children = (
+				E9E38F341ADA288400136161 /* ExploreTableViewController.h */,
+				E9E38F351ADA288400136161 /* ExploreTableViewController.m */,
+			);
+			name = Explore;
 			sourceTree = "<group>";
 		};
 		E9EB61861ACC1828001F5DA3 /* QuestionAnswerTableViewCell */ = {
@@ -862,6 +888,7 @@
 				E93063C81ACA966E000140C1 /* AddDetailViewController.m in Sources */,
 				E9C9C71B1AC7257900CC228A /* wjCookieManager.m in Sources */,
 				E9C9C7111AC7233B00CC228A /* wjAccountManager.m in Sources */,
+				E9E38F361ADA288400136161 /* ExploreTableViewController.m in Sources */,
 				E96F09281AD7E2DD00847E5E /* TopicListTableViewController.m in Sources */,
 				E96F092C1AD7E3BA00847E5E /* TopicDataManager.m in Sources */,
 				E9DB26F41AD5523B00C3C60D /* AnswerCommentTableViewController.m in Sources */,
@@ -882,6 +909,7 @@
 				E90F42741ACD979500263622 /* UserDataManager.m in Sources */,
 				E9AC9E561AD3A4840016CA23 /* wjOperationManager.m in Sources */,
 				E9642E911AC5714800FF7875 /* main.m in Sources */,
+				E96F09361AD8FF7700847E5E /* ExploreDataManager.m in Sources */,
 				E9DB26F01AD506BC00C3C60D /* UserFeedTableViewController.m in Sources */,
 				E9DB26FE1AD562E100C3C60D /* PostAnswerCommentViewController.m in Sources */,
 				E9C9C70A1AC71E4200CC228A /* wpyEncryption.m in Sources */,
