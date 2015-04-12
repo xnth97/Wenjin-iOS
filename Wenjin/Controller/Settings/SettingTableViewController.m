@@ -37,10 +37,17 @@
 }
 
 - (void)logout {
-    [wjAccountManager logout];
-    [self.tabBarController setValue:@YES forKey:@"showNotLoggedInView"];
-    [self.navigationController.tabBarController setSelectedIndex:0];
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    UIAlertController *logoutAlert = [UIAlertController alertControllerWithTitle:@"注销" message:@"确定要注销吗？" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *confirmAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"OK", nil) style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
+        [wjAccountManager logout];
+        [self.tabBarController setValue:@YES forKey:@"showNotLoggedInView"];
+        [self.navigationController.tabBarController setSelectedIndex:0];
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    }];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", nil) style:UIAlertActionStyleCancel handler:nil];
+    [logoutAlert addAction:cancelAction];
+    [logoutAlert addAction:confirmAction];
+    [self presentViewController:logoutAlert animated:YES completion:nil];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -66,6 +73,7 @@
             [self logout];
         }
     }
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

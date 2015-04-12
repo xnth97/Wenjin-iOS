@@ -141,7 +141,7 @@
         default:
             break;
     }
-    return 76 + [self heightOfLabelWithTextString:title] + [self heightOfLabelWithTextString:detail];
+    return 56 + [self heightOfLabelWithTextString:title] + [self heightOfLabelWithTextString:detail];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -194,11 +194,11 @@
 }
 
 - (CGFloat)heightOfLabelWithTextString:(NSString *)textString {
-    CGFloat width = self.tableView.frame.size.width;
+    CGFloat width = self.tableView.frame.size.width - 32;
     
     UILabel *gettingSizeLabel = [[UILabel alloc]init];
     gettingSizeLabel.text = textString;
-    gettingSizeLabel.font = [UIFont systemFontOfSize:15];
+    gettingSizeLabel.font = [UIFont systemFontOfSize:17];
     gettingSizeLabel.numberOfLines = 0;
     gettingSizeLabel.lineBreakMode = NSLineBreakByWordWrapping;
     CGSize maxSize = CGSizeMake(width, 1000.0);

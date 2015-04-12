@@ -12,6 +12,7 @@
 #import "wjOperationManager.h"
 #import "MsgDisplay.h"
 #import "TLTagsControl.h"
+#import "wjAPIs.h"
 
 @implementation QuestionHeaderView {
     int _borderDist;
@@ -53,21 +54,25 @@
         questionTitle.font = [UIFont systemFontOfSize:20];
         CGSize maxSize = CGSizeMake(width - _borderDist * 2, 1000);
         CGSize questionFitSize = [questionTitle sizeThatFits:maxSize];
-        questionTitle.frame = CGRectMake(_borderDist + 4, 42, width - 2 * _borderDist, questionFitSize.height);
+        questionTitle.frame = CGRectMake(_borderDist + 4, 42, width - 2 * _borderDist, questionFitSize.height + 20);
         [self addSubview:questionTitle];
-
+        /*
+        UIWebView *detailTextView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 42 + questionTitle.frame.size.height, self.frame.size.width, 200)];
+        [detailTextView loadHTMLString:[wjStringProcessor convertToBootstrapHTMLWithContent:questionInfo[@"question_detail"]] baseURL:[NSURL URLWithString:[wjAPIs baseURL]]];
+        */
         UITextView *detailTextView = [[UITextView alloc]initWithFrame:CGRectMake(0, 0, 0, 0)];
         detailTextView.editable = NO;
         detailTextView.scrollEnabled = NO;
         detailTextView.font = [UIFont systemFontOfSize:14];
         detailTextView.text = [wjStringProcessor filterHTMLWithString:questionInfo[@"question_detail"]];
         CGSize detailFitSize = [detailTextView sizeThatFits:maxSize];
-        detailTextView.frame = CGRectMake(_borderDist, 42 + questionFitSize.height + 20, width - 2 * _borderDist, detailFitSize.height);
+        detailTextView.frame = CGRectMake(_borderDist, 42 + questionTitle.frame.size.height, width - 2 * _borderDist, ([detailTextView.text isEqualToString: @""]) ? 14 : detailFitSize.height + 20);
         [self addSubview:detailTextView];
+        
         
         UIButton *focusQuestion = [UIButton buttonWithType:UIButtonTypeSystem];
         [focusQuestion setTitle:(([questionInfo[@"has_focus"] isEqual:@1]) ? @"取消关注" : @"关注问题") forState:UIControlStateNormal];
-        focusQuestion.frame = CGRectMake(0, 42 + questionFitSize.height + 20 + detailFitSize.height + 20, 0.5 * width, 30);
+        focusQuestion.frame = CGRectMake(0, 42 + questionTitle.frame.size.height + detailTextView.frame.size.height, 0.5 * width, 30);
         [focusQuestion handleControlEvents:UIControlEventTouchUpInside withBlock:^(id weakSender) {
             NSLog(@"Focus Action");
             
@@ -88,7 +93,7 @@
         
         UIButton *addAnswer = [UIButton buttonWithType:UIButtonTypeSystem];
         [addAnswer setTitle:@"添加回答" forState:UIControlStateNormal];
-        addAnswer.frame = CGRectMake(0.5 * width, 42 + questionFitSize.height + 20 + detailFitSize.height + 20, 0.5 * width, 30);
+        addAnswer.frame = CGRectMake(0.5 * width, 42 + questionTitle.frame.size.height + detailTextView.frame.size.height, 0.5 * width, 30);
         [addAnswer handleControlEvents:UIControlEventTouchUpInside withBlock:^(id weakSender) {
             NSLog(@"Add answer action");
             // 添加回答
@@ -96,7 +101,7 @@
         }];
         [self addSubview:addAnswer];
         
-        self.frame = CGRectMake(0, 0, width, 42 + questionFitSize.height + 20 + detailFitSize.height + 50);
+        self.frame = CGRectMake(0, 0, width, 42 + questionTitle.frame.size.height + detailTextView.frame.size.height + 42);
         
         self.backgroundColor = [UIColor whiteColor];
     }
