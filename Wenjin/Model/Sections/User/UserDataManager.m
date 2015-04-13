@@ -10,10 +10,20 @@
 #import "AFNetworking.h"
 #import "JSONKit.h"
 #import "wjAPIs.h"
+#import "data.h"
+#import "wjCacheManager.h"
 
 @implementation UserDataManager
 
 + (void)getUserDataWithID:(NSString *)uid success:(void (^)(NSDictionary *))success failure:(void (^)(NSString *))failure {
+    if ([data shareInstance].myUID != nil) {
+        if ([uid integerValue] == [[data shareInstance].myUID integerValue]) {
+            [wjCacheManager loadCacheDataWithKey:@"myProfile" andBlock:^(id myProfileCache) {
+                success(myProfileCache);
+            }];
+        }
+    }
+    
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     NSDictionary *parameters = @{@"uid": uid};
@@ -23,6 +33,7 @@
         if ([userDic[@"errno"] isEqual:@1]) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 success(userDic[@"rsm"]);
+                [wjCacheManager saveCacheData:userDic[@"rsm"] withKey:@"myProfile"];
             });
         } else {
             dispatch_async(dispatch_get_main_queue(), ^{

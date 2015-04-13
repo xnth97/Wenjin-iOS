@@ -25,6 +25,6 @@
 
 @property (assign, nonatomic) id<homeTableViewCellDelegate> delegate;
 
-- (void)loadImageWithApartURL:(NSString *)urlStr;
+- (void)loadAvatarImageWithApartURL:(NSString *)urlStr;
 
 @end

@@ -68,8 +68,8 @@
     // Configure the view for the selected state
 }
 
-- (void)loadImageWithApartURL:(NSString *)urlStr {
-    [self.avatarView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", [wjAPIs avatarPath], urlStr]]];
+- (void)loadAvatarImageWithApartURL:(NSString *)urlStr {
+    [self.avatarView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", [wjAPIs avatarPath], urlStr]] placeholderImage:[UIImage imageNamed:@"tabBarIcon"]];
 }
 
 @end

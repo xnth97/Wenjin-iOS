@@ -776,6 +776,7 @@
 				TargetAttributes = {
 					E9642E8A1AC5714800FF7875 = {
 						CreatedOnToolsVersion = 6.2;
+						DevelopmentTeam = TYRRVX7RWJ;
 					};
 					E9642EA31AC5714800FF7875 = {
 						CreatedOnToolsVersion = 6.2;
@@ -1042,6 +1043,7 @@
 			baseConfigurationReference = 9CFC932D72517F9951FCBB16 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Wenjin/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1054,6 +1056,7 @@
 			baseConfigurationReference = 99C1D034404BBB2CDDB8DD79 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Wenjin/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

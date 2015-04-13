@@ -184,7 +184,7 @@
     cell.actionLabel.text = [NSString stringWithFormat:@"%@ %@", userName, userAction];
     cell.questionLabel.text = title;
     cell.detailLabel.text = detail;
-    [cell loadImageWithApartURL:userAvatar];
+    [cell loadAvatarImageWithApartURL:userAvatar];
     cell.actionLabel.tag = row;
     cell.questionLabel.tag = row;
     cell.detailLabel.tag = row;

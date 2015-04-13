@@ -125,7 +125,7 @@
     NSDictionary *tmp = dataInTable[row];
     cell.actionLabel.text = [NSString stringWithFormat:@"%@ 发布了问题", (tmp[@"user_info"])[@"user_name"]];
     cell.questionLabel.text = [wjStringProcessor filterHTMLWithString:tmp[@"question_content"]];
-    [cell loadImageWithApartURL:(tmp[@"user_info"])[@"avatar_file"]];
+    [cell loadAvatarImageWithApartURL:(tmp[@"user_info"])[@"avatar_file"]];
     cell.detailLabel.text = @"";
     cell.actionLabel.tag = row;
     cell.questionLabel.tag = row;
