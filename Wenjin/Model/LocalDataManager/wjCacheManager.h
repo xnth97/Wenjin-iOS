@@ -12,7 +12,7 @@
 @interface wjCacheManager : NSObject
 
 + (void)saveCacheData:(id)cacheData withKey:(NSString *)keyStr;
-+ (void)loadCacheDataWithKey:(NSString *)keyStr andBlock:(void(^)(id cacheData))block;
++ (void)loadCacheDataWithKey:(NSString *)keyStr andBlock:(void(^)(id cacheData, NSDate *saveDate))block;
 + (void)removeCacheDataForKey:(NSString *)keyStr;
 + (BOOL)cacheDataExistsWithKey:(NSString *)keyStr;
 

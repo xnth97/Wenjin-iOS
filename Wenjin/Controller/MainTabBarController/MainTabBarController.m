@@ -44,8 +44,14 @@
             }
             
             [wjCookieManager loadCookieForKey:@"login"];
-            [wjCacheManager loadCacheDataWithKey:@"userData" andBlock:^(id userData) {
+            [wjCacheManager loadCacheDataWithKey:@"userData" andBlock:^(id userData, NSDate *saveDate) {
                 [data shareInstance].myUID = userData[@"uid"];
+            }];
+            [wjCacheManager loadCacheDataWithKey:@"userLoginData" andBlock:^(id loginData, NSDate *saveDate) {
+                NSDate *now = [NSDate date];
+                if ([now timeIntervalSinceDate:saveDate] >= 2*24*3600) {
+                    [wjAccountManager loginWithParameters:loginData success:nil failure:nil];
+                }
             }];
         }
     }];

@@ -20,7 +20,7 @@
     NSDictionary *parameters = @{@"page": [NSNumber numberWithInteger:page],
                                  @"per_page": @20};
     if (page == 0) {
-        [wjCacheManager loadCacheDataWithKey:@"homeCache" andBlock:^(NSArray *rows) {
+        [wjCacheManager loadCacheDataWithKey:@"homeCache" andBlock:^(NSArray *rows, NSDate *saveDate) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 success(rows, NO);
             });

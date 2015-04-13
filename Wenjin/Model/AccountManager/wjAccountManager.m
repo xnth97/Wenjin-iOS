@@ -31,6 +31,7 @@
             success(uid, user_name, avatar_file);
             [wjCookieManager saveCookieForURLString:[wjAPIs login] andKey:@"login"];
             [wjCacheManager saveCacheData:userData withKey:@"userData"];
+            [wjCacheManager saveCacheData:parameters withKey:@"userLoginData"];
             [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"userIsLoggedIn"];
             // save userdata to local cache.
         } else {

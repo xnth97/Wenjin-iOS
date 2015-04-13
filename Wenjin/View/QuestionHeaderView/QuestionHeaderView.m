@@ -30,6 +30,8 @@
 - (id)initWithQuestionInfo:(NSDictionary *)questionInfo andTopics:(NSArray *)topics {
     if (self = [self init]) {
         
+        self.backgroundColor = [UIColor whiteColor];
+        
         _borderDist = 14 ;
         CGFloat width = [UIApplication sharedApplication].keyWindow.frame.size.width;
         
@@ -56,10 +58,12 @@
         CGSize questionFitSize = [questionTitle sizeThatFits:maxSize];
         questionTitle.frame = CGRectMake(_borderDist + 4, 42, width - 2 * _borderDist, questionFitSize.height + 20);
         [self addSubview:questionTitle];
+        
         /*
         UIWebView *detailTextView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 42 + questionTitle.frame.size.height, self.frame.size.width, 200)];
         [detailTextView loadHTMLString:[wjStringProcessor convertToBootstrapHTMLWithContent:questionInfo[@"question_detail"]] baseURL:[NSURL URLWithString:[wjAPIs baseURL]]];
-        */
+         */
+        
         UITextView *detailTextView = [[UITextView alloc]initWithFrame:CGRectMake(0, 0, 0, 0)];
         detailTextView.editable = NO;
         detailTextView.scrollEnabled = NO;
@@ -103,7 +107,6 @@
         
         self.frame = CGRectMake(0, 0, width, 42 + questionTitle.frame.size.height + detailTextView.frame.size.height + 42);
         
-        self.backgroundColor = [UIColor whiteColor];
     }
     return self;
 }
@@ -112,6 +115,13 @@
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect {
     
+}
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    [UIView animateWithDuration:1 animations:^{
+        [self layoutIfNeeded];
+    }];
 }
 
 

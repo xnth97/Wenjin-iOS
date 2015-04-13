@@ -69,8 +69,6 @@
                 [self.presentingViewController.navigationController.tabBarController setValue:@NO forKey:@"showNotLoggedInView"];
             }
             
-            
-            
             [self dismissViewControllerAnimated:YES completion:nil];
         } failure:^(NSString *errStr) {
             [MsgDisplay showErrorMsg:errStr];

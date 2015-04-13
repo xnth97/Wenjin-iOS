@@ -12,6 +12,7 @@
 
 + (NSString *)processAnswerDetailString:(NSString *)detailString {
     detailString = [self filterHTMLWithString:detailString];
+    detailString = [detailString stringByReplacingOccurrencesOfString:@"\n" withString:@""];
     return ([detailString hasPrefix:@"<img src="]) ? @"[图片]" : (([detailString length] > 60) ? [NSString stringWithFormat:@"%@...", [detailString substringToIndex:61]] : detailString);
 }
 

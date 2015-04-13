@@ -18,7 +18,7 @@
 + (void)getUserDataWithID:(NSString *)uid success:(void (^)(NSDictionary *))success failure:(void (^)(NSString *))failure {
     if ([data shareInstance].myUID != nil) {
         if ([uid integerValue] == [[data shareInstance].myUID integerValue]) {
-            [wjCacheManager loadCacheDataWithKey:@"myProfile" andBlock:^(id myProfileCache) {
+            [wjCacheManager loadCacheDataWithKey:@"myProfile" andBlock:^(id myProfileCache, NSDate *saveDate) {
                 success(myProfileCache);
             }];
         }

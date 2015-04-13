@@ -101,8 +101,12 @@
         self.shouldRefresh = NO;
         
     } failure:^(NSString *errStr) {
-        
-        [MsgDisplay showErrorMsg:errStr];
+        if ([errStr isEqualToString:@"请先登录或注册"]) {
+            [wjAccountManager logout];
+            [self.tabBarController setValue:@YES forKey:@"showNotLoggedInView"];
+        } else {
+            [MsgDisplay showErrorMsg:errStr];
+        }
         [self.tableView.infiniteScrollingView stopAnimating];
         [self.tableView.pullToRefreshView stopAnimating];
     }];

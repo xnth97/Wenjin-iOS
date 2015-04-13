@@ -8,7 +8,7 @@
 
 #import "TLTagsControl.h"
 
-@interface TLTagsControl () <UITextFieldDelegate>
+@interface TLTagsControl () <UITextFieldDelegate, UIGestureRecognizerDelegate>
 
 @end
 
@@ -17,7 +17,7 @@
     NSMutableArray              *tagSubviews_;
 }
 
-@synthesize tagPlaceholder;
+@synthesize tapDelegate;
 
 - (instancetype)init {
     self = [super init];
@@ -34,6 +34,18 @@
     
     if (self != nil) {
         [self commonInit];
+    }
+    
+    return self;
+}
+
+- (id)initWithFrame:(CGRect)frame andTags:(NSArray *)tags withTagsControlMode:(TLTagsControlMode)mode {
+    self = [super initWithFrame:frame];
+    
+    if (self != nil) {
+        [self commonInit];
+        [self setTags:[[NSMutableArray alloc]initWithArray:tags]];
+        [self setMode:mode];
     }
     
     return self;
@@ -58,6 +70,7 @@
     _tags = [NSMutableArray array];
     
     self.layer.cornerRadius = 5;
+    self.showsHorizontalScrollIndicator = NO;
     
     tagSubviews_ = [NSMutableArray array];
     
@@ -67,9 +80,8 @@
     tagInputField_.backgroundColor = [UIColor whiteColor];
     tagInputField_.delegate = self;
     tagInputField_.font = [UIFont fontWithName:@"HelveticaNeue" size:14];
-    tagInputField_.placeholder = @"tags";
+    tagInputField_.placeholder = @"tag";
     tagInputField_.autocorrectionType = UITextAutocorrectionTypeNo;
-    tagInputField_.returnKeyType = UIReturnKeyDone;
     
     if (_mode == TLTagsControlModeEdit) {
         [self addSubview:tagInputField_];
@@ -83,6 +95,7 @@
     CGSize contentSize = self.contentSize;
     CGRect frame = CGRectMake(0, 0, 100, self.frame.size.height);
     CGRect tempViewFrame;
+    NSInteger tagIndex = 0;
     for (UIView *view in tagSubviews_) {
         tempViewFrame = view.frame;
         NSInteger index = [tagSubviews_ indexOfObject:view];
@@ -94,6 +107,18 @@
         }
         tempViewFrame.origin.y = frame.origin.y;
         view.frame = tempViewFrame;
+        
+        if (_mode == TLTagsControlModeList) {
+            view.tag = tagIndex;
+            
+            UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(gestureAction:)];
+            [tapRecognizer setNumberOfTapsRequired:1];
+            [tapRecognizer setDelegate:self];
+            [view setUserInteractionEnabled:YES];
+            [view addGestureRecognizer:tapRecognizer];
+        }
+        
+        tagIndex++;
     }
     
     if (_mode == TLTagsControlModeEdit) {
@@ -127,9 +152,8 @@
     contentSize.height = self.frame.size.height;
     
     self.contentSize = contentSize;
-    self.showsHorizontalScrollIndicator = NO;
     
-    tagInputField_.placeholder = tagPlaceholder;
+    tagInputField_.placeholder = (_tagPlaceholder == nil) ? @"tag" : _tagPlaceholder;
 }
 
 - (void)addTag:(NSString *)tag {
@@ -324,7 +348,7 @@
     }
 }
 
-# pragma mark - other
+#pragma mark - other
 
 - (void)setMode:(TLTagsControlMode)mode {
     _mode = mode;
@@ -332,6 +356,15 @@
 
 - (void)setTags:(NSMutableArray *)tags {
     _tags = tags;
+}
+
+- (void)setPlaceholder:(NSString *)tagPlaceholder {
+    _tagPlaceholder = tagPlaceholder;
+}
+
+- (void)gestureAction:(id)sender {
+    UITapGestureRecognizer *tapRecognizer = (UITapGestureRecognizer *)sender;
+    [tapDelegate tagsControl:self tappedAtIndex:tapRecognizer.view.tag];
 }
 
 @end

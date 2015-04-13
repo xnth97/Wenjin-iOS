@@ -28,7 +28,7 @@
     [toSaveCache writeToFile:cachePath atomically:YES];
 }
 
-+ (void)loadCacheDataWithKey:(NSString *)keyStr andBlock:(void (^)(id))block {
++ (void)loadCacheDataWithKey:(NSString *)keyStr andBlock:(void (^)(id, NSDate *))block {
     NSString *cachePath = [[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingString:keyStr];
     NSFileManager *fileManager = [NSFileManager defaultManager];
     if (![fileManager fileExistsAtPath:cachePath]) {
@@ -38,9 +38,10 @@
         NSData *cacheData = [[NSData alloc]initWithContentsOfFile:cachePath];
         NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc]initForReadingWithData:cacheData];
         id cacheObject = [unarchiver decodeObjectForKey:@"data"];
+        NSDate *saveDate = [unarchiver decodeObjectForKey:@"time"];
         [unarchiver finishDecoding];
         
-        block(cacheObject);
+        block(cacheObject, saveDate);
         NSLog(@"Cache data %@ loaded in block.", keyStr);
     }
 }

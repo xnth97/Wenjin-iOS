@@ -3,10 +3,19 @@
 //  TagsInputSample
 //
 //  Created by Антон Кузнецов on 11.02.15.
+//  Modified by Qin Yubo
 //  Copyright (c) 2015 TheLightPrjg. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
+
+@class TLTagsControl;
+
+@protocol TLTagsControlDelegate <NSObject>
+
+- (void)tagsControl:(TLTagsControl *)tagsControl tappedAtIndex:(NSInteger)index;
+
+@end
 
 typedef NS_ENUM(NSUInteger, TLTagsControlMode) {
     TLTagsControlModeEdit,
@@ -21,6 +30,11 @@ typedef NS_ENUM(NSUInteger, TLTagsControlMode) {
 @property (nonatomic, strong) UIColor *tagsDeleteButtonColor;
 @property (nonatomic, strong) NSString *tagPlaceholder;
 @property (nonatomic) TLTagsControlMode mode;
+
+@property (assign, nonatomic) id<TLTagsControlDelegate> tapDelegate;
+
+- (id)initWithFrame:(CGRect)frame andTags:(NSArray *)tags withTagsControlMode:(TLTagsControlMode)mode;
+//- (id)initListTagsControlWithFrame:(CGRect)frame andTages:(NSArray *)tags withTapBlock:(void(^)(id weakSender))block;
 
 - (void)addTag:(NSString *)tag;
 - (void)reloadTagSubviews;
