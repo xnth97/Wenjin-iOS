@@ -51,7 +51,7 @@
         [weakSelf refreshData];
     }];
     
-    [self.questionTableView triggerPullToRefresh];
+    [self refreshData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -77,6 +77,13 @@
         
         QuestionHeaderView *headerView = [[QuestionHeaderView alloc]initWithQuestionInfo:questionInfo andTopics:questionTopics];
         headerView.delegate = self;
+        /*
+        questionTableView.tableHeaderView = headerView;
+        CGFloat headerHeight = [questionTableView.tableHeaderView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
+        CGRect headerFrame = questionTableView.tableHeaderView.frame;
+        headerFrame.size.height = headerHeight;
+        questionTableView.tableHeaderView.frame = headerFrame;
+         */
         questionTableView.tableHeaderView = headerView;
         [questionTableView reloadData];
         [questionTableView.pullToRefreshView stopAnimating];
