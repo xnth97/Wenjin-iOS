@@ -11,10 +11,11 @@
 @protocol QuestionHeaderViewDelegate <NSObject>
 
 - (void)presentPostAnswerController;
+- (void)headerDetailViewFinishLoadingWithView:(id)view;
 
 @end
 
-@interface QuestionHeaderView : UIView
+@interface QuestionHeaderView : UIView<UIWebViewDelegate>
 
 @property (assign, nonatomic) id<QuestionHeaderViewDelegate> delegate;
 

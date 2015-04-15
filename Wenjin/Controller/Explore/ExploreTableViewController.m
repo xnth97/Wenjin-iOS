@@ -123,7 +123,7 @@
     }
     NSUInteger row = [indexPath row];
     NSDictionary *tmp = dataInTable[row];
-    cell.actionLabel.text = [NSString stringWithFormat:@"%@ 发布了问题", (tmp[@"user_info"])[@"user_name"]];
+    cell.actionLabel.text = [NSString stringWithFormat:@"%@ 发布了问题", (tmp[@"user_info"])[@"nick_name"]];
     cell.questionLabel.text = [wjStringProcessor filterHTMLWithString:tmp[@"question_content"]];
     [cell loadAvatarImageWithApartURL:(tmp[@"user_info"])[@"avatar_file"]];
     cell.detailLabel.text = @"";

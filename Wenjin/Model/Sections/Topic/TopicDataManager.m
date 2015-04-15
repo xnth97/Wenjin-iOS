@@ -45,4 +45,35 @@
     }];
 }
 
++ (void)getTopicBestAnswerWithTopicID:(NSString *)topicId success:(void (^)(NSUInteger, NSArray *))success failure:(void (^)(NSString *))failure {
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+    NSDictionary *parameters = @{@"id": topicId};
+    [manager GET:[wjAPIs topicBestAnswer] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSDictionary *dicData = [operation.responseString objectFromJSONString];
+        if ([dicData[@"errno"] isEqual:@1]) {
+            NSInteger totalRows = [(dicData[@"rsm"])[@"total_rows"] integerValue];
+            if (totalRows != 0) {
+                NSArray *rowsData = (dicData[@"rsm"])[@"rows"];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    success(totalRows, rowsData);
+                });
+            } else {
+                NSArray *rowsData = @[];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    success(totalRows, rowsData);
+                });
+            }
+        } else {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                failure(dicData[@"err"]);
+            });
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            failure(error.localizedDescription);
+        });
+    }];
+}
+
 @end

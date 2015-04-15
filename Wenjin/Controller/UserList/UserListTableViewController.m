@@ -126,7 +126,7 @@
     }
     NSUInteger row = [indexPath row];
     NSDictionary *tmp = dataInTable[row];
-    cell.userNameLabel.text = tmp[@"user_name"];
+    cell.userNameLabel.text = tmp[@"nick_name"];
     cell.userSigLabel.text = (tmp[@"signature"] == [NSNull null]) ? @"" : tmp[@"signature"];
     [cell loadImageWithApartURL:tmp[@"avatar_file"]];
     return cell;

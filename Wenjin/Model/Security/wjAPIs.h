@@ -74,6 +74,9 @@
 // 话题列表
 + (NSString *)topicList;
 
+// 话题精华
++ (NSString *)topicBestAnswer;
+
 // 发现
 + (NSString *)explore;
 

@@ -18,7 +18,10 @@
     int _borderDist;
     
     UILabel *questionTitle;
-    UITextView *detailView;
+    UIWebView *detailView;
+    UIButton *focusQuestion;
+    UIButton *addAnswer;
+    CGFloat width;
 }
 
 @synthesize delegate;
@@ -35,8 +38,8 @@
         
         self.backgroundColor = [UIColor whiteColor];
         
-        //_borderDist = 14 ;
-        CGFloat width = [UIApplication sharedApplication].keyWindow.frame.size.width;
+        _borderDist = 12 ;
+        width = [UIApplication sharedApplication].keyWindow.frame.size.width;
         
         NSMutableArray *topicsArr = [[NSMutableArray alloc]init];
         for (NSDictionary *tmp in topics) {
@@ -51,7 +54,7 @@
         topicsControl.tagsTextColor = [UIColor whiteColor];
         topicsControl.tagsDeleteButtonColor = [UIColor whiteColor];
         [topicsControl reloadTagSubviews];
-        topicsControl.translatesAutoresizingMaskIntoConstraints = NO;
+        //topicsControl.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:topicsControl];
         
         questionTitle = [[UILabel alloc]init];
@@ -59,30 +62,44 @@
         questionTitle.lineBreakMode = NSLineBreakByWordWrapping;
         questionTitle.text = [wjStringProcessor filterHTMLWithString:questionInfo[@"question_content"]];
         questionTitle.font = [UIFont systemFontOfSize:20];
-        questionTitle.translatesAutoresizingMaskIntoConstraints = NO;
-        //CGSize maxSize = CGSizeMake(width - _borderDist * 2, 1000);
-        //CGSize questionFitSize = [questionTitle sizeThatFits:maxSize];
-        //questionTitle.frame = CGRectMake(_borderDist + 4, 42, width - 2 * _borderDist, questionFitSize.height + 20);
+        //questionTitle.translatesAutoresizingMaskIntoConstraints = NO;
+        CGSize maxSize = CGSizeMake(width - _borderDist * 2, 1000);
+        CGSize questionFitSize = [questionTitle sizeThatFits:maxSize];
+        questionTitle.frame = CGRectMake(_borderDist + 4, 42, width - 2 * _borderDist, questionFitSize.height + 20);
         [self addSubview:questionTitle];
         
-        /*
-        UIWebView *detailTextView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 42 + questionTitle.frame.size.height, self.frame.size.width, 200)];
-        [detailTextView loadHTMLString:[wjStringProcessor convertToBootstrapHTMLWithContent:questionInfo[@"question_detail"]] baseURL:[NSURL URLWithString:[wjAPIs baseURL]]];
-         */
         
+        detailView = [[UIWebView alloc]init];
+        detailView.frame = CGRectMake(0, 42 + questionTitle.frame.size.height, width, 1);
+        if (![questionInfo[@"question_detail"] isEqualToString:@""]) {
+            [detailView loadHTMLString:[wjStringProcessor convertToBootstrapHTMLWithoutBlankLinesWithContent:questionInfo[@"question_detail"]] baseURL:[NSURL URLWithString:[wjAPIs baseURL]]];
+            detailView.delegate = self;
+        }
+        [self addSubview:detailView];
+        
+        /*
         detailView = [[UITextView alloc]init];
         detailView.editable = NO;
         detailView.scrollEnabled = NO;
         detailView.font = [UIFont systemFontOfSize:14];
         detailView.text = [wjStringProcessor filterHTMLWithString:questionInfo[@"question_detail"]];
-        detailView.translatesAutoresizingMaskIntoConstraints = NO;
+         */
+        
+        //detailView = [[KxHTMLView alloc]initWithFrame:CGRectZero];
+        //[detailView loadHtmlString:questionInfo[@"question_detail"]];
+        //detailView.contentMode = UIViewContentModeRedraw;
+        //detailView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        //[detailView sizeToFit];
+        [self addSubview:detailView];
+        //detailView.translatesAutoresizingMaskIntoConstraints = NO;
+        
         //CGSize detailFitSize = [detailView sizeThatFits:maxSize];
         //detailView.frame = CGRectMake(_borderDist, 42 + questionTitle.frame.size.height, width - 2 * _borderDist, ([detailView.text isEqualToString: @""]) ? 14 : detailFitSize.height + 20);
-        [self addSubview:detailView];
         
-        UIButton *focusQuestion = [UIButton buttonWithType:UIButtonTypeSystem];
+        
+        focusQuestion = [UIButton buttonWithType:UIButtonTypeSystem];
         [focusQuestion setTitle:(([questionInfo[@"has_focus"] isEqual:@1]) ? @"取消关注" : @"关注问题") forState:UIControlStateNormal];
-        //focusQuestion.frame = CGRectMake(0, 42 + questionTitle.frame.size.height + detailView.frame.size.height, 0.5 * width, 30);
+        focusQuestion.frame = CGRectMake(0, 42 + questionTitle.frame.size.height + detailView.frame.size.height, 0.5 * width, 30);
         [focusQuestion handleControlEvents:UIControlEventTouchUpInside withBlock:^(id weakSender) {
             NSLog(@"Focus Action");
             
@@ -99,24 +116,25 @@
             }];
             
         }];
-        focusQuestion.translatesAutoresizingMaskIntoConstraints = NO;
+        //focusQuestion.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:focusQuestion];
         
-        UIButton *addAnswer = [UIButton buttonWithType:UIButtonTypeSystem];
+        addAnswer = [UIButton buttonWithType:UIButtonTypeSystem];
         [addAnswer setTitle:@"添加回答" forState:UIControlStateNormal];
-        //addAnswer.frame = CGRectMake(0.5 * width, 42 + questionTitle.frame.size.height + detailView.frame.size.height, 0.5 * width, 30);
+        addAnswer.frame = CGRectMake(0.5 * width, 42 + questionTitle.frame.size.height + detailView.frame.size.height, 0.5 * width, 30);
         [addAnswer handleControlEvents:UIControlEventTouchUpInside withBlock:^(id weakSender) {
             NSLog(@"Add answer action");
             // 添加回答
             [delegate presentPostAnswerController];
         }];
-        addAnswer.translatesAutoresizingMaskIntoConstraints = NO;
+        //addAnswer.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:addAnswer];
         
-        //self.frame = CGRectMake(0, 0, width, 42 + questionTitle.frame.size.height + detailView.frame.size.height + 42);
+        self.frame = CGRectMake(0, 0, width, 42 + questionTitle.frame.size.height + detailView.frame.size.height + 42);
         
-        self.frame = CGRectMake(0, 0, width, 0);
+        //self.frame = CGRectMake(0, 0, width, 0);
         
+        /*
         NSDictionary *views = NSDictionaryOfVariableBindings(topicsControl, questionTitle, detailView, focusQuestion, addAnswer);
         NSDictionary *metrics = @{@"borderDist": @16,
                                   @"rowDist": @14};
@@ -141,19 +159,30 @@
         headerFrame.size.height = headerHeight;
         
         self.frame = headerFrame;
+         */
     }
     return self;
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView {
+    UIScrollView *scroll = webView.scrollView;
+    scroll.scrollEnabled = NO;
+    CGRect detailFrame = webView.frame;
+    
+    [UIView animateWithDuration:0.3 animations:^{
+        webView.frame = CGRectMake(detailFrame.origin.x, detailFrame.origin.y, scroll.contentSize.width, scroll.contentSize.height);
+        
+        focusQuestion.frame = CGRectMake(0, 42 + questionTitle.frame.size.height + detailView.frame.size.height, 0.5 * width, 30);
+        addAnswer.frame = CGRectMake(0.5 * width, 42 + questionTitle.frame.size.height + detailView.frame.size.height, 0.5 * width, 30);
+        self.frame = CGRectMake(0, 0, width, 42 + questionTitle.frame.size.height + detailView.frame.size.height + 42);
+    }];
+    
+    [delegate headerDetailViewFinishLoadingWithView:self];
 }
 
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect {
-    
-}
-
-- (void)layoutSubviews {
-    [super layoutSubviews];
-
     
 }
 

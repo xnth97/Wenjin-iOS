@@ -51,8 +51,8 @@
     [AnswerDataManager getAnswerDataWithAnswerID:answerId success:^(NSDictionary *ansData) {
         NSString *processedHTML = [wjStringProcessor convertToBootstrapHTMLWithContent:ansData[@"answer_content"]];
         [answerContentView loadHTMLString:processedHTML baseURL:[NSURL URLWithString:[wjAPIs baseURL]]];
-        userNameLabel.text = ansData[@"user_name"];
-        self.title = [NSString stringWithFormat:@"%@ 的回答", ansData[@"user_name"]];
+        userNameLabel.text = ansData[@"nick_name"];
+        self.title = [NSString stringWithFormat:@"%@ 的回答", ansData[@"nick_name"]];
         userSigLabel.text = (ansData[@"signature"] == [NSNull null]) ? @"" : ansData[@"signature"];
         [userAvatarView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", [wjAPIs avatarPath], ansData[@"avatar_file"]]]];
         userAvatarView.layer.cornerRadius = userAvatarView.frame.size.width / 2;

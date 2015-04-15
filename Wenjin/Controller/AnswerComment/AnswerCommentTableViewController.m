@@ -108,7 +108,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSUInteger row = [indexPath row];
     NSDictionary *tmp = rowsData[row];
-    NSString *replyUserText = (tmp[@"at_user"] != nil) ? [NSString stringWithFormat:@"回复 %@：", (tmp[@"at_user"])[@"user_name"]] : @"";
+    NSString *replyUserText = (tmp[@"at_user"] != nil) ? [NSString stringWithFormat:@"回复 %@：", (tmp[@"at_user"])[@"nick_name"]] : @"";
     NSString *commentText = [NSString stringWithFormat:@"%@%@", replyUserText, tmp[@"content"]];
     return 40 + [self heightOfLabelWithTextString:commentText];
 }
@@ -122,8 +122,8 @@
     }
     NSUInteger row = [indexPath row];
     NSDictionary *tmp = rowsData[row];
-    cell.usernameLabel.text = tmp[@"user_name"];
-    NSString *replyUserText = (tmp[@"at_user"] != nil) ? [NSString stringWithFormat:@"回复 %@：", (tmp[@"at_user"])[@"user_name"]] : @"";
+    cell.usernameLabel.text = tmp[@"nick_name"];
+    NSString *replyUserText = (tmp[@"at_user"] != nil) ? [NSString stringWithFormat:@"回复 %@：", (tmp[@"at_user"])[@"nick_name"]] : @"";
     cell.commentLabel.text = [NSString stringWithFormat:@"%@%@", replyUserText, tmp[@"content"]];
     return cell;
 }
@@ -136,7 +136,7 @@
     }];
     UIAlertAction *replyAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Reply", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
         
-        NSString *replyName = (rowsData[row])[@"user_name"];
+        NSString *replyName = (rowsData[row])[@"nick_name"];
         
         PostAnswerCommentViewController *postAC = [[PostAnswerCommentViewController alloc]init];
         postAC.answerId = answerId;

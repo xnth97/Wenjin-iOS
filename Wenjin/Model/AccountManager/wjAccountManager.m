@@ -25,7 +25,7 @@
         if ([loginData[@"errno"] isEqual: @1]) {
             NSDictionary *userData = loginData[@"rsm"];
             NSString *uid = userData[@"uid"];
-            NSString *user_name = userData[@"user_name"];
+            NSString *user_name = userData[@"nick_name"];
             NSString *avatar_file = userData[@"avatar_file"];
             
             success(uid, user_name, avatar_file);

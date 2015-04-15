@@ -166,7 +166,7 @@
                                     @"105": @"关注了问题",
                                     @"201": @"回答了问题",
                                     @"204": @"赞同了回答"};
-    cell.actionLabel.text = [NSString stringWithFormat:@"%@ %@", (tmp[@"user_info"])[@"user_name"], actionDiction[actionIDString]];
+    cell.actionLabel.text = [NSString stringWithFormat:@"%@ %@", (tmp[@"user_info"])[@"nick_name"], actionDiction[actionIDString]];
     cell.questionLabel.text = [wjStringProcessor filterHTMLWithString:(tmp[@"question_info"])[@"question_content"]];
     cell.detailLabel.text = [wjStringProcessor processAnswerDetailString:(tmp[@"answer_info"])[@"answer_content"]];
     cell.actionLabel.tag = row;

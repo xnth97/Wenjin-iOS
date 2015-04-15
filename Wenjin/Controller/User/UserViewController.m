@@ -78,13 +78,13 @@
             
             UserHeaderView *headerView = [[UserHeaderView alloc]init];
             headerView.delegate = self;
-            headerView.usernameLabel.text = userData[@"user_name"];
+            headerView.usernameLabel.text = userData[@"nick_name"];
             headerView.userSigLabel.text = (userData[@"signature"] == [NSNull null]) ? @"" : userData[@"signature"];
             headerView.agreeCountLabel.text = userData[@"agree_count"];
             headerView.thanksCountLabel.text = userData[@"thanks_count"];
             [headerView loadAvatarImageWithApartURLString:userData[@"avatar_file"]];
             
-            userName = userData[@"user_name"];
+            userName = userData[@"nick_name"];
             userAvatar = userData[@"avatar_file"];
             
             if ([userData[@"has_focus"] isEqual:@1]) {
@@ -100,7 +100,7 @@
                 self.title = @"我";
             } else {
                 cellArray = @[@[@"Ta 的提问", @"Ta 的回答", @"Ta 关注的问题"], @[@"Ta 关注的", @"关注 Ta 的"]];
-                self.title = userData[@"user_name"];
+                self.title = userData[@"nick_name"];
             }
             
             [userTableView reloadData];

@@ -119,7 +119,7 @@
     }
     NSUInteger row = [indexPath row];
     NSDictionary *tmp = questionAnswersData[row];
-    cell.userNameLabel.text = tmp[@"user_name"];
+    cell.userNameLabel.text = tmp[@"nick_name"];
     cell.answerContentLabel.text = [wjStringProcessor processAnswerDetailString:tmp[@"answer_content"]];
     cell.agreeCountLabel.text = [tmp[@"agree_count"] stringValue];
     [cell loadAvatarWithURL:tmp[@"avatar_file"]];
@@ -162,6 +162,12 @@
     postAnswer.questionId = questionInfo[@"question_id"];
     UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:postAnswer];
     [self presentViewController:nav animated:YES completion:nil];
+}
+
+- (void)headerDetailViewFinishLoadingWithView:(id)view {
+    [questionTableView beginUpdates];
+    [questionTableView setTableHeaderView:view];
+    [questionTableView endUpdates];
 }
 
 /*

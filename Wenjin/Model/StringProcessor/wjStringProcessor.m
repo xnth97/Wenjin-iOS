@@ -29,7 +29,7 @@
     return s;
 }
 
-+ (NSString *)convertToBootstrapHTMLWithContent:(NSString *)contentStr {
++ (NSString *)convertToBootstrapHTMLWithoutBlankLinesWithContent:(NSString *)contentStr {
     // 改一下换行，说不定还要改。。
     contentStr = [contentStr stringByReplacingOccurrencesOfString:@"\n" withString:@""];
     
@@ -54,6 +54,33 @@
         
         contentStr = [contentStr stringByReplacingOccurrencesOfString:originalImgStr withString:responsiveImgStr];
     }
+    
+    NSString *cssPath = [[NSBundle mainBundle]pathForResource:@"bootstrap" ofType:@"css"];
+    NSString *jsPath = [[NSBundle mainBundle]pathForResource:@"bootstrap.min" ofType:@"js"];
+    NSString *load = [NSString stringWithFormat:@"<!DOCTYPE html> \n"
+                      "<html> \n"
+                      "<head> \n"
+                      "<meta charset=\"utf-8\"> \n"
+                      "<meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\"> \n"
+                      "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"> \n"
+                      "<link href=\"%@\" rel=\"stylesheet\"> \n"
+                      "</head> \n"
+                      "<body> \n"
+                      "<div class=\"container\"> \n"
+                      "<div class=\"row\"> \n"
+                      "<div class=\"col-sm-12\" style=\"margin-left:8px; margin-right:8px; font-size:16px; line-height:1.5;\"> \n"
+                      "%@ \n"
+                      "</div></div></div> \n"
+                      "<script src=\"%@\"></script> \n"
+                      "</body> \n"
+                      "</html>" , cssPath, contentStr, jsPath];
+    
+    return load;
+}
+
++ (NSString *)convertToBootstrapHTMLWithContent:(NSString *)contentStr {
+
+    contentStr = [self convertToBootstrapHTMLWithoutBlankLinesWithContent:contentStr];
     
     NSString *cssPath = [[NSBundle mainBundle]pathForResource:@"bootstrap" ofType:@"css"];
     NSString *jsPath = [[NSBundle mainBundle]pathForResource:@"bootstrap.min" ofType:@"js"];

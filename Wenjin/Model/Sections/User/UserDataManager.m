@@ -33,7 +33,10 @@
         if ([userDic[@"errno"] isEqual:@1]) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 success(userDic[@"rsm"]);
-                [wjCacheManager saveCacheData:userDic[@"rsm"] withKey:@"myProfile"];
+                
+                if ([uid integerValue] == [[data shareInstance].myUID integerValue]) {
+                    [wjCacheManager saveCacheData:userDic[@"rsm"] withKey:@"myProfile"];
+                }
             });
         } else {
             dispatch_async(dispatch_get_main_queue(), ^{
