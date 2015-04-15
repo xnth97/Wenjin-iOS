@@ -26,10 +26,16 @@
     s = [s stringByReplacingOccurrencesOfString:@"&gt;" withString:@">"];
     s = [s stringByReplacingOccurrencesOfString:@"[quote]" withString:@"[引用]"];
     s = [s stringByReplacingOccurrencesOfString:@"[/quote]" withString:@""];
+    s = [s stringByReplacingOccurrencesOfString:@"<pre>" withString:@""];
+    s = [s stringByReplacingOccurrencesOfString:@"</pre>" withString:@""];
+    s = [s stringByReplacingOccurrencesOfString:@"<p>" withString:@""];
+    s = [s stringByReplacingOccurrencesOfString:@"</p>" withString:@""];
+    s = [s stringByReplacingOccurrencesOfString:@"<blockquote>" withString:@""];
+    s = [s stringByReplacingOccurrencesOfString:@"</blockquote>" withString:@""];
     return s;
 }
 
-+ (NSString *)convertToBootstrapHTMLWithoutBlankLinesWithContent:(NSString *)contentStr {
++ (NSString *)replaceHTMLLabelsFromContent:(NSString *)contentStr {
     // 改一下换行，说不定还要改。。
     contentStr = [contentStr stringByReplacingOccurrencesOfString:@"\n" withString:@""];
     
@@ -54,6 +60,11 @@
         
         contentStr = [contentStr stringByReplacingOccurrencesOfString:originalImgStr withString:responsiveImgStr];
     }
+    return contentStr;
+}
+
++ (NSString *)convertToBootstrapHTMLWithContent:(NSString *)contentStr {
+    contentStr = [self replaceHTMLLabelsFromContent:contentStr];
     
     NSString *cssPath = [[NSBundle mainBundle]pathForResource:@"bootstrap" ofType:@"css"];
     NSString *jsPath = [[NSBundle mainBundle]pathForResource:@"bootstrap.min" ofType:@"js"];
@@ -78,9 +89,9 @@
     return load;
 }
 
-+ (NSString *)convertToBootstrapHTMLWithContent:(NSString *)contentStr {
++ (NSString *)convertToBootstrapHTMLWithExtraBlankLinesWithContent:(NSString *)contentStr {
 
-    contentStr = [self convertToBootstrapHTMLWithoutBlankLinesWithContent:contentStr];
+    contentStr = [self replaceHTMLLabelsFromContent:contentStr];
     
     NSString *cssPath = [[NSBundle mainBundle]pathForResource:@"bootstrap" ofType:@"css"];
     NSString *jsPath = [[NSBundle mainBundle]pathForResource:@"bootstrap.min" ofType:@"js"];

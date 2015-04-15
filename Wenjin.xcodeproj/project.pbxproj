@@ -57,6 +57,8 @@
 		E9D56EF41ADE2AC800C54466 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9D56EF31ADE2AC800C54466 /* Foundation.framework */; };
 		E9D56EF61ADE2ACE00C54466 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9D56EF51ADE2ACE00C54466 /* CoreGraphics.framework */; };
 		E9D56EF81ADE2AD500C54466 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9D56EF71ADE2AD500C54466 /* QuartzCore.framework */; };
+		E9D56F011ADE881B00C54466 /* TopicBestAnswerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9D56EFF1ADE881B00C54466 /* TopicBestAnswerViewController.m */; };
+		E9D56F021ADE881B00C54466 /* TopicBestAnswerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9D56F001ADE881B00C54466 /* TopicBestAnswerViewController.xib */; };
 		E9DB26E51AD4F32200C3C60D /* UserListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9DB26E41AD4F32200C3C60D /* UserListTableViewController.m */; };
 		E9DB26EA1AD4F44B00C3C60D /* UserListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E9DB26E81AD4F44B00C3C60D /* UserListTableViewCell.m */; };
 		E9DB26EB1AD4F44B00C3C60D /* UserListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9DB26E91AD4F44B00C3C60D /* UserListTableViewCell.xib */; };
@@ -173,6 +175,9 @@
 		E9D56EF31ADE2AC800C54466 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		E9D56EF51ADE2ACE00C54466 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		E9D56EF71ADE2AD500C54466 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		E9D56EFE1ADE881B00C54466 /* TopicBestAnswerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TopicBestAnswerViewController.h; path = Controller/TopicBestAnswer/TopicBestAnswerViewController.h; sourceTree = "<group>"; };
+		E9D56EFF1ADE881B00C54466 /* TopicBestAnswerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TopicBestAnswerViewController.m; path = Controller/TopicBestAnswer/TopicBestAnswerViewController.m; sourceTree = "<group>"; };
+		E9D56F001ADE881B00C54466 /* TopicBestAnswerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TopicBestAnswerViewController.xib; path = Controller/TopicBestAnswer/TopicBestAnswerViewController.xib; sourceTree = "<group>"; };
 		E9DB26E31AD4F32200C3C60D /* UserListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserListTableViewController.h; path = Controller/UserList/UserListTableViewController.h; sourceTree = "<group>"; };
 		E9DB26E41AD4F32200C3C60D /* UserListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserListTableViewController.m; path = Controller/UserList/UserListTableViewController.m; sourceTree = "<group>"; };
 		E9DB26E71AD4F44B00C3C60D /* UserListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserListTableViewCell.h; path = View/UserListTableViewCell/UserListTableViewCell.h; sourceTree = "<group>"; };
@@ -544,6 +549,7 @@
 				E9C9C6F01AC6B35B00CC228A /* Home */,
 				E93063CB1ACAAB3C000140C1 /* AnswerViewController */,
 				E93063CA1ACAAB33000140C1 /* QuestionViewController */,
+				E9D56EFD1ADE865D00C54466 /* TopicBestAnswerViewController */,
 				E96F09251AD7E28E00847E5E /* TopicListTableViewController */,
 				E9E38F331ADA284F00136161 /* Explore */,
 				E93063C91ACAAB1B000140C1 /* UserViewController */,
@@ -632,6 +638,16 @@
 			);
 			name = MessageDisplay;
 			path = Model/MessageDisplay;
+			sourceTree = "<group>";
+		};
+		E9D56EFD1ADE865D00C54466 /* TopicBestAnswerViewController */ = {
+			isa = PBXGroup;
+			children = (
+				E9D56EFE1ADE881B00C54466 /* TopicBestAnswerViewController.h */,
+				E9D56EFF1ADE881B00C54466 /* TopicBestAnswerViewController.m */,
+				E9D56F001ADE881B00C54466 /* TopicBestAnswerViewController.xib */,
+			);
+			name = TopicBestAnswerViewController;
 			sourceTree = "<group>";
 		};
 		E9DB26E21AD4F2FB00C3C60D /* UserListTable */ = {
@@ -830,6 +846,7 @@
 				E93063D31ACAAB81000140C1 /* QuestionViewController.xib in Resources */,
 				E9642E9F1AC5714800FF7875 /* LaunchScreen.xib in Resources */,
 				E93063B61ACA3982000140C1 /* HomeTableViewCell.xib in Resources */,
+				E9D56F021ADE881B00C54466 /* TopicBestAnswerViewController.xib in Resources */,
 				E93063DD1ACAABD9000140C1 /* UserViewController.xib in Resources */,
 				E90F427A1ACE6E5D00263622 /* UserHeaderView.xib in Resources */,
 				E9DB26FA1AD55D3E00C3C60D /* AnswerCommentTableViewCell.xib in Resources */,
@@ -897,6 +914,7 @@
 				E93063B51ACA3982000140C1 /* HomeTableViewCell.m in Sources */,
 				E9EB618A1ACC187A001F5DA3 /* QuestionAnswerTableViewCell.m in Sources */,
 				E990790F1ACEE371008DCA22 /* NotLoggedInView.m in Sources */,
+				E9D56F011ADE881B00C54466 /* TopicBestAnswerViewController.m in Sources */,
 				E9C9C70E1AC7203500CC228A /* LoginViewController.m in Sources */,
 				E9642E941AC5714800FF7875 /* AppDelegate.m in Sources */,
 				E99079081ACECCB5008DCA22 /* PostAnswerViewController.m in Sources */,

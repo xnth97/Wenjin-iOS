@@ -11,6 +11,7 @@
 #import "TopicDataManager.h"
 #import "MsgDisplay.h"
 #import "SVPullToRefresh.h"
+#import "TopicBestAnswerViewController.h"
 
 @interface TopicListTableViewController ()
 
@@ -28,6 +29,7 @@
     
     self.clearsSelectionOnViewWillAppear = YES;
     self.tableView.tableFooterView = [[UIView alloc]init];
+    self.navigationController.view.backgroundColor = [UIColor whiteColor];
     
     if ([self respondsToSelector:@selector(automaticallyAdjustsScrollViewInsets)]) {
         self.automaticallyAdjustsScrollViewInsets = NO;
@@ -125,6 +127,15 @@
     cell.userSigLabel.text = tmp[@"topic_description"];
     [cell loadTopicImageWithApartURL:tmp[@"topic_pic"]];
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSUInteger row = [indexPath row];
+    NSString *topicId = (dataInTable[row])[@"topic_id"];
+    TopicBestAnswerViewController *topicBestAnswer = [[TopicBestAnswerViewController alloc]initWithNibName:@"TopicBestAnswerViewController" bundle:nil];
+    topicBestAnswer.topicId = topicId;
+    topicBestAnswer.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:topicBestAnswer animated:YES];
 }
 
 /*

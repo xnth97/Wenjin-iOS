@@ -74,8 +74,14 @@
 // 话题列表
 + (NSString *)topicList;
 
+// 话题详情
++ (NSString *)topicInfo;
+
 // 话题精华
 + (NSString *)topicBestAnswer;
+
+// 关注话题
++ (NSString *)followTopic;
 
 // 发现
 + (NSString *)explore;

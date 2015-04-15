@@ -66,4 +66,22 @@
     }];
 }
 
++ (void)followTopicWithTopicID:(NSString *)topicId success:(void (^)(NSString *))success failure:(void (^)(NSString *))failure {
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+    NSDictionary *parameters = @{@"topic_id": topicId};
+    [manager GET:[wjAPIs followTopic] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        NSDictionary *respObj = [operation.responseString objectFromJSONString];
+        if ([respObj[@"errno"] isEqual: @1]) {
+            success((respObj[@"rsm"])[@"type"]);
+        } else {
+            failure(respObj[@"err"]);
+        }
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        failure(error.localizedDescription);
+    }];
+}
+
 @end

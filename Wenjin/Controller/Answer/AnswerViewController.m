@@ -49,7 +49,7 @@
     }];
     
     [AnswerDataManager getAnswerDataWithAnswerID:answerId success:^(NSDictionary *ansData) {
-        NSString *processedHTML = [wjStringProcessor convertToBootstrapHTMLWithContent:ansData[@"answer_content"]];
+        NSString *processedHTML = [wjStringProcessor convertToBootstrapHTMLWithExtraBlankLinesWithContent:ansData[@"answer_content"]];
         [answerContentView loadHTMLString:processedHTML baseURL:[NSURL URLWithString:[wjAPIs baseURL]]];
         userNameLabel.text = ansData[@"nick_name"];
         self.title = [NSString stringWithFormat:@"%@ 的回答", ansData[@"nick_name"]];

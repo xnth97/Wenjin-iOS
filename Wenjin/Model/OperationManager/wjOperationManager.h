@@ -12,9 +12,9 @@
 
 + (void)followQuestionWithQuestionID:(NSString *)questionId success:(void(^)(NSString *operationType))success failure:(void(^)(NSString *errStr))failure;
 + (void)followPeopleWithUserID:(NSString *)uid success:(void(^)(NSString *operationType))success failure:(void(^)(NSString *errStr))failure;
++ (void)followTopicWithTopicID:(NSString *)topicId success:(void(^)(NSString *operationType))success failure:(void(^)(NSString *errStr))failure;
 
 // 答案投票（operation=1为赞同，operation=-1为反对）
 + (void)voteAnswerWithAnswerID:(NSString *)answerId operation:(NSInteger)operation success:(void(^)())success failure:(void(^)(NSString *errStr))failure;
-
 
 @end

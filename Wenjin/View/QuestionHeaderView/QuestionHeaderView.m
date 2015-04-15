@@ -72,7 +72,7 @@
         detailView = [[UIWebView alloc]init];
         detailView.frame = CGRectMake(0, 42 + questionTitle.frame.size.height, width, 1);
         if (![questionInfo[@"question_detail"] isEqualToString:@""]) {
-            [detailView loadHTMLString:[wjStringProcessor convertToBootstrapHTMLWithoutBlankLinesWithContent:questionInfo[@"question_detail"]] baseURL:[NSURL URLWithString:[wjAPIs baseURL]]];
+            [detailView loadHTMLString:[wjStringProcessor convertToBootstrapHTMLWithContent:questionInfo[@"question_detail"]] baseURL:[NSURL URLWithString:[wjAPIs baseURL]]];
             detailView.delegate = self;
         }
         [self addSubview:detailView];

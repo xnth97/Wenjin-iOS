@@ -13,6 +13,6 @@
 + (NSString *)processAnswerDetailString:(NSString *)detailString;
 + (NSString *)filterHTMLWithString:(NSString *)s;
 + (NSString *)convertToBootstrapHTMLWithContent:(NSString *)contentStr;
-+ (NSString *)convertToBootstrapHTMLWithoutBlankLinesWithContent:(NSString *)contentStr;
++ (NSString *)convertToBootstrapHTMLWithExtraBlankLinesWithContent:(NSString *)contentStr;
 
 @end

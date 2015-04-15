@@ -45,6 +45,29 @@
     }];
 }
 
++ (void)getTopicInfoWithTopicID:(NSString *)topicID userID:(NSString *)uid success:(void (^)(NSDictionary *))success failure:(void (^)(NSString *))failure {
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+    NSDictionary *parameters = @{@"uid": uid,
+                                 @"topic_id": topicID};
+    [manager GET:[wjAPIs topicInfo] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSDictionary *dicData = [operation.responseString objectFromJSONString];
+        if ([dicData[@"errno"] isEqual:@1]) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                success(dicData[@"rsm"]);
+            });
+        } else {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                failure(dicData[@"err"]);
+            });
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            failure(error.localizedDescription);
+        });
+    }];
+}
+
 + (void)getTopicBestAnswerWithTopicID:(NSString *)topicId success:(void (^)(NSUInteger, NSArray *))success failure:(void (^)(NSString *))failure {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
@@ -52,8 +75,9 @@
     [manager GET:[wjAPIs topicBestAnswer] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSDictionary *dicData = [operation.responseString objectFromJSONString];
         if ([dicData[@"errno"] isEqual:@1]) {
-            NSInteger totalRows = [(dicData[@"rsm"])[@"total_rows"] integerValue];
-            if (totalRows != 0) {
+            NSDictionary *dic = dicData[@"rsm"];
+            if ([dic count] != 0) {
+                NSInteger totalRows = [(dicData[@"rsm"])[@"total_rows"] integerValue];
                 NSArray *rowsData = (dicData[@"rsm"])[@"rows"];
                 dispatch_async(dispatch_get_main_queue(), ^{
                     success(totalRows, rowsData);
@@ -61,7 +85,7 @@
             } else {
                 NSArray *rowsData = @[];
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    success(totalRows, rowsData);
+                    success(0, rowsData);
                 });
             }
         } else {
