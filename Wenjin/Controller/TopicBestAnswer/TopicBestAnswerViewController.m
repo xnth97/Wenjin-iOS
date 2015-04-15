@@ -50,6 +50,7 @@
     
     topicTitle.text = @"";
     topicDescription.text = @"";
+    [focusTopic setTitle:@"" forState:UIControlStateNormal];
     
     rowsData = [[NSMutableArray alloc]init];
     

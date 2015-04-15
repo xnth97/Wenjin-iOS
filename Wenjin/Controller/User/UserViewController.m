@@ -16,6 +16,7 @@
 #import "wjOperationManager.h"
 #import "UserListTableViewController.h"
 #import "UserFeedTableViewController.h"
+#import "TopicListTableViewController.h"
 
 @interface UserViewController ()
 
@@ -48,6 +49,7 @@
     
     cellArray = @[];
     
+    /*
     if ([self respondsToSelector:@selector(automaticallyAdjustsScrollViewInsets)]) {
         self.automaticallyAdjustsScrollViewInsets = NO;
         
@@ -63,7 +65,8 @@
     }];
     
     [self.userTableView triggerPullToRefresh];
-    
+    */
+    [self refreshData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -96,18 +99,18 @@
             
             if ([userId integerValue] == [[data shareInstance].myUID integerValue]) {
                 headerView.followButton.hidden = YES;
-                cellArray = @[@[@"我的提问", @"我的回答", @"我关注的问题"], @[@"我关注的", @"关注我的"]];
+                cellArray = @[@[@"我的提问", @"我的回答", @"我关注的问题", @"我关注的话题"], @[@"我关注的", @"关注我的"]];
                 self.title = @"我";
             } else {
-                cellArray = @[@[@"Ta 的提问", @"Ta 的回答", @"Ta 关注的问题"], @[@"Ta 关注的", @"关注 Ta 的"]];
+                cellArray = @[@[@"Ta 的提问", @"Ta 的回答", @"Ta 关注的问题", @"Ta 关注的话题"], @[@"Ta 关注的", @"关注 Ta 的"]];
                 self.title = userData[@"nick_name"];
             }
             
             [userTableView reloadData];
-            [userTableView.pullToRefreshView stopAnimating];
+            //[userTableView.pullToRefreshView stopAnimating];
         } failure:^(NSString *errorString) {
             [MsgDisplay showErrorMsg:errorString];
-            [userTableView.pullToRefreshView stopAnimating];
+            //[userTableView.pullToRefreshView stopAnimating];
         }];
     }
 }
@@ -161,13 +164,21 @@
     NSUInteger section = [indexPath section];
     NSUInteger row = [indexPath row];
     if (section == 0) {
-        UserFeedTableViewController *userFeed = [[UserFeedTableViewController alloc]initWithStyle:UITableViewStylePlain];
-        userFeed.feedType = row;
-        userFeed.userId = userId;
-        userFeed.userName = userName;
-        userFeed.userAvatar = userAvatar;
-        userFeed.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:userFeed animated:YES];
+        if (row != 3) {
+            UserFeedTableViewController *userFeed = [[UserFeedTableViewController alloc]initWithStyle:UITableViewStylePlain];
+            userFeed.feedType = row;
+            userFeed.userId = userId;
+            userFeed.userName = userName;
+            userFeed.userAvatar = userAvatar;
+            userFeed.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:userFeed animated:YES];
+        } else if (row == 3) {
+            TopicListTableViewController *userTopic = [[TopicListTableViewController alloc]initWithStyle:UITableViewStylePlain];
+            userTopic.uid = userId;
+            userTopic.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:userTopic animated:YES];
+        }
+        
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
     } else if (section == 1) {
         UserListTableViewController *userList = [[UserListTableViewController alloc]initWithStyle:UITableViewStylePlain];

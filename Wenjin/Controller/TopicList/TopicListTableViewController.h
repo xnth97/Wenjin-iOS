@@ -10,4 +10,6 @@
 
 @interface TopicListTableViewController : UITableViewController
 
+@property (strong, nonatomic) NSString *uid;
+
 @end

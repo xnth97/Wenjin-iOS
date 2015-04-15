@@ -68,6 +68,9 @@
 // 我的关注问题
 + (NSString *)myFollowQuestions;
 
+// 我的关注话题
++ (NSString *)myFollowTopics;
+
 // 发布答案评论
 + (NSString *)postAnswerComment;
 

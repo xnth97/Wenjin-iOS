@@ -12,6 +12,8 @@
 #import "MsgDisplay.h"
 #import "SVPullToRefresh.h"
 #import "TopicBestAnswerViewController.h"
+#import "UserDataManager.h"
+#import "UserViewController.h"
 
 @interface TopicListTableViewController ()
 
@@ -23,6 +25,8 @@
     NSInteger currentPage;
     NSInteger totalRows;
 }
+
+@synthesize uid;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -60,25 +64,48 @@
 }
 
 - (void)getListData {
-    [TopicDataManager getTopicListWithType:@"hot" andPage:currentPage success:^(NSUInteger _totalRows, NSArray *_rowsData) {
-        
-        totalRows = _totalRows;
-        if (currentPage == 1) {
-            rowsData = [[NSMutableArray alloc]initWithArray:_rowsData];
-        } else {
-            [rowsData addObjectsFromArray:_rowsData];
-        }
-        dataInTable = rowsData;
-        
-        [self.tableView reloadData];
-        [self.tableView.infiniteScrollingView stopAnimating];
-        [self.tableView.pullToRefreshView stopAnimating];
-        
-    } failure:^(NSString *errStr) {
-        [MsgDisplay showErrorMsg:errStr];
-        [self.tableView.infiniteScrollingView stopAnimating];
-        [self.tableView.pullToRefreshView stopAnimating];
-    }];
+    if (uid == nil) {
+        [TopicDataManager getTopicListWithType:@"hot" andPage:currentPage success:^(NSUInteger _totalRows, NSArray *_rowsData) {
+            
+            totalRows = _totalRows;
+            if (currentPage == 1) {
+                rowsData = [[NSMutableArray alloc]initWithArray:_rowsData];
+            } else {
+                [rowsData addObjectsFromArray:_rowsData];
+            }
+            dataInTable = rowsData;
+            
+            [self.tableView reloadData];
+            [self.tableView.infiniteScrollingView stopAnimating];
+            [self.tableView.pullToRefreshView stopAnimating];
+            
+        } failure:^(NSString *errStr) {
+            [MsgDisplay showErrorMsg:errStr];
+            [self.tableView.infiniteScrollingView stopAnimating];
+            [self.tableView.pullToRefreshView stopAnimating];
+        }];
+    } else {
+        self.title = @"话题";
+        [UserDataManager getFollowTopicListWithUserID:uid page:currentPage success:^(NSUInteger _totalRows, NSArray *_rowsData) {
+            totalRows = _totalRows;
+            if (currentPage == 1) {
+                rowsData = [[NSMutableArray alloc]initWithArray:_rowsData];
+            } else {
+                [rowsData addObjectsFromArray:_rowsData];
+            }
+            dataInTable = rowsData;
+            
+            [self.tableView reloadData];
+            [self.tableView.infiniteScrollingView stopAnimating];
+            [self.tableView.pullToRefreshView stopAnimating];
+        } failure:^(NSString *errStr) {
+            [MsgDisplay showErrorMsg:errStr];
+            [self.tableView.infiniteScrollingView stopAnimating];
+            [self.tableView.pullToRefreshView stopAnimating];
+        }];
+    }
+    
+
 }
 
 - (void)refreshContent {

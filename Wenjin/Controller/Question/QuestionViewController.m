@@ -14,6 +14,7 @@
 #import "AnswerViewController.h"
 #import "PostAnswerViewController.h"
 #import "SVPullToRefresh.h"
+#import "TopicBestAnswerViewController.h"
 
 @interface QuestionViewController ()
 
@@ -168,6 +169,13 @@
     [questionTableView beginUpdates];
     [questionTableView setTableHeaderView:view];
     [questionTableView endUpdates];
+}
+
+- (void)tagTappedAtIndex:(NSInteger)index {
+    NSString *topicId = [(questionTopics[index])[@"topic_id"] stringValue];
+    TopicBestAnswerViewController *tBA = [[TopicBestAnswerViewController alloc]initWithNibName:@"TopicBestAnswerViewController" bundle:nil];
+    tBA.topicId = topicId;
+    [self.navigationController pushViewController:tBA animated:YES];
 }
 
 /*

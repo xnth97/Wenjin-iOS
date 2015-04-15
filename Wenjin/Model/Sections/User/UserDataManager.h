@@ -18,4 +18,6 @@
 // feedType = 0：提问；1：回答；2：关注
 + (void)getUserFeedWithType:(NSInteger)feedType userID:(NSString *)uid page:(NSInteger)page success:(void(^)(NSUInteger totalRows, NSArray *rowsData))success failure:(void(^)(NSString *errStr))failure;
 
++ (void)getFollowTopicListWithUserID:(NSString *)uid page:(NSInteger)page success:(void(^)(NSUInteger totalRows, NSArray *rowsData))success failure:(void(^)(NSString *errStr))failure;
+
 @end

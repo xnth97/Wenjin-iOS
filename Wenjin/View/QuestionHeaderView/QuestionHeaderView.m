@@ -11,7 +11,6 @@
 #import "ALActionBlocks.h"
 #import "wjOperationManager.h"
 #import "MsgDisplay.h"
-#import "TLTagsControl.h"
 #import "wjAPIs.h"
 
 @implementation QuestionHeaderView {
@@ -54,6 +53,7 @@
         topicsControl.tagsTextColor = [UIColor whiteColor];
         topicsControl.tagsDeleteButtonColor = [UIColor whiteColor];
         [topicsControl reloadTagSubviews];
+        topicsControl.tapDelegate = self;
         //topicsControl.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:topicsControl];
         
@@ -178,6 +178,10 @@
     }];
     
     [delegate headerDetailViewFinishLoadingWithView:self];
+}
+
+- (void)tagsControl:(TLTagsControl *)tagsControl tappedAtIndex:(NSInteger)index {
+    [delegate tagTappedAtIndex:index];
 }
 
 // Only override drawRect: if you perform custom drawing.
