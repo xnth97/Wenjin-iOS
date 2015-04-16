@@ -28,6 +28,7 @@
     
     detailTextView = [[UITextView alloc]initWithFrame:CGRectMake(0, 0, 0, 0)];
     detailTextView.font = [UIFont systemFontOfSize:17.0];
+    detailTextView.text = [data shareInstance].postQuestionDetail;
     [self.view addSubview:detailTextView];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
@@ -38,7 +39,7 @@
     accessoryToolbar.barStyle = UIBarStyleDefault;
     accessoryToolbar.translucent = YES;
     
-    UIBarButtonItem *addDetailBtn = [[UIBarButtonItem alloc]initWithTitle:@"添加图片" style:UIBarButtonItemStylePlain block:^(id weakSender) {
+    UIBarButtonItem *addImageBtn = [[UIBarButtonItem alloc]initWithTitle:@"添加图片" style:UIBarButtonItemStylePlain block:^(id weakSender) {
         
         UIAlertController *uploadController = [UIAlertController alertControllerWithTitle:@"上传图片" message:@"" preferredStyle:UIAlertControllerStyleActionSheet];
         UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", nil) style:UIAlertActionStyleCancel handler:nil];
@@ -75,7 +76,7 @@
         
     }];
     UIBarButtonItem *flexibleSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
-    [accessoryToolbar setItems:@[flexibleSpace, flexibleSpace, addDetailBtn]];
+    [accessoryToolbar setItems:@[flexibleSpace, flexibleSpace, addImageBtn]];
     detailTextView.inputAccessoryView = accessoryToolbar;
 }
 
@@ -118,7 +119,8 @@
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             [PostDataManager uploadAttachFile:picData attachType:@"question" success:^(NSString *attachId) {
                 [MsgDisplay dismiss];
-                detailTextView.text = [NSString stringWithFormat:@"%@\n[attach]%@[/attach]\n", detailTextView.text, attachId];
+                NSUInteger loc = detailTextView.selectedRange.location;
+                detailTextView.text = [NSString stringWithFormat:@"%@\n[attach]%@[/attach]\n%@", [detailTextView.text substringToIndex:loc], attachId, [detailTextView.text substringFromIndex:loc]];
                 [detailTextView becomeFirstResponder];
             } failure:^(NSString *errStr) {
                 [MsgDisplay dismiss];

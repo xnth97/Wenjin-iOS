@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PostAnswerViewController : UIViewController
+@interface PostAnswerViewController : UIViewController<UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 @property (strong, nonatomic) UITextView *answerView;
 @property (strong, nonatomic) NSString *questionId;

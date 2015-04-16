@@ -155,7 +155,6 @@
     cell.detailLabel.tag = row;
     cell.avatarView.tag = row;
     cell.delegate = self;
-    cell.avatarView.hidden = NO;
     [cell loadAvatarImageWithApartURL:(tmp[@"answer_info"])[@"avatar_file"]];
     
     return cell;
