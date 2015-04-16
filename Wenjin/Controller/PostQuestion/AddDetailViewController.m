@@ -9,6 +9,10 @@
 #import "AddDetailViewController.h"
 #import "data.h"
 #import "wjStringProcessor.h"
+#import "ALActionBlocks.h"
+#import "PostDataManager.h"
+#import "MsgDisplay.h"
+#import <MobileCoreServices/MobileCoreServices.h>
 
 @interface AddDetailViewController ()
 
@@ -29,6 +33,50 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     
     [detailTextView becomeFirstResponder];
+    
+    UIToolbar *accessoryToolbar = [[UIToolbar alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 44)];
+    accessoryToolbar.barStyle = UIBarStyleDefault;
+    accessoryToolbar.translucent = YES;
+    
+    UIBarButtonItem *addDetailBtn = [[UIBarButtonItem alloc]initWithTitle:@"添加图片" style:UIBarButtonItemStylePlain block:^(id weakSender) {
+        
+        UIAlertController *uploadController = [UIAlertController alertControllerWithTitle:@"上传图片" message:@"" preferredStyle:UIAlertControllerStyleActionSheet];
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", nil) style:UIAlertActionStyleCancel handler:nil];
+        UIAlertAction *photoAction = [UIAlertAction actionWithTitle:@"拍照" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+                UIImagePickerController *picker = [[UIImagePickerController alloc]init];
+                picker.delegate = self;
+                picker.allowsEditing = YES;
+                picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+                [self presentViewController:picker animated:YES completion:nil];
+            } else {
+                [MsgDisplay showErrorMsg:@"相机不可用"];
+            }
+        }];
+        UIAlertAction *uploadAction = [UIAlertAction actionWithTitle:@"选取照片" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]) {
+                UIImagePickerController *picker = [[UIImagePickerController alloc]init];
+                picker.delegate = self;
+                picker.allowsEditing = YES;
+                picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+                [self presentViewController:picker animated:YES completion:nil];
+            } else {
+                [MsgDisplay showErrorMsg:@"图库不可用"];
+            }
+        }];
+        [uploadController addAction:cancelAction];
+        [uploadController addAction:photoAction];
+        [uploadController addAction:uploadAction];
+        [uploadController setModalPresentationStyle:UIModalPresentationPopover];
+        [uploadController.popoverPresentationController setPermittedArrowDirections:0];
+        [uploadController.popoverPresentationController setSourceView:self.view];
+        [uploadController.popoverPresentationController setSourceRect:self.view.frame];
+        [self presentViewController:uploadController animated:YES completion:nil];
+        
+    }];
+    UIBarButtonItem *flexibleSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
+    [accessoryToolbar setItems:@[flexibleSpace, flexibleSpace, addDetailBtn]];
+    detailTextView.inputAccessoryView = accessoryToolbar;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -55,6 +103,35 @@
 - (IBAction)done {
     [data shareInstance].postQuestionDetail = self.detailTextView.text;
     [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+}
+
+// Image Picker Delegate
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    if ([[info objectForKey:UIImagePickerControllerMediaType] isEqualToString:(NSString *)kUTTypeMovie]) {
+        [MsgDisplay showErrorMsg:@"Type unsupported"];
+        [picker dismissViewControllerAnimated:YES completion:nil];
+    } else {
+        UIImage *img = [info objectForKey:UIImagePickerControllerEditedImage];
+        NSData *picData = UIImageJPEGRepresentation(img, 0.5);
+        [picker dismissViewControllerAnimated:YES completion:nil];
+        [MsgDisplay showLoading];
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            [PostDataManager uploadAttachFile:picData attachType:@"question" success:^(NSString *attachId) {
+                [MsgDisplay dismiss];
+                detailTextView.text = [NSString stringWithFormat:@"%@\n[attach]%@[/attach]\n", detailTextView.text, attachId];
+                [detailTextView becomeFirstResponder];
+            } failure:^(NSString *errStr) {
+                [MsgDisplay dismiss];
+                [MsgDisplay showErrorMsg:errStr];
+                [detailTextView becomeFirstResponder];
+            }];
+        });
+    }
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    [picker dismissViewControllerAnimated:YES completion:nil];
+    [detailTextView becomeFirstResponder];
 }
 
 /*

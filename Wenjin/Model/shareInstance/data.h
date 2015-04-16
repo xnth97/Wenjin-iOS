@@ -15,6 +15,8 @@
 
 @property (strong, nonatomic) NSString *myUID;
 
+@property (strong, nonatomic) NSString *attachAccessKey;
+
 + (data *)shareInstance;
 
 @end

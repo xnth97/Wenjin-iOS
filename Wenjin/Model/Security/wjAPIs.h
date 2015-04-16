@@ -89,4 +89,7 @@
 // 发现
 + (NSString *)explore;
 
+// 传文件
++ (NSString *)uploadAttach;
+
 @end

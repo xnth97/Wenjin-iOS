@@ -142,7 +142,12 @@
     }
     NSUInteger row = [indexPath row];
     NSDictionary *tmp = rowsData[row];
-    cell.actionLabel.text = [NSString stringWithFormat:@"%@ 回答了问题", (tmp[@"answer_info"])[@"nick_name"]];
+    
+    if ([(tmp[@"answer_info"])[@"answer_content"] isEqualToString:@""]) {
+        cell.actionLabel.text = [NSString stringWithFormat:@"%@ 发布了问题", (tmp[@"answer_info"])[@"nick_name"]];
+    } else {
+        cell.actionLabel.text = [NSString stringWithFormat:@"%@ 回答了问题", (tmp[@"answer_info"])[@"nick_name"]];
+    }
     cell.questionLabel.text = [wjStringProcessor filterHTMLWithString:(tmp[@"question_info"])[@"question_content"]];
     cell.detailLabel.text = [wjStringProcessor processAnswerDetailString:(tmp[@"answer_info"])[@"answer_content"]];
     cell.actionLabel.tag = row;
@@ -150,7 +155,9 @@
     cell.detailLabel.tag = row;
     cell.avatarView.tag = row;
     cell.delegate = self;
+    cell.avatarView.hidden = NO;
     [cell loadAvatarImageWithApartURL:(tmp[@"answer_info"])[@"avatar_file"]];
+    
     return cell;
 
 }

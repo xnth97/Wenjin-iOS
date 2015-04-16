@@ -14,6 +14,7 @@
 #import "ALActionBlocks.h"
 #import "TLTagsControl.h"
 #import "HomeViewController.h"
+#import <CommonCrypto/CommonDigest.h>
 
 @interface PostViewController ()
 
@@ -37,6 +38,8 @@
     topicsArr = [[NSMutableArray alloc]init];
     tagsControlHeight = 24.0;
     
+    [data shareInstance].attachAccessKey = [self MD5FromNowDate];
+    
     questionView = [[UITextView alloc]initWithFrame:CGRectMake(0, 0, 0, 0)];
     questionView.font = [UIFont systemFontOfSize:17.0];
     [self.view addSubview:questionView];
@@ -54,7 +57,6 @@
     }];
     UIBarButtonItem *flexibleSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
     [accessoryToolbar setItems:@[flexibleSpace, flexibleSpace, addDetailBtn]];
-    
     questionView.inputAccessoryView = accessoryToolbar;
     
     questionTagsControl = [[TLTagsControl alloc]initWithFrame:CGRectMake(0, 0, 0, 0)];
@@ -114,7 +116,8 @@
     } else {
         NSDictionary *parameters = @{@"question_content": self.questionView.text,
                                      @"question_detail": [data shareInstance].postQuestionDetail,
-                                     @"topics": topicsStr};
+                                     @"topics": topicsStr,
+                                     @"attach_access_key": [data shareInstance].attachAccessKey};
         [PostDataManager postQuestionWithParameters:parameters success:^(NSString *questionId) {
             [MsgDisplay showSuccessMsg:[NSString stringWithFormat:@"Question ID: %@", questionId]];
             
@@ -130,10 +133,30 @@
             
             [self.navigationController popToRootViewControllerAnimated:YES];
             [data shareInstance].postQuestionDetail = @"";
+            [data shareInstance].attachAccessKey = @"";
         } failure:^(NSString *errStr) {
             [MsgDisplay showErrorMsg:errStr];
         }];
     }
+}
+
+- (NSString *)MD5FromNowDate {
+    NSDate *now = [NSDate date];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+    [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSString *nowString = [formatter stringFromDate:now];
+    
+    const char * pointer = [nowString UTF8String];
+    unsigned char md5Buffer[CC_MD5_DIGEST_LENGTH];
+    
+    CC_MD5(pointer, (CC_LONG)strlen(pointer), md5Buffer);
+    
+    NSMutableString *string = [NSMutableString stringWithCapacity:CC_MD5_DIGEST_LENGTH * 2];
+    for (int i = 0; i < CC_MD5_DIGEST_LENGTH; i++) {
+        [string appendFormat:@"%02x",md5Buffer[i]];
+    }
+    
+    return string;
 }
 
 /*

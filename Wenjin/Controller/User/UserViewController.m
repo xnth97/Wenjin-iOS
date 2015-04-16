@@ -36,14 +36,14 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.navigationController.view.backgroundColor = [UIColor whiteColor];
-    
+    /*
     if (userId == nil) {
         self.title = @"我";
         if ([data shareInstance].myUID != nil) {
             userId = [data shareInstance].myUID;
         }
     }
-    
+    */
     self.userTableView.dataSource = self;
     self.userTableView.delegate = self;
     
@@ -66,6 +66,17 @@
     
     [self.userTableView triggerPullToRefresh];
     */
+    [self refreshData];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    if (self.navigationController.viewControllers[0] == self) {
+        self.title = @"我";
+        if ([data shareInstance].myUID != nil) {
+            userId = [data shareInstance].myUID;
+        }
+    }
     [self refreshData];
 }
 

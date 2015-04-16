@@ -33,6 +33,7 @@
             [wjCacheManager saveCacheData:userData withKey:@"userData"];
             [wjCacheManager saveCacheData:parameters withKey:@"userLoginData"];
             [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"userIsLoggedIn"];
+            [data shareInstance].myUID = uid;
             // save userdata to local cache.
         } else {
             failure(loginData[@"err"]);
@@ -46,6 +47,8 @@
 + (void)logout {
     [wjCookieManager removeCookieForKey:@"login"];
     [wjCacheManager removeCacheDataForKey:@"homeCache"];
+    [wjCacheManager removeCacheDataForKey:@"userData"];
+    [wjCacheManager removeCacheDataForKey:@"userLoginData"];
     [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"userIsLoggedIn"];
 }
 

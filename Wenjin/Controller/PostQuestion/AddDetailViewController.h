@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AddDetailViewController : UIViewController
+@interface AddDetailViewController : UIViewController<UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 @property (strong, nonatomic) UITextView *detailTextView;
 

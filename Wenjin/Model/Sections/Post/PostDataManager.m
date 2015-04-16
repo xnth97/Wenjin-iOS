@@ -10,6 +10,7 @@
 #import "JSONKit.h"
 #import "AFNetworking.h"
 #import "wjAPIs.h"
+#import "data.h"
 
 @implementation PostDataManager
 
@@ -69,6 +70,33 @@
         if ([dicData[@"errno"] isEqual:@1]) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 success();
+            });
+        } else {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                failure(dicData[@"err"]);
+            });
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            failure(error.localizedDescription);
+        });
+    }];
+}
+
++ (void)uploadAttachFile:(id)file attachType:(NSString *)type success:(void (^)(NSString *))success failure:(void (^)(NSString *))failure {
+    // Type = question, article, answer
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+    
+    NSString *urlString = [NSString stringWithFormat:@"%@&id=%@&attach_access_key=%@", [wjAPIs uploadAttach], type, [data shareInstance].attachAccessKey];
+    
+    [manager POST:urlString parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+        [formData appendPartWithFileData:file name:@"qqfile" fileName:@"img.jpg" mimeType:@"image/jpg"];
+    } success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSDictionary *dicData = [operation.responseString objectFromJSONString];
+        if ([dicData[@"errno"] isEqual:@1]) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                success((dicData[@"rsm"])[@"attach_id"]);
             });
         } else {
             dispatch_async(dispatch_get_main_queue(), ^{
