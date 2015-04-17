@@ -30,7 +30,7 @@
         <scene sceneID="ey3-46-l3J">
             <objects>
                 <navigationController id="okm-5b-TgK" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="动态" image="tabBarIcon" id="X3l-ae-u0m"/>
+                    <tabBarItem key="tabBarItem" title="动态" image="home" id="X3l-ae-u0m"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="cES-wS-WZR">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -190,7 +190,7 @@
         <scene sceneID="vQ7-CS-HIo">
             <objects>
                 <navigationController id="NFG-Ge-MEa" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="我" image="tabBarIcon" id="anf-5x-zgi"/>
+                    <tabBarItem key="tabBarItem" title="我" image="me" id="anf-5x-zgi"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="QwC-6g-Maz">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -270,7 +270,7 @@
         <scene sceneID="cBU-SN-DR5">
             <objects>
                 <navigationController id="hfL-C4-Ehh" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="话题" image="tabBarIcon" id="qMd-Sr-XMO"/>
+                    <tabBarItem key="tabBarItem" title="话题" image="topic" id="qMd-Sr-XMO"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ISe-dO-wn4">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -287,7 +287,7 @@
         <scene sceneID="Kwd-YC-88q">
             <objects>
                 <navigationController id="rWL-4Y-bP8" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="发现" image="tabBarIcon" id="dO6-gD-Hxp"/>
+                    <tabBarItem key="tabBarItem" title="发现" image="explore" id="dO6-gD-Hxp"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="y7J-Db-Jwm">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -302,6 +302,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="tabBarIcon" width="30" height="30"/>
+        <image name="explore" width="30" height="30"/>
+        <image name="home" width="30" height="30"/>
+        <image name="me" width="30" height="30"/>
+        <image name="topic" width="30" height="30"/>
     </resources>
 </document>

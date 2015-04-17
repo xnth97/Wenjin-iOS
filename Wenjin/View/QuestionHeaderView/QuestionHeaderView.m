@@ -76,6 +76,7 @@
             [detailView loadHTMLString:[wjStringProcessor convertToBootstrapHTMLWithContent:questionInfo[@"question_detail"]] baseURL:[NSURL URLWithString:[wjAPIs baseURL]]];
             detailView.delegate = self;
         }
+        detailView.hidden = YES;
         [self addSubview:detailView];
         
         /*
@@ -172,7 +173,7 @@
     
     [UIView animateWithDuration:0.3 animations:^{
         webView.frame = CGRectMake(detailFrame.origin.x, detailFrame.origin.y, scroll.contentSize.width, scroll.contentSize.height);
-        
+        detailView.hidden = NO;
         focusQuestion.frame = CGRectMake(0, 42 + questionTitle.frame.size.height + detailView.frame.size.height, 0.5 * width, 30);
         addAnswer.frame = CGRectMake(0.5 * width, 42 + questionTitle.frame.size.height + detailView.frame.size.height, 0.5 * width, 30);
         self.frame = CGRectMake(0, 0, width, 42 + questionTitle.frame.size.height + detailView.frame.size.height + 42);
