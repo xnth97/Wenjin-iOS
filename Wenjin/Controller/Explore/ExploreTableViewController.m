@@ -14,6 +14,7 @@
 #import "UserViewController.h"
 #import "QuestionViewController.h"
 #import "NYSegmentedControl.h"
+#import "wjAppearanceManager.h"
 
 @interface ExploreTableViewController ()
 
@@ -42,11 +43,13 @@
     segmentedControl = [[NYSegmentedControl alloc]initWithItems:@[@"最新",@"热门",@"推荐",@"待回复"]];
     [segmentedControl addTarget:self action:@selector(segmentedSelected) forControlEvents:UIControlEventValueChanged];
     segmentedControl.selectedSegmentIndex = 0;
-    segmentedControl.backgroundColor = [UIColor colorWithWhite:0.9f alpha:1.0f];
-    segmentedControl.segmentIndicatorBackgroundColor = [UIColor whiteColor];
+    segmentedControl.borderWidth = 0.0f;
+    segmentedControl.segmentIndicatorBorderWidth = 0.0f;
+    segmentedControl.backgroundColor = [wjAppearanceManager segmentedUnselectedColor];
+    segmentedControl.segmentIndicatorBackgroundColor = [wjAppearanceManager segmentedSelectedColor];
     segmentedControl.segmentIndicatorInset = 0.0f;
-    segmentedControl.titleTextColor = [UIColor lightGrayColor];
-    segmentedControl.selectedTitleTextColor = [UIColor darkGrayColor];
+    segmentedControl.titleTextColor = [wjAppearanceManager segmentedUnselectedTextColor];
+    segmentedControl.selectedTitleTextColor = [UIColor whiteColor];
     [segmentedControl sizeToFit];
     [self.navigationItem setTitleView:segmentedControl];
     

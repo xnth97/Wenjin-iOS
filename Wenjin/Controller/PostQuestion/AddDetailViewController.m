@@ -25,6 +25,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
     
     detailTextView = [[UITextView alloc]initWithFrame:CGRectMake(0, 0, 0, 0)];
     detailTextView.font = [UIFont systemFontOfSize:17.0];

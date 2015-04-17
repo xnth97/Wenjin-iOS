@@ -24,6 +24,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [wjAppearanceManager setTintColor];
     // Do any additional setup after loading the view.
     
     //[[self.tabBar.items objectAtIndex:1] setBadgeValue:@"3"];
@@ -87,6 +88,10 @@
 - (void)presentLoginController {
     LoginViewController *login = [[LoginViewController alloc]initWithNibName:@"LoginViewController" bundle:nil];
     [self presentViewController:login animated:YES completion:nil];
+}
+
+- (UIStatusBarStyle)preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent;
 }
 
 /*

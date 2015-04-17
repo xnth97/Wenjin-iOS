@@ -12,6 +12,7 @@
 #import "wjOperationManager.h"
 #import "MsgDisplay.h"
 #import "wjAPIs.h"
+#import "wjAppearanceManager.h"
 
 @implementation QuestionHeaderView {
     int _borderDist;
@@ -49,7 +50,7 @@
         // TLTagsControl *topicsControl = [[TLTagsControl alloc]init];
         topicsControl.mode = TLTagsControlModeList;
         topicsControl.tags = topicsArr;
-        topicsControl.tagsBackgroundColor = [UIColor colorWithRed:75.0/255.0 green:186.0/255.0 blue:251.0/255.0 alpha:1];
+        topicsControl.tagsBackgroundColor = [wjAppearanceManager tagsControlBackgroundColor];
         topicsControl.tagsTextColor = [UIColor whiteColor];
         topicsControl.tagsDeleteButtonColor = [UIColor whiteColor];
         [topicsControl reloadTagSubviews];

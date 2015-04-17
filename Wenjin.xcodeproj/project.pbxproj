@@ -38,6 +38,7 @@
 		E990790B1ACEE1C7008DCA22 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E990790A1ACEE1C7008DCA22 /* LoginViewController.xib */; };
 		E990790F1ACEE371008DCA22 /* NotLoggedInView.m in Sources */ = {isa = PBXBuildFile; fileRef = E990790E1ACEE371008DCA22 /* NotLoggedInView.m */; };
 		E99079111ACEE3A4008DCA22 /* NotLoggedInView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E99079101ACEE3A4008DCA22 /* NotLoggedInView.xib */; };
+		E992CA141AE10F75003A9123 /* wjAppearanceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E992CA131AE10F75003A9123 /* wjAppearanceManager.m */; };
 		E9AC9E561AD3A4840016CA23 /* wjOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E9AC9E551AD3A4840016CA23 /* wjOperationManager.m */; };
 		E9C1A1C01ACAF21F00892B60 /* QuestionDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E9C1A1BF1ACAF21F00892B60 /* QuestionDataManager.m */; };
 		E9C1A1C41ACBCBB000892B60 /* QuestionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = E9C1A1C31ACBCBB000892B60 /* QuestionHeaderView.m */; };
@@ -143,6 +144,8 @@
 		E990790D1ACEE371008DCA22 /* NotLoggedInView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NotLoggedInView.h; path = View/NotLoggedInView/NotLoggedInView.h; sourceTree = "<group>"; };
 		E990790E1ACEE371008DCA22 /* NotLoggedInView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NotLoggedInView.m; path = View/NotLoggedInView/NotLoggedInView.m; sourceTree = "<group>"; };
 		E99079101ACEE3A4008DCA22 /* NotLoggedInView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NotLoggedInView.xib; path = View/NotLoggedInView/NotLoggedInView.xib; sourceTree = "<group>"; };
+		E992CA121AE10F75003A9123 /* wjAppearanceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = wjAppearanceManager.h; path = Model/Appearance/wjAppearanceManager.h; sourceTree = "<group>"; };
+		E992CA131AE10F75003A9123 /* wjAppearanceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = wjAppearanceManager.m; path = Model/Appearance/wjAppearanceManager.m; sourceTree = "<group>"; };
 		E9AC9E541AD3A4840016CA23 /* wjOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = wjOperationManager.h; path = Model/OperationManager/wjOperationManager.h; sourceTree = "<group>"; };
 		E9AC9E551AD3A4840016CA23 /* wjOperationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = wjOperationManager.m; path = Model/OperationManager/wjOperationManager.m; sourceTree = "<group>"; };
 		E9C1A1BE1ACAF21F00892B60 /* QuestionDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QuestionDataManager.h; path = Model/Sections/Question/QuestionDataManager.h; sourceTree = "<group>"; };
@@ -478,6 +481,15 @@
 			name = NotLoggedInView;
 			sourceTree = "<group>";
 		};
+		E992CA111AE10F53003A9123 /* Appearance */ = {
+			isa = PBXGroup;
+			children = (
+				E992CA121AE10F75003A9123 /* wjAppearanceManager.h */,
+				E992CA131AE10F75003A9123 /* wjAppearanceManager.m */,
+			);
+			name = Appearance;
+			sourceTree = "<group>";
+		};
 		E9AC9E531AD3A4500016CA23 /* Operation */ = {
 			isa = PBXGroup;
 			children = (
@@ -529,6 +541,7 @@
 		E9C9C6E61AC694DE00CC228A /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				E992CA111AE10F53003A9123 /* Appearance */,
 				E93063B71ACA47CF000140C1 /* StringProcessor */,
 				E9E286C21AC7F611005B6ED7 /* Sections */,
 				E9C9C7121AC7249900CC228A /* MessageDisplay */,
@@ -927,6 +940,7 @@
 				E96F09281AD7E2DD00847E5E /* TopicListTableViewController.m in Sources */,
 				E96F092C1AD7E3BA00847E5E /* TopicDataManager.m in Sources */,
 				E9DB26F41AD5523B00C3C60D /* AnswerCommentTableViewController.m in Sources */,
+				E992CA141AE10F75003A9123 /* wjAppearanceManager.m in Sources */,
 				E96F092F1AD7F44100847E5E /* SettingTableViewController.m in Sources */,
 				E9C9C6F61AC719FC00CC228A /* MainTabBarController.m in Sources */,
 				E90F42781ACE6A4E00263622 /* UserHeaderView.m in Sources */,

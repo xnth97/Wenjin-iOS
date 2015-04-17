@@ -10,6 +10,7 @@
 #import "ALActionBlocks.h"
 #import "UIImageView+AFNetworking.h"
 #import "wjAPIs.h"
+#import "wjAppearanceManager.h"
 
 @implementation HomeTableViewCell
 
@@ -60,6 +61,8 @@
     
     avatarView.layer.cornerRadius = avatarView.frame.size.width / 2;
     avatarView.clipsToBounds = YES;
+    
+    questionLabel.textColor = [wjAppearanceManager questionTitleLabelTextColor];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

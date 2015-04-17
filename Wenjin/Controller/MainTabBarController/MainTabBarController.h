@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "NotLoggedInView.h"
+#import "wjAppearanceManager.h"
 
 @interface MainTabBarController : UITabBarController<NotLoggedInViewDelegate>
 

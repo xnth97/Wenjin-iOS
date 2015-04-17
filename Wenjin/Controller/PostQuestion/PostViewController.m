@@ -15,6 +15,7 @@
 #import "TLTagsControl.h"
 #import "HomeViewController.h"
 #import <CommonCrypto/CommonDigest.h>
+#import "wjAppearanceManager.h"
 
 @interface PostViewController ()
 
@@ -62,7 +63,7 @@
     questionTagsControl = [[TLTagsControl alloc]initWithFrame:CGRectMake(0, 0, 0, 0)];
     questionTagsControl.tags = topicsArr;
     questionTagsControl.mode = TLTagsControlModeEdit;
-    questionTagsControl.tagsBackgroundColor = [UIColor colorWithRed:75.0/255.0 green:186.0/255.0 blue:251.0/255.0 alpha:1];
+    questionTagsControl.tagsBackgroundColor = [wjAppearanceManager tagsControlBackgroundColor];
     questionTagsControl.tagsTextColor = [UIColor whiteColor];
     questionTagsControl.tagPlaceholder = @"添加话题";
     questionTagsControl.tagsDeleteButtonColor = [UIColor whiteColor];
