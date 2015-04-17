@@ -50,7 +50,7 @@
     
     topicTitle.text = @"";
     topicDescription.text = @"";
-    [focusTopic setTitle:@"" forState:UIControlStateNormal];
+    focusTopic.hidden = YES;
     
     rowsData = [[NSMutableArray alloc]init];
     
@@ -63,6 +63,7 @@
         } else {
             [focusTopic setTitle:@"关注" forState:UIControlStateNormal];
         }
+        [focusTopic setHidden:NO];
     }];
     
     [TopicDataManager getTopicBestAnswerWithTopicID:topicId success:^(NSUInteger _totalRows, NSArray *_rows) {

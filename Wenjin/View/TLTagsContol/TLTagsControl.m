@@ -82,6 +82,7 @@
     tagInputField_.font = [UIFont fontWithName:@"HelveticaNeue" size:14];
     tagInputField_.placeholder = @"tag";
     tagInputField_.autocorrectionType = UITextAutocorrectionTypeNo;
+    tagInputField_.returnKeyType = UIReturnKeyDone;
     
     if (_mode == TLTagsControlModeEdit) {
         [self addSubview:tagInputField_];
@@ -312,6 +313,19 @@
     return YES;
 }
 
+- (BOOL)textFieldShouldEndEditing:(UITextField *)textField {
+    if (textField.text.length > 0) {
+        NSString *tag = textField.text;
+        textField.text = @"";
+        [self addTag:tag];
+    }
+    
+    return YES;
+}
+
+// To allow spaces in topics, I intentionally commented out the code below.
+
+/*
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     NSString *resultingString;
     NSString *text = textField.text;
@@ -347,6 +361,7 @@
         return YES;
     }
 }
+ */
 
 #pragma mark - other
 

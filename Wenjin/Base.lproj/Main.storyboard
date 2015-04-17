@@ -159,7 +159,7 @@
             </objects>
             <point key="canvasLocation" x="3953" y="1079"/>
         </scene>
-        <!--热门话题-->
+        <!--Topic List Table View Controller-->
         <scene sceneID="dT6-DE-oW1">
             <objects>
                 <tableViewController id="XZD-gk-4J7" customClass="TopicListTableViewController" sceneMemberID="viewController">
@@ -180,7 +180,7 @@
                             <outlet property="delegate" destination="XZD-gk-4J7" id="GaJ-jM-Pre"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="热门话题" id="dnB-ft-NJP"/>
+                    <navigationItem key="navigationItem" id="dnB-ft-NJP"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fap-4i-NXi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

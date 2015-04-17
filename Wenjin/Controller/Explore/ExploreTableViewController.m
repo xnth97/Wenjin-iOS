@@ -42,7 +42,6 @@
     segmentedControl = [[NYSegmentedControl alloc]initWithItems:@[@"最新",@"热门",@"推荐",@"待回复"]];
     [segmentedControl addTarget:self action:@selector(segmentedSelected) forControlEvents:UIControlEventValueChanged];
     segmentedControl.selectedSegmentIndex = 0;
-    segmentedControl.frame = CGRectMake(0, 0, self.view.frame.size.width - 30, 40);
     segmentedControl.backgroundColor = [UIColor colorWithWhite:0.9f alpha:1.0f];
     segmentedControl.segmentIndicatorBackgroundColor = [UIColor whiteColor];
     segmentedControl.segmentIndicatorInset = 0.0f;

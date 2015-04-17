@@ -122,7 +122,7 @@
                                      @"topics": topicsStr,
                                      @"attach_access_key": [data shareInstance].attachAccessKey};
         [PostDataManager postQuestionWithParameters:parameters success:^(NSString *questionId) {
-            [MsgDisplay showSuccessMsg:[NSString stringWithFormat:@"Question ID: %@", questionId]];
+            [MsgDisplay showSuccessMsg:[NSString stringWithFormat:@"问题发布成功！"]];
             
             for (UIViewController *navVc in self.navigationController.tabBarController.viewControllers) {
                 if ([navVc isKindOfClass:[UINavigationController class]]) {

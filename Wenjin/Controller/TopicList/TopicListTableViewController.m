@@ -14,6 +14,7 @@
 #import "TopicBestAnswerViewController.h"
 #import "UserDataManager.h"
 #import "UserViewController.h"
+#import "NYSegmentedControl.h"
 
 @interface TopicListTableViewController ()
 
@@ -24,6 +25,10 @@
     NSMutableArray *dataInTable;
     NSInteger currentPage;
     NSInteger totalRows;
+    
+    NSString *topicType;
+    NSArray *topicTypesArray;
+    NYSegmentedControl *segmentedControl;
 }
 
 @synthesize uid;
@@ -34,6 +39,20 @@
     self.clearsSelectionOnViewWillAppear = YES;
     self.tableView.tableFooterView = [[UIView alloc]init];
     self.navigationController.view.backgroundColor = [UIColor whiteColor];
+    
+    topicTypesArray = @[@"hot", @"focus"];
+    topicType = topicTypesArray[0];
+    
+    segmentedControl = [[NYSegmentedControl alloc]initWithItems:@[@"热门", @"我关注的"]];
+    [segmentedControl addTarget:self action:@selector(segmentedSelected) forControlEvents:UIControlEventValueChanged];
+    segmentedControl.selectedSegmentIndex = 0;
+    segmentedControl.backgroundColor = [UIColor colorWithWhite:0.9f alpha:1.0f];
+    segmentedControl.segmentIndicatorBackgroundColor = [UIColor whiteColor];
+    segmentedControl.segmentIndicatorInset = 0.0f;
+    segmentedControl.titleTextColor = [UIColor lightGrayColor];
+    segmentedControl.selectedTitleTextColor = [UIColor darkGrayColor];
+    [segmentedControl sizeToFit];
+    [self.navigationItem setTitleView:segmentedControl];
     
     if ([self respondsToSelector:@selector(automaticallyAdjustsScrollViewInsets)]) {
         self.automaticallyAdjustsScrollViewInsets = NO;
@@ -63,9 +82,15 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)segmentedSelected {
+    NSUInteger index = segmentedControl.selectedSegmentIndex;
+    topicType = topicTypesArray[index];
+    [self refreshContent];
+}
+
 - (void)getListData {
     if (uid == nil) {
-        [TopicDataManager getTopicListWithType:@"hot" andPage:currentPage success:^(NSUInteger _totalRows, NSArray *_rowsData) {
+        [TopicDataManager getTopicListWithType:topicType andPage:currentPage success:^(NSUInteger _totalRows, NSArray *_rowsData) {
             
             totalRows = _totalRows;
             if (currentPage == 1) {
@@ -78,6 +103,10 @@
             [self.tableView reloadData];
             [self.tableView.infiniteScrollingView stopAnimating];
             [self.tableView.pullToRefreshView stopAnimating];
+            
+            if (currentPage == 1) {
+                [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
+            }
             
         } failure:^(NSString *errStr) {
             [MsgDisplay showErrorMsg:errStr];
