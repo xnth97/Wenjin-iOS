@@ -24,16 +24,17 @@
         NSDictionary *loginData = [operation.responseString objectFromJSONString];
         if ([loginData[@"errno"] isEqual: @1]) {
             NSDictionary *userData = loginData[@"rsm"];
-            NSString *uid = userData[@"uid"];
-            NSString *user_name = userData[@"nick_name"];
+            NSString *uid = [userData[@"uid"] stringValue];
+            NSString *user_name = userData[@"user_name"];
             NSString *avatar_file = userData[@"avatar_file"];
             
-            success(uid, user_name, avatar_file);
             [wjCookieManager saveCookieForURLString:[wjAPIs login] andKey:@"login"];
             [wjCacheManager saveCacheData:userData withKey:@"userData"];
             [wjCacheManager saveCacheData:parameters withKey:@"userLoginData"];
             [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"userIsLoggedIn"];
             [data shareInstance].myUID = uid;
+            success(uid, user_name, avatar_file);
+            
             // save userdata to local cache.
         } else {
             failure(loginData[@"err"]);

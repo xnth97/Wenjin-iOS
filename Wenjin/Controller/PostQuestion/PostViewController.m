@@ -82,9 +82,12 @@
 
 - (void)keyboardWillShow:(NSNotification *)notification {
     // float animationDuration = [[[notification userInfo] valueForKey:UIKeyboardAnimationDurationUserInfoKey] floatValue];
-    CGFloat keyboardHeight = [[[notification userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size.height;
-    [questionView setFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - keyboardHeight - tagsControlHeight - 4)];
-    [questionTagsControl setFrame:CGRectMake(8, questionView.frame.size.height, self.view.frame.size.width - 16, tagsControlHeight)];
+    [UIView animateWithDuration:0.5 animations:^{
+        CGFloat keyboardHeight = [[[notification userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size.height;
+        [questionView setFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - keyboardHeight - tagsControlHeight - 4)];
+        [questionTagsControl setFrame:CGRectMake(8, questionView.frame.size.height, self.view.frame.size.width - 16, tagsControlHeight)];
+    }];
+    
 }
 
 - (void)dealloc {
@@ -143,10 +146,13 @@
 - (NSString *)MD5FromNowDate {
     NSDate *now = [NSDate date];
     NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+    NSTimeZone *utcTimeZone = [NSTimeZone timeZoneWithName:@"UTC"];
+    [formatter setTimeZone:utcTimeZone];
     [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     NSString *nowString = [formatter stringFromDate:now];
+    NSString *inputString = [NSString stringWithFormat:@"%@ %@", nowString, [data shareInstance].myUID];
     
-    const char * pointer = [nowString UTF8String];
+    const char *pointer = [inputString UTF8String];
     unsigned char md5Buffer[CC_MD5_DIGEST_LENGTH];
     
     CC_MD5(pointer, (CC_LONG)strlen(pointer), md5Buffer);

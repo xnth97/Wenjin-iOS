@@ -7,6 +7,8 @@ pod 'SVPullToRefresh'
 pod 'JSONKit'
 pod 'KVOController'
 pod 'ALActionBlocks'
+pod 'LTNavigationBar'
+pod 'NYSegmentedControl'
 
 target 'Wenjin' do
 

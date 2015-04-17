@@ -23,6 +23,8 @@ PODS:
   - ALActionBlocks (1.0.3)
   - JSONKit (1.4)
   - KVOController (1.0.3)
+  - LTNavigationBar (2.0.1)
+  - NYSegmentedControl (1.0.3)
   - pop (1.0.7)
   - SVProgressHUD (1.1.3)
   - SVPullToRefresh (0.4.1)
@@ -32,17 +34,21 @@ DEPENDENCIES:
   - ALActionBlocks
   - JSONKit
   - KVOController
+  - LTNavigationBar
+  - NYSegmentedControl
   - pop
   - SVProgressHUD
   - SVPullToRefresh
 
 SPEC CHECKSUMS:
   AFNetworking: fefbce9660acb17f48ae0011292d4da0f457bf36
-  ALActionBlocks: 6a899107d2def997caae8de46d82c8fa2421987e
-  JSONKit: 2111ac2b11f7ea0d07bb1d9d09e650918336a134
-  KVOController: b1139ef1fc373b6757e4b69493fedd7b56eb1272
-  pop: 2f14a1ea61339767af9e66741b418c831b3844df
+  ALActionBlocks: ac91b1a37b60a8004fb687ddade0600446f3d3fa
+  JSONKit: 5b69e804ea54d99293eed0fd2ce596c5703fefb0
+  KVOController: 9fd8f0343670994e4b6f9f0b31f5a45663f3e1cf
+  LTNavigationBar: 6cfc0d3628e925d519130018a15c296cefaf0db3
+  NYSegmentedControl: c24774be62ed17442595d33f74e6eb23bcff3412
+  pop: 628ffc631644601567ee8bfaaaea493ebd7d0923
   SVProgressHUD: 748080e4f36e603f6c02aec292664239df5279c1
-  SVPullToRefresh: d5161ebc833a38b465364412e5e307ca80bbb190
+  SVPullToRefresh: ba2e718695a43253d8bea6852d2960097dc15d8c
 
 COCOAPODS: 0.36.0

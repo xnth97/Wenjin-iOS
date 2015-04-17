@@ -206,10 +206,12 @@
 // HomeTableViewCell delegate
 
 - (void)pushUserControllerWithRow:(NSUInteger)row {
-    UserViewController *uVC = [[UserViewController alloc]initWithNibName:@"UserViewController" bundle:nil];
-    uVC.hidesBottomBarWhenPushed = YES;
-    uVC.userId = [((rowsData[row])[@"user_info"])[@"uid"] stringValue];
-    [self.navigationController pushViewController:uVC animated:YES];
+    if (![[((rowsData[row])[@"user_info"])[@"uid"] stringValue] isEqualToString:@"-1"]) {
+        UserViewController *uVC = [[UserViewController alloc]initWithNibName:@"UserViewController" bundle:nil];
+        uVC.hidesBottomBarWhenPushed = YES;
+        uVC.userId = [((rowsData[row])[@"user_info"])[@"uid"] stringValue];
+        [self.navigationController pushViewController:uVC animated:YES];
+    }
 }
 
 - (void)pushQuestionControllerWithRow:(NSUInteger)row {

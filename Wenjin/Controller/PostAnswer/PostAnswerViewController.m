@@ -74,7 +74,7 @@
             if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
                 UIImagePickerController *picker = [[UIImagePickerController alloc]init];
                 picker.delegate = self;
-                picker.allowsEditing = YES;
+                //picker.allowsEditing = YES;
                 picker.sourceType = UIImagePickerControllerSourceTypeCamera;
                 [self presentViewController:picker animated:YES completion:nil];
             } else {
@@ -85,7 +85,7 @@
             if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]) {
                 UIImagePickerController *picker = [[UIImagePickerController alloc]init];
                 picker.delegate = self;
-                picker.allowsEditing = YES;
+                //picker.allowsEditing = YES;
                 picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
                 [self presentViewController:picker animated:YES completion:nil];
             } else {
@@ -130,10 +130,13 @@
 - (NSString *)MD5FromNowDate {
     NSDate *now = [NSDate date];
     NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+    NSTimeZone *utcTimeZone = [NSTimeZone timeZoneWithName:@"UTC"];
+    [formatter setTimeZone:utcTimeZone];
     [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     NSString *nowString = [formatter stringFromDate:now];
+    NSString *inputString = [NSString stringWithFormat:@"%@ %@", nowString, [data shareInstance].myUID];
     
-    const char * pointer = [nowString UTF8String];
+    const char *pointer = [inputString UTF8String];
     unsigned char md5Buffer[CC_MD5_DIGEST_LENGTH];
     
     CC_MD5(pointer, (CC_LONG)strlen(pointer), md5Buffer);
@@ -152,7 +155,7 @@
         [MsgDisplay showErrorMsg:@"Type unsupported"];
         [picker dismissViewControllerAnimated:YES completion:nil];
     } else {
-        UIImage *img = [info objectForKey:UIImagePickerControllerEditedImage];
+        UIImage *img = [info objectForKey:UIImagePickerControllerOriginalImage];
         NSData *picData = UIImageJPEGRepresentation(img, 0.5);
         [picker dismissViewControllerAnimated:YES completion:nil];
         [MsgDisplay showLoading];

@@ -47,7 +47,7 @@
             if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
                 UIImagePickerController *picker = [[UIImagePickerController alloc]init];
                 picker.delegate = self;
-                picker.allowsEditing = YES;
+                //picker.allowsEditing = YES;
                 picker.sourceType = UIImagePickerControllerSourceTypeCamera;
                 [self presentViewController:picker animated:YES completion:nil];
             } else {
@@ -58,7 +58,7 @@
             if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]) {
                 UIImagePickerController *picker = [[UIImagePickerController alloc]init];
                 picker.delegate = self;
-                picker.allowsEditing = YES;
+                //picker.allowsEditing = YES;
                 picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
                 [self presentViewController:picker animated:YES completion:nil];
             } else {
@@ -112,7 +112,7 @@
         [MsgDisplay showErrorMsg:@"Type unsupported"];
         [picker dismissViewControllerAnimated:YES completion:nil];
     } else {
-        UIImage *img = [info objectForKey:UIImagePickerControllerEditedImage];
+        UIImage *img = [info objectForKey:UIImagePickerControllerOriginalImage];
         NSData *picData = UIImageJPEGRepresentation(img, 0.5);
         [picker dismissViewControllerAnimated:YES completion:nil];
         [MsgDisplay showLoading];

@@ -68,7 +68,7 @@
             </objects>
             <point key="canvasLocation" x="1915" y="1079"/>
         </scene>
-        <!--发现-->
+        <!--Explore Table View Controller-->
         <scene sceneID="3lh-oB-qN8">
             <objects>
                 <tableViewController id="pw4-sm-7bG" customClass="ExploreTableViewController" sceneMemberID="viewController">
@@ -81,7 +81,7 @@
                             <outlet property="delegate" destination="pw4-sm-7bG" id="KBs-lx-4h0"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="发现" id="ehb-n2-yft"/>
+                    <navigationItem key="navigationItem" id="ehb-n2-yft"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vSM-Rr-VOJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

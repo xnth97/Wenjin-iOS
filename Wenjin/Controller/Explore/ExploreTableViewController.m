@@ -13,6 +13,7 @@
 #import "wjStringProcessor.h"
 #import "UserViewController.h"
 #import "QuestionViewController.h"
+#import "NYSegmentedControl.h"
 
 @interface ExploreTableViewController ()
 
@@ -22,6 +23,10 @@
     NSMutableArray *rowsData;
     NSMutableArray *dataInTable;
     NSInteger currentPage;
+    NYSegmentedControl *segmentedControl;
+    
+    NSString *expType;
+    NSInteger isRecommended;
 }
 
 - (void)viewDidLoad {
@@ -30,6 +35,21 @@
     self.clearsSelectionOnViewWillAppear = YES;
     self.tableView.tableFooterView = [[UIView alloc]init];
     self.navigationController.view.backgroundColor = [UIColor whiteColor];
+    
+    expType = @"new";
+    isRecommended = 0;
+    
+    segmentedControl = [[NYSegmentedControl alloc]initWithItems:@[@"最新",@"热门",@"推荐",@"待回复"]];
+    [segmentedControl addTarget:self action:@selector(segmentedSelected) forControlEvents:UIControlEventValueChanged];
+    segmentedControl.selectedSegmentIndex = 0;
+    segmentedControl.frame = CGRectMake(0, 0, self.view.frame.size.width - 30, 40);
+    segmentedControl.backgroundColor = [UIColor colorWithWhite:0.9f alpha:1.0f];
+    segmentedControl.segmentIndicatorBackgroundColor = [UIColor whiteColor];
+    segmentedControl.segmentIndicatorInset = 0.0f;
+    segmentedControl.titleTextColor = [UIColor lightGrayColor];
+    segmentedControl.selectedTitleTextColor = [UIColor darkGrayColor];
+    [segmentedControl sizeToFit];
+    [self.navigationItem setTitleView:segmentedControl];
     
     if ([self respondsToSelector:@selector(automaticallyAdjustsScrollViewInsets)]) {
         self.automaticallyAdjustsScrollViewInsets = NO;
@@ -59,8 +79,44 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)segmentedSelected {
+    NSUInteger index = segmentedControl.selectedSegmentIndex;
+    switch (index) {
+        case 0:
+            isRecommended = 0;
+            expType = @"new";
+            break;
+            
+        case 1:
+            isRecommended = 0;
+            expType = @"hot";
+            break;
+            
+        case 2:
+            isRecommended = 1;
+            expType = @"";
+            break;
+            
+        case 3:
+            isRecommended = 0;
+            expType = @"unresponsive";
+            break;
+            
+        default:
+            break;
+    }
+    [self refreshContent];
+}
+
 - (void)getListData {
-    [ExploreDataManager getExploreDataWithPage:currentPage isRecommended:0 sortType:@"new" success:^(BOOL isLastPage, NSArray *_rowsData) {
+    /*
+     per_page (int) 可选，默认10
+     page (int) 可选，默认1
+     day (int) 可选，默认30
+     is_recommend (int) 可选，有1和0两种值，默认0 [如果你是要返回“推荐”栏目的数据，这个参数值设为1，sort_type可以不设]
+     sort_type （string） 可选，有new，hot，unresponsive三种值，默认new new：最新 hot：热门 unresponsive：等待回复
+    */
+    [ExploreDataManager getExploreDataWithPage:currentPage isRecommended:isRecommended sortType:expType success:^(BOOL isLastPage, NSArray *_rowsData) {
         
         if (!isLastPage) {
             if (currentPage == 1) {
@@ -75,6 +131,9 @@
         }
         
         [self.tableView reloadData];
+        if (currentPage == 1) {
+            [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
+        }
         [self.tableView.infiniteScrollingView stopAnimating];
         [self.tableView.pullToRefreshView stopAnimating];
         
@@ -151,10 +210,12 @@
 // Cell Delegate
 
 - (void)pushUserControllerWithRow:(NSUInteger)row {
-    UserViewController *uVC = [[UserViewController alloc]initWithNibName:@"UserViewController" bundle:nil];
-    uVC.hidesBottomBarWhenPushed = YES;
-    uVC.userId = [((dataInTable[row])[@"user_info"])[@"uid"] stringValue];
-    [self.navigationController pushViewController:uVC animated:YES];
+    if (![[((rowsData[row])[@"user_info"])[@"uid"] stringValue] isEqualToString:@"-1"]) {
+        UserViewController *uVC = [[UserViewController alloc]initWithNibName:@"UserViewController" bundle:nil];
+        uVC.hidesBottomBarWhenPushed = YES;
+        uVC.userId = [((dataInTable[row])[@"user_info"])[@"uid"] stringValue];
+        [self.navigationController pushViewController:uVC animated:YES];
+    }
 }
 
 - (void)pushQuestionControllerWithRow:(NSUInteger)row {
