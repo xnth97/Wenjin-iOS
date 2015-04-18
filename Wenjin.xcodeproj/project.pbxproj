@@ -23,6 +23,8 @@
 		E93063D81ACAABC7000140C1 /* AnswerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E93063D61ACAABC7000140C1 /* AnswerViewController.xib */; };
 		E93063DC1ACAABD9000140C1 /* UserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E93063DA1ACAABD9000140C1 /* UserViewController.m */; };
 		E93063DD1ACAABD9000140C1 /* UserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E93063DB1ACAABD9000140C1 /* UserViewController.xib */; };
+		E9479EE31AE2AB42003BCE97 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9479EE11AE2AB42003BCE97 /* AboutViewController.m */; };
+		E9479EE41AE2AB42003BCE97 /* AboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9479EE21AE2AB42003BCE97 /* AboutViewController.xib */; };
 		E9642E911AC5714800FF7875 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E9642E901AC5714800FF7875 /* main.m */; };
 		E9642E941AC5714800FF7875 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E9642E931AC5714800FF7875 /* AppDelegate.m */; };
 		E9642E9A1AC5714800FF7875 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9642E981AC5714800FF7875 /* Main.storyboard */; };
@@ -117,6 +119,9 @@
 		E93063D91ACAABD9000140C1 /* UserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserViewController.h; path = Controller/User/UserViewController.h; sourceTree = "<group>"; };
 		E93063DA1ACAABD9000140C1 /* UserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserViewController.m; path = Controller/User/UserViewController.m; sourceTree = "<group>"; };
 		E93063DB1ACAABD9000140C1 /* UserViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UserViewController.xib; path = Controller/User/UserViewController.xib; sourceTree = "<group>"; };
+		E9479EE01AE2AB42003BCE97 /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AboutViewController.h; path = Controller/Settings/AboutViewController.h; sourceTree = "<group>"; };
+		E9479EE11AE2AB42003BCE97 /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AboutViewController.m; path = Controller/Settings/AboutViewController.m; sourceTree = "<group>"; };
+		E9479EE21AE2AB42003BCE97 /* AboutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AboutViewController.xib; path = Controller/Settings/AboutViewController.xib; sourceTree = "<group>"; };
 		E9642E8B1AC5714800FF7875 /* Wenjin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wenjin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9642E8F1AC5714800FF7875 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E9642E901AC5714800FF7875 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -458,6 +463,9 @@
 			children = (
 				E96F092D1AD7F44100847E5E /* SettingTableViewController.h */,
 				E96F092E1AD7F44100847E5E /* SettingTableViewController.m */,
+				E9479EE01AE2AB42003BCE97 /* AboutViewController.h */,
+				E9479EE11AE2AB42003BCE97 /* AboutViewController.m */,
+				E9479EE21AE2AB42003BCE97 /* AboutViewController.xib */,
 			);
 			name = Setting;
 			sourceTree = "<group>";
@@ -869,6 +877,7 @@
 				E9EB618B1ACC187A001F5DA3 /* QuestionAnswerTableViewCell.xib in Resources */,
 				E9C1A1CA1ACC080700892B60 /* bootstrap.css in Resources */,
 				E990790B1ACEE1C7008DCA22 /* LoginViewController.xib in Resources */,
+				E9479EE41AE2AB42003BCE97 /* AboutViewController.xib in Resources */,
 				E9642E9C1AC5714800FF7875 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -956,6 +965,7 @@
 				E9C9C6F31AC6B39200CC228A /* HomeViewController.m in Sources */,
 				E93063D21ACAAB81000140C1 /* QuestionViewController.m in Sources */,
 				E90F42741ACD979500263622 /* UserDataManager.m in Sources */,
+				E9479EE31AE2AB42003BCE97 /* AboutViewController.m in Sources */,
 				E9AC9E561AD3A4840016CA23 /* wjOperationManager.m in Sources */,
 				E9642E911AC5714800FF7875 /* main.m in Sources */,
 				E96F09361AD8FF7700847E5E /* ExploreDataManager.m in Sources */,

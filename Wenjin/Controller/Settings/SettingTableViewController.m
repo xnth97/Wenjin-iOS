@@ -8,6 +8,7 @@
 
 #import "SettingTableViewController.h"
 #import "wjAccountManager.h"
+#import "AboutViewController.h"
 
 @interface SettingTableViewController ()
 
@@ -68,6 +69,13 @@
     NSUInteger section = [indexPath section];
     NSUInteger row = [indexPath row];
     
+    if (section == 0) {
+        if (row == 0) {
+            AboutViewController *about = [[AboutViewController alloc]initWithNibName:@"AboutViewController" bundle:nil];
+            [self.navigationController pushViewController:about animated:YES];
+        }
+    }
+    
     if (section == 1) {
         if (row == 0) {
             [self logout];
@@ -84,6 +92,12 @@
     NSUInteger section = [indexPath section];
     NSUInteger row = [indexPath row];
     cell.textLabel.text = ((NSArray *)(cellValues[section]))[row];
+    
+    if (section == 0) {
+        if (row == 0) {
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        }
+    }
     
     return cell;
 }

@@ -152,9 +152,11 @@
 
 // Question Push User Delegate
 - (void)pushUserControllerWithRow:(NSUInteger)row {
-    UserViewController *uVC = [[UserViewController alloc]initWithNibName:@"UserViewController" bundle:nil];
-    uVC.userId = [(questionAnswersData[row])[@"uid"] stringValue];
-    [self.navigationController pushViewController:uVC animated:YES];
+    if (![[(questionAnswersData[row])[@"uid"] stringValue] isEqualToString:@"-1"]) {
+        UserViewController *uVC = [[UserViewController alloc]initWithNibName:@"UserViewController" bundle:nil];
+        uVC.userId = [(questionAnswersData[row])[@"uid"] stringValue];
+        [self.navigationController pushViewController:uVC animated:YES];
+    }
 }
 
 // Question Header View Delegate

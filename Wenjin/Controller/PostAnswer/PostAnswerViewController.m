@@ -36,7 +36,18 @@
     [data shareInstance].attachAccessKey = [self MD5FromNowDate];
     
     UIBarButtonItem *cancelBtn = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemCancel block:^(id weakSender) {
-        [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+        if ([answerView.text isEqualToString:@""]) {
+            [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+        } else {
+            UIAlertController *cancelAlert = [UIAlertController alertControllerWithTitle:@"呃..." message:@"确定要放弃正在输入的内容吗？" preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", nil) style:UIAlertActionStyleCancel handler:nil];
+            UIAlertAction *dismissAction = [UIAlertAction actionWithTitle:@"放弃" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
+                [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+            }];
+            [cancelAlert addAction:cancelAction];
+            [cancelAlert addAction:dismissAction];
+            [self presentViewController:cancelAlert animated:YES completion:nil];
+        }
     }];
     [self.navigationItem setLeftBarButtonItem:cancelBtn];
     
@@ -107,6 +118,7 @@
     answerView.inputAccessoryView = accessoryToolbar;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide) name:UIKeyboardWillHideNotification object:nil];
     
     [answerView becomeFirstResponder];
     
@@ -119,8 +131,16 @@
 
 - (void)keyboardWillShow:(NSNotification *)notification {
     // float animationDuration = [[[notification userInfo] valueForKey:UIKeyboardAnimationDurationUserInfoKey] floatValue];
-    CGFloat keyboardHeight = [[[notification userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size.height;
-    [answerView setFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - keyboardHeight)];
+    [UIView animateWithDuration:0.3 animations:^{
+        CGFloat keyboardHeight = [[[notification userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size.height;
+        [answerView setFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - keyboardHeight)];
+    }];
+}
+
+- (void)keyboardWillHide {
+    [UIView animateWithDuration:0.3 animations:^{
+        [answerView setFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 44)];
+    }];
 }
 
 - (void)dealloc {

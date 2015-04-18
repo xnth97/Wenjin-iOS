@@ -33,6 +33,7 @@
     [self.view addSubview:detailTextView];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
     
     [detailTextView becomeFirstResponder];
     
@@ -88,8 +89,16 @@
 
 - (void)keyboardWillShow:(NSNotification *)notification {
     // float animationDuration = [[[notification userInfo] valueForKey:UIKeyboardAnimationDurationUserInfoKey] floatValue];
-    CGFloat keyboardHeight = [[[notification userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size.height;
-    [detailTextView setFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - keyboardHeight)];
+    [UIView animateWithDuration:0.3 animations:^{
+        CGFloat keyboardHeight = [[[notification userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size.height;
+        [detailTextView setFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - keyboardHeight)];
+    }];
+}
+
+- (void)keyboardWillHide:(NSNotification *)notification {
+    [UIView animateWithDuration:0.3 animations:^{
+        [detailTextView setFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 44)];
+    }];
 }
 
 - (void)dealloc {
@@ -99,7 +108,23 @@
 }
 
 - (IBAction)cancel {
-    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+    if ([detailTextView.text isEqualToString:@""]) {
+        [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+    } else {
+        UIAlertController *cancelAlert = [UIAlertController alertControllerWithTitle:@"是否要保存您的内容更改？" message:@"" preferredStyle:UIAlertControllerStyleActionSheet];
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", nil) style:UIAlertActionStyleCancel handler:nil];
+        UIAlertAction *dismissAction = [UIAlertAction actionWithTitle:@"不保存" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
+            [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+        }];
+        UIAlertAction *saveAction = [UIAlertAction actionWithTitle:@"保存" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            [data shareInstance].postQuestionDetail = detailTextView.text;
+            [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+        }];
+        [cancelAlert addAction:cancelAction];
+        [cancelAlert addAction:saveAction];
+        [cancelAlert addAction:dismissAction];
+        [self presentViewController:cancelAlert animated:YES completion:nil];
+    }
 }
 
 - (IBAction)done {

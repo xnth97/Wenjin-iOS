@@ -15,6 +15,7 @@
 #import "wjAPIs.h"
 #import <KVOController/FBKVOController.h>
 #import "wjOperationManager.h"
+#import "wjAppearanceManager.h"
 #import "UserViewController.h"
 #import "AnswerViewController.h"
 #import "QuestionViewController.h"
@@ -143,12 +144,15 @@
     }
     NSUInteger row = [indexPath row];
     NSDictionary *tmp = rowsData[row];
-    
+    NSString *actionString;
     if ([(tmp[@"answer_info"])[@"answer_content"] isEqualToString:@""]) {
-        cell.actionLabel.text = [NSString stringWithFormat:@"%@ 发布了问题", (tmp[@"answer_info"])[@"nick_name"]];
+        actionString = [NSString stringWithFormat:@"%@ 发布了问题", (tmp[@"answer_info"])[@"nick_name"]];
     } else {
-        cell.actionLabel.text = [NSString stringWithFormat:@"%@ 回答了问题", (tmp[@"answer_info"])[@"nick_name"]];
+        actionString = [NSString stringWithFormat:@"%@ 回答了问题", (tmp[@"answer_info"])[@"nick_name"]];
     }
+    NSMutableAttributedString *str = [[NSMutableAttributedString alloc]initWithString:actionString];
+    [str addAttribute:NSForegroundColorAttributeName value:[wjAppearanceManager userActionTextColor] range:NSMakeRange(0, [(tmp[@"answer_info"])[@"nick_name"] length])];
+    cell.actionLabel.attributedText = str;
     cell.questionLabel.text = [wjStringProcessor filterHTMLWithString:(tmp[@"question_info"])[@"question_content"]];
     cell.detailLabel.text = [wjStringProcessor processAnswerDetailString:(tmp[@"answer_info"])[@"answer_content"]];
     cell.actionLabel.tag = row;

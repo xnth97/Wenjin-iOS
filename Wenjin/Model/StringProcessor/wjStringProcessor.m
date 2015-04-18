@@ -79,7 +79,7 @@
                       "<body> \n"
                       "<div class=\"container\"> \n"
                       "<div class=\"row\"> \n"
-                      "<div class=\"col-sm-12\" style=\"margin-left:8px; margin-right:8px; font-size:16px; line-height:1.5;\"> \n"
+                      "<div class=\"col-sm-12\" style=\"margin-left:8px; margin-right:8px; font-size:16px; line-height:1.5; font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;\"> \n"
                       "%@ \n"
                       "</div></div></div> \n"
                       "<script src=\"%@\"></script> \n"

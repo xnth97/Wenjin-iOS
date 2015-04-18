@@ -103,12 +103,14 @@
             }
             dataInTable = rowsData;
             
-            [self.tableView reloadData];
             [self.tableView.infiniteScrollingView stopAnimating];
             [self.tableView.pullToRefreshView stopAnimating];
             
             if (currentPage == 1) {
+                [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
                 [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
+            } else {
+                [self.tableView reloadData];
             }
             
         } failure:^(NSString *errStr) {

@@ -64,9 +64,11 @@
         [agreeBtn addTarget:self action:@selector(voteOperation) forControlEvents:UIControlEventTouchUpInside];
         
         UITapGestureRecognizer *userTapRecognizer = [[UITapGestureRecognizer alloc]initWithBlock:^(id weakSender) {
-            UserViewController *uVC = [[UserViewController alloc]initWithNibName:@"UserViewController" bundle:nil];
-            uVC.userId = [ansData[@"uid"] stringValue];
-            [self.navigationController pushViewController:uVC animated:YES];
+            if (![[ansData[@"uid"] stringValue] isEqualToString:@"-1"]) {
+                UserViewController *uVC = [[UserViewController alloc]initWithNibName:@"UserViewController" bundle:nil];
+                uVC.userId = [ansData[@"uid"] stringValue];
+                [self.navigationController pushViewController:uVC animated:YES];
+            }
         }];
         [userTapRecognizer setNumberOfTapsRequired:1];
         [userInfoView setUserInteractionEnabled:YES];

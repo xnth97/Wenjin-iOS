@@ -56,6 +56,7 @@
     [self.navigationItem setRightBarButtonItem:doneBtn];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide) name:UIKeyboardWillHideNotification object:nil];
     
     [commentTextView becomeFirstResponder];
 }
@@ -67,8 +68,16 @@
 
 - (void)keyboardWillShow:(NSNotification *)notification {
     // float animationDuration = [[[notification userInfo] valueForKey:UIKeyboardAnimationDurationUserInfoKey] floatValue];
-    CGFloat keyboardHeight = [[[notification userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size.height;
-    [commentTextView setFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - keyboardHeight)];
+    [UIView animateWithDuration:0.3 animations:^{
+        CGFloat keyboardHeight = [[[notification userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size.height;
+        [commentTextView setFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - keyboardHeight)];
+    }];
+}
+
+- (void)keyboardWillHide {
+    [UIView animateWithDuration:0.3 animations:^{
+        [commentTextView setFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    }];
 }
 
 - (void)dealloc {

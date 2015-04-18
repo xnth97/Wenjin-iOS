@@ -25,7 +25,8 @@
 }
 
 + (UIColor *)questionTitleLabelTextColor {
-    UIColor * color = [self mainTintColor];
+    //UIColor * color = [UIColor colorWithRed:26/255.0f green:146/255.0f blue:26/255.0f alpha:1.0f];
+    UIColor *color = [UIColor colorWithWhite:0.13 alpha:1.0];
     return color;
 }
 

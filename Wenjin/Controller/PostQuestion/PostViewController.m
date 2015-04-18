@@ -46,6 +46,7 @@
     [self.view addSubview:questionView];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide) name:UIKeyboardWillHideNotification object:nil];
     
     UIToolbar *accessoryToolbar = [[UIToolbar alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 44)];
     accessoryToolbar.barStyle = UIBarStyleDefault;
@@ -83,12 +84,19 @@
 
 - (void)keyboardWillShow:(NSNotification *)notification {
     // float animationDuration = [[[notification userInfo] valueForKey:UIKeyboardAnimationDurationUserInfoKey] floatValue];
-    [UIView animateWithDuration:0.5 animations:^{
+    [UIView animateWithDuration:0.3 animations:^{
         CGFloat keyboardHeight = [[[notification userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size.height;
         [questionView setFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - keyboardHeight - tagsControlHeight - 4)];
         [questionTagsControl setFrame:CGRectMake(8, questionView.frame.size.height, self.view.frame.size.width - 16, tagsControlHeight)];
     }];
     
+}
+
+- (void)keyboardWillHide {
+    [UIView animateWithDuration:0.3 animations:^{
+        [questionView setFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 44 - tagsControlHeight - 4)];
+        [questionTagsControl setFrame:CGRectMake(8, questionView.frame.size.height, self.view.frame.size.width - 16, tagsControlHeight)];
+    }];
 }
 
 - (void)dealloc {

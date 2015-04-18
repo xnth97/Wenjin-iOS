@@ -132,9 +132,11 @@
             currentPage --;
         }
         
-        [self.tableView reloadData];
         if (currentPage == 1) {
+            [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
             [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
+        } else {
+            [self.tableView reloadData];
         }
         [self.tableView.infiniteScrollingView stopAnimating];
         [self.tableView.pullToRefreshView stopAnimating];
@@ -184,7 +186,10 @@
     }
     NSUInteger row = [indexPath row];
     NSDictionary *tmp = dataInTable[row];
-    cell.actionLabel.text = [NSString stringWithFormat:@"%@ 发布了问题", (tmp[@"user_info"])[@"nick_name"]];
+    NSString *actionString = [NSString stringWithFormat:@"%@ 发布了问题", (tmp[@"user_info"])[@"nick_name"]];
+    NSMutableAttributedString *str = [[NSMutableAttributedString alloc]initWithString:actionString];
+    [str addAttribute:NSForegroundColorAttributeName value:[wjAppearanceManager userActionTextColor] range:NSMakeRange(0, [(tmp[@"user_info"])[@"nick_name"] length])];
+    cell.actionLabel.attributedText = str;
     cell.questionLabel.text = [wjStringProcessor filterHTMLWithString:tmp[@"question_content"]];
     [cell loadAvatarImageWithApartURL:(tmp[@"user_info"])[@"avatar_file"]];
     cell.detailLabel.text = @"";
