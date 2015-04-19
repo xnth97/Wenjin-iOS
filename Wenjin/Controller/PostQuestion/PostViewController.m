@@ -16,6 +16,7 @@
 #import "HomeViewController.h"
 #import <CommonCrypto/CommonDigest.h>
 #import "wjAppearanceManager.h"
+#import "NYSegmentedControl.h"
 
 @interface PostViewController ()
 
@@ -26,6 +27,7 @@
     CGFloat tagsControlHeight;
     
     TLTagsControl *questionTagsControl;
+    NYSegmentedControl *isAnonymousControl;
 }
 
 @synthesize questionView;
@@ -52,13 +54,22 @@
     accessoryToolbar.barStyle = UIBarStyleDefault;
     accessoryToolbar.translucent = YES;
     
+    isAnonymousControl = [[NYSegmentedControl alloc]initWithItems:@[@"不匿名", @"匿名"]];
+    isAnonymousControl.backgroundColor = [UIColor colorWithWhite:0.9f alpha:1.0f];
+    isAnonymousControl.segmentIndicatorBackgroundColor = [UIColor whiteColor];
+    isAnonymousControl.segmentIndicatorInset = 0.0f;
+    isAnonymousControl.titleTextColor = [UIColor lightGrayColor];
+    isAnonymousControl.selectedTitleTextColor = [wjAppearanceManager mainTintColor];
+    [isAnonymousControl sizeToFit];
+    
+    UIBarButtonItem *isAnonymousBtn = [[UIBarButtonItem alloc]initWithCustomView:isAnonymousControl];
     UIBarButtonItem *addDetailBtn = [[UIBarButtonItem alloc]initWithTitle:@"添加描述" style:UIBarButtonItemStylePlain block:^(id weakSender) {
         UIStoryboard *storyboard = self.storyboard;
         UINavigationController *addDetailNav = [storyboard instantiateViewControllerWithIdentifier:@"detailNav"];
         [self presentViewController:addDetailNav animated:YES completion:nil];
     }];
     UIBarButtonItem *flexibleSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
-    [accessoryToolbar setItems:@[flexibleSpace, flexibleSpace, addDetailBtn]];
+    [accessoryToolbar setItems:@[isAnonymousBtn, flexibleSpace, addDetailBtn]];
     questionView.inputAccessoryView = accessoryToolbar;
     
     questionTagsControl = [[TLTagsControl alloc]initWithFrame:CGRectMake(0, 0, 0, 0)];
@@ -129,7 +140,8 @@
         NSDictionary *parameters = @{@"question_content": self.questionView.text,
                                      @"question_detail": [data shareInstance].postQuestionDetail,
                                      @"topics": topicsStr,
-                                     @"attach_access_key": [data shareInstance].attachAccessKey};
+                                     @"attach_access_key": [data shareInstance].attachAccessKey,
+                                     @"anonymous": [NSNumber numberWithInteger:isAnonymousControl.selectedSegmentIndex]};
         [PostDataManager postQuestionWithParameters:parameters success:^(NSString *questionId) {
             [MsgDisplay showSuccessMsg:[NSString stringWithFormat:@"问题发布成功！"]];
             

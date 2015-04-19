@@ -64,10 +64,12 @@
         [agreeBtn addTarget:self action:@selector(voteOperation) forControlEvents:UIControlEventTouchUpInside];
         
         UITapGestureRecognizer *userTapRecognizer = [[UITapGestureRecognizer alloc]initWithBlock:^(id weakSender) {
-            if (![[ansData[@"uid"] stringValue] isEqualToString:@"-1"]) {
+            if (!([ansData[@"uid"] integerValue] == -1)) {
                 UserViewController *uVC = [[UserViewController alloc]initWithNibName:@"UserViewController" bundle:nil];
                 uVC.userId = [ansData[@"uid"] stringValue];
                 [self.navigationController pushViewController:uVC animated:YES];
+            } else {
+                [MsgDisplay showErrorMsg:@"无法查看匿名用户哦~"];
             }
         }];
         [userTapRecognizer setNumberOfTapsRequired:1];

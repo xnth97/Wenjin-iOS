@@ -152,10 +152,12 @@
 
 // Question Push User Delegate
 - (void)pushUserControllerWithRow:(NSUInteger)row {
-    if (![[(questionAnswersData[row])[@"uid"] stringValue] isEqualToString:@"-1"]) {
+    if (!([(questionAnswersData[row])[@"uid"] integerValue] == -1)) {
         UserViewController *uVC = [[UserViewController alloc]initWithNibName:@"UserViewController" bundle:nil];
         uVC.userId = [(questionAnswersData[row])[@"uid"] stringValue];
         [self.navigationController pushViewController:uVC animated:YES];
+    } else {
+        [MsgDisplay showErrorMsg:@"无法查看匿名用户~"];
     }
 }
 

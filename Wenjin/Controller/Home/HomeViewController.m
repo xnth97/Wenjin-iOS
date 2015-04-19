@@ -210,17 +210,19 @@
 // HomeTableViewCell delegate
 
 - (void)pushUserControllerWithRow:(NSUInteger)row {
-    if (![[((rowsData[row])[@"user_info"])[@"uid"] stringValue] isEqualToString:@"-1"]) {
+    if (!([((dataInView[row])[@"user_info"])[@"uid"] integerValue] == -1)) {
         UserViewController *uVC = [[UserViewController alloc]initWithNibName:@"UserViewController" bundle:nil];
         uVC.hidesBottomBarWhenPushed = YES;
-        uVC.userId = [((rowsData[row])[@"user_info"])[@"uid"] stringValue];
+        uVC.userId = [((dataInView[row])[@"user_info"])[@"uid"] stringValue];
         [self.navigationController pushViewController:uVC animated:YES];
+    } else {
+        [MsgDisplay showErrorMsg:@"无法查看匿名用户~"];
     }
 }
 
 - (void)pushQuestionControllerWithRow:(NSUInteger)row {
     QuestionViewController *qVC = [[QuestionViewController alloc]initWithNibName:@"QuestionViewController" bundle:nil];
-    qVC.questionId = ((rowsData[row])[@"question_info"])[@"question_id"];
+    qVC.questionId = ((dataInView[row])[@"question_info"])[@"question_id"];
     qVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:qVC animated:YES];
 }
@@ -228,7 +230,7 @@
 - (void)pushAnswerControllerWithRow:(NSUInteger)row {
     AnswerViewController *aVC = [[AnswerViewController alloc]initWithNibName:@"AnswerViewController" bundle:nil];
     aVC.hidesBottomBarWhenPushed = YES;
-    aVC.answerId = ((rowsData[row])[@"answer_info"])[@"answer_id"];
+    aVC.answerId = ((dataInView[row])[@"answer_info"])[@"answer_id"];
     [self.navigationController pushViewController:aVC animated:YES];
 }
 

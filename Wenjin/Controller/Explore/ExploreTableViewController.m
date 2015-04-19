@@ -107,6 +107,7 @@
         default:
             break;
     }
+    [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
     [self refreshContent];
 }
 
@@ -134,7 +135,6 @@
         
         if (currentPage == 1) {
             [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
-            [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
         } else {
             [self.tableView reloadData];
         }
@@ -217,11 +217,13 @@
 // Cell Delegate
 
 - (void)pushUserControllerWithRow:(NSUInteger)row {
-    if (![[((rowsData[row])[@"user_info"])[@"uid"] stringValue] isEqualToString:@"-1"]) {
+    if (!([((dataInTable[row])[@"user_info"])[@"uid"] integerValue] == -1)) {
         UserViewController *uVC = [[UserViewController alloc]initWithNibName:@"UserViewController" bundle:nil];
         uVC.hidesBottomBarWhenPushed = YES;
         uVC.userId = [((dataInTable[row])[@"user_info"])[@"uid"] stringValue];
         [self.navigationController pushViewController:uVC animated:YES];
+    } else {
+        [MsgDisplay showErrorMsg:@"无法查看匿名用户~"];
     }
 }
 

@@ -88,6 +88,7 @@
 - (void)segmentedSelected {
     NSUInteger index = segmentedControl.selectedSegmentIndex;
     topicType = topicTypesArray[index];
+    [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
     [self refreshContent];
 }
 
@@ -108,7 +109,6 @@
             
             if (currentPage == 1) {
                 [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
-                [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
             } else {
                 [self.tableView reloadData];
             }

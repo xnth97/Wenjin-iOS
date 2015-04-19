@@ -13,13 +13,17 @@
 #import "QuestionViewController.h"
 #import <CommonCrypto/CommonDigest.h>
 #import "data.h"
+#import "NYSegmentedControl.h"
+#import "wjAppearanceManager.h"
 #import <MobileCoreServices/MobileCoreServices.h>
 
 @interface PostAnswerViewController ()
 
 @end
 
-@implementation PostAnswerViewController
+@implementation PostAnswerViewController {
+    NYSegmentedControl *isAnonymousControl;
+}
 
 @synthesize answerView;
 @synthesize questionId;
@@ -34,6 +38,14 @@
     self.navigationController.view.backgroundColor = [UIColor whiteColor];
     
     [data shareInstance].attachAccessKey = [self MD5FromNowDate];
+    
+    isAnonymousControl = [[NYSegmentedControl alloc]initWithItems:@[@"不匿名", @"匿名"]];
+    isAnonymousControl.backgroundColor = [UIColor colorWithWhite:0.9f alpha:1.0f];
+    isAnonymousControl.segmentIndicatorBackgroundColor = [UIColor whiteColor];
+    isAnonymousControl.segmentIndicatorInset = 0.0f;
+    isAnonymousControl.titleTextColor = [UIColor lightGrayColor];
+    isAnonymousControl.selectedTitleTextColor = [wjAppearanceManager mainTintColor];
+    [isAnonymousControl sizeToFit];
     
     UIBarButtonItem *cancelBtn = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemCancel block:^(id weakSender) {
         if ([answerView.text isEqualToString:@""]) {
@@ -54,7 +66,9 @@
     UIBarButtonItem *doneBtn = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemDone block:^(id weakSender) {
         NSDictionary *parameters = @{@"question_id": questionId,
                                      @"answer_content": answerView.text,
-                                     @"attach_access_key": [data shareInstance].attachAccessKey};
+                                     @"attach_access_key": [data shareInstance].attachAccessKey,
+                                     @"anonymous": [NSNumber numberWithInteger:isAnonymousControl.selectedSegmentIndex],
+                                     @"auto_focus": [NSNumber numberWithInteger: [[NSUserDefaults standardUserDefaults] integerForKey:@"autoFocus"]]};
         [PostDataManager postAnswerWithParameters:parameters success:^(NSString *answerId) {
             [MsgDisplay showSuccessMsg:@"答案添加成功！"];
             [self.navigationController dismissViewControllerAnimated:YES completion:^{
@@ -77,6 +91,7 @@
     accessoryToolbar.barStyle = UIBarStyleDefault;
     accessoryToolbar.translucent = YES;
     
+    UIBarButtonItem *anonymousBtn = [[UIBarButtonItem alloc]initWithCustomView:isAnonymousControl];
     UIBarButtonItem *addImageBtn = [[UIBarButtonItem alloc]initWithTitle:@"添加图片" style:UIBarButtonItemStylePlain block:^(id weakSender) {
         
         UIAlertController *uploadController = [UIAlertController alertControllerWithTitle:@"上传图片" message:@"" preferredStyle:UIAlertControllerStyleActionSheet];
@@ -114,7 +129,7 @@
         
     }];
     UIBarButtonItem *flexibleSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
-    [accessoryToolbar setItems:@[flexibleSpace, flexibleSpace, addImageBtn]];
+    [accessoryToolbar setItems:@[anonymousBtn, flexibleSpace, addImageBtn]];
     answerView.inputAccessoryView = accessoryToolbar;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];

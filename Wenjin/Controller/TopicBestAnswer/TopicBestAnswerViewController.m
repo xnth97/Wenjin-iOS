@@ -183,10 +183,12 @@
 // HomeCellDelegate
 
 - (void)pushUserControllerWithRow:(NSUInteger)row {
-    if (![[((rowsData[row])[@"answer_info"])[@"uid"] stringValue] isEqualToString:@"-1"]) {
+    if (!([((rowsData[row])[@"answer_info"])[@"uid"] integerValue] == -1)) {
         UserViewController *uVC = [[UserViewController alloc]initWithNibName:@"UserViewController" bundle:nil];
         uVC.userId = [((rowsData[row])[@"answer_info"])[@"uid"] stringValue];
         [self.navigationController pushViewController:uVC animated:YES];
+    } else {
+        [MsgDisplay showErrorMsg:@"无法查看匿名用户~"];
     }
 }
 

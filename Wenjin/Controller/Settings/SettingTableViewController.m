@@ -17,13 +17,16 @@
 @implementation SettingTableViewController {
     NSArray *cellValues;
     NSArray *headerTitles;
+    NSString *autoFocusKey;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    headerTitles = @[@"关于", @"帐号"];
-    cellValues = @[@[@"关于问津", @"联系我们"], @[@"注销帐号"]];
+    headerTitles = @[@"关于", @"设置", @"帐号"];
+    cellValues = @[@[@"关于问津", @"联系我们"], @[@"回答后自动关注"], @[@"注销帐号"]];
+    
+    autoFocusKey = @"autoFocus";
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -76,7 +79,7 @@
         }
     }
     
-    if (section == 1) {
+    if (section == 2) {
         if (row == 0) {
             [self logout];
         }
@@ -97,9 +100,30 @@
         if (row == 0) {
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         }
+    } else if (section == 1) {
+        if (row == 0) {
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+            if ([defaults objectForKey:autoFocusKey] == nil) {
+                [defaults setInteger:1 forKey:autoFocusKey];
+            }
+            UISwitch *autoFocusSwitch = [[UISwitch alloc]init];
+            autoFocusSwitch.on = ([defaults integerForKey:autoFocusKey] == 1) ? YES : NO;
+            [autoFocusSwitch addTarget:self action:@selector(autoFocusSwitchChanged:) forControlEvents:UIControlEventValueChanged];
+            cell.accessoryView = autoFocusSwitch;
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        }
     }
     
     return cell;
+}
+
+- (void)autoFocusSwitchChanged:(UISwitch *)sender {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    if (sender.on == YES) {
+        [defaults setInteger:1 forKey:autoFocusKey];
+    } else {
+        [defaults setInteger:0 forKey:autoFocusKey];
+    }
 }
 
 
