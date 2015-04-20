@@ -42,6 +42,10 @@
     self.title = @"回答";
     self.automaticallyAdjustsScrollViewInsets = YES;
     
+    UIView *splitLine = [[UIView alloc]initWithFrame:CGRectMake(0, userInfoView.frame.size.height - 0.5, userInfoView.frame.size.width, 0.5)];
+    [splitLine setBackgroundColor:[UIColor colorWithWhite:0.9 alpha:1.0]];
+    [userInfoView addSubview:splitLine];
+    
     FBKVOController *kvoController = [FBKVOController controllerWithObserver:self];
     self.KVOController = kvoController;
     [self.KVOController observe:self keyPath:@"agreeCount" options:NSKeyValueObservingOptionInitial|NSKeyValueObservingOptionNew block:^(id observer, id object, NSDictionary *change) {
@@ -172,6 +176,15 @@
     AnswerCommentTableViewController *commentVC = [[AnswerCommentTableViewController alloc]initWithStyle:UITableViewStylePlain];
     commentVC.answerId = answerId;
     [self.navigationController pushViewController:commentVC animated:YES];
+}
+
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
+    if (navigationType == UIWebViewNavigationTypeLinkClicked) {
+        [[UIApplication sharedApplication] openURL:[request URL]];
+        return NO;
+    } else {
+        return YES;
+    }
 }
 
 /*

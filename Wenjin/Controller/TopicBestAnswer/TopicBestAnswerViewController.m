@@ -28,6 +28,7 @@
     NSMutableArray *rowsData;
 }
 
+@synthesize topicHeaderView;
 @synthesize topicDescription;
 @synthesize topicImage;
 @synthesize topicTitle;
@@ -52,6 +53,10 @@
     topicTitle.text = @"";
     topicDescription.text = @"";
     focusTopic.hidden = YES;
+    
+    UIView *splitLine = [[UIView alloc]initWithFrame:CGRectMake(0, topicHeaderView.frame.size.height - 0.5, topicHeaderView.frame.size.width, 0.5)];
+    [splitLine setBackgroundColor:[UIColor colorWithWhite:0.9 alpha:1.0]];
+    [topicHeaderView addSubview:splitLine];
     
     rowsData = [[NSMutableArray alloc]init];
     

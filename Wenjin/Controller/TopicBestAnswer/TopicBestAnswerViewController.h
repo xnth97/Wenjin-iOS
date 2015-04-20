@@ -11,6 +11,7 @@
 
 @interface TopicBestAnswerViewController : UIViewController<UITableViewDelegate, UITableViewDataSource, homeTableViewCellDelegate>
 
+@property (weak, nonatomic) IBOutlet UIView *topicHeaderView;
 @property (weak, nonatomic) IBOutlet UIImageView *topicImage;
 @property (weak, nonatomic) IBOutlet UILabel *topicTitle;
 @property (weak, nonatomic) IBOutlet UILabel *topicDescription;

@@ -44,18 +44,20 @@
     topicTypesArray = @[@"hot", @"focus"];
     topicType = topicTypesArray[0];
     
-    segmentedControl = [[NYSegmentedControl alloc]initWithItems:@[@"热门", @"我关注的"]];
-    [segmentedControl addTarget:self action:@selector(segmentedSelected) forControlEvents:UIControlEventValueChanged];
-    segmentedControl.selectedSegmentIndex = 0;
-    segmentedControl.borderWidth = 0.0f;
-    segmentedControl.segmentIndicatorBorderWidth = 0.0f;
-    segmentedControl.backgroundColor = [wjAppearanceManager segmentedUnselectedColor];
-    segmentedControl.segmentIndicatorBackgroundColor = [wjAppearanceManager segmentedSelectedColor];
-    segmentedControl.segmentIndicatorInset = 0.0f;
-    segmentedControl.titleTextColor = [wjAppearanceManager segmentedUnselectedTextColor];
-    segmentedControl.selectedTitleTextColor = [UIColor whiteColor];
-    [segmentedControl sizeToFit];
-    [self.navigationItem setTitleView:segmentedControl];
+    if (uid == nil) {
+        segmentedControl = [[NYSegmentedControl alloc]initWithItems:@[@"热门", @"我关注的"]];
+        [segmentedControl addTarget:self action:@selector(segmentedSelected) forControlEvents:UIControlEventValueChanged];
+        segmentedControl.selectedSegmentIndex = 0;
+        segmentedControl.borderWidth = 0.0f;
+        segmentedControl.segmentIndicatorBorderWidth = 0.0f;
+        segmentedControl.backgroundColor = [wjAppearanceManager segmentedUnselectedColor];
+        segmentedControl.segmentIndicatorBackgroundColor = [wjAppearanceManager segmentedSelectedColor];
+        segmentedControl.segmentIndicatorInset = 0.0f;
+        segmentedControl.titleTextColor = [wjAppearanceManager segmentedUnselectedTextColor];
+        segmentedControl.selectedTitleTextColor = [UIColor whiteColor];
+        [segmentedControl sizeToFit];
+        [self.navigationItem setTitleView:segmentedControl];
+    }
     
     if ([self respondsToSelector:@selector(automaticallyAdjustsScrollViewInsets)]) {
         self.automaticallyAdjustsScrollViewInsets = NO;
@@ -88,7 +90,9 @@
 - (void)segmentedSelected {
     NSUInteger index = segmentedControl.selectedSegmentIndex;
     topicType = topicTypesArray[index];
-    [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
+    if (dataInTable.count != 0) {
+        [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
+    }
     [self refreshContent];
 }
 

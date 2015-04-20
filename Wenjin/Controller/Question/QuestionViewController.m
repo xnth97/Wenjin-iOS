@@ -15,6 +15,7 @@
 #import "PostAnswerViewController.h"
 #import "SVPullToRefresh.h"
 #import "TopicBestAnswerViewController.h"
+#import "ALActionBlocks.h"
 
 @interface QuestionViewController ()
 
@@ -37,6 +38,17 @@
     self.questionTableView.dataSource = self;
     self.questionTableView.delegate = self;
     self.questionTableView.tableFooterView = [[UIView alloc]init];
+    
+    UIBarButtonItem *shareBtn = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAction block:^(id weakSender) {
+        NSURL *shareURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://wenjin.twtstudio.com/?/question/%@", questionId]];
+        NSArray *activityItems = @[shareURL];
+        UIActivityViewController *activityController = [[UIActivityViewController alloc]initWithActivityItems:activityItems applicationActivities:nil];
+        activityController.modalPresentationStyle = UIModalPresentationPopover;
+        activityController.popoverPresentationController.permittedArrowDirections = UIPopoverArrowDirectionAny;
+        activityController.popoverPresentationController.barButtonItem = self.navigationItem.rightBarButtonItem;
+        [self presentViewController:activityController animated:YES completion:nil];
+    }];
+    [self.navigationItem setRightBarButtonItem:shareBtn];
     
     if ([self respondsToSelector:@selector(automaticallyAdjustsScrollViewInsets)]) {
         self.automaticallyAdjustsScrollViewInsets = NO;
