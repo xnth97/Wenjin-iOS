@@ -11,7 +11,9 @@
 #import "MsgDisplay.h"
 #import "wjCookieManager.h"
 #import "HomeViewController.h"
+#import "wjAppearanceManager.h"
 #import "data.h"
+#import <POP/POP.h>
 
 @interface LoginViewController ()
 
@@ -24,16 +26,30 @@
 
 @synthesize usernameField;
 @synthesize passwordField;
+@synthesize loginBtn;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    loginBtn.tintColor = [UIColor whiteColor];
+    loginBtn.backgroundColor = [wjAppearanceManager mainTintColor];
+    loginBtn.layer.cornerRadius = 7.0;
+    loginBtn.clipsToBounds = YES;
+    loginBtn.layer.shadowOffset = CGSizeMake(0, 10.0);
+    loginBtn.layer.shadowOpacity = 10.0;
+    loginBtn.layer.shadowRadius = 5.0;
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide) name:UIKeyboardWillHideNotification object:nil];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (IBAction)login {
@@ -86,6 +102,32 @@
 - (IBAction)nextTextField {
     [usernameField resignFirstResponder];
     [passwordField becomeFirstResponder];
+}
+
+- (IBAction)backgroundTapped {
+    [usernameField resignFirstResponder];
+    [passwordField resignFirstResponder];
+}
+
+- (void)keyboardWillShow {
+    if (self.view.frame.size.height <= 568) {
+        POPBasicAnimation *viewAnim = [POPBasicAnimation animationWithPropertyNamed:kPOPLayerPosition];
+        CGPoint point = self.view.center;
+        CGFloat halfHeight = 0.5*[[UIScreen mainScreen] bounds].size.height;
+        CGFloat upHeight = (self.view.frame.size.height > 480) ? 50 : 140;
+        viewAnim.toValue = [NSValue valueWithCGPoint:CGPointMake(point.x, halfHeight - upHeight)];
+        [self.view.layer pop_addAnimation:viewAnim forKey:@"viewAnimation"];
+    }
+}
+
+- (void)keyboardWillHide {
+    if (self.view.frame.size.height <= 568) {
+        POPBasicAnimation *viewAnim = [POPBasicAnimation animationWithPropertyNamed:kPOPLayerPosition];
+        CGPoint point = self.view.center;
+        CGFloat halfHeight = 0.5*[[UIScreen mainScreen] bounds].size.height;
+        viewAnim.toValue = [NSValue valueWithCGPoint:CGPointMake(point.x, halfHeight)];
+        [self.view.layer pop_addAnimation:viewAnim forKey:@"viewAnimation"];
+    }
 }
 
 /*
