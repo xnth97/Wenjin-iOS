@@ -53,6 +53,7 @@
     topicTitle.text = @"";
     topicDescription.text = @"";
     focusTopic.hidden = YES;
+    [focusTopic setTitle:@"" forState:UIControlStateNormal];
     
     UIView *splitLine = [[UIView alloc]initWithFrame:CGRectMake(0, topicHeaderView.frame.size.height - 0.5, topicHeaderView.frame.size.width, 0.5)];
     [splitLine setBackgroundColor:[UIColor colorWithWhite:0.9 alpha:1.0]];
@@ -63,17 +64,17 @@
     topicFollowed = NO;
     FBKVOController *kvoController = [FBKVOController controllerWithObserver:self];
     self.KVOController = kvoController;
-    [self.KVOController observe:self keyPath:@"topicFollowed" options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew block:^(id observer, id object, NSDictionary *change) {
+    [self.KVOController observe:self keyPath:@"topicFollowed" options:NSKeyValueObservingOptionNew block:^(id observer, id object, NSDictionary *change) {
         if (topicFollowed == YES) {
             [focusTopic setTitle:@"取消关注" forState:UIControlStateNormal];
         } else {
             [focusTopic setTitle:@"关注" forState:UIControlStateNormal];
         }
-        [focusTopic setHidden:NO];
     }];
     
     [TopicDataManager getTopicBestAnswerWithTopicID:topicId success:^(NSUInteger _totalRows, NSArray *_rows) {
         
+        focusTopic.hidden = NO;
         if (_totalRows != 0) {
             rowsData = [[NSMutableArray alloc]initWithArray:_rows];
         } else {

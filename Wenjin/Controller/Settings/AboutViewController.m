@@ -7,6 +7,7 @@
 //
 
 #import "AboutViewController.h"
+#import "data.h"
 
 @interface AboutViewController ()
 
@@ -14,10 +15,13 @@
 
 @implementation AboutViewController
 
+@synthesize versionLabel;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.title = @"关于问津";
+    versionLabel.text = [NSString stringWithFormat:@"问津 Alpha Preview %@ Build %@", [data appVersion], [data appBuild]];
 }
 
 - (void)didReceiveMemoryWarning {

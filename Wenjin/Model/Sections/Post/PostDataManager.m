@@ -110,4 +110,30 @@
     }];
 }
 
++ (void)postFeedbackWithTitle:(NSString *)title message:(NSString *)message success:(void (^)())success failure:(void (^)(NSString *))failure {
+    NSDictionary *parameters = @{@"title": title,
+                                 @"message": message,
+                                 @"version": [data appVersion],
+                                 @"system": [data osVersion],
+                                 @"source": @"ios"};
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+    [manager POST:[wjAPIs feedback] parameters:parameters success:^(AFHTTPRequestOperation *operation, id robj) {
+        NSDictionary *dicData = [operation.responseString objectFromJSONString];
+        if ([dicData[@"errno"] isEqual:@1]) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                success();
+            });
+        } else {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                failure(dicData[@"err"]);
+            });
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            failure(error.localizedDescription);
+        });
+    }];
+}
+
 @end

@@ -21,6 +21,8 @@ PODS:
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
   - ALActionBlocks (1.0.3)
+  - FXForms (1.2.12)
+  - iOS7Colors (2.1.0)
   - JSONKit (1.4)
   - KVOController (1.0.3)
   - LTNavigationBar (2.0.1)
@@ -32,6 +34,8 @@ PODS:
 DEPENDENCIES:
   - AFNetworking
   - ALActionBlocks
+  - FXForms
+  - iOS7Colors
   - JSONKit
   - KVOController
   - LTNavigationBar
@@ -43,6 +47,8 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   AFNetworking: fefbce9660acb17f48ae0011292d4da0f457bf36
   ALActionBlocks: ac91b1a37b60a8004fb687ddade0600446f3d3fa
+  FXForms: b6a78bac9f6b597ce704e34ac7c1ce9ff628b1d5
+  iOS7Colors: 3737f03d6a752ee45afcc3d6b7743fb52dfab0f0
   JSONKit: 5b69e804ea54d99293eed0fd2ce596c5703fefb0
   KVOController: 9fd8f0343670994e4b6f9f0b31f5a45663f3e1cf
   LTNavigationBar: 6cfc0d3628e925d519130018a15c296cefaf0db3
@@ -51,4 +57,4 @@ SPEC CHECKSUMS:
   SVProgressHUD: 748080e4f36e603f6c02aec292664239df5279c1
   SVPullToRefresh: ba2e718695a43253d8bea6852d2960097dc15d8c
 
-COCOAPODS: 0.36.0
+COCOAPODS: 0.36.4

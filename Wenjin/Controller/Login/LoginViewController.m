@@ -44,11 +44,11 @@
         [MsgDisplay showErrorMsg:@""];
         return;
     } else {
+        [MsgDisplay showLoading];
         NSDictionary *parameters = @{@"user_name": usernameStr,
                                      @"password": passwordStr};
         [wjAccountManager loginWithParameters:parameters success:^(NSString *uid, NSString *user_name, NSString *avatar_file) {
             [wjCookieManager loadCookieForKey:@"login"];
-            [MsgDisplay showSuccessMsg:@"Success"];
             
             if ([self.presentingViewController isKindOfClass:[UITabBarController class]]) {
                 [self.presentingViewController setValue:@NO forKey:@"showNotLoggedInView"];
@@ -68,9 +68,10 @@
             } else {
                 [self.presentingViewController.navigationController.tabBarController setValue:@NO forKey:@"showNotLoggedInView"];
             }
-            
+            [MsgDisplay dismiss];
             [self dismissViewControllerAnimated:YES completion:nil];
         } failure:^(NSString *errStr) {
+            [MsgDisplay dismiss];
             [MsgDisplay showErrorMsg:errStr];
         }];
     }

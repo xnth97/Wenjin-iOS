@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @interface data : NSObject
 
@@ -18,5 +19,8 @@
 @property (strong, nonatomic) NSString *attachAccessKey;
 
 + (data *)shareInstance;
++ (NSString *)appVersion;
++ (NSString *)appBuild;
++ (NSString *)osVersion;
 
 @end

@@ -25,6 +25,7 @@
     NSMutableArray *questionAnswersData;
     NSDictionary *questionInfo;
     NSMutableArray *questionTopics;
+    NSString *questionSummary;
 }
 
 @synthesize questionTableView;
@@ -38,10 +39,11 @@
     self.questionTableView.dataSource = self;
     self.questionTableView.delegate = self;
     self.questionTableView.tableFooterView = [[UIView alloc]init];
+    questionSummary = @"";
     
     UIBarButtonItem *shareBtn = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAction block:^(id weakSender) {
         NSURL *shareURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://wenjin.twtstudio.com/?/question/%@", questionId]];
-        NSArray *activityItems = @[shareURL];
+        NSArray *activityItems = @[shareURL, questionSummary];
         UIActivityViewController *activityController = [[UIActivityViewController alloc]initWithActivityItems:activityItems applicationActivities:nil];
         activityController.modalPresentationStyle = UIModalPresentationPopover;
         activityController.popoverPresentationController.permittedArrowDirections = UIPopoverArrowDirectionAny;
@@ -87,6 +89,7 @@
         questionAnswersData = [[NSMutableArray alloc]initWithArray:_questionAnswers];
         
         self.title = [NSString stringWithFormat:@"共 %@ 回答", _answerCount];
+        questionSummary = [NSString stringWithFormat:@"%@ - %@", questionInfo[@"question_content"], self.title];
         
         QuestionHeaderView *headerView = [[QuestionHeaderView alloc]initWithQuestionInfo:questionInfo andTopics:questionTopics];
         headerView.delegate = self;

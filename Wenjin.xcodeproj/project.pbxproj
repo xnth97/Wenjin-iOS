@@ -25,6 +25,8 @@
 		E93063DD1ACAABD9000140C1 /* UserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E93063DB1ACAABD9000140C1 /* UserViewController.xib */; };
 		E9479EE31AE2AB42003BCE97 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9479EE11AE2AB42003BCE97 /* AboutViewController.m */; };
 		E9479EE41AE2AB42003BCE97 /* AboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9479EE21AE2AB42003BCE97 /* AboutViewController.xib */; };
+		E952E1671AE520DE00F8B7BF /* FeedbackForm.m in Sources */ = {isa = PBXBuildFile; fileRef = E952E1661AE520DE00F8B7BF /* FeedbackForm.m */; };
+		E952E16A1AE522D500F8B7BF /* FeedbackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E952E1691AE522D500F8B7BF /* FeedbackViewController.m */; };
 		E9642E911AC5714800FF7875 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E9642E901AC5714800FF7875 /* main.m */; };
 		E9642E941AC5714800FF7875 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E9642E931AC5714800FF7875 /* AppDelegate.m */; };
 		E9642E9A1AC5714800FF7875 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9642E981AC5714800FF7875 /* Main.storyboard */; };
@@ -122,6 +124,10 @@
 		E9479EE01AE2AB42003BCE97 /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AboutViewController.h; path = Controller/Settings/AboutViewController.h; sourceTree = "<group>"; };
 		E9479EE11AE2AB42003BCE97 /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AboutViewController.m; path = Controller/Settings/AboutViewController.m; sourceTree = "<group>"; };
 		E9479EE21AE2AB42003BCE97 /* AboutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AboutViewController.xib; path = Controller/Settings/AboutViewController.xib; sourceTree = "<group>"; };
+		E952E1651AE520DE00F8B7BF /* FeedbackForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FeedbackForm.h; path = Controller/Settings/FeedbackForm.h; sourceTree = "<group>"; };
+		E952E1661AE520DE00F8B7BF /* FeedbackForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FeedbackForm.m; path = Controller/Settings/FeedbackForm.m; sourceTree = "<group>"; };
+		E952E1681AE522D500F8B7BF /* FeedbackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FeedbackViewController.h; path = Controller/Settings/FeedbackViewController.h; sourceTree = "<group>"; };
+		E952E1691AE522D500F8B7BF /* FeedbackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FeedbackViewController.m; path = Controller/Settings/FeedbackViewController.m; sourceTree = "<group>"; };
 		E9642E8B1AC5714800FF7875 /* Wenjin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wenjin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9642E8F1AC5714800FF7875 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E9642E901AC5714800FF7875 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -466,6 +472,10 @@
 				E9479EE01AE2AB42003BCE97 /* AboutViewController.h */,
 				E9479EE11AE2AB42003BCE97 /* AboutViewController.m */,
 				E9479EE21AE2AB42003BCE97 /* AboutViewController.xib */,
+				E952E1651AE520DE00F8B7BF /* FeedbackForm.h */,
+				E952E1661AE520DE00F8B7BF /* FeedbackForm.m */,
+				E952E1681AE522D500F8B7BF /* FeedbackViewController.h */,
+				E952E1691AE522D500F8B7BF /* FeedbackViewController.m */,
 			);
 			name = Setting;
 			sourceTree = "<group>";
@@ -933,6 +943,7 @@
 				E9C9C6FE1AC71D4A00CC228A /* data.m in Sources */,
 				E9C9C7071AC71E3600CC228A /* wjAPIs.m in Sources */,
 				E9EB618F1ACC2B2D001F5DA3 /* AnswerDataManager.m in Sources */,
+				E952E1671AE520DE00F8B7BF /* FeedbackForm.m in Sources */,
 				E93063B51ACA3982000140C1 /* HomeTableViewCell.m in Sources */,
 				E9EB618A1ACC187A001F5DA3 /* QuestionAnswerTableViewCell.m in Sources */,
 				E990790F1ACEE371008DCA22 /* NotLoggedInView.m in Sources */,
@@ -948,6 +959,7 @@
 				E9E38F361ADA288400136161 /* ExploreTableViewController.m in Sources */,
 				E96F09281AD7E2DD00847E5E /* TopicListTableViewController.m in Sources */,
 				E96F092C1AD7E3BA00847E5E /* TopicDataManager.m in Sources */,
+				E952E16A1AE522D500F8B7BF /* FeedbackViewController.m in Sources */,
 				E9DB26F41AD5523B00C3C60D /* AnswerCommentTableViewController.m in Sources */,
 				E992CA141AE10F75003A9123 /* wjAppearanceManager.m in Sources */,
 				E96F092F1AD7F44100847E5E /* SettingTableViewController.m in Sources */,

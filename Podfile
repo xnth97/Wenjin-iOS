@@ -7,8 +7,10 @@ pod 'SVPullToRefresh'
 pod 'JSONKit'
 pod 'KVOController'
 pod 'ALActionBlocks'
-pod 'LTNavigationBar'
 pod 'NYSegmentedControl'
+pod 'FXForms'
+pod 'LTNavigationBar'
+pod 'iOS7Colors'
 
 target 'Wenjin' do
 

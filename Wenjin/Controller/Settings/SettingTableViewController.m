@@ -9,6 +9,8 @@
 #import "SettingTableViewController.h"
 #import "wjAccountManager.h"
 #import "AboutViewController.h"
+#import "FeedbackViewController.h"
+#import "data.h"
 
 @interface SettingTableViewController ()
 
@@ -24,7 +26,7 @@
     [super viewDidLoad];
     
     headerTitles = @[@"关于", @"设置", @"帐号"];
-    cellValues = @[@[@"关于问津", @"联系我们"], @[@"回答后自动关注"], @[@"注销帐号"]];
+    cellValues = @[@[@"关于问津", @"反馈"], @[@"回答后自动关注"], @[@"注销帐号"]];
     
     autoFocusKey = @"autoFocus";
 
@@ -68,6 +70,14 @@
     return headerTitles[section];
 }
 
+- (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section {
+    if (section == 2) {
+        return [NSString stringWithFormat:@"问津 %@ Build %@", [data appVersion], [data appBuild]];
+    } else {
+        return nil;
+    }
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSUInteger section = [indexPath section];
     NSUInteger row = [indexPath row];
@@ -76,6 +86,9 @@
         if (row == 0) {
             AboutViewController *about = [[AboutViewController alloc]initWithNibName:@"AboutViewController" bundle:nil];
             [self.navigationController pushViewController:about animated:YES];
+        } else if (row == 1) {
+            FeedbackViewController *feedback = [[FeedbackViewController alloc]init];
+            [self.navigationController pushViewController:feedback animated:YES];
         }
     }
     
@@ -97,7 +110,7 @@
     cell.textLabel.text = ((NSArray *)(cellValues[section]))[row];
     
     if (section == 0) {
-        if (row == 0) {
+        if (row == 0 || row == 1) {
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         }
     } else if (section == 1) {

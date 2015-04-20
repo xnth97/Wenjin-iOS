@@ -16,4 +16,6 @@
 
 + (void)uploadAttachFile:(id)file attachType:(NSString *)type success:(void(^)(NSString *attachId))success failure:(void(^)(NSString *errStr))failure;
 
++ (void)postFeedbackWithTitle:(NSString *)title message:(NSString *)message success:(void(^)())success failure:(void(^)(NSString *errorStr))failure;
+
 @end

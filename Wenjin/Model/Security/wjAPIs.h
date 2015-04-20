@@ -92,4 +92,7 @@
 // 传文件
 + (NSString *)uploadAttach;
 
+// 反馈
++ (NSString *)feedback;
+
 @end
