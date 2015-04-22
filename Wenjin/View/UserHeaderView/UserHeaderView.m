@@ -36,6 +36,10 @@
         userThanksView.image = [userThanksView.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
         [userThanksView setTintColor:[UIColor lightGrayColor]];
         
+        UIView *splitLine = [[UIView alloc]initWithFrame:CGRectMake(0, self.frame.size.height - 0.5, [UIScreen mainScreen].bounds.size.width, 0.5)];
+        [splitLine setBackgroundColor:[UIColor colorWithWhite:0.8 alpha:1.0]];
+        [self addSubview:splitLine];
+        
     }
     return self;
 }

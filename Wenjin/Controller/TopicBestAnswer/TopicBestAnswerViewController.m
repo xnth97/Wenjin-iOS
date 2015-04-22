@@ -55,7 +55,7 @@
     focusTopic.hidden = YES;
     [focusTopic setTitle:@"" forState:UIControlStateNormal];
     
-    UIView *splitLine = [[UIView alloc]initWithFrame:CGRectMake(0, topicHeaderView.frame.size.height - 0.5, self.view.frame.size.width, 0.5)];
+    UIView *splitLine = [[UIView alloc]initWithFrame:CGRectMake(0, topicHeaderView.frame.size.height - 0.5, [UIScreen mainScreen].bounds.size.width, 0.5)];
     [splitLine setBackgroundColor:[UIColor colorWithWhite:0.8 alpha:1.0]];
     [topicHeaderView addSubview:splitLine];
     

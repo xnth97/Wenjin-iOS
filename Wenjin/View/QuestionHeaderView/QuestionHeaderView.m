@@ -136,7 +136,7 @@
         
         self.frame = CGRectMake(0, 0, width, 42 + questionTitle.frame.size.height + detailView.frame.size.height + 42);
         
-        splitLine = [[UIView alloc]initWithFrame:CGRectMake(0, self.frame.size.height - 0.5, self.frame.size.width, 0.5)];
+        splitLine = [[UIView alloc]initWithFrame:CGRectMake(0, self.frame.size.height - 0.5, [UIScreen mainScreen].bounds.size.width, 0.5)];
         [splitLine setBackgroundColor:[UIColor colorWithWhite:0.8 alpha:1.0]];
         [self addSubview:splitLine];
         
@@ -184,7 +184,7 @@
         addAnswer.frame = CGRectMake(0.5 * width, 42 + questionTitle.frame.size.height + detailView.frame.size.height, 0.5 * width, 30);
         self.frame = CGRectMake(0, 0, width, 42 + questionTitle.frame.size.height + detailView.frame.size.height + 42);
         
-        splitLine.frame = CGRectMake(0, self.frame.size.height - 0.5, self.frame.size.width, 0.5);
+        splitLine.frame = CGRectMake(0, self.frame.size.height - 0.5, [UIScreen mainScreen].bounds.size.width, 0.5);
     }];
     
     [delegate headerDetailViewFinishLoadingWithView:self];

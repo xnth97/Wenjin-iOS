@@ -57,7 +57,7 @@
     userAvatarView.layer.cornerRadius = userAvatarView.frame.size.width / 2;
     userAvatarView.clipsToBounds = YES;
     
-    UIView *splitLine = [[UIView alloc]initWithFrame:CGRectMake(0, userInfoView.frame.size.height - 0.5, self.view.frame.size.width, 0.5)];
+    UIView *splitLine = [[UIView alloc]initWithFrame:CGRectMake(0, userInfoView.frame.size.height - 0.5, [UIScreen mainScreen].bounds.size.width, 0.5)];
     [splitLine setBackgroundColor:[UIColor colorWithWhite:0.8 alpha:1.0]];
     [userInfoView addSubview:splitLine];
     
