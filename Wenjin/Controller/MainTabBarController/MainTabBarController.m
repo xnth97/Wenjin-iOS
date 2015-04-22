@@ -90,6 +90,7 @@
 
 - (void)presentLoginController {
     LoginViewController *login = [[LoginViewController alloc]initWithNibName:@"LoginViewController" bundle:nil];
+    [login setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
     [self presentViewController:login animated:YES completion:nil];
 }
 

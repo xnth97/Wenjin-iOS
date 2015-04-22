@@ -64,12 +64,14 @@
     [self.navigationItem setLeftBarButtonItem:cancelBtn];
     
     UIBarButtonItem *doneBtn = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemDone block:^(id weakSender) {
+        [MsgDisplay showLoading];
         NSDictionary *parameters = @{@"question_id": questionId,
                                      @"answer_content": answerView.text,
                                      @"attach_access_key": [data shareInstance].attachAccessKey,
                                      @"anonymous": [NSNumber numberWithInteger:isAnonymousControl.selectedSegmentIndex],
                                      @"auto_focus": [NSNumber numberWithInteger: [[NSUserDefaults standardUserDefaults] integerForKey:@"autoFocus"]]};
         [PostDataManager postAnswerWithParameters:parameters success:^(NSString *answerId) {
+            [MsgDisplay dismiss];
             [MsgDisplay showSuccessMsg:@"答案添加成功！"];
             [self.navigationController dismissViewControllerAnimated:YES completion:^{
                 // 回调以后刷新 QuestionViewController
@@ -77,6 +79,7 @@
             }];
             
         } failure:^(NSString *errorStr) {
+            [MsgDisplay dismiss];
             [MsgDisplay showErrorMsg:errorStr];
         }];
         

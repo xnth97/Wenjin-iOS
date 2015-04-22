@@ -117,6 +117,7 @@
 }
 
 - (IBAction)postQuestion {
+    [MsgDisplay showLoading];
     
     topicsArr = questionTagsControl.tags;
     
@@ -143,6 +144,7 @@
                                      @"attach_access_key": [data shareInstance].attachAccessKey,
                                      @"anonymous": [NSNumber numberWithInteger:isAnonymousControl.selectedSegmentIndex]};
         [PostDataManager postQuestionWithParameters:parameters success:^(NSString *questionId) {
+            [MsgDisplay dismiss];
             [MsgDisplay showSuccessMsg:[NSString stringWithFormat:@"问题发布成功！"]];
             
             for (UIViewController *navVc in self.navigationController.tabBarController.viewControllers) {
@@ -159,6 +161,7 @@
             [data shareInstance].postQuestionDetail = @"";
             [data shareInstance].attachAccessKey = @"";
         } failure:^(NSString *errStr) {
+            [MsgDisplay dismiss];
             [MsgDisplay showErrorMsg:errStr];
         }];
     }

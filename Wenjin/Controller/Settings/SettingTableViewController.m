@@ -11,6 +11,7 @@
 #import "AboutViewController.h"
 #import "FeedbackViewController.h"
 #import "data.h"
+#import "ShowNotLoggedInViewController.h"
 
 @interface SettingTableViewController ()
 
@@ -26,7 +27,7 @@
     [super viewDidLoad];
     
     headerTitles = @[@"关于", @"设置", @"帐号"];
-    cellValues = @[@[@"关于问津", @"反馈"], @[@"回答后自动关注"], @[@"注销帐号"]];
+    cellValues = @[@[@"关于问津", @"反馈", @"引导页面"], @[@"回答后自动关注"], @[@"注销帐号"]];
     
     autoFocusKey = @"autoFocus";
 
@@ -89,6 +90,10 @@
         } else if (row == 1) {
             FeedbackViewController *feedback = [[FeedbackViewController alloc]init];
             [self.navigationController pushViewController:feedback animated:YES];
+        } else if (row == 2) {
+            ShowNotLoggedInViewController *show = [[ShowNotLoggedInViewController alloc]init];
+            [show setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
+            [self presentViewController:show animated:YES completion:nil];
         }
     }
     

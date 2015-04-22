@@ -14,10 +14,10 @@
 
 @end
 
-@interface NotLoggedInView : UIView
+@interface NotLoggedInView : UIView<UIScrollViewDelegate, UIScrollViewAccessibilityDelegate>
 
 @property (assign, nonatomic) id<NotLoggedInViewDelegate> delegate;
 
-- (IBAction)login;
+//- (IBAction)login;
 
 @end

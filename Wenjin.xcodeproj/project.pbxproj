@@ -41,8 +41,10 @@
 		E99079081ACECCB5008DCA22 /* PostAnswerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E99079061ACECCB5008DCA22 /* PostAnswerViewController.m */; };
 		E990790B1ACEE1C7008DCA22 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E990790A1ACEE1C7008DCA22 /* LoginViewController.xib */; };
 		E990790F1ACEE371008DCA22 /* NotLoggedInView.m in Sources */ = {isa = PBXBuildFile; fileRef = E990790E1ACEE371008DCA22 /* NotLoggedInView.m */; };
-		E99079111ACEE3A4008DCA22 /* NotLoggedInView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E99079101ACEE3A4008DCA22 /* NotLoggedInView.xib */; };
 		E992CA141AE10F75003A9123 /* wjAppearanceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E992CA131AE10F75003A9123 /* wjAppearanceManager.m */; };
+		E99577691AE76282002E5107 /* NSTimer+Blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = E99577651AE76282002E5107 /* NSTimer+Blocks.m */; };
+		E995776A1AE76282002E5107 /* OpenInSafariActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = E99577681AE76282002E5107 /* OpenInSafariActivity.m */; };
+		E995776D1AE76F57002E5107 /* ShowNotLoggedInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E995776C1AE76F57002E5107 /* ShowNotLoggedInViewController.m */; };
 		E9AC9E561AD3A4840016CA23 /* wjOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E9AC9E551AD3A4840016CA23 /* wjOperationManager.m */; };
 		E9C1A1C01ACAF21F00892B60 /* QuestionDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E9C1A1BF1ACAF21F00892B60 /* QuestionDataManager.m */; };
 		E9C1A1C41ACBCBB000892B60 /* QuestionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = E9C1A1C31ACBCBB000892B60 /* QuestionHeaderView.m */; };
@@ -154,9 +156,14 @@
 		E990790A1ACEE1C7008DCA22 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LoginViewController.xib; path = Controller/Login/LoginViewController.xib; sourceTree = "<group>"; };
 		E990790D1ACEE371008DCA22 /* NotLoggedInView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NotLoggedInView.h; path = View/NotLoggedInView/NotLoggedInView.h; sourceTree = "<group>"; };
 		E990790E1ACEE371008DCA22 /* NotLoggedInView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NotLoggedInView.m; path = View/NotLoggedInView/NotLoggedInView.m; sourceTree = "<group>"; };
-		E99079101ACEE3A4008DCA22 /* NotLoggedInView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NotLoggedInView.xib; path = View/NotLoggedInView/NotLoggedInView.xib; sourceTree = "<group>"; };
 		E992CA121AE10F75003A9123 /* wjAppearanceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = wjAppearanceManager.h; path = Model/Appearance/wjAppearanceManager.h; sourceTree = "<group>"; };
 		E992CA131AE10F75003A9123 /* wjAppearanceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = wjAppearanceManager.m; path = Model/Appearance/wjAppearanceManager.m; sourceTree = "<group>"; };
+		E99577641AE76282002E5107 /* NSTimer+Blocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTimer+Blocks.h"; sourceTree = "<group>"; };
+		E99577651AE76282002E5107 /* NSTimer+Blocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTimer+Blocks.m"; sourceTree = "<group>"; };
+		E99577671AE76282002E5107 /* OpenInSafariActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenInSafariActivity.h; sourceTree = "<group>"; };
+		E99577681AE76282002E5107 /* OpenInSafariActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenInSafariActivity.m; sourceTree = "<group>"; };
+		E995776B1AE76F57002E5107 /* ShowNotLoggedInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShowNotLoggedInViewController.h; path = Controller/Settings/ShowNotLoggedInViewController.h; sourceTree = "<group>"; };
+		E995776C1AE76F57002E5107 /* ShowNotLoggedInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ShowNotLoggedInViewController.m; path = Controller/Settings/ShowNotLoggedInViewController.m; sourceTree = "<group>"; };
 		E9AC9E541AD3A4840016CA23 /* wjOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = wjOperationManager.h; path = Model/OperationManager/wjOperationManager.h; sourceTree = "<group>"; };
 		E9AC9E551AD3A4840016CA23 /* wjOperationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = wjOperationManager.m; path = Model/OperationManager/wjOperationManager.m; sourceTree = "<group>"; };
 		E9C1A1BE1ACAF21F00892B60 /* QuestionDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QuestionDataManager.h; path = Model/Sections/Question/QuestionDataManager.h; sourceTree = "<group>"; };
@@ -476,6 +483,8 @@
 				E952E1661AE520DE00F8B7BF /* FeedbackForm.m */,
 				E952E1681AE522D500F8B7BF /* FeedbackViewController.h */,
 				E952E1691AE522D500F8B7BF /* FeedbackViewController.m */,
+				E995776B1AE76F57002E5107 /* ShowNotLoggedInViewController.h */,
+				E995776C1AE76F57002E5107 /* ShowNotLoggedInViewController.m */,
 			);
 			name = Setting;
 			sourceTree = "<group>";
@@ -494,7 +503,6 @@
 			children = (
 				E990790D1ACEE371008DCA22 /* NotLoggedInView.h */,
 				E990790E1ACEE371008DCA22 /* NotLoggedInView.m */,
-				E99079101ACEE3A4008DCA22 /* NotLoggedInView.xib */,
 			);
 			name = NotLoggedInView;
 			sourceTree = "<group>";
@@ -506,6 +514,34 @@
 				E992CA131AE10F75003A9123 /* wjAppearanceManager.m */,
 			);
 			name = Appearance;
+			sourceTree = "<group>";
+		};
+		E99577621AE76282002E5107 /* FoundationKits */ = {
+			isa = PBXGroup;
+			children = (
+				E99577631AE76282002E5107 /* NSTimer-Blocks */,
+				E99577661AE76282002E5107 /* UIActivity */,
+			);
+			name = FoundationKits;
+			path = Model/FoundationKits;
+			sourceTree = "<group>";
+		};
+		E99577631AE76282002E5107 /* NSTimer-Blocks */ = {
+			isa = PBXGroup;
+			children = (
+				E99577641AE76282002E5107 /* NSTimer+Blocks.h */,
+				E99577651AE76282002E5107 /* NSTimer+Blocks.m */,
+			);
+			path = "NSTimer-Blocks";
+			sourceTree = "<group>";
+		};
+		E99577661AE76282002E5107 /* UIActivity */ = {
+			isa = PBXGroup;
+			children = (
+				E99577671AE76282002E5107 /* OpenInSafariActivity.h */,
+				E99577681AE76282002E5107 /* OpenInSafariActivity.m */,
+			);
+			path = UIActivity;
 			sourceTree = "<group>";
 		};
 		E9AC9E531AD3A4500016CA23 /* Operation */ = {
@@ -568,6 +604,7 @@
 				E9C9C6FB1AC71D2500CC228A /* Account */,
 				E9AC9E531AD3A4500016CA23 /* Operation */,
 				E9C9C6EC1AC6AC5100CC228A /* shareInstance */,
+				E99577621AE76282002E5107 /* FoundationKits */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -873,7 +910,6 @@
 			files = (
 				E9642E9A1AC5714800FF7875 /* Main.storyboard in Resources */,
 				E9E286C81AC805F2005B6ED7 /* Localizable.strings in Resources */,
-				E99079111ACEE3A4008DCA22 /* NotLoggedInView.xib in Resources */,
 				E93063D31ACAAB81000140C1 /* QuestionViewController.xib in Resources */,
 				E9642E9F1AC5714800FF7875 /* LaunchScreen.xib in Resources */,
 				E93063B61ACA3982000140C1 /* HomeTableViewCell.xib in Resources */,
@@ -945,6 +981,7 @@
 				E9EB618F1ACC2B2D001F5DA3 /* AnswerDataManager.m in Sources */,
 				E952E1671AE520DE00F8B7BF /* FeedbackForm.m in Sources */,
 				E93063B51ACA3982000140C1 /* HomeTableViewCell.m in Sources */,
+				E99577691AE76282002E5107 /* NSTimer+Blocks.m in Sources */,
 				E9EB618A1ACC187A001F5DA3 /* QuestionAnswerTableViewCell.m in Sources */,
 				E990790F1ACEE371008DCA22 /* NotLoggedInView.m in Sources */,
 				E9D56F011ADE881B00C54466 /* TopicBestAnswerViewController.m in Sources */,
@@ -952,6 +989,7 @@
 				E9642E941AC5714800FF7875 /* AppDelegate.m in Sources */,
 				E99079081ACECCB5008DCA22 /* PostAnswerViewController.m in Sources */,
 				E9DB26F91AD55D3E00C3C60D /* AnswerCommentTableViewCell.m in Sources */,
+				E995776A1AE76282002E5107 /* OpenInSafariActivity.m in Sources */,
 				E93063BA1ACA47EB000140C1 /* wjStringProcessor.m in Sources */,
 				E93063C81ACA966E000140C1 /* AddDetailViewController.m in Sources */,
 				E9C9C71B1AC7257900CC228A /* wjCookieManager.m in Sources */,
@@ -971,6 +1009,7 @@
 				E9DB26E51AD4F32200C3C60D /* UserListTableViewController.m in Sources */,
 				E96F09241AD7D29700847E5E /* TLTagsControl.m in Sources */,
 				E93063D71ACAABC7000140C1 /* AnswerViewController.m in Sources */,
+				E995776D1AE76F57002E5107 /* ShowNotLoggedInViewController.m in Sources */,
 				E9C9C7151AC7249900CC228A /* MsgDisplay.m in Sources */,
 				E93063DC1ACAABD9000140C1 /* UserViewController.m in Sources */,
 				E9E286C61AC7F632005B6ED7 /* HomeDataManager.m in Sources */,

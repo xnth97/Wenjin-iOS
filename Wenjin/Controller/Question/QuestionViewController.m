@@ -16,6 +16,7 @@
 #import "SVPullToRefresh.h"
 #import "TopicBestAnswerViewController.h"
 #import "ALActionBlocks.h"
+#import "OpenInSafariActivity.h"
 
 @interface QuestionViewController ()
 
@@ -42,9 +43,10 @@
     questionSummary = @"";
     
     UIBarButtonItem *shareBtn = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAction block:^(id weakSender) {
-        NSURL *shareURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://wenjin.twtstudio.com/?/question/%@", questionId]];
+        NSURL *shareURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://wenjin.twtstudio.com/?/m/question/%@", questionId]];
         NSArray *activityItems = @[shareURL, questionSummary];
-        UIActivityViewController *activityController = [[UIActivityViewController alloc]initWithActivityItems:activityItems applicationActivities:nil];
+        OpenInSafariActivity *openInSafari = [[OpenInSafariActivity alloc]init];
+        UIActivityViewController *activityController = [[UIActivityViewController alloc]initWithActivityItems:activityItems applicationActivities:@[openInSafari]];
         activityController.modalPresentationStyle = UIModalPresentationPopover;
         activityController.popoverPresentationController.permittedArrowDirections = UIPopoverArrowDirectionAny;
         activityController.popoverPresentationController.barButtonItem = self.navigationItem.rightBarButtonItem;

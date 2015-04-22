@@ -43,12 +43,15 @@
     [self.navigationItem setLeftBarButtonItem:cancelBtn];
     
     UIBarButtonItem *doneBtn = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemDone block:^(id weakSender) {
+        [MsgDisplay showLoading];
         
         [PostDataManager postAnswerCommentWithAnswerID:answerId andMessage:commentTextView.text success:^{
+            [MsgDisplay dismiss];
             [MsgDisplay showSuccessMsg:@"评论添加成功！"];
             // 如何让 commentTable 刷新？
             [self.navigationController dismissViewControllerAnimated:YES completion:nil];
         } failure:^(NSString *errStr) {
+            [MsgDisplay dismiss];
             [MsgDisplay showErrorMsg:errStr];
         }];
         
