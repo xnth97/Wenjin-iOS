@@ -7,6 +7,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AnswerViewController">
             <connections>
                 <outlet property="agreeBtn" destination="lhU-uQ-ZbX" id="nLk-sh-bBT"/>
+                <outlet property="agreeImageView" destination="Eh8-CX-r6a" id="sdA-LR-K9u"/>
                 <outlet property="answerContentView" destination="hfd-Ha-o5k" id="MIf-Cy-P9H"/>
                 <outlet property="userAvatarView" destination="URu-vY-CRR" id="Evy-SJ-fqp"/>
                 <outlet property="userInfoView" destination="LML-qB-C5r" id="VF4-TR-ijr"/>
@@ -49,7 +50,7 @@
                             </view>
                             <blurEffect style="light"/>
                         </visualEffectView>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tabBarIcon" translatesAutoresizingMaskIntoConstraints="NO" id="URu-vY-CRR">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholderAvatar" translatesAutoresizingMaskIntoConstraints="NO" id="URu-vY-CRR">
                             <rect key="frame" x="8" y="76" width="46" height="46"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="46" id="gLt-U7-eFy"/>
@@ -62,13 +63,13 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lhU-uQ-ZbX">
-                            <rect key="frame" x="516" y="76" width="76" height="46"/>
+                            <rect key="frame" x="526" y="76" width="74" height="46"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="76" id="dkN-mt-NoD"/>
+                                <constraint firstAttribute="width" constant="74" id="aKU-aJ-Qkh"/>
                                 <constraint firstAttribute="height" constant="46" id="hO0-Sb-j8q"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <state key="normal" title="button">
+                            <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                            <state key="normal" title="999">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                         </button>
@@ -78,25 +79,34 @@
                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="userAgree" translatesAutoresizingMaskIntoConstraints="NO" id="Eh8-CX-r6a">
+                            <rect key="frame" x="521" y="89" width="19" height="19"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="19" id="7Wl-Mb-pRc"/>
+                                <constraint firstAttribute="height" constant="19" id="JIa-Iq-evS"/>
+                            </constraints>
+                        </imageView>
                     </subviews>
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                     <constraints>
+                        <constraint firstItem="Eh8-CX-r6a" firstAttribute="top" secondItem="LML-qB-C5r" secondAttribute="top" constant="89" id="0gv-1T-HYC"/>
                         <constraint firstItem="dGw-mV-eSB" firstAttribute="top" secondItem="LML-qB-C5r" secondAttribute="top" constant="76" id="1N5-0h-YdJ"/>
                         <constraint firstAttribute="height" constant="130" id="8gD-di-AP6"/>
                         <constraint firstAttribute="trailing" secondItem="aPR-ey-9Cw" secondAttribute="trailing" id="AUM-1U-EQd"/>
                         <constraint firstItem="URu-vY-CRR" firstAttribute="top" secondItem="LML-qB-C5r" secondAttribute="top" constant="76" id="Gfi-fb-fd5"/>
                         <constraint firstItem="iEU-J5-ujA" firstAttribute="top" secondItem="dGw-mV-eSB" secondAttribute="bottom" constant="3" id="JHF-Nk-0kg"/>
+                        <constraint firstAttribute="trailing" secondItem="Eh8-CX-r6a" secondAttribute="trailing" constant="60" id="KlM-VS-ouC"/>
                         <constraint firstItem="URu-vY-CRR" firstAttribute="leading" secondItem="LML-qB-C5r" secondAttribute="leading" constant="8" id="Lc6-jn-uyF"/>
                         <constraint firstAttribute="bottom" secondItem="aPR-ey-9Cw" secondAttribute="bottom" id="P2N-Po-0ur"/>
                         <constraint firstItem="lhU-uQ-ZbX" firstAttribute="top" secondItem="LML-qB-C5r" secondAttribute="top" constant="76" id="Q1t-Ly-cEJ"/>
-                        <constraint firstItem="lhU-uQ-ZbX" firstAttribute="leading" secondItem="iEU-J5-ujA" secondAttribute="trailing" constant="8" id="Q2e-w0-SRv"/>
                         <constraint firstItem="aPR-ey-9Cw" firstAttribute="top" secondItem="LML-qB-C5r" secondAttribute="top" id="U6o-J6-Rsf"/>
+                        <constraint firstItem="Eh8-CX-r6a" firstAttribute="leading" secondItem="dGw-mV-eSB" secondAttribute="trailing" constant="13" id="c0d-TU-fW3"/>
                         <constraint firstItem="aPR-ey-9Cw" firstAttribute="leading" secondItem="LML-qB-C5r" secondAttribute="leading" id="fps-dM-9en"/>
                         <constraint firstItem="dGw-mV-eSB" firstAttribute="leading" secondItem="URu-vY-CRR" secondAttribute="trailing" constant="8" id="gxU-go-pTE"/>
-                        <constraint firstAttribute="trailing" secondItem="lhU-uQ-ZbX" secondAttribute="trailing" constant="8" id="lSD-BE-RaJ"/>
-                        <constraint firstItem="lhU-uQ-ZbX" firstAttribute="leading" secondItem="dGw-mV-eSB" secondAttribute="trailing" constant="8" id="lyC-T6-x88"/>
                         <constraint firstAttribute="bottom" secondItem="URu-vY-CRR" secondAttribute="bottom" constant="8" id="mX9-df-Q4F"/>
+                        <constraint firstAttribute="trailing" secondItem="lhU-uQ-ZbX" secondAttribute="trailing" id="rez-KX-oOi"/>
                         <constraint firstAttribute="bottom" secondItem="lhU-uQ-ZbX" secondAttribute="bottom" constant="8" id="t2I-Ix-VWZ"/>
+                        <constraint firstItem="Eh8-CX-r6a" firstAttribute="leading" secondItem="iEU-J5-ujA" secondAttribute="trailing" constant="13" id="tUZ-mB-tXU"/>
                         <constraint firstItem="iEU-J5-ujA" firstAttribute="leading" secondItem="URu-vY-CRR" secondAttribute="trailing" constant="8" id="yVz-9E-Dmz"/>
                     </constraints>
                 </view>
@@ -120,6 +130,7 @@
         </view>
     </objects>
     <resources>
-        <image name="tabBarIcon" width="30" height="30"/>
+        <image name="placeholderAvatar" width="100" height="100"/>
+        <image name="userAgree" width="30" height="30"/>
     </resources>
 </document>

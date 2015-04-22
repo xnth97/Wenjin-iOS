@@ -9,6 +9,7 @@
 #import "QuestionAnswerTableViewCell.h"
 #import "ALActionBlocks.h"
 #import "UIImageView+AFNetworking.h"
+#import "wjAppearanceManager.h"
 #import "wjAPIs.h"
 
 @implementation QuestionAnswerTableViewCell
@@ -30,6 +31,11 @@
     [userAvatarRecognizer setDelegate:self];
     [userAvatarView setUserInteractionEnabled:YES];
     [userAvatarView addGestureRecognizer:userAvatarRecognizer];
+    
+    agreeCountLabel.backgroundColor = [wjAppearanceManager mainTintColor];
+    agreeCountLabel.textColor = [UIColor whiteColor];
+    agreeCountLabel.layer.cornerRadius = 8.0;
+    agreeCountLabel.clipsToBounds = YES;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -39,7 +45,7 @@
 }
 
 - (void)loadAvatarWithURL:(NSString *)urlStr {
-    [userAvatarView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", [wjAPIs avatarPath], urlStr]]];
+    [userAvatarView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", [wjAPIs avatarPath], urlStr]] placeholderImage:[UIImage imageNamed:@"placeholderAvatar.png"]];
     userAvatarView.layer.cornerRadius = userAvatarView.frame.size.width / 2;
     userAvatarView.clipsToBounds = YES;
 }

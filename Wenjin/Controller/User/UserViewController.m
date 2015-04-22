@@ -94,8 +94,10 @@
             headerView.delegate = self;
             headerView.usernameLabel.text = userData[@"nick_name"];
             headerView.userSigLabel.text = (userData[@"signature"] == [NSNull null]) ? @"" : userData[@"signature"];
-            headerView.agreeCountLabel.text = userData[@"agree_count"];
-            headerView.thanksCountLabel.text = userData[@"thanks_count"];
+            NSUInteger agreeCount = [userData[@"agree_count"] integerValue];
+            NSUInteger thanksCount = [userData[@"thanks_count"] integerValue];
+            headerView.agreeCountLabel.text = (agreeCount >= 1000) ? [NSString stringWithFormat:@"%ldK", agreeCount/1000] : userData[@"agree_count"];
+            headerView.thanksCountLabel.text = (thanksCount >= 1000) ? [NSString stringWithFormat:@"%ldK", thanksCount/1000] : userData[@"thanks_count"];
             [headerView loadAvatarImageWithApartURLString:userData[@"avatar_file"]];
             
             userName = userData[@"nick_name"];

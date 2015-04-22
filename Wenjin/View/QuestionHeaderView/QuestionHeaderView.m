@@ -22,6 +22,8 @@
     UIButton *focusQuestion;
     UIButton *addAnswer;
     CGFloat width;
+    
+    UIView *splitLine;
 }
 
 @synthesize delegate;
@@ -134,6 +136,10 @@
         
         self.frame = CGRectMake(0, 0, width, 42 + questionTitle.frame.size.height + detailView.frame.size.height + 42);
         
+        splitLine = [[UIView alloc]initWithFrame:CGRectMake(0, self.frame.size.height - 0.5, self.frame.size.width, 0.5)];
+        [splitLine setBackgroundColor:[UIColor colorWithWhite:0.8 alpha:1.0]];
+        [self addSubview:splitLine];
+        
         //self.frame = CGRectMake(0, 0, width, 0);
         
         /*
@@ -177,6 +183,8 @@
         focusQuestion.frame = CGRectMake(0, 42 + questionTitle.frame.size.height + detailView.frame.size.height, 0.5 * width, 30);
         addAnswer.frame = CGRectMake(0.5 * width, 42 + questionTitle.frame.size.height + detailView.frame.size.height, 0.5 * width, 30);
         self.frame = CGRectMake(0, 0, width, 42 + questionTitle.frame.size.height + detailView.frame.size.height + 42);
+        
+        splitLine.frame = CGRectMake(0, self.frame.size.height - 0.5, self.frame.size.width, 0.5);
     }];
     
     [delegate headerDetailViewFinishLoadingWithView:self];

@@ -18,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *agreeBtn;
 @property (weak, nonatomic) IBOutlet UIWebView *answerContentView;
 @property (weak, nonatomic) IBOutlet UIView *userInfoView;
+@property (weak, nonatomic) IBOutlet UIImageView *agreeImageView;
 @property (nonatomic) NSInteger agreeCount;
 
 - (IBAction)pushCommentViewController;

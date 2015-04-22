@@ -123,6 +123,9 @@
         [cancelAlert addAction:cancelAction];
         [cancelAlert addAction:saveAction];
         [cancelAlert addAction:dismissAction];
+        [cancelAlert.popoverPresentationController setPermittedArrowDirections:0];
+        [cancelAlert.popoverPresentationController setSourceView:self.view];
+        [cancelAlert.popoverPresentationController setSourceRect:self.view.frame];
         [self presentViewController:cancelAlert animated:YES completion:nil];
     }
 }

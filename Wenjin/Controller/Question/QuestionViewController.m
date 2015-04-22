@@ -115,7 +115,8 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSInteger row = [indexPath row];
-    return [self heightOfLabelWithTextString:[wjStringProcessor processAnswerDetailString:(questionAnswersData[row])[@"answer_content"]]] + 80;
+    CGFloat idealHeight = [self heightOfLabelWithTextString:[wjStringProcessor processAnswerDetailString:(questionAnswersData[row])[@"answer_content"]] numberOfLines:4] + 56;
+    return (idealHeight < 96) ? 96 : idealHeight;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -137,20 +138,21 @@
     NSDictionary *tmp = questionAnswersData[row];
     cell.userNameLabel.text = tmp[@"nick_name"];
     cell.answerContentLabel.text = [wjStringProcessor processAnswerDetailString:tmp[@"answer_content"]];
-    cell.agreeCountLabel.text = [tmp[@"agree_count"] stringValue];
+    NSUInteger agreeCount = [tmp[@"agree_count"] integerValue];
+    cell.agreeCountLabel.text = (agreeCount >= 1000) ? [NSString stringWithFormat:@"%ldK", agreeCount] : [tmp[@"agree_count"] stringValue];
     [cell loadAvatarWithURL:tmp[@"avatar_file"]];
     cell.userAvatarView.tag = row;
     cell.delegate = self;
     return cell;
 }
 
-- (CGFloat)heightOfLabelWithTextString:(NSString *)textString {
-    CGFloat width = self.view.frame.size.width;
+- (CGFloat)heightOfLabelWithTextString:(NSString *)textString numberOfLines:(NSUInteger)lines {
+    CGFloat width = self.view.frame.size.width - 86;
     
     UILabel *gettingSizeLabel = [[UILabel alloc]init];
     gettingSizeLabel.text = textString;
     gettingSizeLabel.font = [UIFont systemFontOfSize:15];
-    gettingSizeLabel.numberOfLines = 0;
+    gettingSizeLabel.numberOfLines = lines;
     gettingSizeLabel.lineBreakMode = NSLineBreakByWordWrapping;
     CGSize maxSize = CGSizeMake(width, 1000.0);
     
@@ -160,6 +162,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSUInteger row = [indexPath row];
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     AnswerViewController *aVC = [[AnswerViewController alloc]initWithNibName:@"AnswerViewController" bundle:nil];
     aVC.answerId = (questionAnswersData[row])[@"answer_id"];
     [self.navigationController pushViewController:aVC animated:YES];

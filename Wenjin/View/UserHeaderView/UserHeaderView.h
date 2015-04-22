@@ -22,6 +22,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *thanksCountLabel;
 @property (weak, nonatomic) IBOutlet UIButton *followButton;
 @property (weak, nonatomic) IBOutlet UIImageView *userAvatarView;
+@property (weak, nonatomic) IBOutlet UIImageView *userAgreeView;
+@property (weak, nonatomic) IBOutlet UIImageView *userThanksView;
 
 @property (assign, nonatomic) id<UserHeaderViewDelegate> delegate;
 

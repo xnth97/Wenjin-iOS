@@ -48,16 +48,19 @@
             [wjCacheManager loadCacheDataWithKey:@"userData" andBlock:^(id userData, NSDate *saveDate) {
                 [data shareInstance].myUID = userData[@"uid"];
             }];
+            
+            /*
             [wjCacheManager loadCacheDataWithKey:@"userLoginData" andBlock:^(id loginData, NSDate *saveDate) {
                 NSDate *now = [NSDate date];
-                if ([now timeIntervalSinceDate:saveDate] >= 2*24*3600) {
+                if ([now timeIntervalSinceDate:saveDate] >= 1) {
                     [wjAccountManager loginWithParameters:loginData success:^(NSString *uid, NSString *username, NSString *avatarFile) {
-                        
+                        NSLog(@"wtf");
                     } failure:^(NSString *errorStr) {
                         
                     }];
                 }
             }];
+            */
         }
     }];
     

@@ -17,6 +17,7 @@
 #import "wjOperationManager.h"
 #import <KVOController/FBKVOController.h>
 #import "AnswerCommentTableViewController.h"
+#import "wjAppearanceManager.h"
 
 @interface AnswerViewController ()
 
@@ -24,6 +25,8 @@
 
 @implementation AnswerViewController {
     NSInteger voteValue;
+    UIColor *notVotedColor;
+    UIColor *votedColor;
 }
 
 @synthesize answerId;
@@ -35,6 +38,7 @@
 @synthesize answerContentView;
 @synthesize userInfoView;
 @synthesize agreeCount;
+@synthesize agreeImageView;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -42,14 +46,30 @@
     self.title = @"回答";
     self.automaticallyAdjustsScrollViewInsets = YES;
     
-    UIView *splitLine = [[UIView alloc]initWithFrame:CGRectMake(0, userInfoView.frame.size.height - 0.5, userInfoView.frame.size.width, 0.5)];
-    [splitLine setBackgroundColor:[UIColor colorWithWhite:0.9 alpha:1.0]];
+    userNameLabel.text = @"";
+    userSigLabel.text = @"";
+    notVotedColor = [UIColor lightGrayColor];
+    votedColor = [wjAppearanceManager mainTintColor];
+    
+    agreeImageView.image = [agreeImageView.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    [agreeImageView setTintColor:notVotedColor];
+    
+    userAvatarView.layer.cornerRadius = userAvatarView.frame.size.width / 2;
+    userAvatarView.clipsToBounds = YES;
+    
+    UIView *splitLine = [[UIView alloc]initWithFrame:CGRectMake(0, userInfoView.frame.size.height - 0.5, self.view.frame.size.width, 0.5)];
+    [splitLine setBackgroundColor:[UIColor colorWithWhite:0.8 alpha:1.0]];
     [userInfoView addSubview:splitLine];
     
     FBKVOController *kvoController = [FBKVOController controllerWithObserver:self];
     self.KVOController = kvoController;
     [self.KVOController observe:self keyPath:@"agreeCount" options:NSKeyValueObservingOptionInitial|NSKeyValueObservingOptionNew block:^(id observer, id object, NSDictionary *change) {
-        [agreeBtn setTitle:[NSString stringWithFormat:@"%ld", (long)agreeCount] forState:UIControlStateNormal];
+        if (agreeCount < 1000) {
+            [agreeBtn setTitle:[NSString stringWithFormat:@"%ld", (long)agreeCount] forState:UIControlStateNormal];
+        } else {
+            [agreeBtn setTitle:[NSString stringWithFormat:@"%ldK", (long)agreeCount/1000] forState:UIControlStateNormal];
+        }
+        
     }];
     
     [AnswerDataManager getAnswerDataWithAnswerID:answerId success:^(NSDictionary *ansData) {
@@ -58,12 +78,15 @@
         userNameLabel.text = ansData[@"nick_name"];
         self.title = [NSString stringWithFormat:@"%@ 的回答", ansData[@"nick_name"]];
         userSigLabel.text = (ansData[@"signature"] == [NSNull null]) ? @"" : ansData[@"signature"];
-        [userAvatarView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", [wjAPIs avatarPath], ansData[@"avatar_file"]]]];
-        userAvatarView.layer.cornerRadius = userAvatarView.frame.size.width / 2;
-        userAvatarView.clipsToBounds = YES;
+        [userAvatarView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", [wjAPIs avatarPath], ansData[@"avatar_file"]]] placeholderImage:[UIImage imageNamed:@"placeholderAvatar.png"]];
         
         voteValue = [ansData[@"vote_value"] integerValue];
         [self setValue:ansData[@"agree_count"] forKey:@"agreeCount"];
+        if (voteValue == 0) {
+            [agreeImageView setTintColor:notVotedColor];
+        } else {
+            [agreeImageView setTintColor:votedColor];
+        }
 
         [agreeBtn addTarget:self action:@selector(voteOperation) forControlEvents:UIControlEventTouchUpInside];
         
@@ -123,16 +146,19 @@
                 case 1:
                     voteValue = 0;
                     [self setValue:[NSNumber numberWithInteger:agreeCount - 1] forKey:@"agreeCount"];
+                    [agreeImageView setTintColor:notVotedColor];
                     break;
                     
                 case 0:
                     voteValue = 1;
                     [self setValue:[NSNumber numberWithInteger:agreeCount + 1] forKey:@"agreeCount"];
+                    [agreeImageView setTintColor:votedColor];
                     break;
                     
                 case -1:
                     voteValue = 1;
                     [self setValue:[NSNumber numberWithInteger:agreeCount + 1] forKey:@"agreeCount"];
+                    [agreeImageView setTintColor:votedColor];
                     break;
                     
                 default:
@@ -148,14 +174,17 @@
                 case 1:
                     voteValue = -1;
                     [self setValue:[NSNumber numberWithInteger:agreeCount - 1] forKey:@"agreeCount"];
+                    [agreeImageView setTintColor:notVotedColor];
                     break;
                     
                 case 0:
                     voteValue = -1;
+                    [agreeImageView setTintColor:notVotedColor];
                     break;
                     
                 case -1:
                     voteValue = 0;
+                    [agreeImageView setTintColor:notVotedColor];
                     break;
                     
                 default:

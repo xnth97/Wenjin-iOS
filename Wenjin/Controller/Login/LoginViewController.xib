@@ -82,10 +82,10 @@
                     </connections>
                 </textField>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LaunchIcon" translatesAutoresizingMaskIntoConstraints="NO" id="WWW-dH-3Gm">
-                    <rect key="frame" x="177" y="90" width="247" height="85"/>
+                    <rect key="frame" x="196" y="74" width="209" height="72"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="247" id="40S-wZ-Rgd"/>
-                        <constraint firstAttribute="height" constant="85" id="tJw-5R-ewo"/>
+                        <constraint firstAttribute="height" constant="72" id="1tG-ne-jXT"/>
+                        <constraint firstAttribute="width" constant="209" id="Piz-PM-wP9"/>
                     </constraints>
                 </imageView>
             </subviews>
@@ -95,14 +95,14 @@
                 <constraint firstAttribute="centerX" secondItem="Gcy-hM-PhW" secondAttribute="centerX" constant="-23.5" id="2pk-fJ-O0J"/>
                 <constraint firstAttribute="centerX" secondItem="3QD-ea-bOo" secondAttribute="centerX" id="6yA-ua-dxp"/>
                 <constraint firstItem="3QD-ea-bOo" firstAttribute="top" secondItem="ERW-He-I5u" secondAttribute="bottom" constant="8" id="7ln-Ae-fDF"/>
-                <constraint firstItem="Gcy-hM-PhW" firstAttribute="top" secondItem="WWW-dH-3Gm" secondAttribute="bottom" constant="33" id="A91-Cj-B5N"/>
-                <constraint firstItem="WWW-dH-3Gm" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="90" id="DCk-n4-x9c"/>
+                <constraint firstItem="f3J-Ag-mIl" firstAttribute="top" secondItem="WWW-dH-3Gm" secondAttribute="bottom" constant="54" id="7rq-Al-bo6"/>
+                <constraint firstItem="WWW-dH-3Gm" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="74" id="9Kn-M2-AZk"/>
                 <constraint firstAttribute="centerX" secondItem="WWW-dH-3Gm" secondAttribute="centerX" id="JLw-Fu-qCR"/>
                 <constraint firstAttribute="centerX" secondItem="ERW-He-I5u" secondAttribute="centerX" id="KDH-Hg-oK0"/>
                 <constraint firstAttribute="centerX" secondItem="R7a-Yx-ItV" secondAttribute="centerX" id="RqV-45-zlW"/>
                 <constraint firstItem="444-Xt-Bts" firstAttribute="top" secondItem="f3J-Ag-mIl" secondAttribute="bottom" constant="16" id="X9T-2U-PlL"/>
                 <constraint firstAttribute="centerX" secondItem="f3J-Ag-mIl" secondAttribute="centerX" id="Yny-cv-xAL"/>
-                <constraint firstItem="f3J-Ag-mIl" firstAttribute="top" secondItem="WWW-dH-3Gm" secondAttribute="bottom" constant="25" id="fkA-CT-jVw"/>
+                <constraint firstItem="Gcy-hM-PhW" firstAttribute="top" secondItem="WWW-dH-3Gm" secondAttribute="bottom" constant="62" id="ayA-iq-g28"/>
                 <constraint firstAttribute="centerX" secondItem="3QD-ea-bOo" secondAttribute="centerX" id="gbC-Lj-Cli"/>
                 <constraint firstAttribute="bottom" secondItem="R7a-Yx-ItV" secondAttribute="bottom" constant="18" id="mvR-dv-D2g"/>
                 <constraint firstAttribute="centerX" secondItem="444-Xt-Bts" secondAttribute="centerX" constant="-23.5" id="qJu-cL-q5x"/>

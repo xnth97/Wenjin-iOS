@@ -9,8 +9,8 @@ pod 'KVOController'
 pod 'ALActionBlocks'
 pod 'NYSegmentedControl'
 pod 'FXForms'
-pod 'LTNavigationBar'
-pod 'iOS7Colors'
+# pod 'LTNavigationBar'
+# pod 'iOS7Colors'
 
 target 'Wenjin' do
 

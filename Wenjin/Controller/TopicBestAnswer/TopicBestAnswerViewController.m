@@ -55,8 +55,8 @@
     focusTopic.hidden = YES;
     [focusTopic setTitle:@"" forState:UIControlStateNormal];
     
-    UIView *splitLine = [[UIView alloc]initWithFrame:CGRectMake(0, topicHeaderView.frame.size.height - 0.5, topicHeaderView.frame.size.width, 0.5)];
-    [splitLine setBackgroundColor:[UIColor colorWithWhite:0.9 alpha:1.0]];
+    UIView *splitLine = [[UIView alloc]initWithFrame:CGRectMake(0, topicHeaderView.frame.size.height - 0.5, self.view.frame.size.width, 0.5)];
+    [splitLine setBackgroundColor:[UIColor colorWithWhite:0.8 alpha:1.0]];
     [topicHeaderView addSubview:splitLine];
     
     rowsData = [[NSMutableArray alloc]init];
@@ -96,7 +96,7 @@
         self.title = topicInfo[@"topic_title"];
         topicTitle.text = topicInfo[@"topic_title"];
         topicDescription.text = topicInfo[@"topic_description"];
-        [topicImage setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", [wjAPIs topicImagePath], topicInfo[@"topic_pic"]]] placeholderImage:[UIImage imageNamed:@"tabBarIcon"]];
+        [topicImage setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", [wjAPIs topicImagePath], topicInfo[@"topic_pic"]]] placeholderImage:[UIImage imageNamed:@"placeholderTopic.png"]];
         if ([topicInfo[@"has_focus"] isEqual:@0]) {
             [self setValue:@NO forKey:@"topicFollowed"];
         } else if ([topicInfo[@"has_focus"] isEqual:@1]) {
@@ -138,7 +138,7 @@
     NSUInteger row = [indexPath row];
     NSString *questionTitle = ((rowsData[row])[@"question_info"])[@"question_content"];
     NSString *detailStr = [wjStringProcessor processAnswerDetailString:((rowsData[row])[@"answer_info"])[@"answer_content"]];
-    return 56 + [self heightOfLabelWithTextString:questionTitle andFontSize:17.0] + [self heightOfLabelWithTextString:detailStr andFontSize:15.0];
+    return 56 + [self heightOfLabelWithTextString:questionTitle fontSize:17.0 andNumberOfLines:0] + [self heightOfLabelWithTextString:detailStr fontSize:15.0 andNumberOfLines:3];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -172,13 +172,13 @@
 
 }
 
-- (CGFloat)heightOfLabelWithTextString:(NSString *)textString andFontSize:(CGFloat)fontSize {
+- (CGFloat)heightOfLabelWithTextString:(NSString *)textString fontSize:(CGFloat)fontSize andNumberOfLines:(NSUInteger)lines {
     CGFloat width = bestAnswerTableView.frame.size.width - 32;
     
     UILabel *gettingSizeLabel = [[UILabel alloc]init];
     gettingSizeLabel.text = textString;
     gettingSizeLabel.font = [UIFont systemFontOfSize:fontSize];
-    gettingSizeLabel.numberOfLines = 0;
+    gettingSizeLabel.numberOfLines = lines;
     gettingSizeLabel.lineBreakMode = NSLineBreakByWordWrapping;
     CGSize maxSize = CGSizeMake(width, 1000.0);
     

@@ -13,6 +13,7 @@
 #import "wjStringProcessor.h"
 #import "AnswerViewController.h"
 #import "QuestionViewController.h"
+#import "wjAppearanceManager.h"
 
 @interface UserFeedTableViewController ()
 
@@ -181,7 +182,9 @@
             break;
     }
     
-    cell.actionLabel.text = [NSString stringWithFormat:@"%@ %@", userName, userAction];
+    NSMutableAttributedString *attriStr = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"%@ %@", userName, userAction]];
+    [attriStr addAttribute:NSForegroundColorAttributeName value:[wjAppearanceManager userActionTextColor] range:NSMakeRange(0, userName.length)];
+    cell.actionLabel.attributedText = attriStr;
     cell.questionLabel.text = title;
     cell.detailLabel.text = detail;
     [cell loadAvatarImageWithApartURL:userAvatar];
@@ -199,7 +202,7 @@
     UILabel *gettingSizeLabel = [[UILabel alloc]init];
     gettingSizeLabel.text = textString;
     gettingSizeLabel.font = [UIFont systemFontOfSize:17];
-    gettingSizeLabel.numberOfLines = 0;
+    gettingSizeLabel.numberOfLines = 3;
     gettingSizeLabel.lineBreakMode = NSLineBreakByWordWrapping;
     CGSize maxSize = CGSizeMake(width, 1000.0);
     
@@ -214,6 +217,14 @@
         AnswerViewController *aVC = [[AnswerViewController alloc]initWithNibName:@"AnswerViewController" bundle:nil];
         aVC.answerId = (dataInTable[row])[@"answer_id"];
         [self.navigationController pushViewController:aVC animated:YES];
+    } else if (feedType == 0) {
+        QuestionViewController *qVC = [[QuestionViewController alloc]initWithNibName:@"QuestionViewController" bundle:nil];
+        if ((feedType == 0) || (feedType == 2)) {
+            qVC.questionId = (dataInTable[row])[@"id"];
+        } else if (feedType == 1) {
+            qVC.questionId = (dataInTable[row])[@"question_id"];
+        }
+        [self.navigationController pushViewController:qVC animated:YES];
     }
 }
 

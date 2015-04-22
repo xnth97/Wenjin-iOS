@@ -10,6 +10,7 @@
 #import "UIImageView+AFNetworking.h"
 #import "wjAPIs.h"
 #import "ALActionBlocks.h"
+#import "wjAppearanceManager.h"
 
 @implementation UserHeaderView
 
@@ -20,6 +21,8 @@
 @synthesize thanksCountLabel;
 @synthesize followButton;
 @synthesize delegate;
+@synthesize userAgreeView;
+@synthesize userThanksView;
 
 - (id)init {
     if (self = [super init]) {
@@ -27,12 +30,18 @@
         [followButton handleControlEvents:UIControlEventTouchUpInside withBlock:^(id weakSender) {
             [delegate followUser];
         }];
+        
+        userAgreeView.image = [userAgreeView.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+        [userAgreeView setTintColor:[UIColor lightGrayColor]];
+        userThanksView.image = [userThanksView.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+        [userThanksView setTintColor:[UIColor lightGrayColor]];
+        
     }
     return self;
 }
 
 - (void)loadAvatarImageWithApartURLString:(NSString *)urlStr {
-    [userAvatarView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", [wjAPIs avatarPath], urlStr]]];
+    [userAvatarView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", [wjAPIs avatarPath], urlStr]] placeholderImage:[UIImage imageNamed:@"placeholderAvatar.png"]];
     userAvatarView.layer.cornerRadius = userAvatarView.frame.size.width / 2;
     userAvatarView.clipsToBounds = YES;
 }

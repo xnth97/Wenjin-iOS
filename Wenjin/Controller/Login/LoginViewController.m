@@ -35,8 +35,8 @@
     loginBtn.backgroundColor = [wjAppearanceManager mainTintColor];
     loginBtn.layer.cornerRadius = 7.0;
     loginBtn.clipsToBounds = YES;
-    loginBtn.layer.shadowOffset = CGSizeMake(0, 10.0);
-    loginBtn.layer.shadowOpacity = 10.0;
+    loginBtn.layer.shadowOffset = CGSizeMake(0, 20.0);
+    loginBtn.layer.shadowOpacity = 0.5;
     loginBtn.layer.shadowRadius = 5.0;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow) name:UIKeyboardWillShowNotification object:nil];
@@ -57,7 +57,7 @@
     passwordStr = passwordField.text;
     [wjCookieManager removeCookieForKey:@"login"];
     if ([usernameStr isEqualToString:@""] || [passwordStr isEqualToString:@""]) {
-        [MsgDisplay showErrorMsg:@""];
+        [MsgDisplay showErrorMsg:@"用户名或密码不能为空哦"];
         return;
     } else {
         [MsgDisplay showLoading];

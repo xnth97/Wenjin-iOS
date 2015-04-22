@@ -13,7 +13,16 @@
 + (NSString *)processAnswerDetailString:(NSString *)detailString {
     detailString = [self filterHTMLWithString:detailString];
     detailString = [detailString stringByReplacingOccurrencesOfString:@"\n" withString:@""];
-    return ([detailString hasPrefix:@"<img src="]) ? @"[图片]" : (([detailString length] > 60) ? [NSString stringWithFormat:@"%@...", [detailString substringToIndex:61]] : detailString);
+    
+    NSString *imgStr;
+    NSString *imgHeaderStr = @"<img src='http://";
+    NSScanner *imgScanner = [NSScanner scannerWithString:detailString];
+    [imgScanner scanUpToString:imgHeaderStr intoString:NULL];
+    [imgScanner scanUpToString:@"/>" intoString:&imgStr];
+    NSString *originalImgStr = [NSString stringWithFormat:@"%@%@",imgStr, @"/>"];
+    detailString = [detailString stringByReplacingOccurrencesOfString:originalImgStr withString:@"[图片]"];
+
+    return detailString;
 }
 
 + (NSString *)filterHTMLWithString:(NSString *)s {

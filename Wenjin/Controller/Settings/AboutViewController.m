@@ -7,6 +7,7 @@
 //
 
 #import "AboutViewController.h"
+#import "wjAppearanceManager.h"
 #import "data.h"
 
 @interface AboutViewController ()
@@ -21,7 +22,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.title = @"关于问津";
-    versionLabel.text = [NSString stringWithFormat:@"问津 Alpha Preview %@ Build %@", [data appVersion], [data appBuild]];
+    versionLabel.text = [NSString stringWithFormat:@"问津 %@ Build %@", [data appVersion], [data appBuild]];
 }
 
 - (void)didReceiveMemoryWarning {
