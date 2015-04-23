@@ -136,7 +136,7 @@
 		E9642E921AC5714800FF7875 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		E9642E931AC5714800FF7875 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		E9642E991AC5714800FF7875 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		E9642E9B1AC5714800FF7875 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		E9642E9B1AC5714800FF7875 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ../Images.xcassets; sourceTree = "<group>"; };
 		E9642E9E1AC5714800FF7875 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		E9642EA41AC5714800FF7875 /* WenjinTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WenjinTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9642EA91AC5714800FF7875 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -403,7 +403,6 @@
 				E9C9C6E71AC694ED00CC228A /* Controller */,
 				E9C9C6E61AC694DE00CC228A /* Model */,
 				E9C1A1C71ACC080700892B60 /* Resource */,
-				E9642E9B1AC5714800FF7875 /* Images.xcassets */,
 			);
 			path = Wenjin;
 			sourceTree = "<group>";
@@ -574,6 +573,7 @@
 		E9C1A1C71ACC080700892B60 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				E9642E9B1AC5714800FF7875 /* Images.xcassets */,
 				E9C1A1C81ACC080700892B60 /* bootstrap.css */,
 				E9C1A1C91ACC080700892B60 /* bootstrap.min.js */,
 			);
