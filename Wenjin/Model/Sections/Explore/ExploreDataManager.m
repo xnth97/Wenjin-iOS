@@ -19,7 +19,8 @@
     NSDictionary *parameters = @{@"page": [NSNumber numberWithInteger:page],
                                  @"day": @30,
                                  @"is_recommend": [NSNumber numberWithInteger:recommended],
-                                 @"sort_type": type};
+                                 @"sort_type": type,
+                                 @"platform": @"ios"};
     [manager GET:[wjAPIs explore] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSDictionary *dicData = [operation.responseString objectFromJSONString];
         if ([dicData[@"errno"] isEqual:@1]) {

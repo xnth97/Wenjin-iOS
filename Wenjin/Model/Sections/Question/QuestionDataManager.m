@@ -17,7 +17,8 @@
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
-    NSDictionary *questionDic = @{@"id": questionId};
+    NSDictionary *questionDic = @{@"id": questionId,
+                                  @"platform": @"ios"};
     [manager GET:[wjAPIs viewQuestion] parameters:questionDic success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         NSDictionary *quesData = [operation.responseString objectFromJSONString];

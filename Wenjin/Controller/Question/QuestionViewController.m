@@ -17,6 +17,8 @@
 #import "TopicBestAnswerViewController.h"
 #import "ALActionBlocks.h"
 #import "OpenInSafariActivity.h"
+#import "WeChatMomentsActivity.h"
+#import "WeChatSessionActivity.h"
 
 @interface QuestionViewController ()
 
@@ -45,8 +47,10 @@
     UIBarButtonItem *shareBtn = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAction block:^(id weakSender) {
         NSURL *shareURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://wenjin.twtstudio.com/?/m/question/%@", questionId]];
         NSArray *activityItems = @[shareURL, questionSummary];
-        OpenInSafariActivity *openInSafari = [[OpenInSafariActivity alloc]init];
-        UIActivityViewController *activityController = [[UIActivityViewController alloc]initWithActivityItems:activityItems applicationActivities:@[openInSafari]];
+        OpenInSafariActivity *openInSafari = [[OpenInSafariActivity alloc] init];
+        WeChatMomentsActivity *wxMoment = [[WeChatMomentsActivity alloc] init];
+        WeChatSessionActivity *wxSession = [[WeChatSessionActivity alloc] init];
+        UIActivityViewController *activityController = [[UIActivityViewController alloc]initWithActivityItems:activityItems applicationActivities:@[openInSafari, wxMoment, wxSession]];
         activityController.modalPresentationStyle = UIModalPresentationPopover;
         activityController.popoverPresentationController.permittedArrowDirections = UIPopoverArrowDirectionAny;
         activityController.popoverPresentationController.barButtonItem = self.navigationItem.rightBarButtonItem;
@@ -166,7 +170,7 @@
     NSUInteger row = [indexPath row];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     AnswerViewController *aVC = [[AnswerViewController alloc]initWithNibName:@"AnswerViewController" bundle:nil];
-    aVC.answerId = (questionAnswersData[row])[@"answer_id"];
+    aVC.answerId = [(questionAnswersData[row])[@"answer_id"] stringValue];
     [self.navigationController pushViewController:aVC animated:YES];
 }
 
@@ -184,7 +188,7 @@
 // Question Header View Delegate
 - (void)presentPostAnswerController {
     PostAnswerViewController *postAnswer = [[PostAnswerViewController alloc]init];
-    postAnswer.questionId = questionInfo[@"question_id"];
+    postAnswer.questionId = [questionInfo[@"question_id"] stringValue];
     UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:postAnswer];
     [self presentViewController:nav animated:YES completion:nil];
 }

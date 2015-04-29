@@ -98,4 +98,8 @@
 // Bug HD Key
 + (NSString *)firKey;
 
+// WeChat
++ (NSString *)wechatAppID;
++ (NSString *)wechatAppSecret;
+
 @end

@@ -17,7 +17,7 @@
 + (void)postQuestionWithParameters:(NSDictionary *)parameters success:(void (^)(NSString *))success failure:(void (^)(NSString *))failure {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
-    [manager POST:[wjAPIs postQuestion] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObj) {
+    [manager POST:[NSString stringWithFormat:@"%@?platform=ios", [wjAPIs postQuestion]] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObj) {
         
         NSDictionary *pqDic = [operation.responseString objectFromJSONString];
         if ([pqDic[@"errno"] isEqual: @1]) {
@@ -40,7 +40,7 @@
 + (void)postAnswerWithParameters:(NSDictionary *)parameters success:(void (^)(NSString *))success failure:(void (^)(NSString *))failure {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
-    [manager POST:[wjAPIs postAnswer] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObj) {
+    [manager POST:[NSString stringWithFormat:@"%@?platform=ios", [wjAPIs postAnswer]] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObj) {
         
         NSDictionary *pqDic = [operation.responseString objectFromJSONString];
         if ([pqDic[@"errno"] isEqual: @1]) {
@@ -63,7 +63,7 @@
 + (void)postAnswerCommentWithAnswerID:(NSString *)answerId andMessage:(NSString *)message success:(void (^)())success failure:(void (^)(NSString *))failure {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
-    NSString *getURLString = [NSString stringWithFormat:@"%@?answer_id=%@", [wjAPIs postAnswerComment], answerId];
+    NSString *getURLString = [NSString stringWithFormat:@"%@?answer_id=%@&platform=ios", [wjAPIs postAnswerComment], answerId];
     NSDictionary *parameters = @{@"message": message};
     [manager POST:getURLString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSDictionary *dicData = [operation.responseString objectFromJSONString];
@@ -88,7 +88,7 @@
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     
-    NSString *urlString = [NSString stringWithFormat:@"%@&id=%@&attach_access_key=%@", [wjAPIs uploadAttach], type, [data shareInstance].attachAccessKey];
+    NSString *urlString = [NSString stringWithFormat:@"%@&id=%@&attach_access_key=%@&platform=ios", [wjAPIs uploadAttach], type, [data shareInstance].attachAccessKey];
     
     [manager POST:urlString parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         [formData appendPartWithFileData:file name:@"qqfile" fileName:@"img.jpg" mimeType:@"image/jpg"];
@@ -113,12 +113,12 @@
 + (void)postFeedbackWithTitle:(NSString *)title message:(NSString *)message success:(void (^)())success failure:(void (^)(NSString *))failure {
     NSDictionary *parameters = @{@"title": title,
                                  @"message": message,
-                                 @"version": [data appVersion],
-                                 @"system": [data osVersion],
-                                 @"source": @"ios"};
+                                 @"version": @"ios",
+                                 @"system": [data appVersion],
+                                 @"source": [data osVersion]};
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
-    [manager POST:[wjAPIs feedback] parameters:parameters success:^(AFHTTPRequestOperation *operation, id robj) {
+    [manager POST:[NSString stringWithFormat:@"%@?platform=ios", [wjAPIs feedback]] parameters:parameters success:^(AFHTTPRequestOperation *operation, id robj) {
         NSDictionary *dicData = [operation.responseString objectFromJSONString];
         if ([dicData[@"errno"] isEqual:@1]) {
             dispatch_async(dispatch_get_main_queue(), ^{

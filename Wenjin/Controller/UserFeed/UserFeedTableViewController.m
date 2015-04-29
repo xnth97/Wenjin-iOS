@@ -215,14 +215,14 @@
 - (void)pushAnswerControllerWithRow:(NSUInteger)row {
     if (feedType == 1) {
         AnswerViewController *aVC = [[AnswerViewController alloc]initWithNibName:@"AnswerViewController" bundle:nil];
-        aVC.answerId = (dataInTable[row])[@"answer_id"];
+        aVC.answerId = [(dataInTable[row])[@"answer_id"] stringValue];
         [self.navigationController pushViewController:aVC animated:YES];
     } else if (feedType == 0) {
         QuestionViewController *qVC = [[QuestionViewController alloc]initWithNibName:@"QuestionViewController" bundle:nil];
         if ((feedType == 0) || (feedType == 2)) {
-            qVC.questionId = (dataInTable[row])[@"id"];
+            qVC.questionId = [(dataInTable[row])[@"id"] stringValue];
         } else if (feedType == 1) {
-            qVC.questionId = (dataInTable[row])[@"question_id"];
+            qVC.questionId = [(dataInTable[row])[@"question_id"] stringValue];
         }
         [self.navigationController pushViewController:qVC animated:YES];
     }
@@ -231,9 +231,9 @@
 - (void)pushQuestionControllerWithRow:(NSUInteger)row {
     QuestionViewController *qVC = [[QuestionViewController alloc]initWithNibName:@"QuestionViewController" bundle:nil];
     if ((feedType == 0) || (feedType == 2)) {
-        qVC.questionId = (dataInTable[row])[@"id"];
+        qVC.questionId = [(dataInTable[row])[@"id"] stringValue];
     } else if (feedType == 1) {
-        qVC.questionId = (dataInTable[row])[@"question_id"];
+        qVC.questionId = [(dataInTable[row])[@"question_id"] stringValue];
     }
     [self.navigationController pushViewController:qVC animated:YES];
 }

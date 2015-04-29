@@ -200,6 +200,7 @@
     TopicBestAnswerViewController *topicBestAnswer = [[TopicBestAnswerViewController alloc]initWithNibName:@"TopicBestAnswerViewController" bundle:nil];
     topicBestAnswer.topicId = topicId;
     topicBestAnswer.hidesBottomBarWhenPushed = YES;
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     [self.navigationController pushViewController:topicBestAnswer animated:YES];
 }
 

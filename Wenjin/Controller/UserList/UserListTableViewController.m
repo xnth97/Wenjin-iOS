@@ -137,7 +137,7 @@
     NSUInteger row = [indexPath row];
     NSDictionary *tmp = dataInTable[row];
     UserViewController *uVC = [[UserViewController alloc]initWithNibName:@"UserViewController" bundle:nil];
-    uVC.userId = tmp[@"uid"];
+    uVC.userId = [tmp[@"uid"] stringValue];
     [self.navigationController pushViewController:uVC animated:YES];
 }
 
