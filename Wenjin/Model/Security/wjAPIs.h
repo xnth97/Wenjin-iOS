@@ -95,4 +95,7 @@
 // 反馈
 + (NSString *)feedback;
 
+// Bug HD Key
++ (NSString *)firKey;
+
 @end

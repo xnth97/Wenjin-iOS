@@ -13,6 +13,7 @@
 #import "MsgDisplay.h"
 #import "wjAPIs.h"
 #import "wjAppearanceManager.h"
+#import "FBKVOController.h"
 
 @implementation QuestionHeaderView {
     int _borderDist;
@@ -71,35 +72,15 @@
         questionTitle.frame = CGRectMake(_borderDist + 4, 42, width - 2 * _borderDist, questionFitSize.height + 20);
         [self addSubview:questionTitle];
         
-        
         detailView = [[UIWebView alloc]init];
+        [detailView.scrollView addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew context:NULL];
         detailView.frame = CGRectMake(0, 42 + questionTitle.frame.size.height, width, 1);
         if (![questionInfo[@"question_detail"] isEqualToString:@""]) {
             [detailView loadHTMLString:[wjStringProcessor convertToBootstrapHTMLWithContent:questionInfo[@"question_detail"]] baseURL:[NSURL URLWithString:[wjAPIs baseURL]]];
             detailView.delegate = self;
         }
-        detailView.hidden = YES;
+        detailView.hidden = NO;
         [self addSubview:detailView];
-        
-        /*
-        detailView = [[UITextView alloc]init];
-        detailView.editable = NO;
-        detailView.scrollEnabled = NO;
-        detailView.font = [UIFont systemFontOfSize:14];
-        detailView.text = [wjStringProcessor filterHTMLWithString:questionInfo[@"question_detail"]];
-         */
-        
-        //detailView = [[KxHTMLView alloc]initWithFrame:CGRectZero];
-        //[detailView loadHtmlString:questionInfo[@"question_detail"]];
-        //detailView.contentMode = UIViewContentModeRedraw;
-        //detailView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-        //[detailView sizeToFit];
-        [self addSubview:detailView];
-        //detailView.translatesAutoresizingMaskIntoConstraints = NO;
-        
-        //CGSize detailFitSize = [detailView sizeThatFits:maxSize];
-        //detailView.frame = CGRectMake(_borderDist, 42 + questionTitle.frame.size.height, width - 2 * _borderDist, ([detailView.text isEqualToString: @""]) ? 14 : detailFitSize.height + 20);
-        
         
         focusQuestion = [UIButton buttonWithType:UIButtonTypeSystem];
         [focusQuestion setTitle:(([questionInfo[@"has_focus"] isEqual:@1]) ? @"取消关注" : @"关注问题") forState:UIControlStateNormal];
@@ -172,6 +153,32 @@
     return self;
 }
 
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+    if (object == detailView.scrollView && [keyPath isEqualToString:@"contentSize"]) {
+        UIScrollView *scroll = detailView.scrollView;
+        scroll.scrollEnabled = NO;
+        CGRect detailFrame = detailView.frame;
+        NSLog(@"%f", detailFrame.size.height);
+        
+        [UIView animateWithDuration:0.3 animations:^{
+            detailView.frame = CGRectMake(detailFrame.origin.x, detailFrame.origin.y, scroll.contentSize.width, scroll.contentSize.height);
+            detailView.hidden = NO;
+            focusQuestion.frame = CGRectMake(0, 42 + questionTitle.frame.size.height + detailView.frame.size.height, 0.5 * width, 30);
+            addAnswer.frame = CGRectMake(0.5 * width, 42 + questionTitle.frame.size.height + detailView.frame.size.height, 0.5 * width, 30);
+            self.frame = CGRectMake(0, 0, width, 42 + questionTitle.frame.size.height + detailView.frame.size.height + 42);
+            
+            splitLine.frame = CGRectMake(0, self.frame.size.height - 0.5, [UIScreen mainScreen].bounds.size.width, 0.5);
+        }];
+        
+        [delegate headerDetailViewFinishLoadingWithView:self];
+    }
+}
+
+- (void)dealloc {
+    [detailView.scrollView removeObserver:self forKeyPath:@"contentSize"];
+}
+
+/*
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
     UIScrollView *scroll = webView.scrollView;
     scroll.scrollEnabled = NO;
@@ -189,6 +196,7 @@
     
     [delegate headerDetailViewFinishLoadingWithView:self];
 }
+ */
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
     if (navigationType == UIWebViewNavigationTypeLinkClicked) {

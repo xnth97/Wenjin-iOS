@@ -7,6 +7,8 @@
 //
 
 #import "AppDelegate.h"
+#import "wjAPIs.h"
+#import <FIR/FIR.h>
 
 @interface AppDelegate ()
 
@@ -17,6 +19,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    [FIR handleCrashWithKey:[wjAPIs firKey]];
+    
     return YES;
 }
 

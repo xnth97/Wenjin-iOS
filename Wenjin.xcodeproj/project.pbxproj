@@ -370,7 +370,6 @@
 				E93063D41ACAABC7000140C1 /* AnswerViewController.h */,
 				E93063D51ACAABC7000140C1 /* AnswerViewController.m */,
 				E93063D61ACAABC7000140C1 /* AnswerViewController.xib */,
-				E9DB26F11AD54F5E00C3C60D /* AnswerCommentViewController */,
 			);
 			name = AnswerViewController;
 			sourceTree = "<group>";
@@ -616,6 +615,7 @@
 				E9C9C6E81AC6AA8400CC228A /* MainTabBarController */,
 				E9C9C6F01AC6B35B00CC228A /* Home */,
 				E93063CB1ACAAB3C000140C1 /* AnswerViewController */,
+				E9DB26F11AD54F5E00C3C60D /* AnswerCommentViewController */,
 				E93063CA1ACAAB33000140C1 /* QuestionViewController */,
 				E9D56EFD1ADE865D00C54466 /* TopicBestAnswerViewController */,
 				E96F09251AD7E28E00847E5E /* TopicListTableViewController */,

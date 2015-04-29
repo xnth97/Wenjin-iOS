@@ -45,6 +45,7 @@
     // Do any additional setup after loading the view from its nib.
     self.title = @"回答";
     self.automaticallyAdjustsScrollViewInsets = YES;
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     
     userNameLabel.text = @"";
     userSigLabel.text = @"";
@@ -214,6 +215,10 @@
     } else {
         return YES;
     }
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView {
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
 }
 
 /*

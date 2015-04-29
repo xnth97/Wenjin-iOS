@@ -41,6 +41,8 @@
     s = [s stringByReplacingOccurrencesOfString:@"</p>" withString:@""];
     s = [s stringByReplacingOccurrencesOfString:@"<blockquote>" withString:@""];
     s = [s stringByReplacingOccurrencesOfString:@"</blockquote>" withString:@""];
+    s = [s stringByReplacingOccurrencesOfString:@"<strong>" withString:@""];
+    s = [s stringByReplacingOccurrencesOfString:@"</strong>" withString:@""];
     return s;
 }
 

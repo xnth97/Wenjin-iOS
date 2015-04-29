@@ -23,7 +23,7 @@
             }];
         }
     }
-    
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     NSDictionary *parameters = @{@"uid": uid};
@@ -33,21 +33,23 @@
         if ([userDic[@"errno"] isEqual:@1]) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 success(userDic[@"rsm"]);
-                
-                if ([uid integerValue] == [[data shareInstance].myUID integerValue]) {
-                    [wjCacheManager saveCacheData:userDic[@"rsm"] withKey:@"myProfile"];
-                }
             });
+            if ([uid integerValue] == [[data shareInstance].myUID integerValue]) {
+                [wjCacheManager saveCacheData:userDic[@"rsm"] withKey:@"myProfile"];
+            }
+            [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         } else {
             dispatch_async(dispatch_get_main_queue(), ^{
                 failure(userDic[@"err"]);
             });
+            [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         }
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
             failure(error.localizedDescription);
         });
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
     }];
 }
 

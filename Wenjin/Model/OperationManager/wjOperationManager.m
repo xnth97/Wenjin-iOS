@@ -14,6 +14,7 @@
 @implementation wjOperationManager
 
 + (void)followQuestionWithQuestionID:(NSString *)questionId success:(void (^)(NSString *))success failure:(void (^)(NSString *))failure {
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     NSDictionary *parameters = @{@"question_id": questionId};
@@ -25,13 +26,16 @@
         } else {
             failure(respObj[@"err"]);
         }
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         failure(error.localizedDescription);
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
     }];
 }
 
 + (void)followPeopleWithUserID:(NSString *)uid success:(void (^)(NSString *))success failure:(void (^)(NSString *))failure {
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     NSDictionary *parameters = @{@"uid": uid};
@@ -40,16 +44,20 @@
         NSDictionary *respObj = [operation.responseString objectFromJSONString];
         if ([respObj[@"errno"] isEqual: @1]) {
             success((respObj[@"rsm"])[@"type"]);
+            [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         } else {
             failure(respObj[@"err"]);
+            [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         }
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         failure(error.localizedDescription);
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
     }];
 }
 
 + (void)voteAnswerWithAnswerID:(NSString *)answerId operation:(NSInteger)operation success:(void (^)())success failure:(void (^)(NSString *))failure {
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     NSDictionary *parameters = @{@"answer_id": answerId,
@@ -58,15 +66,19 @@
         NSDictionary *respObj = [operation.responseString objectFromJSONString];
         if ([respObj[@"errno"] isEqual: @1]) {
             success();
+            [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         } else {
             failure(respObj[@"err"]);
+            [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         failure(error.localizedDescription);
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
     }];
 }
 
 + (void)followTopicWithTopicID:(NSString *)topicId success:(void (^)(NSString *))success failure:(void (^)(NSString *))failure {
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     NSDictionary *parameters = @{@"topic_id": topicId};
@@ -75,12 +87,15 @@
         NSDictionary *respObj = [operation.responseString objectFromJSONString];
         if ([respObj[@"errno"] isEqual: @1]) {
             success((respObj[@"rsm"])[@"type"]);
+            [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         } else {
             failure(respObj[@"err"]);
+            [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         }
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         failure(error.localizedDescription);
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
     }];
 }
 

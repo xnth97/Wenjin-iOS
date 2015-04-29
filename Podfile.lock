@@ -21,6 +21,7 @@ PODS:
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
   - ALActionBlocks (1.0.3)
+  - FIR.im (1.2.0)
   - FXForms (1.2.12)
   - JSONKit (1.4)
   - KVOController (1.0.3)
@@ -32,6 +33,7 @@ PODS:
 DEPENDENCIES:
   - AFNetworking
   - ALActionBlocks
+  - FIR.im
   - FXForms
   - JSONKit
   - KVOController
@@ -43,6 +45,7 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   AFNetworking: e1d86c2a96bb5d2e7408da36149806706ee122fe
   ALActionBlocks: ac91b1a37b60a8004fb687ddade0600446f3d3fa
+  FIR.im: e5c7367a35adcd796f30f176f059356c330c0c2e
   FXForms: b6a78bac9f6b597ce704e34ac7c1ce9ff628b1d5
   JSONKit: 5b69e804ea54d99293eed0fd2ce596c5703fefb0
   KVOController: 9fd8f0343670994e4b6f9f0b31f5a45663f3e1cf

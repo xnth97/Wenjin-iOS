@@ -96,8 +96,8 @@
             headerView.userSigLabel.text = (userData[@"signature"] == [NSNull null]) ? @"" : userData[@"signature"];
             NSUInteger agreeCount = [userData[@"agree_count"] integerValue];
             NSUInteger thanksCount = [userData[@"thanks_count"] integerValue];
-            headerView.agreeCountLabel.text = (agreeCount >= 1000) ? [NSString stringWithFormat:@"%ldK", agreeCount/1000] : userData[@"agree_count"];
-            headerView.thanksCountLabel.text = (thanksCount >= 1000) ? [NSString stringWithFormat:@"%ldK", thanksCount/1000] : userData[@"thanks_count"];
+            headerView.agreeCountLabel.text = (agreeCount >= 1000) ? [NSString stringWithFormat:@"%ldK", agreeCount/1000] : [userData[@"agree_count"] stringValue];
+            headerView.thanksCountLabel.text = (thanksCount >= 1000) ? [NSString stringWithFormat:@"%ldK", thanksCount/1000] : [userData[@"thanks_count"] stringValue];
             [headerView loadAvatarImageWithApartURLString:userData[@"avatar_file"]];
             
             userName = userData[@"nick_name"];
@@ -149,15 +149,15 @@
     cell.textLabel.text = (cellArray[section])[row];
     if (section == 0) {
         if (row == 0) {
-            cell.detailTextLabel.text = userData[@"question_count"];
+            cell.detailTextLabel.text = [userData[@"question_count"] stringValue];
         } else if (row == 1) {
-            cell.detailTextLabel.text = userData[@"answer_count"];
+            cell.detailTextLabel.text = [userData[@"answer_count"] stringValue];
         }
     } else if (section == 1) {
         if (row == 0) {
-            cell.detailTextLabel.text = userData[@"friend_count"];
+            cell.detailTextLabel.text = [userData[@"friend_count"] stringValue];
         } else {
-            cell.detailTextLabel.text = userData[@"fans_count"];
+            cell.detailTextLabel.text = [userData[@"fans_count"] stringValue];
         }
     }
     return cell;
