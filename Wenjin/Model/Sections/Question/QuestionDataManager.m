@@ -14,9 +14,11 @@
 @implementation QuestionDataManager
 
 + (void)getQuestionDataWithID:(NSString *)questionId success:(void (^)(NSDictionary *, NSArray *, NSArray *, NSString *))success failure:(void (^)(NSString *))failure {
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
-    NSDictionary *questionDic = @{@"id": questionId};
+    NSDictionary *questionDic = @{@"id": questionId,
+                                  @"platform": @"ios"};
     [manager GET:[wjAPIs viewQuestion] parameters:questionDic success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         NSDictionary *quesData = [operation.responseString objectFromJSONString];
@@ -24,16 +26,19 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                 success((quesData[@"rsm"])[@"question_info"], (quesData[@"rsm"])[@"answers"], (quesData[@"rsm"])[@"question_topics"], [(quesData[@"rsm"])[@"answer_count"] stringValue]);
             });
+            [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         } else {
             dispatch_async(dispatch_get_main_queue(), ^{
                 failure(quesData[@"err"]);
             });
+            [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         }
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
             failure(error.localizedDescription);
         });
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
     }];
 }
 

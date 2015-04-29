@@ -8,9 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		3B0615DC3D57B8691C9034B0 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 757BA8EC47203DAF45B2AE0E /* libPods.a */; };
+		E90968371AF0B79B00E65F7E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E90968361AF0B79B00E65F7E /* SystemConfiguration.framework */; };
+		E90968391AF0B7A600E65F7E /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E90968381AF0B7A600E65F7E /* libz.dylib */; };
+		E909683B1AF0B7AF00E65F7E /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E909683A1AF0B7AF00E65F7E /* libsqlite3.0.dylib */; };
+		E90968401AF0B7E600E65F7E /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E909683D1AF0B7E600E65F7E /* libWeChatSDK.a */; };
 		E90F42741ACD979500263622 /* UserDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E90F42731ACD979500263622 /* UserDataManager.m */; };
 		E90F42781ACE6A4E00263622 /* UserHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = E90F42771ACE6A4E00263622 /* UserHeaderView.m */; };
 		E90F427A1ACE6E5D00263622 /* UserHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E90F42791ACE6E5D00263622 /* UserHeaderView.xib */; };
+		E922984D1AF0B9CA000CC8F7 /* WeChatMomentsActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = E922984C1AF0B9CA000CC8F7 /* WeChatMomentsActivity.m */; };
+		E92298501AF0E4EF000CC8F7 /* WeChatSessionActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = E922984F1AF0E4EF000CC8F7 /* WeChatSessionActivity.m */; };
 		E93063B51ACA3982000140C1 /* HomeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E93063B31ACA3982000140C1 /* HomeTableViewCell.m */; };
 		E93063B61ACA3982000140C1 /* HomeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E93063B41ACA3982000140C1 /* HomeTableViewCell.xib */; };
 		E93063BA1ACA47EB000140C1 /* wjStringProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = E93063B91ACA47EB000140C1 /* wjStringProcessor.m */; };
@@ -96,11 +102,21 @@
 		757BA8EC47203DAF45B2AE0E /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		99C1D034404BBB2CDDB8DD79 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		9CFC932D72517F9951FCBB16 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		E90968361AF0B79B00E65F7E /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		E90968381AF0B7A600E65F7E /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		E909683A1AF0B7AF00E65F7E /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
+		E909683D1AF0B7E600E65F7E /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libWeChatSDK.a; path = WXSDK/libWeChatSDK.a; sourceTree = "<group>"; };
+		E909683E1AF0B7E600E65F7E /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WXApi.h; path = WXSDK/WXApi.h; sourceTree = "<group>"; };
+		E909683F1AF0B7E600E65F7E /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WXApiObject.h; path = WXSDK/WXApiObject.h; sourceTree = "<group>"; };
 		E90F42721ACD979500263622 /* UserDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserDataManager.h; path = Model/Sections/User/UserDataManager.h; sourceTree = "<group>"; };
 		E90F42731ACD979500263622 /* UserDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserDataManager.m; path = Model/Sections/User/UserDataManager.m; sourceTree = "<group>"; };
 		E90F42761ACE6A4E00263622 /* UserHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserHeaderView.h; path = View/UserHeaderView/UserHeaderView.h; sourceTree = "<group>"; };
 		E90F42771ACE6A4E00263622 /* UserHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserHeaderView.m; path = View/UserHeaderView/UserHeaderView.m; sourceTree = "<group>"; };
 		E90F42791ACE6E5D00263622 /* UserHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UserHeaderView.xib; path = View/UserHeaderView/UserHeaderView.xib; sourceTree = "<group>"; };
+		E922984B1AF0B9CA000CC8F7 /* WeChatMomentsActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeChatMomentsActivity.h; sourceTree = "<group>"; };
+		E922984C1AF0B9CA000CC8F7 /* WeChatMomentsActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeChatMomentsActivity.m; sourceTree = "<group>"; };
+		E922984E1AF0E4EF000CC8F7 /* WeChatSessionActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeChatSessionActivity.h; sourceTree = "<group>"; };
+		E922984F1AF0E4EF000CC8F7 /* WeChatSessionActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeChatSessionActivity.m; sourceTree = "<group>"; };
 		E92A5B0C1AC5B73E004E71FB /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		E92A5B0D1AC5B73E004E71FB /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		E93063B21ACA3982000140C1 /* HomeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomeTableViewCell.h; path = View/HomeTableViewCell/HomeTableViewCell.h; sourceTree = "<group>"; };
@@ -230,6 +246,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E909683B1AF0B7AF00E65F7E /* libsqlite3.0.dylib in Frameworks */,
+				E90968391AF0B7A600E65F7E /* libz.dylib in Frameworks */,
+				E90968401AF0B7E600E65F7E /* libWeChatSDK.a in Frameworks */,
+				E90968371AF0B79B00E65F7E /* SystemConfiguration.framework in Frameworks */,
 				E9D56EF81ADE2AD500C54466 /* QuartzCore.framework in Frameworks */,
 				E9D56EF61ADE2ACE00C54466 /* CoreGraphics.framework in Frameworks */,
 				E9D56EF41ADE2AC800C54466 /* Foundation.framework in Frameworks */,
@@ -251,6 +271,9 @@
 		12540291E620BDA86F3DB73E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E909683A1AF0B7AF00E65F7E /* libsqlite3.0.dylib */,
+				E90968381AF0B7A600E65F7E /* libz.dylib */,
+				E90968361AF0B79B00E65F7E /* SystemConfiguration.framework */,
 				E9D56EF71ADE2AD500C54466 /* QuartzCore.framework */,
 				E9D56EF51ADE2ACE00C54466 /* CoreGraphics.framework */,
 				E9D56EF31ADE2AC800C54466 /* Foundation.framework */,
@@ -267,6 +290,16 @@
 				99C1D034404BBB2CDDB8DD79 /* Pods.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		E909683C1AF0B7C700E65F7E /* WXSDK */ = {
+			isa = PBXGroup;
+			children = (
+				E909683D1AF0B7E600E65F7E /* libWeChatSDK.a */,
+				E909683E1AF0B7E600E65F7E /* WXApi.h */,
+				E909683F1AF0B7E600E65F7E /* WXApiObject.h */,
+			);
+			name = WXSDK;
 			sourceTree = "<group>";
 		};
 		E90F42711ACD978100263622 /* User */ = {
@@ -370,7 +403,6 @@
 				E93063D41ACAABC7000140C1 /* AnswerViewController.h */,
 				E93063D51ACAABC7000140C1 /* AnswerViewController.m */,
 				E93063D61ACAABC7000140C1 /* AnswerViewController.xib */,
-				E9DB26F11AD54F5E00C3C60D /* AnswerCommentViewController */,
 			);
 			name = AnswerViewController;
 			sourceTree = "<group>";
@@ -539,6 +571,10 @@
 			children = (
 				E99577671AE76282002E5107 /* OpenInSafariActivity.h */,
 				E99577681AE76282002E5107 /* OpenInSafariActivity.m */,
+				E922984B1AF0B9CA000CC8F7 /* WeChatMomentsActivity.h */,
+				E922984C1AF0B9CA000CC8F7 /* WeChatMomentsActivity.m */,
+				E922984E1AF0E4EF000CC8F7 /* WeChatSessionActivity.h */,
+				E922984F1AF0E4EF000CC8F7 /* WeChatSessionActivity.m */,
 			);
 			path = UIActivity;
 			sourceTree = "<group>";
@@ -573,6 +609,7 @@
 		E9C1A1C71ACC080700892B60 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				E909683C1AF0B7C700E65F7E /* WXSDK */,
 				E9642E9B1AC5714800FF7875 /* Images.xcassets */,
 				E9C1A1C81ACC080700892B60 /* bootstrap.css */,
 				E9C1A1C91ACC080700892B60 /* bootstrap.min.js */,
@@ -616,6 +653,7 @@
 				E9C9C6E81AC6AA8400CC228A /* MainTabBarController */,
 				E9C9C6F01AC6B35B00CC228A /* Home */,
 				E93063CB1ACAAB3C000140C1 /* AnswerViewController */,
+				E9DB26F11AD54F5E00C3C60D /* AnswerCommentViewController */,
 				E93063CA1ACAAB33000140C1 /* QuestionViewController */,
 				E9D56EFD1ADE865D00C54466 /* TopicBestAnswerViewController */,
 				E96F09251AD7E28E00847E5E /* TopicListTableViewController */,
@@ -1006,6 +1044,7 @@
 				E9C9C7181AC7256700CC228A /* wjCacheManager.m in Sources */,
 				E9C1A1C01ACAF21F00892B60 /* QuestionDataManager.m in Sources */,
 				E93063C21ACA4E69000140C1 /* PostDataManager.m in Sources */,
+				E92298501AF0E4EF000CC8F7 /* WeChatSessionActivity.m in Sources */,
 				E9DB26E51AD4F32200C3C60D /* UserListTableViewController.m in Sources */,
 				E96F09241AD7D29700847E5E /* TLTagsControl.m in Sources */,
 				E93063D71ACAABC7000140C1 /* AnswerViewController.m in Sources */,
@@ -1021,6 +1060,7 @@
 				E9642E911AC5714800FF7875 /* main.m in Sources */,
 				E96F09361AD8FF7700847E5E /* ExploreDataManager.m in Sources */,
 				E9DB26F01AD506BC00C3C60D /* UserFeedTableViewController.m in Sources */,
+				E922984D1AF0B9CA000CC8F7 /* WeChatMomentsActivity.m in Sources */,
 				E9DB26FE1AD562E100C3C60D /* PostAnswerCommentViewController.m in Sources */,
 				E9C9C70A1AC71E4200CC228A /* wpyEncryption.m in Sources */,
 				E9DB26EA1AD4F44B00C3C60D /* UserListTableViewCell.m in Sources */,
@@ -1167,6 +1207,10 @@
 				INFOPLIST_FILE = Wenjin/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Wenjin/Resource/WXSDK",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -1191,6 +1235,10 @@
 				INFOPLIST_FILE = Wenjin/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Wenjin/Resource/WXSDK",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

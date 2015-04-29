@@ -19,7 +19,7 @@
 + (void)loginWithParameters:(NSDictionary *)parameters success:(void (^)(NSString *, NSString *, NSString *))success failure:(void (^)(NSString *))failure {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
-    [manager POST:[wjAPIs login] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [manager POST:[NSString stringWithFormat:@"%@?platform=ios", [wjAPIs login]] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         NSDictionary *loginData = [operation.responseString objectFromJSONString];
         if ([loginData[@"errno"] isEqual: @1]) {

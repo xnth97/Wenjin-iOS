@@ -95,4 +95,11 @@
 // 反馈
 + (NSString *)feedback;
 
+// Bug HD Key
++ (NSString *)firKey;
+
+// WeChat
++ (NSString *)wechatAppID;
++ (NSString *)wechatAppSecret;
+
 @end

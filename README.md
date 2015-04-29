@@ -18,7 +18,7 @@ Wenjin-iOS
 	* main.m
 	* info.plist
 	* Base.lproj & zh-Hans.lproj
-* Modal
+* Model
 	* 各模块数据管理器
 	* 消息显示模块
 	* 本地数据管理

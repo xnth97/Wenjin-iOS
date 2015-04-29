@@ -46,7 +46,7 @@
             
             [wjCookieManager loadCookieForKey:@"login"];
             [wjCacheManager loadCacheDataWithKey:@"userData" andBlock:^(id userData, NSDate *saveDate) {
-                [data shareInstance].myUID = userData[@"uid"];
+                [data shareInstance].myUID = [userData[@"uid"] stringValue];
             }];
             
             /*

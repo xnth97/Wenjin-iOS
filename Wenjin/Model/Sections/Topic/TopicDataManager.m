@@ -17,7 +17,8 @@
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     NSDictionary *parameters = @{@"id": topicType,
-                                 @"page": [NSNumber numberWithInteger:page]};
+                                 @"page": [NSNumber numberWithInteger:page],
+                                 @"platform": @"ios"};
     [manager GET:[wjAPIs topicList] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSDictionary *dicData = [operation.responseString objectFromJSONString];
         if ([dicData[@"errno"] isEqual:@1]) {
@@ -49,7 +50,8 @@
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     NSDictionary *parameters = @{@"uid": uid,
-                                 @"topic_id": topicID};
+                                 @"topic_id": topicID,
+                                 @"platform": @"ios"};
     [manager GET:[wjAPIs topicInfo] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSDictionary *dicData = [operation.responseString objectFromJSONString];
         if ([dicData[@"errno"] isEqual:@1]) {
@@ -71,7 +73,8 @@
 + (void)getTopicBestAnswerWithTopicID:(NSString *)topicId success:(void (^)(NSUInteger, NSArray *))success failure:(void (^)(NSString *))failure {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
-    NSDictionary *parameters = @{@"id": topicId};
+    NSDictionary *parameters = @{@"id": topicId,
+                                 @"platform": @"ios"};
     [manager GET:[wjAPIs topicBestAnswer] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSDictionary *dicData = [operation.responseString objectFromJSONString];
         if ([dicData[@"errno"] isEqual:@1]) {

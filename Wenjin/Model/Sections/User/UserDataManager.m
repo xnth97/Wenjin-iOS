@@ -23,31 +23,34 @@
             }];
         }
     }
-    
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
-    NSDictionary *parameters = @{@"uid": uid};
+    NSDictionary *parameters = @{@"uid": uid,
+                                 @"platform": @"ios"};
     [manager GET:[wjAPIs viewUser] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         NSDictionary *userDic = [operation.responseString objectFromJSONString];
         if ([userDic[@"errno"] isEqual:@1]) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 success(userDic[@"rsm"]);
-                
-                if ([uid integerValue] == [[data shareInstance].myUID integerValue]) {
-                    [wjCacheManager saveCacheData:userDic[@"rsm"] withKey:@"myProfile"];
-                }
             });
+            if ([uid integerValue] == [[data shareInstance].myUID integerValue]) {
+                [wjCacheManager saveCacheData:userDic[@"rsm"] withKey:@"myProfile"];
+            }
+            [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         } else {
             dispatch_async(dispatch_get_main_queue(), ^{
                 failure(userDic[@"err"]);
             });
+            [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         }
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
             failure(error.localizedDescription);
         });
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
     }];
 }
 
@@ -55,7 +58,8 @@
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     NSDictionary *parameters = @{@"uid": uid,
-                                 @"page": [NSNumber numberWithInteger:page]};
+                                 @"page": [NSNumber numberWithInteger:page],
+                                 @"platform": @"ios"};
     NSString *queueURL = (operation == 0) ? [wjAPIs myFollowUser] : [wjAPIs myFansUser];
     [manager GET:queueURL parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
@@ -91,7 +95,8 @@
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     NSDictionary *parameters = @{@"uid": uid,
-                                 @"page": [NSNumber numberWithInteger:page]};
+                                 @"page": [NSNumber numberWithInteger:page],
+                                 @"platform": @"ios"};
     NSArray *queueURLArray = @[[wjAPIs myQuestions], [wjAPIs myAnswers], [wjAPIs myFollowQuestions]];
     [manager GET:queueURLArray[feedType] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
@@ -126,7 +131,8 @@
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     NSDictionary *parameters = @{@"uid": uid,
-                                 @"page": [NSNumber numberWithInteger:page]};
+                                 @"page": [NSNumber numberWithInteger:page],
+                                 @"platform": @"ios"};
     [manager GET:[wjAPIs myFollowTopics] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSDictionary *dicData = [operation.responseString objectFromJSONString];
         if ([dicData[@"errno"] isEqual:@1]) {

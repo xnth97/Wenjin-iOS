@@ -9,6 +9,7 @@ pod 'KVOController'
 pod 'ALActionBlocks'
 pod 'NYSegmentedControl'
 pod 'FXForms'
+pod 'FIR.im'
 # pod 'LTNavigationBar'
 # pod 'iOS7Colors'
 

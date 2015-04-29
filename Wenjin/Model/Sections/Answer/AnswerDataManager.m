@@ -16,7 +16,8 @@
 + (void)getAnswerDataWithAnswerID:(NSString *)answerId success:(void (^)(NSDictionary *))success failure:(void (^)(NSString *))failure {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
-    NSDictionary *parameters = @{@"id": answerId};
+    NSDictionary *parameters = @{@"id": answerId,
+                                 @"platform": @"ios"};
     [manager GET:[wjAPIs viewAnswer] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         NSDictionary *ansData = [operation.responseString objectFromJSONString];
@@ -40,7 +41,8 @@
 + (void)getAnswerCommentWithAnswerID:(NSString *)answerId success:(void (^)(NSArray *))success failure:(void (^)(NSString *))failure {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
-    NSDictionary *parameters = @{@"id": answerId};
+    NSDictionary *parameters = @{@"id": answerId,
+                                 @"platform": @"ios"};
     [manager GET:[wjAPIs answerComment] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         NSDictionary *commentData = [operation.responseString objectFromJSONString];

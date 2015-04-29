@@ -200,13 +200,13 @@
 
 - (void)pushQuestionControllerWithRow:(NSUInteger)row {
     QuestionViewController *qVC = [[QuestionViewController alloc]initWithNibName:@"QuestionViewController" bundle:nil];
-    qVC.questionId = ((rowsData[row])[@"question_info"])[@"question_id"];
+    qVC.questionId = [((rowsData[row])[@"question_info"])[@"question_id"] stringValue];
     [self.navigationController pushViewController:qVC animated:YES];
 }
 
 - (void)pushAnswerControllerWithRow:(NSUInteger)row {
     AnswerViewController *aVC = [[AnswerViewController alloc]initWithNibName:@"AnswerViewController" bundle:nil];
-    aVC.answerId = ((rowsData[row])[@"answer_info"])[@"answer_id"];
+    aVC.answerId = [((rowsData[row])[@"answer_info"])[@"answer_id"] stringValue];
     [self.navigationController pushViewController:aVC animated:YES];
 }
 
