@@ -95,6 +95,11 @@
 // 反馈
 + (NSString *)feedback;
 
+// 通知
++ (NSString *)notification;
++ (NSString *)readNotification;
++ (NSString *)notificationNumber;
+
 // Bug HD Key
 + (NSString *)firKey;
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BH6-Mm-uy7">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BH6-Mm-uy7">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -17,6 +17,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="okm-5b-TgK" kind="relationship" relationship="viewControllers" id="NOy-LL-D3J"/>
+                        <segue destination="Sbw-ZY-fwH" kind="relationship" relationship="viewControllers" id="fOh-7u-PgI"/>
                         <segue destination="rWL-4Y-bP8" kind="relationship" relationship="viewControllers" id="rcE-2Q-rXg"/>
                         <segue destination="hfL-C4-Ehh" kind="relationship" relationship="viewControllers" id="mkN-5f-6Yv"/>
                         <segue destination="NFG-Ge-MEa" kind="relationship" relationship="viewControllers" id="JDY-gA-UOC"/>
@@ -24,7 +25,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AIG-c0-t95" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="57" y="2755"/>
+            <point key="canvasLocation" x="117" y="3403"/>
         </scene>
         <!--动态-->
         <scene sceneID="ey3-46-l3J">
@@ -59,7 +60,7 @@
                     <navigationItem key="navigationItem" title="动态" id="xuS-cM-48d">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="VpQ-Rw-JgJ">
                             <connections>
-                                <segue destination="ldz-M3-pk8" kind="show" id="p0P-PW-sCJ"/>
+                                <segue destination="UuO-pZ-86Q" kind="presentation" id="KUp-et-7gn"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -67,6 +68,50 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AUB-Is-pdC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1915" y="1079"/>
+        </scene>
+        <!--消息-->
+        <scene sceneID="OpF-Wq-Q6Y">
+            <objects>
+                <navigationController id="Sbw-ZY-fwH" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="消息" image="notification" id="zsZ-XW-70J"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="RBU-tH-JC7">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="xcF-aV-lFw" kind="relationship" relationship="rootViewController" id="pAU-RA-bQg"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zep-ys-hRY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1210" y="1794"/>
+        </scene>
+        <!--消息-->
+        <scene sceneID="d5H-kw-cDI">
+            <objects>
+                <tableViewController id="xcF-aV-lFw" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="A83-uu-F6a">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="12e-aC-5XH">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="12e-aC-5XH" id="oDb-wa-9mS">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="xcF-aV-lFw" id="2BP-zc-j7Q"/>
+                            <outlet property="delegate" destination="xcF-aV-lFw" id="bUA-iu-6gk"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="消息" id="2pb-u5-P3t"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="j9s-Ha-4gM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1915" y="1794"/>
         </scene>
         <!--Explore Table View Controller-->
         <scene sceneID="3lh-oB-qN8">
@@ -85,7 +130,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vSM-Rr-VOJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1915" y="1827"/>
+            <point key="canvasLocation" x="1915" y="2515"/>
         </scene>
         <!--发起问题-->
         <scene sceneID="sfN-yt-cvD">
@@ -101,6 +146,11 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="发起问题" id="IWJ-L7-CVg">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="xuJ-NQ-jnx">
+                            <connections>
+                                <action selector="cancelModal" destination="ldz-M3-pk8" id="fsc-eh-tgL"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="提交" id="b8b-Hl-RRd">
                             <connections>
                                 <action selector="postQuestion" destination="ldz-M3-pk8" id="SnF-f2-sr5"/>
@@ -111,7 +161,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tfv-ct-vyb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2611" y="1079"/>
+            <point key="canvasLocation" x="3420" y="1079"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="2rr-UB-A49">
@@ -127,7 +177,23 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J1g-Ih-F08" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3293" y="1079"/>
+            <point key="canvasLocation" x="4093" y="1079"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="3rg-uC-ehv">
+            <objects>
+                <navigationController id="UuO-pZ-86Q" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="UIK-Tv-QcE">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="ldz-M3-pk8" kind="relationship" relationship="rootViewController" id="6zW-KC-Dmp"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Rvv-cc-owL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2686" y="1079"/>
         </scene>
         <!--添加描述-->
         <scene sceneID="IpG-Nl-WRA">
@@ -157,7 +223,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bX1-zE-eSH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3953" y="1079"/>
+            <point key="canvasLocation" x="4753" y="1079"/>
         </scene>
         <!--Topic List Table View Controller-->
         <scene sceneID="dT6-DE-oW1">
@@ -184,7 +250,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fap-4i-NXi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1915" y="2544"/>
+            <point key="canvasLocation" x="1915" y="3232"/>
         </scene>
         <!--我-->
         <scene sceneID="vQ7-CS-HIo">
@@ -201,7 +267,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qgk-ep-Bqb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1210" y="3261"/>
+            <point key="canvasLocation" x="1210" y="3949"/>
         </scene>
         <!--我-->
         <scene sceneID="v9v-eh-ccY">
@@ -245,7 +311,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yRB-nO-LE9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1900" y="3261"/>
+            <point key="canvasLocation" x="1900" y="3949"/>
         </scene>
         <!--设置-->
         <scene sceneID="4Gi-gj-Kmz">
@@ -264,7 +330,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XRD-Ye-bdj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2579" y="3261"/>
+            <point key="canvasLocation" x="2579" y="3949"/>
         </scene>
         <!--话题-->
         <scene sceneID="cBU-SN-DR5">
@@ -281,7 +347,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Uld-xo-qvs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1210" y="2544"/>
+            <point key="canvasLocation" x="1210" y="3232"/>
         </scene>
         <!--发现-->
         <scene sceneID="Kwd-YC-88q">
@@ -298,13 +364,14 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XuW-WL-UVK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1210" y="1827"/>
+            <point key="canvasLocation" x="1210" y="2515"/>
         </scene>
     </scenes>
     <resources>
         <image name="explore" width="30" height="30"/>
         <image name="home" width="30" height="30"/>
         <image name="me" width="30" height="30"/>
+        <image name="notification" width="30" height="30"/>
         <image name="topic" width="30" height="30"/>
     </resources>
 </document>

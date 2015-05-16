@@ -34,7 +34,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     // Do any additional setup after loading the view.
+    [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
     
     // Instaces init.
     [data shareInstance].postQuestionDetail = @"";
@@ -66,6 +68,7 @@
     UIBarButtonItem *addDetailBtn = [[UIBarButtonItem alloc]initWithTitle:@"添加描述" style:UIBarButtonItemStylePlain block:^(id weakSender) {
         UIStoryboard *storyboard = self.storyboard;
         UINavigationController *addDetailNav = [storyboard instantiateViewControllerWithIdentifier:@"detailNav"];
+        //addDetailNav.modalPresentationStyle = UIModalPresentationFormSheet;
         [self presentViewController:addDetailNav animated:YES completion:nil];
     }];
     UIBarButtonItem *flexibleSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
@@ -136,7 +139,7 @@
     // 成功提交后需清除单例模式里的数据
     
     if ([self.questionView.text isEqualToString:@""]) {
-        [MsgDisplay showErrorMsg:@"NULL"];
+        [MsgDisplay showErrorMsg:@"请填写问题内容喔"];
     } else {
         NSDictionary *parameters = @{@"question_content": self.questionView.text,
                                      @"question_detail": [data shareInstance].postQuestionDetail,
@@ -187,6 +190,10 @@
     }
     
     return string;
+}
+
+- (IBAction)cancelModal {
+    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
 
 /*

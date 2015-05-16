@@ -13,6 +13,7 @@
 #import "wjCacheManager.h"
 #import "wjAccountManager.h"
 #import <KVOController/FBKVOController.h>
+#import "NotificationManager.h"
 
 @interface MainTabBarController ()
 
@@ -48,6 +49,16 @@
             [wjCacheManager loadCacheDataWithKey:@"userData" andBlock:^(id userData, NSDate *saveDate) {
                 [data shareInstance].myUID = [userData[@"uid"] stringValue];
             }];
+            
+            if ([wjAccountManager userIsLoggedIn]) {
+                [NotificationManager getUnreadNotificationNumberWithSuccess:^(NSUInteger inboxNum, NSUInteger notificationNum) {
+                    if (notificationNum > 0) {
+                        [[self.tabBar.items objectAtIndex:1] setBadgeValue:[NSString stringWithFormat:@"%lu", (unsigned long)notificationNum]];
+                    }
+                } failure:^(NSString *errStr) {
+                    
+                }];
+            }
             
             /*
             [wjCacheManager loadCacheDataWithKey:@"userLoginData" andBlock:^(id loginData, NSDate *saveDate) {

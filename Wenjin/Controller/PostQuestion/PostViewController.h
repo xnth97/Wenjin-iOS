@@ -13,5 +13,6 @@
 @property (strong, nonatomic) UITextView *questionView;
 
 - (IBAction)postQuestion;
+- (IBAction)cancelModal;
 
 @end

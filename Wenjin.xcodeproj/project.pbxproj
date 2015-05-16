@@ -15,6 +15,7 @@
 		E90F42741ACD979500263622 /* UserDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E90F42731ACD979500263622 /* UserDataManager.m */; };
 		E90F42781ACE6A4E00263622 /* UserHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = E90F42771ACE6A4E00263622 /* UserHeaderView.m */; };
 		E90F427A1ACE6E5D00263622 /* UserHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E90F42791ACE6E5D00263622 /* UserHeaderView.xib */; };
+		E91270771B00A7F500E32110 /* NotificationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E91270761B00A7F500E32110 /* NotificationManager.m */; };
 		E922984D1AF0B9CA000CC8F7 /* WeChatMomentsActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = E922984C1AF0B9CA000CC8F7 /* WeChatMomentsActivity.m */; };
 		E92298501AF0E4EF000CC8F7 /* WeChatSessionActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = E922984F1AF0E4EF000CC8F7 /* WeChatSessionActivity.m */; };
 		E93063B51ACA3982000140C1 /* HomeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E93063B31ACA3982000140C1 /* HomeTableViewCell.m */; };
@@ -56,6 +57,12 @@
 		E9C1A1C41ACBCBB000892B60 /* QuestionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = E9C1A1C31ACBCBB000892B60 /* QuestionHeaderView.m */; };
 		E9C1A1CA1ACC080700892B60 /* bootstrap.css in Resources */ = {isa = PBXBuildFile; fileRef = E9C1A1C81ACC080700892B60 /* bootstrap.css */; };
 		E9C1A1CB1ACC080700892B60 /* bootstrap.min.js in Resources */ = {isa = PBXBuildFile; fileRef = E9C1A1C91ACC080700892B60 /* bootstrap.min.js */; };
+		E9C804BD1B07853D0021C388 /* libPushSDK-1.8.3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E9C804BC1B07853D0021C388 /* libPushSDK-1.8.3.a */; };
+		E9C804BF1B0785510021C388 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9C804BE1B0785510021C388 /* CFNetwork.framework */; };
+		E9C804C11B0785580021C388 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9C804C01B0785580021C388 /* CoreFoundation.framework */; };
+		E9C804C31B0785600021C388 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9C804C21B0785600021C388 /* CoreTelephony.framework */; };
+		E9C804C51B07856F0021C388 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9C804C41B07856F0021C388 /* Security.framework */; };
+		E9C804C71B0786390021C388 /* PushConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = E9C804C61B0786390021C388 /* PushConfig.plist */; };
 		E9C9C6F31AC6B39200CC228A /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9C9C6F21AC6B39200CC228A /* HomeViewController.m */; };
 		E9C9C6F61AC719FC00CC228A /* MainTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9C9C6F51AC719FC00CC228A /* MainTabBarController.m */; };
 		E9C9C6FE1AC71D4A00CC228A /* data.m in Sources */ = {isa = PBXBuildFile; fileRef = E9C9C6FD1AC71D4A00CC228A /* data.m */; };
@@ -113,6 +120,8 @@
 		E90F42761ACE6A4E00263622 /* UserHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserHeaderView.h; path = View/UserHeaderView/UserHeaderView.h; sourceTree = "<group>"; };
 		E90F42771ACE6A4E00263622 /* UserHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserHeaderView.m; path = View/UserHeaderView/UserHeaderView.m; sourceTree = "<group>"; };
 		E90F42791ACE6E5D00263622 /* UserHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UserHeaderView.xib; path = View/UserHeaderView/UserHeaderView.xib; sourceTree = "<group>"; };
+		E91270751B00A7F500E32110 /* NotificationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NotificationManager.h; path = Model/Notification/NotificationManager.h; sourceTree = "<group>"; };
+		E91270761B00A7F500E32110 /* NotificationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NotificationManager.m; path = Model/Notification/NotificationManager.m; sourceTree = "<group>"; };
 		E922984B1AF0B9CA000CC8F7 /* WeChatMomentsActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeChatMomentsActivity.h; sourceTree = "<group>"; };
 		E922984C1AF0B9CA000CC8F7 /* WeChatMomentsActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeChatMomentsActivity.m; sourceTree = "<group>"; };
 		E922984E1AF0E4EF000CC8F7 /* WeChatSessionActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeChatSessionActivity.h; sourceTree = "<group>"; };
@@ -188,6 +197,13 @@
 		E9C1A1C31ACBCBB000892B60 /* QuestionHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QuestionHeaderView.m; path = View/QuestionHeaderView/QuestionHeaderView.m; sourceTree = "<group>"; };
 		E9C1A1C81ACC080700892B60 /* bootstrap.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = bootstrap.css; sourceTree = "<group>"; };
 		E9C1A1C91ACC080700892B60 /* bootstrap.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = bootstrap.min.js; sourceTree = "<group>"; };
+		E9C804BB1B07853D0021C388 /* APService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APService.h; sourceTree = "<group>"; };
+		E9C804BC1B07853D0021C388 /* libPushSDK-1.8.3.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libPushSDK-1.8.3.a"; sourceTree = "<group>"; };
+		E9C804BE1B0785510021C388 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		E9C804C01B0785580021C388 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		E9C804C21B0785600021C388 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		E9C804C41B07856F0021C388 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		E9C804C61B0786390021C388 /* PushConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PushConfig.plist; sourceTree = "<group>"; };
 		E9C9C6F11AC6B39200CC228A /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomeViewController.h; path = Controller/Home/HomeViewController.h; sourceTree = "<group>"; };
 		E9C9C6F21AC6B39200CC228A /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomeViewController.m; path = Controller/Home/HomeViewController.m; sourceTree = "<group>"; };
 		E9C9C6F41AC719FC00CC228A /* MainTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainTabBarController.h; path = Controller/MainTabBarController/MainTabBarController.h; sourceTree = "<group>"; };
@@ -246,9 +262,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E909683B1AF0B7AF00E65F7E /* libsqlite3.0.dylib in Frameworks */,
 				E90968391AF0B7A600E65F7E /* libz.dylib in Frameworks */,
+				E9C804C51B07856F0021C388 /* Security.framework in Frameworks */,
+				E9C804C31B0785600021C388 /* CoreTelephony.framework in Frameworks */,
+				E9C804C11B0785580021C388 /* CoreFoundation.framework in Frameworks */,
+				E9C804BF1B0785510021C388 /* CFNetwork.framework in Frameworks */,
+				E909683B1AF0B7AF00E65F7E /* libsqlite3.0.dylib in Frameworks */,
 				E90968401AF0B7E600E65F7E /* libWeChatSDK.a in Frameworks */,
+				E9C804BD1B07853D0021C388 /* libPushSDK-1.8.3.a in Frameworks */,
 				E90968371AF0B79B00E65F7E /* SystemConfiguration.framework in Frameworks */,
 				E9D56EF81ADE2AD500C54466 /* QuartzCore.framework in Frameworks */,
 				E9D56EF61ADE2ACE00C54466 /* CoreGraphics.framework in Frameworks */,
@@ -271,6 +292,10 @@
 		12540291E620BDA86F3DB73E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E9C804C41B07856F0021C388 /* Security.framework */,
+				E9C804C21B0785600021C388 /* CoreTelephony.framework */,
+				E9C804C01B0785580021C388 /* CoreFoundation.framework */,
+				E9C804BE1B0785510021C388 /* CFNetwork.framework */,
 				E909683A1AF0B7AF00E65F7E /* libsqlite3.0.dylib */,
 				E90968381AF0B7A600E65F7E /* libz.dylib */,
 				E90968361AF0B79B00E65F7E /* SystemConfiguration.framework */,
@@ -319,6 +344,15 @@
 				E90F42791ACE6E5D00263622 /* UserHeaderView.xib */,
 			);
 			name = UserHeaderView;
+			sourceTree = "<group>";
+		};
+		E91270741B00A7DA00E32110 /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				E91270751B00A7F500E32110 /* NotificationManager.h */,
+				E91270761B00A7F500E32110 /* NotificationManager.m */,
+			);
+			name = Notification;
 			sourceTree = "<group>";
 		};
 		E93063B01ACA394E000140C1 /* View */ = {
@@ -609,12 +643,22 @@
 		E9C1A1C71ACC080700892B60 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				E9C804BA1B07853D0021C388 /* JPushSDK */,
 				E909683C1AF0B7C700E65F7E /* WXSDK */,
 				E9642E9B1AC5714800FF7875 /* Images.xcassets */,
 				E9C1A1C81ACC080700892B60 /* bootstrap.css */,
 				E9C1A1C91ACC080700892B60 /* bootstrap.min.js */,
 			);
 			path = Resource;
+			sourceTree = "<group>";
+		};
+		E9C804BA1B07853D0021C388 /* JPushSDK */ = {
+			isa = PBXGroup;
+			children = (
+				E9C804BB1B07853D0021C388 /* APService.h */,
+				E9C804BC1B07853D0021C388 /* libPushSDK-1.8.3.a */,
+			);
+			path = JPushSDK;
 			sourceTree = "<group>";
 		};
 		E9C9C6E51AC694BB00CC228A /* Main */ = {
@@ -625,6 +669,7 @@
 				E9642E9D1AC5714800FF7875 /* LaunchScreen.xib */,
 				E9642E8E1AC5714800FF7875 /* Supporting Files */,
 				E9E286C71AC805F2005B6ED7 /* Localizable.strings */,
+				E9C804C61B0786390021C388 /* PushConfig.plist */,
 			);
 			name = Main;
 			sourceTree = "<group>";
@@ -632,6 +677,7 @@
 		E9C9C6E61AC694DE00CC228A /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				E91270741B00A7DA00E32110 /* Notification */,
 				E992CA111AE10F53003A9123 /* Appearance */,
 				E93063B71ACA47CF000140C1 /* StringProcessor */,
 				E9E286C21AC7F611005B6ED7 /* Sections */,
@@ -915,6 +961,11 @@
 					E9642E8A1AC5714800FF7875 = {
 						CreatedOnToolsVersion = 6.2;
 						DevelopmentTeam = TYRRVX7RWJ;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 					E9642EA31AC5714800FF7875 = {
 						CreatedOnToolsVersion = 6.2;
@@ -956,6 +1007,7 @@
 				E90F427A1ACE6E5D00263622 /* UserHeaderView.xib in Resources */,
 				E9DB26FA1AD55D3E00C3C60D /* AnswerCommentTableViewCell.xib in Resources */,
 				E9DB26EB1AD4F44B00C3C60D /* UserListTableViewCell.xib in Resources */,
+				E9C804C71B0786390021C388 /* PushConfig.plist in Resources */,
 				E93063D81ACAABC7000140C1 /* AnswerViewController.xib in Resources */,
 				E9C1A1CB1ACC080700892B60 /* bootstrap.min.js in Resources */,
 				E9EB618B1ACC187A001F5DA3 /* QuestionAnswerTableViewCell.xib in Resources */,
@@ -1055,6 +1107,7 @@
 				E9C9C6F31AC6B39200CC228A /* HomeViewController.m in Sources */,
 				E93063D21ACAAB81000140C1 /* QuestionViewController.m in Sources */,
 				E90F42741ACD979500263622 /* UserDataManager.m in Sources */,
+				E91270771B00A7F500E32110 /* NotificationManager.m in Sources */,
 				E9479EE31AE2AB42003BCE97 /* AboutViewController.m in Sources */,
 				E9AC9E561AD3A4840016CA23 /* wjOperationManager.m in Sources */,
 				E9642E911AC5714800FF7875 /* main.m in Sources */,
@@ -1193,6 +1246,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_ROOT}/Headers/Public\"",
@@ -1210,8 +1264,11 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Wenjin/Resource/WXSDK",
+					"$(PROJECT_DIR)/Wenjin/Resource/JPushSDK",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/Resource/JPushSDK";
 			};
 			name = Debug;
 		};
@@ -1221,6 +1278,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_ROOT}/Headers/Public\"",
@@ -1238,8 +1296,11 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Wenjin/Resource/WXSDK",
+					"$(PROJECT_DIR)/Wenjin/Resource/JPushSDK",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/Resource/JPushSDK";
 			};
 			name = Release;
 		};
