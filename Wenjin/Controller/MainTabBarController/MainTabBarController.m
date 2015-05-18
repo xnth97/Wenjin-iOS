@@ -14,6 +14,7 @@
 #import "wjAccountManager.h"
 #import <KVOController/FBKVOController.h>
 #import "NotificationManager.h"
+#import "APService.h"
 
 @interface MainTabBarController ()
 
@@ -48,6 +49,7 @@
             [wjCookieManager loadCookieForKey:@"login"];
             [wjCacheManager loadCacheDataWithKey:@"userData" andBlock:^(id userData, NSDate *saveDate) {
                 [data shareInstance].myUID = [userData[@"uid"] stringValue];
+                [APService setAlias:[data shareInstance].myUID callbackSelector:nil object:nil];
             }];
             
             if ([wjAccountManager userIsLoggedIn]) {

@@ -110,7 +110,7 @@
     NSDictionary *tmp = rowsData[row];
     NSString *replyUserText = (tmp[@"at_user"] != nil) ? [NSString stringWithFormat:@"回复 %@：", (tmp[@"at_user"])[@"nick_name"]] : @"";
     NSString *commentText = [NSString stringWithFormat:@"%@%@", replyUserText, tmp[@"content"]];
-    return 40 + [self heightOfLabelWithTextString:commentText];
+    return 46 + [self heightOfLabelWithTextString:commentText];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

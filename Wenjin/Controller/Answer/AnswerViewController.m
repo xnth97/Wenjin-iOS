@@ -18,6 +18,9 @@
 #import <KVOController/FBKVOController.h>
 #import "AnswerCommentTableViewController.h"
 #import "wjAppearanceManager.h"
+#import "WeChatMomentsActivity.h"
+#import "WeChatSessionActivity.h"
+#import "OpenInSafariActivity.h"
 
 @interface AnswerViewController ()
 
@@ -27,6 +30,9 @@
     NSInteger voteValue;
     UIColor *notVotedColor;
     UIColor *votedColor;
+    
+    NSString *questionId;
+    NSString *answerSummary;
 }
 
 @synthesize answerId;
@@ -62,6 +68,22 @@
     [splitLine setBackgroundColor:[UIColor colorWithWhite:0.8 alpha:1.0]];
     [userInfoView addSubview:splitLine];
     
+    UIBarButtonItem *shareBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction block:^(id weakSender) {
+        if (questionId != nil && answerSummary != nil) {
+            NSURL *shareURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://wenjin.twtstudio.com/?/question/%@?answer_id=%@&single=TRUE", questionId, answerId]];
+            NSArray *activityItems = @[shareURL, answerSummary];
+            OpenInSafariActivity *openInSafari = [[OpenInSafariActivity alloc] init];
+            WeChatMomentsActivity *wxMoment = [[WeChatMomentsActivity alloc] init];
+            WeChatSessionActivity *wxSession = [[WeChatSessionActivity alloc] init];
+            UIActivityViewController *activityController = [[UIActivityViewController alloc]initWithActivityItems:activityItems applicationActivities:@[openInSafari, wxMoment, wxSession]];
+            activityController.modalPresentationStyle = UIModalPresentationPopover;
+            activityController.popoverPresentationController.permittedArrowDirections = UIPopoverArrowDirectionAny;
+            activityController.popoverPresentationController.barButtonItem = self.navigationItem.rightBarButtonItem;
+            [self presentViewController:activityController animated:YES completion:nil];
+        }
+    }];
+    [self.navigationItem setRightBarButtonItem:shareBtn];
+    
     FBKVOController *kvoController = [FBKVOController controllerWithObserver:self];
     self.KVOController = kvoController;
     [self.KVOController observe:self keyPath:@"agreeCount" options:NSKeyValueObservingOptionInitial|NSKeyValueObservingOptionNew block:^(id observer, id object, NSDictionary *change) {
@@ -78,6 +100,9 @@
         [answerContentView loadHTMLString:processedHTML baseURL:[NSURL URLWithString:[wjAPIs baseURL]]];
         userNameLabel.text = ansData[@"nick_name"];
         self.title = [NSString stringWithFormat:@"%@ 的回答", ansData[@"nick_name"]];
+        NSString *ans = [wjStringProcessor processAnswerDetailString:ansData[@"answer_content"]];
+        NSString *ansStr = (ans.length > 60) ? [NSString stringWithFormat:@"%@...", [ans substringToIndex:60]] : ans;
+        answerSummary = [NSString stringWithFormat:@"%@ 的回答：%@", ansData[@"nick_name"], ansStr];
         userSigLabel.text = (ansData[@"signature"] == [NSNull null]) ? @"" : ansData[@"signature"];
         [userAvatarView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", [wjAPIs avatarPath], ansData[@"avatar_file"]]] placeholderImage:[UIImage imageNamed:@"placeholderAvatar.png"]];
         
@@ -90,6 +115,8 @@
         }
 
         [agreeBtn addTarget:self action:@selector(voteOperation) forControlEvents:UIControlEventTouchUpInside];
+        
+        questionId = [ansData[@"question_id"] stringValue];
         
         UITapGestureRecognizer *userTapRecognizer = [[UITapGestureRecognizer alloc]initWithBlock:^(id weakSender) {
             if (!([ansData[@"uid"] integerValue] == -1)) {
