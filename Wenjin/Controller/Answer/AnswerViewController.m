@@ -64,9 +64,11 @@
     userAvatarView.layer.cornerRadius = userAvatarView.frame.size.width / 2;
     userAvatarView.clipsToBounds = YES;
     
-    UIView *splitLine = [[UIView alloc]initWithFrame:CGRectMake(0, userInfoView.frame.size.height - 0.5, [UIScreen mainScreen].bounds.size.width, 0.5)];
-    [splitLine setBackgroundColor:[UIColor colorWithWhite:0.8 alpha:1.0]];
-    [userInfoView addSubview:splitLine];
+    [userInfoView addSubview:({
+        UIView *splitLine = [[UIView alloc]initWithFrame:CGRectMake(0, userInfoView.frame.size.height - 0.5, [UIScreen mainScreen].bounds.size.width, 0.5)];
+        [splitLine setBackgroundColor:[UIColor colorWithWhite:0.8 alpha:1.0]];
+        splitLine;
+    })];
     
     UIBarButtonItem *shareBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction block:^(id weakSender) {
         if (questionId != nil && answerSummary != nil) {

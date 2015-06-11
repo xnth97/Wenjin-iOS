@@ -10,6 +10,7 @@ pod 'ALActionBlocks'
 pod 'NYSegmentedControl'
 pod 'FXForms'
 pod 'FIR.im'
+pod 'FDFullscreenPopGesture'
 # pod 'LTNavigationBar'
 # pod 'iOS7Colors'
 
