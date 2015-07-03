@@ -18,6 +18,10 @@
 		E91270771B00A7F500E32110 /* NotificationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E91270761B00A7F500E32110 /* NotificationManager.m */; };
 		E922984D1AF0B9CA000CC8F7 /* WeChatMomentsActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = E922984C1AF0B9CA000CC8F7 /* WeChatMomentsActivity.m */; };
 		E92298501AF0E4EF000CC8F7 /* WeChatSessionActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = E922984F1AF0E4EF000CC8F7 /* WeChatSessionActivity.m */; };
+		E92388E71B46936E00C3EE3A /* ProfileEditTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E92388E61B46936E00C3EE3A /* ProfileEditTableViewController.m */; };
+		E92388F01B4695A000C3EE3A /* ProfileEditForm.m in Sources */ = {isa = PBXBuildFile; fileRef = E92388EF1B4695A000C3EE3A /* ProfileEditForm.m */; };
+		E92388F31B46D22B00C3EE3A /* NotificationTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E92388F21B46D22B00C3EE3A /* NotificationTableViewController.m */; };
+		E92388F71B46D60200C3EE3A /* TWTDataChecker.m in Sources */ = {isa = PBXBuildFile; fileRef = E92388F61B46D60200C3EE3A /* TWTDataChecker.m */; };
 		E93063B51ACA3982000140C1 /* HomeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E93063B31ACA3982000140C1 /* HomeTableViewCell.m */; };
 		E93063B61ACA3982000140C1 /* HomeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E93063B41ACA3982000140C1 /* HomeTableViewCell.xib */; };
 		E93063BA1ACA47EB000140C1 /* wjStringProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = E93063B91ACA47EB000140C1 /* wjStringProcessor.m */; };
@@ -45,6 +49,7 @@
 		E96F092C1AD7E3BA00847E5E /* TopicDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E96F092B1AD7E3B900847E5E /* TopicDataManager.m */; };
 		E96F092F1AD7F44100847E5E /* SettingTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E96F092E1AD7F44100847E5E /* SettingTableViewController.m */; };
 		E96F09361AD8FF7700847E5E /* ExploreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E96F09351AD8FF7700847E5E /* ExploreDataManager.m */; };
+		E97F7A421B29FED700746E0B /* MDSwipePageView.m in Sources */ = {isa = PBXBuildFile; fileRef = E97F7A411B29FED700746E0B /* MDSwipePageView.m */; };
 		E99079081ACECCB5008DCA22 /* PostAnswerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E99079061ACECCB5008DCA22 /* PostAnswerViewController.m */; };
 		E990790B1ACEE1C7008DCA22 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E990790A1ACEE1C7008DCA22 /* LoginViewController.xib */; };
 		E990790F1ACEE371008DCA22 /* NotLoggedInView.m in Sources */ = {isa = PBXBuildFile; fileRef = E990790E1ACEE371008DCA22 /* NotLoggedInView.m */; };
@@ -126,6 +131,14 @@
 		E922984C1AF0B9CA000CC8F7 /* WeChatMomentsActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeChatMomentsActivity.m; sourceTree = "<group>"; };
 		E922984E1AF0E4EF000CC8F7 /* WeChatSessionActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeChatSessionActivity.h; sourceTree = "<group>"; };
 		E922984F1AF0E4EF000CC8F7 /* WeChatSessionActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeChatSessionActivity.m; sourceTree = "<group>"; };
+		E92388E51B46936E00C3EE3A /* ProfileEditTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProfileEditTableViewController.h; path = Controller/ProfileEdit/ProfileEditTableViewController.h; sourceTree = "<group>"; };
+		E92388E61B46936E00C3EE3A /* ProfileEditTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProfileEditTableViewController.m; path = Controller/ProfileEdit/ProfileEditTableViewController.m; sourceTree = "<group>"; };
+		E92388EE1B4695A000C3EE3A /* ProfileEditForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProfileEditForm.h; path = Controller/ProfileEdit/ProfileEditForm.h; sourceTree = "<group>"; };
+		E92388EF1B4695A000C3EE3A /* ProfileEditForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProfileEditForm.m; path = Controller/ProfileEdit/ProfileEditForm.m; sourceTree = "<group>"; };
+		E92388F11B46D22B00C3EE3A /* NotificationTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NotificationTableViewController.h; path = Controller/Notification/NotificationTableViewController.h; sourceTree = "<group>"; };
+		E92388F21B46D22B00C3EE3A /* NotificationTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NotificationTableViewController.m; path = Controller/Notification/NotificationTableViewController.m; sourceTree = "<group>"; };
+		E92388F51B46D60200C3EE3A /* TWTDataChecker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TWTDataChecker.h; path = TWTDataChecker/TWTDataChecker.h; sourceTree = "<group>"; };
+		E92388F61B46D60200C3EE3A /* TWTDataChecker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TWTDataChecker.m; path = TWTDataChecker/TWTDataChecker.m; sourceTree = "<group>"; };
 		E92A5B0C1AC5B73E004E71FB /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		E92A5B0D1AC5B73E004E71FB /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		E93063B21ACA3982000140C1 /* HomeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomeTableViewCell.h; path = View/HomeTableViewCell/HomeTableViewCell.h; sourceTree = "<group>"; };
@@ -176,6 +189,8 @@
 		E96F092E1AD7F44100847E5E /* SettingTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingTableViewController.m; path = Controller/Settings/SettingTableViewController.m; sourceTree = "<group>"; };
 		E96F09341AD8FF7700847E5E /* ExploreDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ExploreDataManager.h; path = Model/Sections/Explore/ExploreDataManager.h; sourceTree = "<group>"; };
 		E96F09351AD8FF7700847E5E /* ExploreDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ExploreDataManager.m; path = Model/Sections/Explore/ExploreDataManager.m; sourceTree = "<group>"; };
+		E97F7A401B29FED700746E0B /* MDSwipePageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDSwipePageView.h; sourceTree = "<group>"; };
+		E97F7A411B29FED700746E0B /* MDSwipePageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDSwipePageView.m; sourceTree = "<group>"; };
 		E99079051ACECCB5008DCA22 /* PostAnswerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PostAnswerViewController.h; path = Controller/PostAnswer/PostAnswerViewController.h; sourceTree = "<group>"; };
 		E99079061ACECCB5008DCA22 /* PostAnswerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PostAnswerViewController.m; path = Controller/PostAnswer/PostAnswerViewController.m; sourceTree = "<group>"; };
 		E990790A1ACEE1C7008DCA22 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LoginViewController.xib; path = Controller/Login/LoginViewController.xib; sourceTree = "<group>"; };
@@ -355,9 +370,30 @@
 			name = Notification;
 			sourceTree = "<group>";
 		};
+		E92388E41B46934300C3EE3A /* ProfileEdit */ = {
+			isa = PBXGroup;
+			children = (
+				E92388E51B46936E00C3EE3A /* ProfileEditTableViewController.h */,
+				E92388E61B46936E00C3EE3A /* ProfileEditTableViewController.m */,
+				E92388EE1B4695A000C3EE3A /* ProfileEditForm.h */,
+				E92388EF1B4695A000C3EE3A /* ProfileEditForm.m */,
+			);
+			name = ProfileEdit;
+			sourceTree = "<group>";
+		};
+		E92388F41B46D5E600C3EE3A /* TWTDataChecker */ = {
+			isa = PBXGroup;
+			children = (
+				E92388F51B46D60200C3EE3A /* TWTDataChecker.h */,
+				E92388F61B46D60200C3EE3A /* TWTDataChecker.m */,
+			);
+			name = TWTDataChecker;
+			sourceTree = "<group>";
+		};
 		E93063B01ACA394E000140C1 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				E97F7A3F1B29FED700746E0B /* MDSwipePageView */,
 				E96F09211AD7D29700847E5E /* TLTagsContol */,
 				E9DB26F51AD55D1E00C3C60D /* AnswerCommentCell */,
 				E990790C1ACEE350008DCA22 /* NotLoggedInView */,
@@ -536,6 +572,25 @@
 			name = Explore;
 			sourceTree = "<group>";
 		};
+		E97F7A3F1B29FED700746E0B /* MDSwipePageView */ = {
+			isa = PBXGroup;
+			children = (
+				E97F7A401B29FED700746E0B /* MDSwipePageView.h */,
+				E97F7A411B29FED700746E0B /* MDSwipePageView.m */,
+			);
+			name = MDSwipePageView;
+			path = View/MDSwipePageView;
+			sourceTree = "<group>";
+		};
+		E97F7A481B2A003700746E0B /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				E92388F11B46D22B00C3EE3A /* NotificationTableViewController.h */,
+				E92388F21B46D22B00C3EE3A /* NotificationTableViewController.m */,
+			);
+			name = Notification;
+			sourceTree = "<group>";
+		};
 		E99079001ACEC982008DCA22 /* Setting */ = {
 			isa = PBXGroup;
 			children = (
@@ -584,6 +639,7 @@
 		E99577621AE76282002E5107 /* FoundationKits */ = {
 			isa = PBXGroup;
 			children = (
+				E92388F41B46D5E600C3EE3A /* TWTDataChecker */,
 				E99577631AE76282002E5107 /* NSTimer-Blocks */,
 				E99577661AE76282002E5107 /* UIActivity */,
 			);
@@ -698,6 +754,7 @@
 				E9642E981AC5714800FF7875 /* Main.storyboard */,
 				E9C9C6E81AC6AA8400CC228A /* MainTabBarController */,
 				E9C9C6F01AC6B35B00CC228A /* Home */,
+				E97F7A481B2A003700746E0B /* Notification */,
 				E93063CB1ACAAB3C000140C1 /* AnswerViewController */,
 				E9DB26F11AD54F5E00C3C60D /* AnswerCommentViewController */,
 				E93063CA1ACAAB33000140C1 /* QuestionViewController */,
@@ -706,6 +763,7 @@
 				E9E38F331ADA284F00136161 /* Explore */,
 				E93063C91ACAAB1B000140C1 /* UserViewController */,
 				E99079001ACEC982008DCA22 /* Setting */,
+				E92388E41B46934300C3EE3A /* ProfileEdit */,
 				E93063BB1ACA4D83000140C1 /* PostQuestion */,
 				E99079041ACECC97008DCA22 /* PostAnswer */,
 				E9DB26FB1AD562B800C3C60D /* PostComment */,
@@ -1067,6 +1125,7 @@
 			files = (
 				E9C1A1C41ACBCBB000892B60 /* QuestionHeaderView.m in Sources */,
 				E9C9C6FE1AC71D4A00CC228A /* data.m in Sources */,
+				E92388E71B46936E00C3EE3A /* ProfileEditTableViewController.m in Sources */,
 				E9C9C7071AC71E3600CC228A /* wjAPIs.m in Sources */,
 				E9EB618F1ACC2B2D001F5DA3 /* AnswerDataManager.m in Sources */,
 				E952E1671AE520DE00F8B7BF /* FeedbackForm.m in Sources */,
@@ -1085,6 +1144,7 @@
 				E9C9C71B1AC7257900CC228A /* wjCookieManager.m in Sources */,
 				E9C9C7111AC7233B00CC228A /* wjAccountManager.m in Sources */,
 				E9E38F361ADA288400136161 /* ExploreTableViewController.m in Sources */,
+				E92388F31B46D22B00C3EE3A /* NotificationTableViewController.m in Sources */,
 				E96F09281AD7E2DD00847E5E /* TopicListTableViewController.m in Sources */,
 				E96F092C1AD7E3BA00847E5E /* TopicDataManager.m in Sources */,
 				E952E16A1AE522D500F8B7BF /* FeedbackViewController.m in Sources */,
@@ -1094,6 +1154,7 @@
 				E9C9C6F61AC719FC00CC228A /* MainTabBarController.m in Sources */,
 				E90F42781ACE6A4E00263622 /* UserHeaderView.m in Sources */,
 				E9C9C7181AC7256700CC228A /* wjCacheManager.m in Sources */,
+				E97F7A421B29FED700746E0B /* MDSwipePageView.m in Sources */,
 				E9C1A1C01ACAF21F00892B60 /* QuestionDataManager.m in Sources */,
 				E93063C21ACA4E69000140C1 /* PostDataManager.m in Sources */,
 				E92298501AF0E4EF000CC8F7 /* WeChatSessionActivity.m in Sources */,
@@ -1108,6 +1169,7 @@
 				E93063D21ACAAB81000140C1 /* QuestionViewController.m in Sources */,
 				E90F42741ACD979500263622 /* UserDataManager.m in Sources */,
 				E91270771B00A7F500E32110 /* NotificationManager.m in Sources */,
+				E92388F01B4695A000C3EE3A /* ProfileEditForm.m in Sources */,
 				E9479EE31AE2AB42003BCE97 /* AboutViewController.m in Sources */,
 				E9AC9E561AD3A4840016CA23 /* wjOperationManager.m in Sources */,
 				E9642E911AC5714800FF7875 /* main.m in Sources */,
@@ -1116,6 +1178,7 @@
 				E922984D1AF0B9CA000CC8F7 /* WeChatMomentsActivity.m in Sources */,
 				E9DB26FE1AD562E100C3C60D /* PostAnswerCommentViewController.m in Sources */,
 				E9C9C70A1AC71E4200CC228A /* wpyEncryption.m in Sources */,
+				E92388F71B46D60200C3EE3A /* TWTDataChecker.m in Sources */,
 				E9DB26EA1AD4F44B00C3C60D /* UserListTableViewCell.m in Sources */,
 				E93063BE1ACA4DAA000140C1 /* PostViewController.m in Sources */,
 			);

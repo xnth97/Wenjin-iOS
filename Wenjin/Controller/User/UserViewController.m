@@ -36,14 +36,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.navigationController.view.backgroundColor = [UIColor whiteColor];
-    /*
-    if (userId == nil) {
-        self.title = @"我";
-        if ([data shareInstance].myUID != nil) {
-            userId = [data shareInstance].myUID;
-        }
-    }
-    */
+
     self.userTableView.dataSource = self;
     self.userTableView.delegate = self;
     
@@ -223,7 +216,7 @@
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"pushSetting"]) {
+    if ([segue.identifier isEqualToString:@"pushSetting"] || [segue.identifier isEqualToString:@"pushProfileEdit"]) {
         self.navigationController.view.backgroundColor = [UIColor whiteColor];
         UIViewController *des = segue.destinationViewController;
         des.hidesBottomBarWhenPushed = YES;

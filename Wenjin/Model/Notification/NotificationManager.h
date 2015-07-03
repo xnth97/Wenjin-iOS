@@ -12,4 +12,6 @@
 
 + (void)getUnreadNotificationNumberWithSuccess:(void(^)(NSUInteger inboxNum, NSUInteger notificationNum))success failure:(void(^)(NSString *errStr))failure;
 
++ (void)getNotificationDataReadOrNot:(BOOL)isRead page:(NSInteger)page success:(void(^)(NSArray *rowsData))success failure:(void(^)(NSString *errStr))failure;
+
 @end

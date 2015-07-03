@@ -35,4 +35,33 @@
     }];
 }
 
++ (void)getNotificationDataReadOrNot:(BOOL)isRead page:(NSInteger)page success:(void (^)(NSArray *))success failure:(void (^)(NSString *))failure {
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    NSDictionary *parameters = @{@"flag": @(isRead ? 1 : 0),
+                                 @"page": [NSNumber numberWithInteger:page],
+                                 @"platform": @"ios"};
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+    [manager GET:[wjAPIs notificationList] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        NSDictionary *responseDic = [operation.responseString objectFromJSONString];
+        if ([responseDic[@"errno"] isEqual:@1]) {
+            NSArray *rows = (responseDic[@"rsm"])[@"rows"];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                success(rows);
+            });
+        } else {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                failure(responseDic[@"err"]);
+            });
+        }
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            failure(error.localizedDescription);
+        });
+    }];
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+}
+
 @end

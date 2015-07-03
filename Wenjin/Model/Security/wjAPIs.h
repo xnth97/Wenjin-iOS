@@ -96,7 +96,7 @@
 + (NSString *)feedback;
 
 // 通知
-+ (NSString *)notification;
++ (NSString *)notificationList;
 + (NSString *)readNotification;
 + (NSString *)notificationNumber;
 

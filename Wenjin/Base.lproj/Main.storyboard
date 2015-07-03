@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BH6-Mm-uy7">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BH6-Mm-uy7">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -70,6 +70,25 @@
             <point key="canvasLocation" x="1915" y="1079"/>
         </scene>
         <!--消息-->
+        <scene sceneID="fMr-s7-Ubd">
+            <objects>
+                <tableViewController id="OyI-9l-k5X" customClass="NotificationTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="K0A-2x-eNf">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <connections>
+                            <outlet property="dataSource" destination="OyI-9l-k5X" id="VN1-T1-DB3"/>
+                            <outlet property="delegate" destination="OyI-9l-k5X" id="J1y-jU-8xe"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="消息" id="frB-Mb-0OS"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FYq-pN-LgS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1915" y="1794"/>
+        </scene>
+        <!--消息-->
         <scene sceneID="OpF-Wq-Q6Y">
             <objects>
                 <navigationController id="Sbw-ZY-fwH" sceneMemberID="viewController">
@@ -79,39 +98,12 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="xcF-aV-lFw" kind="relationship" relationship="rootViewController" id="pAU-RA-bQg"/>
+                        <segue destination="OyI-9l-k5X" kind="relationship" relationship="rootViewController" id="Scq-Eo-Jzm"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zep-ys-hRY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1210" y="1794"/>
-        </scene>
-        <!--消息-->
-        <scene sceneID="d5H-kw-cDI">
-            <objects>
-                <tableViewController id="xcF-aV-lFw" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="A83-uu-F6a">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="12e-aC-5XH">
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="12e-aC-5XH" id="oDb-wa-9mS">
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="xcF-aV-lFw" id="2BP-zc-j7Q"/>
-                            <outlet property="delegate" destination="xcF-aV-lFw" id="bUA-iu-6gk"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="消息" id="2pb-u5-P3t"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="j9s-Ha-4gM" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1915" y="1794"/>
         </scene>
         <!--Explore Table View Controller-->
         <scene sceneID="3lh-oB-qN8">
@@ -299,6 +291,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="我" id="pRK-Ih-5fZ">
+                        <barButtonItem key="leftBarButtonItem" title="编辑" id="kuE-kJ-Z9q">
+                            <connections>
+                                <segue destination="LsP-x6-Wrf" kind="show" identifier="pushProfileEdit" id="qGg-dS-pyo"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="设置" id="GrM-7U-YEN">
                             <connections>
                                 <segue destination="Gbi-lA-BFC" kind="show" identifier="pushSetting" id="SIy-bm-e7m"/>
@@ -330,7 +327,28 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XRD-Ye-bdj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2579" y="3949"/>
+            <point key="canvasLocation" x="2617" y="3794"/>
+        </scene>
+        <!--编辑个人资料-->
+        <scene sceneID="JUB-Wa-fII">
+            <objects>
+                <tableViewController id="LsP-x6-Wrf" customClass="ProfileEditTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="Kxg-ca-QCa">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <connections>
+                            <outlet property="dataSource" destination="LsP-x6-Wrf" id="tNj-Tq-KiE"/>
+                            <outlet property="delegate" destination="LsP-x6-Wrf" id="B2w-xb-GWZ"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="编辑个人资料" id="VZ8-dS-xXf">
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="Hf6-sz-NAb"/>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1kJ-Yx-5TU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2616" y="4487"/>
         </scene>
         <!--话题-->
         <scene sceneID="cBU-SN-DR5">
