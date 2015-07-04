@@ -17,6 +17,7 @@
 #import "UserListTableViewController.h"
 #import "UserFeedTableViewController.h"
 #import "TopicListTableViewController.h"
+#import "DraftTableViewController.h"
 
 @interface UserViewController ()
 
@@ -105,7 +106,7 @@
             
             if ([userId integerValue] == [[data shareInstance].myUID integerValue]) {
                 headerView.followButton.hidden = YES;
-                cellArray = @[@[@"我的提问", @"我的回答", @"我关注的问题", @"我关注的话题"], @[@"我关注的", @"关注我的"]];
+                cellArray = @[@[@"我的提问", @"我的回答", @"我关注的问题", @"我关注的话题"], @[@"我关注的", @"关注我的"], @[@"草稿箱"]];
                 self.title = @"我";
                 [data shareInstance].myInfo = @{@"nickname": userName,
                                                 @"avatar": headerView.userAvatarView.image,
@@ -155,6 +156,8 @@
         } else {
             cell.detailTextLabel.text = [userData[@"fans_count"] stringValue];
         }
+    } else if (section == 2) {
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     return cell;
 }
@@ -164,6 +167,8 @@
         return @"动态";
     } else if (section == 1) {
         return @"用户";
+    } else if (section == 2) {
+        return @"我的";
     } else {
         return @"";
     }
@@ -196,6 +201,13 @@
         userList.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:userList animated:YES];
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    } else if (section == 2) {
+        if (row == 0) {
+            DraftTableViewController *draftTableController = [[DraftTableViewController alloc] initWithStyle:UITableViewStylePlain];
+            draftTableController.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:draftTableController animated:YES];
+            [tableView deselectRowAtIndexPath:indexPath animated:YES];
+        }
     }
 }
 

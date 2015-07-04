@@ -55,7 +55,7 @@
         [weakSelf getRowsData];
     }];
     
-    self.tableView.estimatedRowHeight = 62;
+    self.tableView.estimatedRowHeight = 68;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     
 }

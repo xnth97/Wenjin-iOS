@@ -15,6 +15,9 @@
 		E90F42741ACD979500263622 /* UserDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E90F42731ACD979500263622 /* UserDataManager.m */; };
 		E90F42781ACE6A4E00263622 /* UserHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = E90F42771ACE6A4E00263622 /* UserHeaderView.m */; };
 		E90F427A1ACE6E5D00263622 /* UserHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E90F42791ACE6E5D00263622 /* UserHeaderView.xib */; };
+		E90FBB891B4827D0005DD1B6 /* DraftTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E90FBB881B4827D0005DD1B6 /* DraftTableViewController.m */; };
+		E90FBB8E1B4829F8005DD1B6 /* DraftTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E90FBB8C1B4829F8005DD1B6 /* DraftTableViewCell.m */; };
+		E90FBB8F1B4829F8005DD1B6 /* DraftTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E90FBB8D1B4829F8005DD1B6 /* DraftTableViewCell.xib */; };
 		E91270771B00A7F500E32110 /* NotificationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E91270761B00A7F500E32110 /* NotificationManager.m */; };
 		E91D17DE1B47CDCF003A532E /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E91D17DD1B47CDCF003A532E /* Realm.framework */; };
 		E91D17E21B47CE79003A532E /* wjDatabaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E91D17E11B47CE79003A532E /* wjDatabaseManager.m */; };
@@ -129,6 +132,11 @@
 		E90F42761ACE6A4E00263622 /* UserHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserHeaderView.h; path = View/UserHeaderView/UserHeaderView.h; sourceTree = "<group>"; };
 		E90F42771ACE6A4E00263622 /* UserHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserHeaderView.m; path = View/UserHeaderView/UserHeaderView.m; sourceTree = "<group>"; };
 		E90F42791ACE6E5D00263622 /* UserHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UserHeaderView.xib; path = View/UserHeaderView/UserHeaderView.xib; sourceTree = "<group>"; };
+		E90FBB871B4827D0005DD1B6 /* DraftTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DraftTableViewController.h; path = Controller/DraftTableController/DraftTableViewController.h; sourceTree = "<group>"; };
+		E90FBB881B4827D0005DD1B6 /* DraftTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DraftTableViewController.m; path = Controller/DraftTableController/DraftTableViewController.m; sourceTree = "<group>"; };
+		E90FBB8B1B4829F8005DD1B6 /* DraftTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DraftTableViewCell.h; path = View/DraftTableViewCell/DraftTableViewCell.h; sourceTree = "<group>"; };
+		E90FBB8C1B4829F8005DD1B6 /* DraftTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DraftTableViewCell.m; path = View/DraftTableViewCell/DraftTableViewCell.m; sourceTree = "<group>"; };
+		E90FBB8D1B4829F8005DD1B6 /* DraftTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DraftTableViewCell.xib; path = View/DraftTableViewCell/DraftTableViewCell.xib; sourceTree = "<group>"; };
 		E91270751B00A7F500E32110 /* NotificationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NotificationManager.h; path = Model/Notification/NotificationManager.h; sourceTree = "<group>"; };
 		E91270761B00A7F500E32110 /* NotificationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NotificationManager.m; path = Model/Notification/NotificationManager.m; sourceTree = "<group>"; };
 		E91D17DD1B47CDCF003A532E /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Realm.framework; sourceTree = "<group>"; };
@@ -373,6 +381,25 @@
 			name = UserHeaderView;
 			sourceTree = "<group>";
 		};
+		E90FBB861B4827A3005DD1B6 /* DraftTable */ = {
+			isa = PBXGroup;
+			children = (
+				E90FBB871B4827D0005DD1B6 /* DraftTableViewController.h */,
+				E90FBB881B4827D0005DD1B6 /* DraftTableViewController.m */,
+			);
+			name = DraftTable;
+			sourceTree = "<group>";
+		};
+		E90FBB8A1B4829D6005DD1B6 /* DraftTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				E90FBB8B1B4829F8005DD1B6 /* DraftTableViewCell.h */,
+				E90FBB8C1B4829F8005DD1B6 /* DraftTableViewCell.m */,
+				E90FBB8D1B4829F8005DD1B6 /* DraftTableViewCell.xib */,
+			);
+			name = DraftTableViewCell;
+			sourceTree = "<group>";
+		};
 		E91270741B00A7DA00E32110 /* Notification */ = {
 			isa = PBXGroup;
 			children = (
@@ -425,6 +452,7 @@
 				E9C1A1C11ACBCB6500892B60 /* QuestionHeaderView */,
 				E93063B11ACA395B000140C1 /* HomeTableViewCell */,
 				E9DB26E61AD4F41F00C3C60D /* UserListTableViewCell */,
+				E90FBB8A1B4829D6005DD1B6 /* DraftTableViewCell */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -476,6 +504,7 @@
 				E93063DB1ACAABD9000140C1 /* UserViewController.xib */,
 				E9DB26E21AD4F2FB00C3C60D /* UserListTable */,
 				E9DB26ED1AD5069C00C3C60D /* UserFeedTable */,
+				E90FBB861B4827A3005DD1B6 /* DraftTable */,
 			);
 			name = UserViewController;
 			sourceTree = "<group>";
@@ -1086,6 +1115,7 @@
 				E9E286C81AC805F2005B6ED7 /* Localizable.strings in Resources */,
 				E93063D31ACAAB81000140C1 /* QuestionViewController.xib in Resources */,
 				E9642E9F1AC5714800FF7875 /* LaunchScreen.xib in Resources */,
+				E90FBB8F1B4829F8005DD1B6 /* DraftTableViewCell.xib in Resources */,
 				E93063B61ACA3982000140C1 /* HomeTableViewCell.xib in Resources */,
 				E9D56F021ADE881B00C54466 /* TopicBestAnswerViewController.xib in Resources */,
 				E93063DD1ACAABD9000140C1 /* UserViewController.xib in Resources */,
@@ -1153,6 +1183,7 @@
 				E9C1A1C41ACBCBB000892B60 /* QuestionHeaderView.m in Sources */,
 				E91D17E61B47D14B003A532E /* AnswerDraft.m in Sources */,
 				E9C9C6FE1AC71D4A00CC228A /* data.m in Sources */,
+				E90FBB891B4827D0005DD1B6 /* DraftTableViewController.m in Sources */,
 				E92388E71B46936E00C3EE3A /* ProfileEditTableViewController.m in Sources */,
 				E9D602131B47E09000C95B35 /* QuestionDraft.m in Sources */,
 				E9C9C7071AC71E3600CC228A /* wjAPIs.m in Sources */,
@@ -1187,6 +1218,7 @@
 				E9C1A1C01ACAF21F00892B60 /* QuestionDataManager.m in Sources */,
 				E93063C21ACA4E69000140C1 /* PostDataManager.m in Sources */,
 				E91D17E21B47CE79003A532E /* wjDatabaseManager.m in Sources */,
+				E90FBB8E1B4829F8005DD1B6 /* DraftTableViewCell.m in Sources */,
 				E92298501AF0E4EF000CC8F7 /* WeChatSessionActivity.m in Sources */,
 				E9DB26E51AD4F32200C3C60D /* UserListTableViewController.m in Sources */,
 				E96F09241AD7D29700847E5E /* TLTagsControl.m in Sources */,
