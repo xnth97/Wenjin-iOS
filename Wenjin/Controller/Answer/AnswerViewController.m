@@ -231,6 +231,62 @@
     [self presentViewController:alertController animated:YES completion:nil];
 }
 
+- (void)voteAgreeAction {
+    [wjOperationManager voteAnswerWithAnswerID:answerId operation:1 success:^{
+        switch (voteValue) {
+            case 1:
+                voteValue = 0;
+                [self setValue:[NSNumber numberWithInteger:agreeCount - 1] forKey:@"agreeCount"];
+                [agreeImageView setTintColor:notVotedColor];
+                break;
+                
+            case 0:
+                voteValue = 1;
+                [self setValue:[NSNumber numberWithInteger:agreeCount + 1] forKey:@"agreeCount"];
+                [agreeImageView setTintColor:votedColor];
+                break;
+                
+            case -1:
+                voteValue = 1;
+                [self setValue:[NSNumber numberWithInteger:agreeCount + 1] forKey:@"agreeCount"];
+                [agreeImageView setTintColor:votedColor];
+                break;
+                
+            default:
+                break;
+        }
+    } failure:^(NSString *errStr) {
+        [MsgDisplay showErrorMsg:errStr];
+    }];
+}
+
+- (void)voteDisagreeAction {
+    [wjOperationManager voteAnswerWithAnswerID:answerId operation:-1 success:^{
+        switch (voteValue) {
+            case 1:
+                voteValue = -1;
+                [self setValue:[NSNumber numberWithInteger:agreeCount - 1] forKey:@"agreeCount"];
+                [agreeImageView setTintColor:notVotedColor];
+                break;
+                
+            case 0:
+                voteValue = -1;
+                [agreeImageView setTintColor:notVotedColor];
+                break;
+                
+            case -1:
+                voteValue = 0;
+                [agreeImageView setTintColor:notVotedColor];
+                break;
+                
+            default:
+                break;
+        }
+    } failure:^(NSString *errStr) {
+        [MsgDisplay showErrorMsg:errStr];
+    }];
+}
+
 - (IBAction)pushCommentViewController {
     AnswerCommentTableViewController *commentVC = [[AnswerCommentTableViewController alloc]initWithStyle:UITableViewStylePlain];
     commentVC.answerId = answerId;

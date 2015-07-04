@@ -127,7 +127,7 @@
         <!--发起问题-->
         <scene sceneID="sfN-yt-cvD">
             <objects>
-                <viewController id="ldz-M3-pk8" customClass="PostViewController" sceneMemberID="viewController">
+                <viewController id="ldz-M3-pk8" customClass="PostQuestionViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="0Eb-Lk-hiQ"/>
                         <viewControllerLayoutGuide type="bottom" id="mEq-Uq-s8o"/>
@@ -343,7 +343,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="编辑个人资料" id="VZ8-dS-xXf">
-                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="Hf6-sz-NAb"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="Hf6-sz-NAb">
+                            <connections>
+                                <action selector="submitInfo" destination="LsP-x6-Wrf" id="ZT2-4I-82h"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1kJ-Yx-5TU" userLabel="First Responder" sceneMemberID="firstResponder"/>

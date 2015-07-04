@@ -74,6 +74,9 @@
         }
     }];
     
+    bestAnswerTableView.estimatedRowHeight = 93;
+    bestAnswerTableView.rowHeight = UITableViewAutomaticDimension;
+    
     [TopicDataManager getTopicBestAnswerWithTopicID:topicId success:^(NSUInteger _totalRows, NSArray *_rows) {
         
         focusTopic.hidden = NO;
@@ -136,12 +139,12 @@
     return [rowsData count];
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSUInteger row = [indexPath row];
-    NSString *questionTitle = ((rowsData[row])[@"question_info"])[@"question_content"];
-    NSString *detailStr = [wjStringProcessor processAnswerDetailString:((rowsData[row])[@"answer_info"])[@"answer_content"]];
-    return 56 + [self heightOfLabelWithTextString:questionTitle fontSize:17.0 andNumberOfLines:0] + [self heightOfLabelWithTextString:detailStr fontSize:15.0 andNumberOfLines:3];
-}
+//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+//    NSUInteger row = [indexPath row];
+//    NSString *questionTitle = ((rowsData[row])[@"question_info"])[@"question_content"];
+//    NSString *detailStr = [wjStringProcessor processAnswerDetailString:((rowsData[row])[@"answer_info"])[@"answer_content"]];
+//    return 56 + [self heightOfLabelWithTextString:questionTitle fontSize:17.0 andNumberOfLines:0] + [self heightOfLabelWithTextString:detailStr fontSize:15.0 andNumberOfLines:3];
+//}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *simpleTableIdentifier = @"SimpleTableCell";
@@ -174,19 +177,19 @@
 
 }
 
-- (CGFloat)heightOfLabelWithTextString:(NSString *)textString fontSize:(CGFloat)fontSize andNumberOfLines:(NSUInteger)lines {
-    CGFloat width = bestAnswerTableView.frame.size.width - 32;
-    
-    UILabel *gettingSizeLabel = [[UILabel alloc]init];
-    gettingSizeLabel.text = textString;
-    gettingSizeLabel.font = [UIFont systemFontOfSize:fontSize];
-    gettingSizeLabel.numberOfLines = lines;
-    gettingSizeLabel.lineBreakMode = NSLineBreakByWordWrapping;
-    CGSize maxSize = CGSizeMake(width, 1000.0);
-    
-    CGSize size = [gettingSizeLabel sizeThatFits:maxSize];
-    return size.height;
-}
+//- (CGFloat)heightOfLabelWithTextString:(NSString *)textString fontSize:(CGFloat)fontSize andNumberOfLines:(NSUInteger)lines {
+//    CGFloat width = bestAnswerTableView.frame.size.width - 32;
+//    
+//    UILabel *gettingSizeLabel = [[UILabel alloc]init];
+//    gettingSizeLabel.text = textString;
+//    gettingSizeLabel.font = [UIFont systemFontOfSize:fontSize];
+//    gettingSizeLabel.numberOfLines = lines;
+//    gettingSizeLabel.lineBreakMode = NSLineBreakByWordWrapping;
+//    CGSize maxSize = CGSizeMake(width, 1000.0);
+//    
+//    CGSize size = [gettingSizeLabel sizeThatFits:maxSize];
+//    return size.height;
+//}
 
 // HomeCellDelegate
 

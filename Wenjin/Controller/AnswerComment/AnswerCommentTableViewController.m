@@ -55,6 +55,9 @@
         [weakSelf getRowsData];
     }];
     
+    self.tableView.estimatedRowHeight = 62;
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -105,13 +108,13 @@
     return [rowsData count];
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSUInteger row = [indexPath row];
-    NSDictionary *tmp = rowsData[row];
-    NSString *replyUserText = (tmp[@"at_user"] != nil) ? [NSString stringWithFormat:@"回复 %@：", (tmp[@"at_user"])[@"nick_name"]] : @"";
-    NSString *commentText = [NSString stringWithFormat:@"%@%@", replyUserText, tmp[@"content"]];
-    return 46 + [self heightOfLabelWithTextString:commentText];
-}
+//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+//    NSUInteger row = [indexPath row];
+//    NSDictionary *tmp = rowsData[row];
+//    NSString *replyUserText = (tmp[@"at_user"] != nil) ? [NSString stringWithFormat:@"回复 %@：", (tmp[@"at_user"])[@"nick_name"]] : @"";
+//    NSString *commentText = [NSString stringWithFormat:@"%@%@", replyUserText, tmp[@"content"]];
+//    return 46 + [self heightOfLabelWithTextString:commentText];
+//}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *simpleCellIdentifier = @"simpleTableCellIdentifier";
@@ -154,18 +157,18 @@
     [self presentViewController:replyAlert animated:YES completion:nil];
 }
 
-- (CGFloat)heightOfLabelWithTextString:(NSString *)textString {
-    CGFloat width = self.tableView.frame.size.width - 32;
-    
-    UILabel *gettingSizeLabel = [[UILabel alloc]init];
-    gettingSizeLabel.text = textString;
-    gettingSizeLabel.font = [UIFont systemFontOfSize:15];
-    gettingSizeLabel.numberOfLines = 0;
-    gettingSizeLabel.lineBreakMode = NSLineBreakByWordWrapping;
-    CGSize maxSize = CGSizeMake(width, 1000.0);
-    
-    CGSize size = [gettingSizeLabel sizeThatFits:maxSize];
-    return size.height;
-}
+//- (CGFloat)heightOfLabelWithTextString:(NSString *)textString {
+//    CGFloat width = self.tableView.frame.size.width - 32;
+//    
+//    UILabel *gettingSizeLabel = [[UILabel alloc]init];
+//    gettingSizeLabel.text = textString;
+//    gettingSizeLabel.font = [UIFont systemFontOfSize:15];
+//    gettingSizeLabel.numberOfLines = 0;
+//    gettingSizeLabel.lineBreakMode = NSLineBreakByWordWrapping;
+//    CGSize maxSize = CGSizeMake(width, 1000.0);
+//    
+//    CGSize size = [gettingSizeLabel sizeThatFits:maxSize];
+//    return size.height;
+//}
 
 @end

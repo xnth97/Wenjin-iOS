@@ -54,6 +54,9 @@
         [weakSelf nextPage];
     }];
     
+    self.tableView.estimatedRowHeight = 93.0;
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    
     [self.tableView triggerPullToRefresh];
     
     // Uncomment the following line to preserve selection between presentations.
@@ -150,29 +153,6 @@
     cell.delegate = self;
     [cell loadAvatarImageWithApartURL:tmp[@"avatar"]];
     return cell;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSUInteger row = [indexPath row];
-    NSDictionary *tmp = dataInView[row];
-    BOOL existsQuestion = (tmp[@"related"] != nil);
-    NSString *questionTitle = existsQuestion ? tmp[@"title"] : nil;
-    NSString *detailStr = existsQuestion ? @"I NEED DETAILS" : nil;
-    return 56 + [self heightOfLabelWithTextString:questionTitle andFontSize:17.0] + [self heightOfLabelWithTextString:detailStr andFontSize:15.0];
-}
-
-- (CGFloat)heightOfLabelWithTextString:(NSString *)textString andFontSize:(CGFloat)fontSize {
-    CGFloat width = self.tableView.frame.size.width - 32;
-    
-    UILabel *gettingSizeLabel = [[UILabel alloc] init];
-    gettingSizeLabel.text = textString;
-    gettingSizeLabel.font = [UIFont systemFontOfSize:fontSize];
-    gettingSizeLabel.numberOfLines = 3;
-    gettingSizeLabel.lineBreakMode = NSLineBreakByWordWrapping;
-    CGSize maxSize = CGSizeMake(width, 1000.0);
-    
-    CGSize size = [gettingSizeLabel sizeThatFits:maxSize];
-    return size.height;
 }
 
 #pragma mark - HomeTableViewCellDelegate

@@ -13,4 +13,6 @@
 
 @property (strong, nonatomic) FXFormController *formController;
 
+- (IBAction)submitInfo;
+
 @end

@@ -74,6 +74,9 @@
         [weakSelf nextPage];
     }];
     [self.tableView triggerPullToRefresh];
+    
+    self.tableView.estimatedRowHeight = 93;
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -171,12 +174,12 @@
     return dataInTable.count;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSUInteger row = [indexPath row];
-    NSString *questionTitle = (dataInTable[row])[@"question_content"];
-    NSString *detailStr = @"";
-    return 56 + [self heightOfLabelWithTextString:questionTitle] + [self heightOfLabelWithTextString:detailStr];
-}
+//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+//    NSUInteger row = [indexPath row];
+//    NSString *questionTitle = (dataInTable[row])[@"question_content"];
+//    NSString *detailStr = @"";
+//    return 56 + [self heightOfLabelWithTextString:questionTitle] + [self heightOfLabelWithTextString:detailStr];
+//}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
@@ -202,19 +205,19 @@
     return cell;
 }
 
-- (CGFloat)heightOfLabelWithTextString:(NSString *)textString {
-    CGFloat width = self.tableView.frame.size.width - 32;
-    
-    UILabel *gettingSizeLabel = [[UILabel alloc]init];
-    gettingSizeLabel.text = textString;
-    gettingSizeLabel.font = [UIFont systemFontOfSize:17];
-    gettingSizeLabel.numberOfLines = 0;
-    gettingSizeLabel.lineBreakMode = NSLineBreakByWordWrapping;
-    CGSize maxSize = CGSizeMake(width, 1000.0);
-    
-    CGSize size = [gettingSizeLabel sizeThatFits:maxSize];
-    return size.height;
-}
+//- (CGFloat)heightOfLabelWithTextString:(NSString *)textString {
+//    CGFloat width = self.tableView.frame.size.width - 32;
+//    
+//    UILabel *gettingSizeLabel = [[UILabel alloc]init];
+//    gettingSizeLabel.text = textString;
+//    gettingSizeLabel.font = [UIFont systemFontOfSize:17];
+//    gettingSizeLabel.numberOfLines = 0;
+//    gettingSizeLabel.lineBreakMode = NSLineBreakByWordWrapping;
+//    CGSize maxSize = CGSizeMake(width, 1000.0);
+//    
+//    CGSize size = [gettingSizeLabel sizeThatFits:maxSize];
+//    return size.height;
+//}
 
 // Cell Delegate
 

@@ -62,6 +62,9 @@
         [weakSelf nextPage];
     }];
     [self.tableView triggerPullToRefresh];
+    
+    self.tableView.estimatedRowHeight = 93;
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -118,32 +121,32 @@
     return [dataInTable count];
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    // feedType = 0：提问；1：回答；2：关注
-    NSUInteger row = [indexPath row];
-    NSDictionary *tmp = dataInTable[row];
-    NSString *title = @"";
-    NSString *detail = @"";
-    switch (feedType) {
-        case 0:
-            title = tmp[@"title"];
-            detail = [wjStringProcessor processAnswerDetailString:tmp[@"detail"]];
-            break;
-            
-        case 1:
-            title = tmp[@"question_title"];
-            detail = [wjStringProcessor processAnswerDetailString:tmp[@"answer_content"]];
-            break;
-            
-        case 2:
-            title = tmp[@"title"];
-            break;
-            
-        default:
-            break;
-    }
-    return 56 + [self heightOfLabelWithTextString:title] + [self heightOfLabelWithTextString:detail];
-}
+//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+//    // feedType = 0：提问；1：回答；2：关注
+//    NSUInteger row = [indexPath row];
+//    NSDictionary *tmp = dataInTable[row];
+//    NSString *title = @"";
+//    NSString *detail = @"";
+//    switch (feedType) {
+//        case 0:
+//            title = tmp[@"title"];
+//            detail = [wjStringProcessor processAnswerDetailString:tmp[@"detail"]];
+//            break;
+//            
+//        case 1:
+//            title = tmp[@"question_title"];
+//            detail = [wjStringProcessor processAnswerDetailString:tmp[@"answer_content"]];
+//            break;
+//            
+//        case 2:
+//            title = tmp[@"title"];
+//            break;
+//            
+//        default:
+//            break;
+//    }
+//    return 56 + [self heightOfLabelWithTextString:title] + [self heightOfLabelWithTextString:detail];
+//}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *simpleTableIdentifier = @"SimpleTableCell";
@@ -196,19 +199,19 @@
     return cell;
 }
 
-- (CGFloat)heightOfLabelWithTextString:(NSString *)textString {
-    CGFloat width = self.tableView.frame.size.width - 32;
-    
-    UILabel *gettingSizeLabel = [[UILabel alloc]init];
-    gettingSizeLabel.text = textString;
-    gettingSizeLabel.font = [UIFont systemFontOfSize:17];
-    gettingSizeLabel.numberOfLines = 3;
-    gettingSizeLabel.lineBreakMode = NSLineBreakByWordWrapping;
-    CGSize maxSize = CGSizeMake(width, 1000.0);
-    
-    CGSize size = [gettingSizeLabel sizeThatFits:maxSize];
-    return size.height;
-}
+//- (CGFloat)heightOfLabelWithTextString:(NSString *)textString {
+//    CGFloat width = self.tableView.frame.size.width - 32;
+//    
+//    UILabel *gettingSizeLabel = [[UILabel alloc]init];
+//    gettingSizeLabel.text = textString;
+//    gettingSizeLabel.font = [UIFont systemFontOfSize:17];
+//    gettingSizeLabel.numberOfLines = 3;
+//    gettingSizeLabel.lineBreakMode = NSLineBreakByWordWrapping;
+//    CGSize maxSize = CGSizeMake(width, 1000.0);
+//    
+//    CGSize size = [gettingSizeLabel sizeThatFits:maxSize];
+//    return size.height;
+//}
 
 // HomeCellDelegate
 

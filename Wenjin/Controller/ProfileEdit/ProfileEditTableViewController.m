@@ -42,4 +42,13 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)submitInfo {
+    ProfileEditForm *form = (ProfileEditForm *)self.formController.form;
+    NSString *nickname = form.nickname;
+    UIImage *avatar = form.avatar;
+    NSInteger gender = form.gender;
+    NSDate *birthday = form.birthday;
+    NSString *signature = form.signature;
+}
+
 @end

@@ -107,6 +107,9 @@
                 headerView.followButton.hidden = YES;
                 cellArray = @[@[@"我的提问", @"我的回答", @"我关注的问题", @"我关注的话题"], @[@"我关注的", @"关注我的"]];
                 self.title = @"我";
+                [data shareInstance].myInfo = @{@"nickname": userName,
+                                                @"avatar": headerView.userAvatarView.image,
+                                                @"signature": headerView.userSigLabel.text};
             } else {
                 cellArray = @[@[@"Ta 的提问", @"Ta 的回答", @"Ta 关注的问题", @"Ta 关注的话题"], @[@"Ta 关注的", @"关注 Ta 的"]];
                 self.title = userData[@"nick_name"];

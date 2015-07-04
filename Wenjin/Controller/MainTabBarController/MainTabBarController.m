@@ -31,6 +31,9 @@
     
     //[[self.tabBar.items objectAtIndex:1] setBadgeValue:@"3"];
     
+    NSString *path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSLog(@"%@", path);
+    
     FBKVOController *kvoController = [FBKVOController controllerWithObserver:self];
     self.KVOController = kvoController;
     [self.KVOController observe:self keyPath:@"showNotLoggedInView" options:NSKeyValueObservingOptionInitial|NSKeyValueObservingOptionNew block:^(id observer, id object, NSDictionary *change) {

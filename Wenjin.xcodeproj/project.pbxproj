@@ -16,6 +16,9 @@
 		E90F42781ACE6A4E00263622 /* UserHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = E90F42771ACE6A4E00263622 /* UserHeaderView.m */; };
 		E90F427A1ACE6E5D00263622 /* UserHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E90F42791ACE6E5D00263622 /* UserHeaderView.xib */; };
 		E91270771B00A7F500E32110 /* NotificationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E91270761B00A7F500E32110 /* NotificationManager.m */; };
+		E91D17DE1B47CDCF003A532E /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E91D17DD1B47CDCF003A532E /* Realm.framework */; };
+		E91D17E21B47CE79003A532E /* wjDatabaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E91D17E11B47CE79003A532E /* wjDatabaseManager.m */; };
+		E91D17E61B47D14B003A532E /* AnswerDraft.m in Sources */ = {isa = PBXBuildFile; fileRef = E91D17E51B47D14B003A532E /* AnswerDraft.m */; };
 		E922984D1AF0B9CA000CC8F7 /* WeChatMomentsActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = E922984C1AF0B9CA000CC8F7 /* WeChatMomentsActivity.m */; };
 		E92298501AF0E4EF000CC8F7 /* WeChatSessionActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = E922984F1AF0E4EF000CC8F7 /* WeChatSessionActivity.m */; };
 		E92388E71B46936E00C3EE3A /* ProfileEditTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E92388E61B46936E00C3EE3A /* ProfileEditTableViewController.m */; };
@@ -25,7 +28,7 @@
 		E93063B51ACA3982000140C1 /* HomeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E93063B31ACA3982000140C1 /* HomeTableViewCell.m */; };
 		E93063B61ACA3982000140C1 /* HomeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E93063B41ACA3982000140C1 /* HomeTableViewCell.xib */; };
 		E93063BA1ACA47EB000140C1 /* wjStringProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = E93063B91ACA47EB000140C1 /* wjStringProcessor.m */; };
-		E93063BE1ACA4DAA000140C1 /* PostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E93063BD1ACA4DAA000140C1 /* PostViewController.m */; };
+		E93063BE1ACA4DAA000140C1 /* PostQuestionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E93063BD1ACA4DAA000140C1 /* PostQuestionViewController.m */; };
 		E93063C21ACA4E69000140C1 /* PostDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E93063C11ACA4E69000140C1 /* PostDataManager.m */; };
 		E93063C81ACA966E000140C1 /* AddDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E93063C71ACA966E000140C1 /* AddDetailViewController.m */; };
 		E93063D21ACAAB81000140C1 /* QuestionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E93063D01ACAAB81000140C1 /* QuestionViewController.m */; };
@@ -84,6 +87,7 @@
 		E9D56EF81ADE2AD500C54466 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9D56EF71ADE2AD500C54466 /* QuartzCore.framework */; };
 		E9D56F011ADE881B00C54466 /* TopicBestAnswerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9D56EFF1ADE881B00C54466 /* TopicBestAnswerViewController.m */; };
 		E9D56F021ADE881B00C54466 /* TopicBestAnswerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9D56F001ADE881B00C54466 /* TopicBestAnswerViewController.xib */; };
+		E9D602131B47E09000C95B35 /* QuestionDraft.m in Sources */ = {isa = PBXBuildFile; fileRef = E9D602121B47E09000C95B35 /* QuestionDraft.m */; };
 		E9DB26E51AD4F32200C3C60D /* UserListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9DB26E41AD4F32200C3C60D /* UserListTableViewController.m */; };
 		E9DB26EA1AD4F44B00C3C60D /* UserListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E9DB26E81AD4F44B00C3C60D /* UserListTableViewCell.m */; };
 		E9DB26EB1AD4F44B00C3C60D /* UserListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9DB26E91AD4F44B00C3C60D /* UserListTableViewCell.xib */; };
@@ -127,6 +131,11 @@
 		E90F42791ACE6E5D00263622 /* UserHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UserHeaderView.xib; path = View/UserHeaderView/UserHeaderView.xib; sourceTree = "<group>"; };
 		E91270751B00A7F500E32110 /* NotificationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NotificationManager.h; path = Model/Notification/NotificationManager.h; sourceTree = "<group>"; };
 		E91270761B00A7F500E32110 /* NotificationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NotificationManager.m; path = Model/Notification/NotificationManager.m; sourceTree = "<group>"; };
+		E91D17DD1B47CDCF003A532E /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Realm.framework; sourceTree = "<group>"; };
+		E91D17E01B47CE79003A532E /* wjDatabaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = wjDatabaseManager.h; path = Model/LocalDataManager/wjDatabaseManager.h; sourceTree = "<group>"; };
+		E91D17E11B47CE79003A532E /* wjDatabaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = wjDatabaseManager.m; path = Model/LocalDataManager/wjDatabaseManager.m; sourceTree = "<group>"; };
+		E91D17E41B47D14B003A532E /* AnswerDraft.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AnswerDraft.h; path = Model/LocalDataManager/DataModel/AnswerDraft.h; sourceTree = "<group>"; };
+		E91D17E51B47D14B003A532E /* AnswerDraft.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AnswerDraft.m; path = Model/LocalDataManager/DataModel/AnswerDraft.m; sourceTree = "<group>"; };
 		E922984B1AF0B9CA000CC8F7 /* WeChatMomentsActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeChatMomentsActivity.h; sourceTree = "<group>"; };
 		E922984C1AF0B9CA000CC8F7 /* WeChatMomentsActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeChatMomentsActivity.m; sourceTree = "<group>"; };
 		E922984E1AF0E4EF000CC8F7 /* WeChatSessionActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeChatSessionActivity.h; sourceTree = "<group>"; };
@@ -146,8 +155,8 @@
 		E93063B41ACA3982000140C1 /* HomeTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HomeTableViewCell.xib; path = View/HomeTableViewCell/HomeTableViewCell.xib; sourceTree = "<group>"; };
 		E93063B81ACA47EB000140C1 /* wjStringProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = wjStringProcessor.h; path = Model/StringProcessor/wjStringProcessor.h; sourceTree = "<group>"; };
 		E93063B91ACA47EB000140C1 /* wjStringProcessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = wjStringProcessor.m; path = Model/StringProcessor/wjStringProcessor.m; sourceTree = "<group>"; };
-		E93063BC1ACA4DAA000140C1 /* PostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PostViewController.h; path = Controller/PostQuestion/PostViewController.h; sourceTree = "<group>"; };
-		E93063BD1ACA4DAA000140C1 /* PostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PostViewController.m; path = Controller/PostQuestion/PostViewController.m; sourceTree = "<group>"; };
+		E93063BC1ACA4DAA000140C1 /* PostQuestionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PostQuestionViewController.h; path = Controller/PostQuestion/PostQuestionViewController.h; sourceTree = "<group>"; };
+		E93063BD1ACA4DAA000140C1 /* PostQuestionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PostQuestionViewController.m; path = Controller/PostQuestion/PostQuestionViewController.m; sourceTree = "<group>"; };
 		E93063C01ACA4E69000140C1 /* PostDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PostDataManager.h; path = Model/Sections/Post/PostDataManager.h; sourceTree = "<group>"; };
 		E93063C11ACA4E69000140C1 /* PostDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PostDataManager.m; path = Model/Sections/Post/PostDataManager.m; sourceTree = "<group>"; };
 		E93063C61ACA966E000140C1 /* AddDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddDetailViewController.h; path = Controller/PostQuestion/AddDetailViewController.h; sourceTree = "<group>"; };
@@ -246,6 +255,8 @@
 		E9D56EFE1ADE881B00C54466 /* TopicBestAnswerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TopicBestAnswerViewController.h; path = Controller/TopicBestAnswer/TopicBestAnswerViewController.h; sourceTree = "<group>"; };
 		E9D56EFF1ADE881B00C54466 /* TopicBestAnswerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TopicBestAnswerViewController.m; path = Controller/TopicBestAnswer/TopicBestAnswerViewController.m; sourceTree = "<group>"; };
 		E9D56F001ADE881B00C54466 /* TopicBestAnswerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TopicBestAnswerViewController.xib; path = Controller/TopicBestAnswer/TopicBestAnswerViewController.xib; sourceTree = "<group>"; };
+		E9D602111B47E09000C95B35 /* QuestionDraft.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QuestionDraft.h; path = Model/LocalDataManager/DataModel/QuestionDraft.h; sourceTree = "<group>"; };
+		E9D602121B47E09000C95B35 /* QuestionDraft.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QuestionDraft.m; path = Model/LocalDataManager/DataModel/QuestionDraft.m; sourceTree = "<group>"; };
 		E9DB26E31AD4F32200C3C60D /* UserListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserListTableViewController.h; path = Controller/UserList/UserListTableViewController.h; sourceTree = "<group>"; };
 		E9DB26E41AD4F32200C3C60D /* UserListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserListTableViewController.m; path = Controller/UserList/UserListTableViewController.m; sourceTree = "<group>"; };
 		E9DB26E71AD4F44B00C3C60D /* UserListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserListTableViewCell.h; path = View/UserListTableViewCell/UserListTableViewCell.h; sourceTree = "<group>"; };
@@ -286,6 +297,7 @@
 				E90968401AF0B7E600E65F7E /* libWeChatSDK.a in Frameworks */,
 				E9C804BD1B07853D0021C388 /* libPushSDK-1.8.3.a in Frameworks */,
 				E90968371AF0B79B00E65F7E /* SystemConfiguration.framework in Frameworks */,
+				E91D17DE1B47CDCF003A532E /* Realm.framework in Frameworks */,
 				E9D56EF81ADE2AD500C54466 /* QuartzCore.framework in Frameworks */,
 				E9D56EF61ADE2ACE00C54466 /* CoreGraphics.framework in Frameworks */,
 				E9D56EF41ADE2AC800C54466 /* Foundation.framework in Frameworks */,
@@ -370,6 +382,17 @@
 			name = Notification;
 			sourceTree = "<group>";
 		};
+		E91D17E31B47CE7E003A532E /* Data Model */ = {
+			isa = PBXGroup;
+			children = (
+				E91D17E41B47D14B003A532E /* AnswerDraft.h */,
+				E91D17E51B47D14B003A532E /* AnswerDraft.m */,
+				E9D602111B47E09000C95B35 /* QuestionDraft.h */,
+				E9D602121B47E09000C95B35 /* QuestionDraft.m */,
+			);
+			name = "Data Model";
+			sourceTree = "<group>";
+		};
 		E92388E41B46934300C3EE3A /* ProfileEdit */ = {
 			isa = PBXGroup;
 			children = (
@@ -428,8 +451,8 @@
 		E93063BB1ACA4D83000140C1 /* PostQuestion */ = {
 			isa = PBXGroup;
 			children = (
-				E93063BC1ACA4DAA000140C1 /* PostViewController.h */,
-				E93063BD1ACA4DAA000140C1 /* PostViewController.m */,
+				E93063BC1ACA4DAA000140C1 /* PostQuestionViewController.h */,
+				E93063BD1ACA4DAA000140C1 /* PostQuestionViewController.m */,
 				E93063C61ACA966E000140C1 /* AddDetailViewController.h */,
 				E93063C71ACA966E000140C1 /* AddDetailViewController.m */,
 			);
@@ -473,6 +496,7 @@
 				E93063D41ACAABC7000140C1 /* AnswerViewController.h */,
 				E93063D51ACAABC7000140C1 /* AnswerViewController.m */,
 				E93063D61ACAABC7000140C1 /* AnswerViewController.xib */,
+				E9DB26F11AD54F5E00C3C60D /* AnswerCommentViewController */,
 			);
 			name = AnswerViewController;
 			sourceTree = "<group>";
@@ -699,6 +723,7 @@
 		E9C1A1C71ACC080700892B60 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				E91D17DD1B47CDCF003A532E /* Realm.framework */,
 				E9C804BA1B07853D0021C388 /* JPushSDK */,
 				E909683C1AF0B7C700E65F7E /* WXSDK */,
 				E9642E9B1AC5714800FF7875 /* Images.xcassets */,
@@ -756,7 +781,6 @@
 				E9C9C6F01AC6B35B00CC228A /* Home */,
 				E97F7A481B2A003700746E0B /* Notification */,
 				E93063CB1ACAAB3C000140C1 /* AnswerViewController */,
-				E9DB26F11AD54F5E00C3C60D /* AnswerCommentViewController */,
 				E93063CA1ACAAB33000140C1 /* QuestionViewController */,
 				E9D56EFD1ADE865D00C54466 /* TopicBestAnswerViewController */,
 				E96F09251AD7E28E00847E5E /* TopicListTableViewController */,
@@ -811,10 +835,13 @@
 		E9C9C7001AC71D9F00CC228A /* LocalDataManager */ = {
 			isa = PBXGroup;
 			children = (
+				E91D17E31B47CE7E003A532E /* Data Model */,
 				E9C9C7161AC7256700CC228A /* wjCacheManager.h */,
 				E9C9C7171AC7256700CC228A /* wjCacheManager.m */,
 				E9C9C7191AC7257900CC228A /* wjCookieManager.h */,
 				E9C9C71A1AC7257900CC228A /* wjCookieManager.m */,
+				E91D17E01B47CE79003A532E /* wjDatabaseManager.h */,
+				E91D17E11B47CE79003A532E /* wjDatabaseManager.m */,
 			);
 			name = LocalDataManager;
 			sourceTree = "<group>";
@@ -1124,8 +1151,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				E9C1A1C41ACBCBB000892B60 /* QuestionHeaderView.m in Sources */,
+				E91D17E61B47D14B003A532E /* AnswerDraft.m in Sources */,
 				E9C9C6FE1AC71D4A00CC228A /* data.m in Sources */,
 				E92388E71B46936E00C3EE3A /* ProfileEditTableViewController.m in Sources */,
+				E9D602131B47E09000C95B35 /* QuestionDraft.m in Sources */,
 				E9C9C7071AC71E3600CC228A /* wjAPIs.m in Sources */,
 				E9EB618F1ACC2B2D001F5DA3 /* AnswerDataManager.m in Sources */,
 				E952E1671AE520DE00F8B7BF /* FeedbackForm.m in Sources */,
@@ -1157,6 +1186,7 @@
 				E97F7A421B29FED700746E0B /* MDSwipePageView.m in Sources */,
 				E9C1A1C01ACAF21F00892B60 /* QuestionDataManager.m in Sources */,
 				E93063C21ACA4E69000140C1 /* PostDataManager.m in Sources */,
+				E91D17E21B47CE79003A532E /* wjDatabaseManager.m in Sources */,
 				E92298501AF0E4EF000CC8F7 /* WeChatSessionActivity.m in Sources */,
 				E9DB26E51AD4F32200C3C60D /* UserListTableViewController.m in Sources */,
 				E96F09241AD7D29700847E5E /* TLTagsControl.m in Sources */,
@@ -1180,7 +1210,7 @@
 				E9C9C70A1AC71E4200CC228A /* wpyEncryption.m in Sources */,
 				E92388F71B46D60200C3EE3A /* TWTDataChecker.m in Sources */,
 				E9DB26EA1AD4F44B00C3C60D /* UserListTableViewCell.m in Sources */,
-				E93063BE1ACA4DAA000140C1 /* PostViewController.m in Sources */,
+				E93063BE1ACA4DAA000140C1 /* PostQuestionViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1310,6 +1340,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Wenjin/Resource",
+				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_ROOT}/Headers/Public\"",
@@ -1342,6 +1376,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Wenjin/Resource",
+				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_ROOT}/Headers/Public\"",

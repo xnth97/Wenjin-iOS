@@ -14,7 +14,9 @@
 // for posting questions
 @property (strong, nonatomic) NSString *postQuestionDetail;
 
+// user information
 @property (strong, nonatomic) NSString *myUID;
+@property (strong, nonatomic) NSDictionary *myInfo;
 
 @property (strong, nonatomic) NSString *attachAccessKey;
 

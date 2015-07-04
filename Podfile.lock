@@ -23,7 +23,7 @@ PODS:
   - ALActionBlocks (1.0.3)
   - FDFullscreenPopGesture (1.1)
   - FIR.im (1.2.0)
-  - FXForms (1.2.12)
+  - FXForms (1.2.13)
   - JSONKit (1.4)
   - KVOController (1.0.3)
   - NYSegmentedControl (1.0.5)
@@ -49,7 +49,7 @@ SPEC CHECKSUMS:
   ALActionBlocks: ac91b1a37b60a8004fb687ddade0600446f3d3fa
   FDFullscreenPopGesture: a8a620179e3d9c40e8e00256dcee1c1a27c6d0f0
   FIR.im: e5c7367a35adcd796f30f176f059356c330c0c2e
-  FXForms: b6a78bac9f6b597ce704e34ac7c1ce9ff628b1d5
+  FXForms: 22d5ceafd8ca44d2f2be4827afcf00aaf80184a5
   JSONKit: 5b69e804ea54d99293eed0fd2ce596c5703fefb0
   KVOController: 9fd8f0343670994e4b6f9f0b31f5a45663f3e1cf
   NYSegmentedControl: 6c0dd98de6814a4e294c772ce4ad8bffecc480db

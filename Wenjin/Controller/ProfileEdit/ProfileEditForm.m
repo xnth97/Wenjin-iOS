@@ -7,22 +7,22 @@
 //
 
 #import "ProfileEditForm.h"
+#import "data.h"
 
 @implementation ProfileEditForm
 
 - (NSArray *)fields {
     
-    NSString *userID = @"xnth97";
-    //NSString *userGender = @"2";
+    NSDictionary *myInfo = [data shareInstance].myInfo;
     
     return @[
              
-             @{FXFormFieldKey: @"nickname", FXFormFieldTitle: @"昵称", FXFormFieldDefaultValue: userID, FXFormFieldHeader: @"基本信息"},
-             @{FXFormFieldKey: @"avatar", FXFormFieldTitle: @"头像", FXFormFieldType: FXFormFieldTypeImage},
+             @{FXFormFieldKey: @"nickname", FXFormFieldTitle: @"昵称", FXFormFieldDefaultValue: myInfo[@"nickname"], FXFormFieldHeader: @"基本信息"},
+             @{FXFormFieldKey: @"avatar", FXFormFieldTitle: @"头像", FXFormFieldDefaultValue: myInfo[@"avatar"], FXFormFieldType: FXFormFieldTypeImage},
              @{FXFormFieldKey: @"gender", FXFormFieldTitle: @"性别"},
              @{FXFormFieldKey: @"birthday", FXFormFieldTitle: @"生日", FXFormFieldType: FXFormFieldTypeDate},
              
-             @{FXFormFieldKey: @"signature", FXFormFieldTitle: @"签名", FXFormFieldType: FXFormFieldTypeLongText, FXFormFieldHeader: @"个性"}
+             @{FXFormFieldKey: @"signature", FXFormFieldTitle: @"", FXFormFieldDefaultValue: myInfo[@"signature"], FXFormFieldType: FXFormFieldTypeLongText, FXFormFieldHeader: @"个人说明"}
              
              ];
 }

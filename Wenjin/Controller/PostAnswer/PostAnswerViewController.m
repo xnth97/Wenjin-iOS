@@ -15,6 +15,7 @@
 #import "data.h"
 #import "NYSegmentedControl.h"
 #import "wjAppearanceManager.h"
+#import "wjDatabaseManager.h"
 #import <MobileCoreServices/MobileCoreServices.h>
 
 @interface PostAnswerViewController ()
@@ -51,13 +52,24 @@
         if ([answerView.text isEqualToString:@""]) {
             [self.navigationController dismissViewControllerAnimated:YES completion:nil];
         } else {
-            UIAlertController *cancelAlert = [UIAlertController alertControllerWithTitle:@"呃..." message:@"确定要放弃正在输入的内容吗？" preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertController *cancelAlert = [UIAlertController alertControllerWithTitle:@"草稿" message:@"还有未发布的内容\n是否要保存草稿？" preferredStyle:UIAlertControllerStyleActionSheet];
             UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", nil) style:UIAlertActionStyleCancel handler:nil];
-            UIAlertAction *dismissAction = [UIAlertAction actionWithTitle:@"放弃" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
+            UIAlertAction *saveAction = [UIAlertAction actionWithTitle:@"保存" style: UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+                [wjDatabaseManager saveAnswerDraftWithQuestionID:questionId answerContent:answerView.text attachAccessKey:[data shareInstance].attachAccessKey anonymous:isAnonymousControl.selectedSegmentIndex finishBlock:^{
+                    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+                    [MsgDisplay showSuccessMsg:@"草稿保存成功"];
+                }];
+            }];
+            UIAlertAction *dismissAction = [UIAlertAction actionWithTitle:@"不保存" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
                 [self.navigationController dismissViewControllerAnimated:YES completion:nil];
             }];
             [cancelAlert addAction:cancelAction];
+            [cancelAlert addAction:saveAction];
             [cancelAlert addAction:dismissAction];
+            [cancelAlert setModalPresentationStyle:UIModalPresentationPopover];
+            [cancelAlert.popoverPresentationController setPermittedArrowDirections:UIPopoverArrowDirectionAny];
+            [cancelAlert.popoverPresentationController setSourceView:self.view];
+            [cancelAlert.popoverPresentationController setSourceRect:self.view.frame];
             [self presentViewController:cancelAlert animated:YES completion:nil];
         }
     }];

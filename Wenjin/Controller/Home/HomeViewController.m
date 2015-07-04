@@ -76,6 +76,10 @@
         [weakSelf nextPage];
     }];
     
+    // iOS 8 Self Sizing Cell is fucking gooooooood!!!
+    self.tableView.estimatedRowHeight = 93.0;
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    
     if ([wjAccountManager userIsLoggedIn]) {
         [self.tableView triggerPullToRefresh];
     }
@@ -182,30 +186,26 @@
     return cell;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSUInteger row = [indexPath row];
-    NSString *questionTitle = ((dataInView[row])[@"question_info"])[@"question_content"];
-    NSString *detailStr = [wjStringProcessor processAnswerDetailString:((dataInView[row])[@"answer_info"])[@"answer_content"]];
-    return 56 + [self heightOfLabelWithTextString:questionTitle andFontSize:17.0] + [self heightOfLabelWithTextString:detailStr andFontSize:15.0];
-}
+//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+//    NSUInteger row = [indexPath row];
+//    NSString *questionTitle = ((dataInView[row])[@"question_info"])[@"question_content"];
+//    NSString *detailStr = [wjStringProcessor processAnswerDetailString:((dataInView[row])[@"answer_info"])[@"answer_content"]];
+//    return 56 + [self heightOfLabelWithTextString:questionTitle andFontSize:17.0] + [self heightOfLabelWithTextString:detailStr andFontSize:15.0];
+//}
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-}
-
-- (CGFloat)heightOfLabelWithTextString:(NSString *)textString andFontSize:(CGFloat)fontSize {
-    CGFloat width = self.tableView.frame.size.width - 32;
-    
-    UILabel *gettingSizeLabel = [[UILabel alloc]init];
-    gettingSizeLabel.text = textString;
-    gettingSizeLabel.font = [UIFont systemFontOfSize:fontSize];
-    gettingSizeLabel.numberOfLines = 3;
-    gettingSizeLabel.lineBreakMode = NSLineBreakByWordWrapping;
-    CGSize maxSize = CGSizeMake(width, 1000.0);
-    
-    CGSize size = [gettingSizeLabel sizeThatFits:maxSize];
-    return size.height;
-}
+//- (CGFloat)heightOfLabelWithTextString:(NSString *)textString andFontSize:(CGFloat)fontSize {
+//    CGFloat width = self.tableView.frame.size.width - 32;
+//    
+//    UILabel *gettingSizeLabel = [[UILabel alloc]init];
+//    gettingSizeLabel.text = textString;
+//    gettingSizeLabel.font = [UIFont systemFontOfSize:fontSize];
+//    gettingSizeLabel.numberOfLines = 3;
+//    gettingSizeLabel.lineBreakMode = NSLineBreakByWordWrapping;
+//    CGSize maxSize = CGSizeMake(width, 1000.0);
+//    
+//    CGSize size = [gettingSizeLabel sizeThatFits:maxSize];
+//    return size.height;
+//}
 
 // HomeTableViewCell delegate
 
