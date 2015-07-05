@@ -43,7 +43,6 @@
     [data shareInstance].postQuestionDetail = @"";
     topicsArr = [[NSMutableArray alloc]init];
     tagsControlHeight = 24.0;
-    
     [data shareInstance].attachAccessKey = [self MD5FromNowDate];
     
     questionView = [[UITextView alloc]initWithFrame:CGRectMake(0, 0, 0, 0)];
@@ -64,6 +63,10 @@
     isAnonymousControl.titleTextColor = [UIColor lightGrayColor];
     isAnonymousControl.selectedTitleTextColor = [wjAppearanceManager mainTintColor];
     [isAnonymousControl sizeToFit];
+    
+    if (self.draftToBeLoaded != nil) {
+        [self loadFromQuestionDraft:self.draftToBeLoaded];
+    }
     
     UIBarButtonItem *isAnonymousBtn = [[UIBarButtonItem alloc]initWithCustomView:isAnonymousControl];
     UIBarButtonItem *addDetailBtn = [[UIBarButtonItem alloc]initWithTitle:@"添加描述" style:UIBarButtonItemStylePlain block:^(id weakSender) {
@@ -97,6 +100,14 @@
     [questionView becomeFirstResponder];
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [UIView animateWithDuration:0.3 animations:^{
+        [questionTagsControl reloadTagSubviews];
+    }];
+    
+}
+
 - (void)keyboardWillShow:(NSNotification *)notification {
     // float animationDuration = [[[notification userInfo] valueForKey:UIKeyboardAnimationDurationUserInfoKey] floatValue];
     [UIView animateWithDuration:0.3 animations:^{
@@ -118,6 +129,17 @@
     //使用通知中心后必须重写dealloc方法,进行释放(ARC)(非ARC还需要写上[super dealloc];)
     //removeObserver和 addObserver相对应.
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void)loadFromQuestionDraft:(QuestionDraft *)draft {
+    // set data
+    [data shareInstance].postQuestionDetail = draft.questionDetail;
+    [data shareInstance].attachAccessKey = draft.attachAccessKey;
+    topicsArr = [[NSKeyedUnarchiver unarchiveObjectWithData:draft.topicArrData] mutableCopy];
+    
+    // set view
+    self.questionView.text = draft.questionTitle;
+    isAnonymousControl.selectedSegmentIndex = draft.anonymous;
 }
 
 - (IBAction)postQuestion {

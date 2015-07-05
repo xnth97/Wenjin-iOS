@@ -14,7 +14,7 @@
 		</data>
 		<key>Headers/RLMConstants.h</key>
 		<data>
-		9TW2FDA2mFe2o5RPdZO6ZAsCdKk=
+		/eiYg+yhhoekTz6gsO8VoHSqE94=
 		</data>
 		<key>Headers/RLMMigration.h</key>
 		<data>
@@ -22,7 +22,7 @@
 		</data>
 		<key>Headers/RLMObject.h</key>
 		<data>
-		raLghq7ZvIbf0TKmfkA528ULSPA=
+		CmSn1Lbin8TVqhSRAFb5tgsBpVY=
 		</data>
 		<key>Headers/RLMObjectBase.h</key>
 		<data>
@@ -42,7 +42,7 @@
 		</data>
 		<key>Headers/RLMRealm.h</key>
 		<data>
-		/uZYk2UiowG5CF0Bk6NxcTpwMjM=
+		4+l3V24DC08f9vm/e9UUmx5iC9M=
 		</data>
 		<key>Headers/RLMResults.h</key>
 		<data>
@@ -58,7 +58,7 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		Gvak7fnN6eGw1mMnOmC2T9NK1SE=
+		7cg5T6lH+ad6NH92SFyK+G8jEIQ=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -82,11 +82,11 @@
 		</data>
 		<key>PrivateHeaders/RLMObjectStore.h</key>
 		<data>
-		9HjSlQg7dUlzKawXvmbd6hEdefk=
+		2eu5sXUOw9WNm6bMjBn/WeosaJg=
 		</data>
 		<key>PrivateHeaders/RLMObject_Private.h</key>
 		<data>
-		auBEsEf+I05lawC78X6AOaSk1vM=
+		4y+iJiwWybc2MhVNP/lRdpN9mD4=
 		</data>
 		<key>PrivateHeaders/RLMProperty_Private.h</key>
 		<data>
@@ -110,7 +110,7 @@
 		</data>
 		<key>PrivateHeaders/RLMSchema_Private.h</key>
 		<data>
-		YLj3ckbr7vkmIFze+EHhcdYiw5M=
+		6RvYqZiBKYO1vEvLLCZOLNQ/AAM=
 		</data>
 	</dict>
 	<key>files2</key>
@@ -125,7 +125,7 @@
 		</data>
 		<key>Headers/RLMConstants.h</key>
 		<data>
-		9TW2FDA2mFe2o5RPdZO6ZAsCdKk=
+		/eiYg+yhhoekTz6gsO8VoHSqE94=
 		</data>
 		<key>Headers/RLMMigration.h</key>
 		<data>
@@ -133,7 +133,7 @@
 		</data>
 		<key>Headers/RLMObject.h</key>
 		<data>
-		raLghq7ZvIbf0TKmfkA528ULSPA=
+		CmSn1Lbin8TVqhSRAFb5tgsBpVY=
 		</data>
 		<key>Headers/RLMObjectBase.h</key>
 		<data>
@@ -153,7 +153,7 @@
 		</data>
 		<key>Headers/RLMRealm.h</key>
 		<data>
-		/uZYk2UiowG5CF0Bk6NxcTpwMjM=
+		4+l3V24DC08f9vm/e9UUmx5iC9M=
 		</data>
 		<key>Headers/RLMResults.h</key>
 		<data>
@@ -189,11 +189,11 @@
 		</data>
 		<key>PrivateHeaders/RLMObjectStore.h</key>
 		<data>
-		9HjSlQg7dUlzKawXvmbd6hEdefk=
+		2eu5sXUOw9WNm6bMjBn/WeosaJg=
 		</data>
 		<key>PrivateHeaders/RLMObject_Private.h</key>
 		<data>
-		auBEsEf+I05lawC78X6AOaSk1vM=
+		4y+iJiwWybc2MhVNP/lRdpN9mD4=
 		</data>
 		<key>PrivateHeaders/RLMProperty_Private.h</key>
 		<data>
@@ -217,7 +217,7 @@
 		</data>
 		<key>PrivateHeaders/RLMSchema_Private.h</key>
 		<data>
-		YLj3ckbr7vkmIFze+EHhcdYiw5M=
+		6RvYqZiBKYO1vEvLLCZOLNQ/AAM=
 		</data>
 	</dict>
 	<key>rules</key>

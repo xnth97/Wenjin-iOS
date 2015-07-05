@@ -36,6 +36,25 @@ Wenjin-iOS
 	* Images.xcassets
 	* Bootstrap
 
+# 数据结构
+
+## 问题草稿
+
+* questionTitle __String__
+* questionDetail __String__
+* topicArrData __NSData__: 使用 NSKeyedArchiver 打包的 NSArray
+* attachAccessKey __NSString__
+* anonymous __NSInteger__
+* time __NSDate__
+
+## 答案草稿
+
+* questionId __NSString__
+* answerContent __NSString__
+* attachAccessKey __NSString__
+* anonymous __NSInteger__
+* time __NSDate__
+
 # 开源项目
 
 衷心感谢以下开源项目为 问津 作出的不可磨灭的贡献。

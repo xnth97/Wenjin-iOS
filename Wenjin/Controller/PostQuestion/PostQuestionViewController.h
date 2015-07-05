@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "QuestionDraft.h"
 
 @interface PostQuestionViewController : UIViewController
 
 @property (strong, nonatomic) UITextView *questionView;
+@property (strong, nonatomic) QuestionDraft *draftToBeLoaded;
 
 - (IBAction)postQuestion;
 - (IBAction)cancelModal;

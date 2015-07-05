@@ -152,6 +152,12 @@
     
     [answerView becomeFirstResponder];
     
+    if (self.draftToBeLoaded != nil) {
+        answerView.text = self.draftToBeLoaded.answerContent;
+        isAnonymousControl.selectedSegmentIndex = self.draftToBeLoaded.anonymous;
+        [data shareInstance].attachAccessKey = self.draftToBeLoaded.attachAccessKey;
+        questionId = self.draftToBeLoaded.questionId;
+    }
 }
 
 - (void)didReceiveMemoryWarning {

@@ -127,7 +127,7 @@
         <!--发起问题-->
         <scene sceneID="sfN-yt-cvD">
             <objects>
-                <viewController id="ldz-M3-pk8" customClass="PostQuestionViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PostQuestionViewController" id="ldz-M3-pk8" customClass="PostQuestionViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="0Eb-Lk-hiQ"/>
                         <viewControllerLayoutGuide type="bottom" id="mEq-Uq-s8o"/>

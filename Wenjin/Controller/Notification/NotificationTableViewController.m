@@ -54,7 +54,7 @@
         [weakSelf nextPage];
     }];
     
-    self.tableView.estimatedRowHeight = 93.0;
+    self.tableView.estimatedRowHeight = 93;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     
     [self.tableView triggerPullToRefresh];
@@ -116,7 +116,6 @@
     // Return the number of rows in the section.
     return dataInView.count;
 }
-
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *simpleTableIdentifier = @"SimpleIdentifier";

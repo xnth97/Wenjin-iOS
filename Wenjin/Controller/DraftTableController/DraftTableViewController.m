@@ -13,6 +13,8 @@
 #import "QuestionDraft.h"
 #import "NYSegmentedControl.h"
 #import "wjAppearanceManager.h"
+#import "PostQuestionViewController.h"
+#import "PostAnswerViewController.h"
 
 #define draftTypeQuestion 0
 #define draftTypeAnswer 1
@@ -27,6 +29,11 @@
     RLMResults *dataArr;
     NSMutableArray *dataInTable;
     NYSegmentedControl *segmentedControl;
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self updateTable];
 }
 
 - (void)viewDidLoad {
@@ -121,6 +128,23 @@
     cell.contentLabel.text = tmp[@"content"];
     
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSUInteger row = [indexPath row];
+    if (segmentedControl.selectedSegmentIndex == draftTypeQuestion) {
+        QuestionDraft *draft = dataArr[row];
+        PostQuestionViewController *postQuestionViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"PostQuestionViewController"];
+        postQuestionViewController.draftToBeLoaded = draft;
+        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:postQuestionViewController];
+        [self presentViewController:nav animated:YES completion:nil];
+    } else if (segmentedControl.selectedSegmentIndex == draftTypeAnswer) {
+        AnswerDraft *draft = dataArr[row];
+        PostAnswerViewController *postAnswerController = [[PostAnswerViewController alloc] init];
+        postAnswerController.draftToBeLoaded = draft;
+        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:postAnswerController];
+        [self presentViewController:nav animated:YES completion:nil];
+    }
 }
 
 /*
