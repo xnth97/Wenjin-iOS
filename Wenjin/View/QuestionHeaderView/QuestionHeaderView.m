@@ -8,7 +8,7 @@
 
 #import "QuestionHeaderView.h"
 #import "wjStringProcessor.h"
-#import "ALActionBlocks.h"
+#import "BlocksKit+UIKit.h"
 #import "wjOperationManager.h"
 #import "MsgDisplay.h"
 #import "wjAPIs.h"
@@ -85,7 +85,7 @@
         focusQuestion = [UIButton buttonWithType:UIButtonTypeSystem];
         [focusQuestion setTitle:(([questionInfo[@"has_focus"] isEqual:@1]) ? @"取消关注" : @"关注问题") forState:UIControlStateNormal];
         focusQuestion.frame = CGRectMake(0, 42 + questionTitle.frame.size.height + detailView.frame.size.height, 0.5 * width, 30);
-        [focusQuestion handleControlEvents:UIControlEventTouchUpInside withBlock:^(id weakSender) {
+        [focusQuestion bk_addEventHandler:^(id weakSender) {
             NSLog(@"Focus Action");
             
             [wjOperationManager followQuestionWithQuestionID:questionInfo[@"question_id"] success:^(NSString *operationType) {
@@ -99,19 +99,18 @@
             } failure:^(NSString *errStr) {
                 [MsgDisplay showErrorMsg:errStr];
             }];
-            
-        }];
+        } forControlEvents:UIControlEventTouchUpInside];
         //focusQuestion.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:focusQuestion];
         
         addAnswer = [UIButton buttonWithType:UIButtonTypeSystem];
         [addAnswer setTitle:@"添加回答" forState:UIControlStateNormal];
         addAnswer.frame = CGRectMake(0.5 * width, 42 + questionTitle.frame.size.height + detailView.frame.size.height, 0.5 * width, 30);
-        [addAnswer handleControlEvents:UIControlEventTouchUpInside withBlock:^(id weakSender) {
+        [addAnswer bk_addEventHandler:^(id sender) {
             NSLog(@"Add answer action");
             // 添加回答
             [delegate presentPostAnswerController];
-        }];
+        } forControlEvents:UIControlEventTouchUpInside];
         //addAnswer.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:addAnswer];
         

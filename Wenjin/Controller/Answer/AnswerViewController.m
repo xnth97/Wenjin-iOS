@@ -11,7 +11,7 @@
 #import "wjStringProcessor.h"
 #import "MsgDisplay.h"
 #import "wjAPIs.h"
-#import "ALActionBlocks.h"
+#import <BlocksKit/BlocksKit+UIKit.h>
 #import "UserViewController.h"
 #import "UIImageView+AFNetworking.h"
 #import "wjOperationManager.h"
@@ -70,7 +70,7 @@
         splitLine;
     })];
     
-    UIBarButtonItem *shareBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction block:^(id weakSender) {
+    UIBarButtonItem *shareBtn = [[UIBarButtonItem alloc] bk_initWithBarButtonSystemItem:UIBarButtonSystemItemAction handler:^(id weakSender) {
         if (questionId != nil && answerSummary != nil) {
             NSURL *shareURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://wenjin.twtstudio.com/?/question/%@?answer_id=%@&single=TRUE", questionId, answerId]];
             NSArray *activityItems = @[shareURL, answerSummary];
@@ -120,7 +120,7 @@
         
         questionId = [ansData[@"question_id"] stringValue];
         
-        UITapGestureRecognizer *userTapRecognizer = [[UITapGestureRecognizer alloc]initWithBlock:^(id weakSender) {
+        UITapGestureRecognizer *userTapRecognizer = [[UITapGestureRecognizer alloc] bk_initWithHandler:^(id weakSender, UIGestureRecognizerState state, CGPoint location) {
             if (!([ansData[@"uid"] integerValue] == -1)) {
                 UserViewController *uVC = [[UserViewController alloc]initWithNibName:@"UserViewController" bundle:nil];
                 uVC.userId = [ansData[@"uid"] stringValue];

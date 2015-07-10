@@ -7,7 +7,7 @@
 //
 
 #import "PostAnswerViewController.h"
-#import "ALActionBlocks.h"
+#import <BlocksKit/BlocksKit+UIKit.h>
 #import "PostDataManager.h"
 #import "MsgDisplay.h"
 #import "QuestionViewController.h"
@@ -48,7 +48,7 @@
     isAnonymousControl.selectedTitleTextColor = [wjAppearanceManager mainTintColor];
     [isAnonymousControl sizeToFit];
     
-    UIBarButtonItem *cancelBtn = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemCancel block:^(id weakSender) {
+    UIBarButtonItem *cancelBtn = [[UIBarButtonItem alloc] bk_initWithBarButtonSystemItem:UIBarButtonSystemItemCancel handler:^(id weakSender) {
         if ([answerView.text isEqualToString:@""]) {
             [self.navigationController dismissViewControllerAnimated:YES completion:nil];
         } else {
@@ -75,7 +75,7 @@
     }];
     [self.navigationItem setLeftBarButtonItem:cancelBtn];
     
-    UIBarButtonItem *doneBtn = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemDone block:^(id weakSender) {
+    UIBarButtonItem *doneBtn = [[UIBarButtonItem alloc] bk_initWithBarButtonSystemItem:UIBarButtonSystemItemDone handler:^(id weakSender) {
         [MsgDisplay showLoading];
         NSDictionary *parameters = @{@"question_id": questionId,
                                      @"answer_content": answerView.text,
@@ -107,7 +107,7 @@
     accessoryToolbar.translucent = YES;
     
     UIBarButtonItem *anonymousBtn = [[UIBarButtonItem alloc]initWithCustomView:isAnonymousControl];
-    UIBarButtonItem *addImageBtn = [[UIBarButtonItem alloc]initWithTitle:@"添加图片" style:UIBarButtonItemStylePlain block:^(id weakSender) {
+    UIBarButtonItem *addImageBtn = [[UIBarButtonItem alloc] bk_initWithTitle:@"添加图片" style:UIBarButtonItemStylePlain handler:^(id weakSender) {
         
         UIAlertController *uploadController = [UIAlertController alertControllerWithTitle:@"上传图片" message:@"" preferredStyle:UIAlertControllerStyleActionSheet];
         UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", nil) style:UIAlertActionStyleCancel handler:nil];

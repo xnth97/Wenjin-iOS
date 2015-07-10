@@ -11,7 +11,7 @@
 #import "PostDataManager.h"
 #import "data.h"
 #import "MsgDisplay.h"
-#import "ALActionBlocks.h"
+#import <BlocksKit+UIKit.h>
 #import "TLTagsControl.h"
 #import "HomeViewController.h"
 #import <CommonCrypto/CommonDigest.h>
@@ -69,7 +69,7 @@
     }
     
     UIBarButtonItem *isAnonymousBtn = [[UIBarButtonItem alloc]initWithCustomView:isAnonymousControl];
-    UIBarButtonItem *addDetailBtn = [[UIBarButtonItem alloc]initWithTitle:@"添加描述" style:UIBarButtonItemStylePlain block:^(id weakSender) {
+    UIBarButtonItem *addDetailBtn = [[UIBarButtonItem alloc] bk_initWithTitle:@"添加描述" style:UIBarButtonItemStylePlain handler:^(id weakSender) {
         UIStoryboard *storyboard = self.storyboard;
         UINavigationController *addDetailNav = [storyboard instantiateViewControllerWithIdentifier:@"detailNav"];
         //addDetailNav.modalPresentationStyle = UIModalPresentationFormSheet;

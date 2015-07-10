@@ -15,7 +15,7 @@
 #import "PostAnswerViewController.h"
 #import "SVPullToRefresh.h"
 #import "TopicBestAnswerViewController.h"
-#import "ALActionBlocks.h"
+#import "BlocksKit+UIKit.h"
 #import "OpenInSafariActivity.h"
 #import "WeChatMomentsActivity.h"
 #import "WeChatSessionActivity.h"
@@ -44,7 +44,7 @@
     self.questionTableView.tableFooterView = [[UIView alloc]init];
     questionSummary = @"";
     
-    UIBarButtonItem *shareBtn = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAction block:^(id weakSender) {
+    UIBarButtonItem *shareBtn = [[UIBarButtonItem alloc] bk_initWithBarButtonSystemItem:UIBarButtonSystemItemAction handler:^(id weakSender) {
         NSURL *shareURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://wenjin.twtstudio.com/?/m/question/%@", questionId]];
         NSArray *activityItems = @[shareURL, questionSummary];
         OpenInSafariActivity *openInSafari = [[OpenInSafariActivity alloc] init];

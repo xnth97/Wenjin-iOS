@@ -9,7 +9,7 @@
 #import "UserHeaderView.h"
 #import "UIImageView+AFNetworking.h"
 #import "wjAPIs.h"
-#import "ALActionBlocks.h"
+#import "BlocksKit+UIKit.h"
 #import "wjAppearanceManager.h"
 
 @implementation UserHeaderView
@@ -27,9 +27,9 @@
 - (id)init {
     if (self = [super init]) {
         self = [[[NSBundle mainBundle] loadNibNamed:@"UserHeaderView" owner:self options:nil] objectAtIndex:0];
-        [followButton handleControlEvents:UIControlEventTouchUpInside withBlock:^(id weakSender) {
+        [followButton bk_addEventHandler:^(id sender) {
             [delegate followUser];
-        }];
+        } forControlEvents:UIControlEventTouchUpInside];
         
         userAgreeView.image = [userAgreeView.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
         [userAgreeView setTintColor:[UIColor lightGrayColor]];

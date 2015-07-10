@@ -7,7 +7,7 @@
 //
 
 #import "PostAnswerCommentViewController.h"
-#import "ALActionBlocks.h"
+#import <BlocksKit/BlocksKit+UIKit.h>
 #import "PostDataManager.h"
 #import "MsgDisplay.h"
 #import "AnswerCommentTableViewController.h"
@@ -37,12 +37,12 @@
     commentTextView.text = replyText;
     [self.view addSubview:commentTextView];
     
-    UIBarButtonItem *cancelBtn = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemCancel block:^(id weakSender) {
+    UIBarButtonItem *cancelBtn = [[UIBarButtonItem alloc] bk_initWithBarButtonSystemItem:UIBarButtonSystemItemCancel handler:^(id weakSender) {
         [self.navigationController dismissViewControllerAnimated:YES completion:nil];
     }];
     [self.navigationItem setLeftBarButtonItem:cancelBtn];
     
-    UIBarButtonItem *doneBtn = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemDone block:^(id weakSender) {
+    UIBarButtonItem *doneBtn = [[UIBarButtonItem alloc] bk_initWithBarButtonSystemItem:UIBarButtonSystemItemDone handler:^(id weakSender) {
         [MsgDisplay showLoading];
         
         [PostDataManager postAnswerCommentWithAnswerID:answerId andMessage:commentTextView.text success:^{

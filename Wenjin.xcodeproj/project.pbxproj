@@ -787,6 +787,7 @@
 		E9C9C6E61AC694DE00CC228A /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				E9E67A2B1B4A54950053564C /* Data Models */,
 				E91270741B00A7DA00E32110 /* Notification */,
 				E992CA111AE10F53003A9123 /* Appearance */,
 				E93063B71ACA47CF000140C1 /* StringProcessor */,
@@ -1002,6 +1003,13 @@
 				E9E38F351ADA288400136161 /* ExploreTableViewController.m */,
 			);
 			name = Explore;
+			sourceTree = "<group>";
+		};
+		E9E67A2B1B4A54950053564C /* Data Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Data Models";
 			sourceTree = "<group>";
 		};
 		E9EB61861ACC1828001F5DA3 /* QuestionAnswerTableViewCell */ = {

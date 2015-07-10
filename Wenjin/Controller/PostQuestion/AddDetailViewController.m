@@ -9,7 +9,7 @@
 #import "AddDetailViewController.h"
 #import "data.h"
 #import "wjStringProcessor.h"
-#import "ALActionBlocks.h"
+#import "BlocksKit+UIKit.h"
 #import "PostDataManager.h"
 #import "MsgDisplay.h"
 #import <MobileCoreServices/MobileCoreServices.h>
@@ -41,8 +41,7 @@
     accessoryToolbar.barStyle = UIBarStyleDefault;
     accessoryToolbar.translucent = YES;
     
-    UIBarButtonItem *addImageBtn = [[UIBarButtonItem alloc]initWithTitle:@"添加图片" style:UIBarButtonItemStylePlain block:^(id weakSender) {
-        
+    UIBarButtonItem *addImageBtn = [[UIBarButtonItem alloc] bk_initWithTitle:@"添加图片" style: UIBarButtonItemStylePlain handler:^(id weakSender) {
         UIAlertController *uploadController = [UIAlertController alertControllerWithTitle:@"上传图片" message:@"" preferredStyle:UIAlertControllerStyleActionSheet];
         UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", nil) style:UIAlertActionStyleCancel handler:nil];
         UIAlertAction *photoAction = [UIAlertAction actionWithTitle:@"拍照" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
@@ -75,7 +74,7 @@
         [uploadController.popoverPresentationController setSourceView:self.view];
         [uploadController.popoverPresentationController setSourceRect:self.view.frame];
         [self presentViewController:uploadController animated:YES completion:nil];
-        
+
     }];
     UIBarButtonItem *flexibleSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
     [accessoryToolbar setItems:@[flexibleSpace, flexibleSpace, addImageBtn]];

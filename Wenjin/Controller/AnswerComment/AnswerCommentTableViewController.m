@@ -12,7 +12,7 @@
 #import "MsgDisplay.h"
 #import "AnswerCommentTableViewCell.h"
 #import "PostAnswerCommentViewController.h"
-#import "ALActionBlocks.h"
+#import <BlocksKit/BlocksKit+UIKit.h>
 
 @interface AnswerCommentTableViewController ()
 
@@ -33,7 +33,7 @@
     self.tableView.tableFooterView = [[UIView alloc]init];
     self.title = @"评论";
     
-    UIBarButtonItem *commentBtn = [[UIBarButtonItem alloc]initWithTitle:@"写评论" style:UIBarButtonItemStylePlain block:^(id weakSender) {
+    UIBarButtonItem *commentBtn = [[UIBarButtonItem alloc] bk_initWithTitle:@"写评论" style:UIBarButtonItemStylePlain handler:^(id weakSender) {
         PostAnswerCommentViewController *pacVC = [[PostAnswerCommentViewController alloc]init];
         pacVC.answerId = answerId;
         UINavigationController *pNav = [[UINavigationController alloc]initWithRootViewController:pacVC];
