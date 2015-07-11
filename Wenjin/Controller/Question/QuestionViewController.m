@@ -16,6 +16,10 @@
 #import "SVPullToRefresh.h"
 #import "TopicBestAnswerViewController.h"
 #import "BlocksKit+UIKit.h"
+#import "QuestionInfo.h"
+#import "TopicInfo.h"
+#import "AnswerInfo.h"
+#import "MJExtension.h"
 #import "OpenInSafariActivity.h"
 #import "WeChatMomentsActivity.h"
 #import "WeChatSessionActivity.h"
@@ -26,7 +30,7 @@
 
 @implementation QuestionViewController {
     NSMutableArray *questionAnswersData;
-    NSDictionary *questionInfo;
+    QuestionInfo *questionInfo;
     NSMutableArray *questionTopics;
     NSString *questionSummary;
 }
@@ -45,7 +49,7 @@
     questionSummary = @"";
     
     UIBarButtonItem *shareBtn = [[UIBarButtonItem alloc] bk_initWithBarButtonSystemItem:UIBarButtonSystemItemAction handler:^(id weakSender) {
-        NSURL *shareURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://wenjin.twtstudio.com/?/m/question/%@", questionId]];
+        NSURL *shareURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://wenjin.in/?/m/question/%@", questionId]];
         NSArray *activityItems = @[shareURL, questionSummary];
         OpenInSafariActivity *openInSafari = [[OpenInSafariActivity alloc] init];
         WeChatMomentsActivity *wxMoment = [[WeChatMomentsActivity alloc] init];
@@ -89,13 +93,13 @@
 }
 
 - (void)refreshData {
-    [QuestionDataManager getQuestionDataWithID:questionId success:^(NSDictionary *_questionInfo, NSArray *_questionAnswers, NSArray *_questionTopics, NSString *_answerCount) {
+    [QuestionDataManager getQuestionDataWithID:questionId success:^(QuestionInfo *_questionInfo, NSArray *_questionAnswers, NSArray *_questionTopics, NSString *_answerCount) {
         questionInfo = _questionInfo;
         questionTopics = [[NSMutableArray alloc]initWithArray:_questionTopics];
         questionAnswersData = [[NSMutableArray alloc]initWithArray:_questionAnswers];
         
         self.title = [NSString stringWithFormat:@"共 %@ 回答", _answerCount];
-        questionSummary = [NSString stringWithFormat:@"%@ - %@", questionInfo[@"question_content"], self.title];
+        questionSummary = [NSString stringWithFormat:@"%@ - %@", questionInfo.questionContent, self.title];
         
         QuestionHeaderView *headerView = [[QuestionHeaderView alloc]initWithQuestionInfo:questionInfo andTopics:questionTopics];
         headerView.delegate = self;
@@ -121,7 +125,8 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSInteger row = [indexPath row];
-    CGFloat idealHeight = [self heightOfLabelWithTextString:[wjStringProcessor processAnswerDetailString:(questionAnswersData[row])[@"answer_content"]] numberOfLines:4] + 56;
+    AnswerInfo *tmpAns = (AnswerInfo *)questionAnswersData[row];
+    CGFloat idealHeight = [self heightOfLabelWithTextString:[wjStringProcessor processAnswerDetailString:tmpAns.answerContent] numberOfLines:4] + 56;
     return (idealHeight < 96) ? 96 : idealHeight;
 }
 
@@ -141,12 +146,11 @@
         cell = [nib objectAtIndex:0];
     }
     NSUInteger row = [indexPath row];
-    NSDictionary *tmp = questionAnswersData[row];
-    cell.userNameLabel.text = tmp[@"nick_name"];
-    cell.answerContentLabel.text = [wjStringProcessor processAnswerDetailString:tmp[@"answer_content"]];
-    NSUInteger agreeCount = [tmp[@"agree_count"] integerValue];
-    cell.agreeCountLabel.text = (agreeCount >= 1000) ? [NSString stringWithFormat:@"%ldK", agreeCount] : [tmp[@"agree_count"] stringValue];
-    [cell loadAvatarWithURL:tmp[@"avatar_file"]];
+    AnswerInfo *tmp = (AnswerInfo *)questionAnswersData[row];
+    cell.userNameLabel.text = tmp.nickName;
+    cell.answerContentLabel.text = [wjStringProcessor processAnswerDetailString:tmp.answerContent];
+    cell.agreeCountLabel.text = (tmp.agreeCount >= 1000) ? [NSString stringWithFormat:@"%ldK", tmp.agreeCount] : [NSString stringWithFormat:@"%ld", tmp.agreeCount];
+    [cell loadAvatarWithURL:tmp.avatarFile];
     cell.userAvatarView.tag = row;
     cell.delegate = self;
     return cell;
@@ -170,7 +174,8 @@
     NSUInteger row = [indexPath row];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     AnswerViewController *aVC = [[AnswerViewController alloc]initWithNibName:@"AnswerViewController" bundle:nil];
-    aVC.answerId = [(questionAnswersData[row])[@"answer_id"] stringValue];
+    AnswerInfo *tmpAns = (AnswerInfo *)questionAnswersData[row];
+    aVC.answerId = [NSString stringWithFormat:@"%ld", tmpAns.answerId];
     [self.navigationController pushViewController:aVC animated:YES];
 }
 
@@ -178,7 +183,8 @@
 - (void)pushUserControllerWithRow:(NSUInteger)row {
     if (!([(questionAnswersData[row])[@"uid"] integerValue] == -1)) {
         UserViewController *uVC = [[UserViewController alloc]initWithNibName:@"UserViewController" bundle:nil];
-        uVC.userId = [(questionAnswersData[row])[@"uid"] stringValue];
+        AnswerInfo *tmpAns = (AnswerInfo *)questionAnswersData[row];
+        uVC.userId = [NSString stringWithFormat:@"%ld", tmpAns.uid];
         [self.navigationController pushViewController:uVC animated:YES];
     } else {
         [MsgDisplay showErrorMsg:@"无法查看匿名用户~"];
@@ -188,7 +194,7 @@
 // Question Header View Delegate
 - (void)presentPostAnswerController {
     PostAnswerViewController *postAnswer = [[PostAnswerViewController alloc]init];
-    postAnswer.questionId = [questionInfo[@"question_id"] stringValue];
+    postAnswer.questionId = [NSString stringWithFormat:@"%ld", questionInfo.questionId];
     UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:postAnswer];
     [self presentViewController:nav animated:YES completion:nil];
 }
@@ -200,7 +206,7 @@
 }
 
 - (void)tagTappedAtIndex:(NSInteger)index {
-    NSString *topicId = [(questionTopics[index])[@"topic_id"] stringValue];
+    NSString *topicId = [NSString stringWithFormat:@"%ld", ((TopicInfo *)questionTopics[index]).topicId];
     TopicBestAnswerViewController *tBA = [[TopicBestAnswerViewController alloc]initWithNibName:@"TopicBestAnswerViewController" bundle:nil];
     tBA.topicId = topicId;
     [self.navigationController pushViewController:tBA animated:YES];

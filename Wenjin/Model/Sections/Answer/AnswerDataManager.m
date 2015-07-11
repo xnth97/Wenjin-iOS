@@ -13,7 +13,7 @@
 
 @implementation AnswerDataManager
 
-+ (void)getAnswerDataWithAnswerID:(NSString *)answerId success:(void (^)(NSDictionary *))success failure:(void (^)(NSString *))failure {
++ (void)getAnswerDataWithAnswerID:(NSString *)answerId success:(void (^)(AnswerInfo *))success failure:(void (^)(NSString *))failure {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     NSDictionary *parameters = @{@"id": answerId,
@@ -23,7 +23,8 @@
         NSDictionary *ansData = [operation.responseString objectFromJSONString];
         if ([ansData[@"errno"] isEqual:@1]) {
             dispatch_async(dispatch_get_main_queue(), ^{
-                success(ansData[@"rsm"]);
+                AnswerInfo *answerData = [AnswerInfo objectWithKeyValues:ansData[@"rsm"]];
+                success(answerData);
             });
         } else {
             dispatch_async(dispatch_get_main_queue(), ^{

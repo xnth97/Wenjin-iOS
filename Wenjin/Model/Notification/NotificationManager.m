@@ -38,6 +38,7 @@
 + (void)getNotificationDataReadOrNot:(BOOL)isRead page:(NSInteger)page success:(void (^)(NSArray *))success failure:(void (^)(NSString *))failure {
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     NSDictionary *parameters = @{@"flag": @(isRead ? 1 : 0),
+                                 @"limit": @10,
                                  @"page": [NSNumber numberWithInteger:page],
                                  @"platform": @"ios"};
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];

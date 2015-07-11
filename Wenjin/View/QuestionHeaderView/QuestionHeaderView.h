@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "TLTagsControl.h"
+#import "QuestionInfo.h"
+#import "TopicInfo.h"
 
 @protocol QuestionHeaderViewDelegate <NSObject>
 
@@ -33,6 +35,6 @@
 
 @property (assign, nonatomic) id<QuestionHeaderViewDelegate> delegate;
 
-- (id)initWithQuestionInfo:(NSDictionary *)questionInfo andTopics:(NSArray *)topics;
+- (id)initWithQuestionInfo:(QuestionInfo *)questionInfo andTopics:(NSArray *)topics;
 
 @end

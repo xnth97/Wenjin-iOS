@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "MJExtension.h"
 
 @interface AnswerInfo : NSObject
 
@@ -15,5 +16,16 @@
 @property (strong, nonatomic) NSString *answerContent;
 @property (nonatomic) NSInteger agreeCount;
 @property (nonatomic) NSInteger agreeStatus;
+@property (nonatomic) NSInteger uid;
+@property (strong, nonatomic) NSString *userName;
+@property (strong, nonatomic) NSString *nickName;
+@property (strong, nonatomic) NSString *avatarFile;
+@property (strong, nonatomic) NSString *signature;
+@property (nonatomic) NSInteger voteValue;
+@property (nonatomic) NSInteger thankValue;
+@property (nonatomic) NSInteger addTime;
+@property (nonatomic) NSInteger commentCount;
+@property (nonatomic) NSInteger anonymous;
+@property (nonatomic) NSInteger uninterested;
 
 @end

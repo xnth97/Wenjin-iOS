@@ -16,6 +16,7 @@
 #import "UIImageView+AFNetworking.h"
 #import "wjOperationManager.h"
 #import <KVOController/FBKVOController.h>
+#import "AnswerInfo.h"
 #import "AnswerCommentTableViewController.h"
 #import "wjAppearanceManager.h"
 #import "WeChatMomentsActivity.h"
@@ -97,19 +98,19 @@
         
     }];
     
-    [AnswerDataManager getAnswerDataWithAnswerID:answerId success:^(NSDictionary *ansData) {
-        NSString *processedHTML = [wjStringProcessor convertToBootstrapHTMLWithExtraBlankLinesWithContent:ansData[@"answer_content"]];
+    [AnswerDataManager getAnswerDataWithAnswerID:answerId success:^(AnswerInfo *ansData) {
+        NSString *processedHTML = [wjStringProcessor convertToBootstrapHTMLWithExtraBlankLinesWithContent:ansData.answerContent];
         [answerContentView loadHTMLString:processedHTML baseURL:[NSURL URLWithString:[wjAPIs baseURL]]];
-        userNameLabel.text = ansData[@"nick_name"];
-        self.title = [NSString stringWithFormat:@"%@ 的回答", ansData[@"nick_name"]];
-        NSString *ans = [wjStringProcessor processAnswerDetailString:ansData[@"answer_content"]];
+        userNameLabel.text = ansData.nickName;
+        self.title = [NSString stringWithFormat:@"%@ 的回答", ansData.nickName];
+        NSString *ans = [wjStringProcessor processAnswerDetailString:ansData.answerContent];
         NSString *ansStr = (ans.length > 60) ? [NSString stringWithFormat:@"%@...", [ans substringToIndex:60]] : ans;
-        answerSummary = [NSString stringWithFormat:@"%@ 的回答：%@", ansData[@"nick_name"], ansStr];
-        userSigLabel.text = (ansData[@"signature"] == [NSNull null]) ? @"" : ansData[@"signature"];
-        [userAvatarView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", [wjAPIs avatarPath], ansData[@"avatar_file"]]] placeholderImage:[UIImage imageNamed:@"placeholderAvatar.png"]];
+        answerSummary = [NSString stringWithFormat:@"%@ 的回答：%@", ansData.nickName, ansStr];
+        userSigLabel.text = ansData.signature;
+        [userAvatarView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", [wjAPIs avatarPath], ansData.avatarFile]] placeholderImage:[UIImage imageNamed:@"placeholderAvatar.png"]];
         
-        voteValue = [ansData[@"vote_value"] integerValue];
-        [self setValue:ansData[@"agree_count"] forKey:@"agreeCount"];
+        voteValue = ansData.voteValue;
+        [self setValue:@(ansData.agreeCount) forKey:@"agreeCount"];
         if (voteValue == 0) {
             [agreeImageView setTintColor:notVotedColor];
         } else {
@@ -118,12 +119,12 @@
 
         [agreeBtn addTarget:self action:@selector(voteOperation) forControlEvents:UIControlEventTouchUpInside];
         
-        questionId = [ansData[@"question_id"] stringValue];
+        questionId = [NSString stringWithFormat:@"%ld", ansData.questionId];
         
         UITapGestureRecognizer *userTapRecognizer = [[UITapGestureRecognizer alloc] bk_initWithHandler:^(id weakSender, UIGestureRecognizerState state, CGPoint location) {
-            if (!([ansData[@"uid"] integerValue] == -1)) {
+            if (ansData.uid != -1) {
                 UserViewController *uVC = [[UserViewController alloc]initWithNibName:@"UserViewController" bundle:nil];
-                uVC.userId = [ansData[@"uid"] stringValue];
+                uVC.userId = [NSString stringWithFormat:@"%ld", ansData.uid];
                 [self.navigationController pushViewController:uVC animated:YES];
             } else {
                 [MsgDisplay showErrorMsg:@"无法查看匿名用户哦~"];

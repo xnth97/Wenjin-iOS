@@ -7,7 +7,6 @@
 //
 
 #import "AnswerInfo.h"
-#import "MJExtension.h"
 
 @implementation AnswerInfo
 

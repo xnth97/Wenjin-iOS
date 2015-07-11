@@ -36,7 +36,7 @@
     return self;
 }
 
-- (id)initWithQuestionInfo:(NSDictionary *)questionInfo andTopics:(NSArray *)topics {
+- (id)initWithQuestionInfo:(QuestionInfo *)questionInfo andTopics:(NSArray *)topics {
     if (self = [self init]) {
         
         self.backgroundColor = [UIColor whiteColor];
@@ -45,8 +45,8 @@
         width = [UIApplication sharedApplication].keyWindow.frame.size.width;
         
         NSMutableArray *topicsArr = [[NSMutableArray alloc]init];
-        for (NSDictionary *tmp in topics) {
-            [topicsArr addObject:(NSString *)tmp[@"topic_title"]];
+        for (TopicInfo *tmp in topics) {
+            [topicsArr addObject:tmp.topicTitle];
         }
         
         TLTagsControl *topicsControl = [[TLTagsControl alloc]initWithFrame:CGRectMake(16, 8, width - 32, 22)];
@@ -64,7 +64,7 @@
         questionTitle = [[UILabel alloc]init];
         questionTitle.numberOfLines = 0;
         questionTitle.lineBreakMode = NSLineBreakByWordWrapping;
-        questionTitle.text = [wjStringProcessor filterHTMLWithString:questionInfo[@"question_content"]];
+        questionTitle.text = [wjStringProcessor filterHTMLWithString:questionInfo.questionContent];
         questionTitle.font = [UIFont systemFontOfSize:20];
         //questionTitle.translatesAutoresizingMaskIntoConstraints = NO;
         CGSize maxSize = CGSizeMake(width - _borderDist * 2, 1000);
@@ -75,20 +75,19 @@
         detailView = [[UIWebView alloc]init];
         [detailView.scrollView addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew context:NULL];
         detailView.frame = CGRectMake(0, 42 + questionTitle.frame.size.height, width, 1);
-        if (![questionInfo[@"question_detail"] isEqualToString:@""]) {
-            [detailView loadHTMLString:[wjStringProcessor convertToBootstrapHTMLWithContent:questionInfo[@"question_detail"]] baseURL:[NSURL URLWithString:[wjAPIs baseURL]]];
+        if (![questionInfo.questionDetail isEqualToString:@""]) {
+            [detailView loadHTMLString:[wjStringProcessor convertToBootstrapHTMLWithContent:questionInfo.questionDetail] baseURL:[NSURL URLWithString:[wjAPIs baseURL]]];
             detailView.delegate = self;
         }
         detailView.hidden = NO;
         [self addSubview:detailView];
         
         focusQuestion = [UIButton buttonWithType:UIButtonTypeSystem];
-        [focusQuestion setTitle:(([questionInfo[@"has_focus"] isEqual:@1]) ? @"取消关注" : @"关注问题") forState:UIControlStateNormal];
+        [focusQuestion setTitle:((questionInfo.hasFocus == 1) ? @"取消关注" : @"关注问题") forState:UIControlStateNormal];
         focusQuestion.frame = CGRectMake(0, 42 + questionTitle.frame.size.height + detailView.frame.size.height, 0.5 * width, 30);
         [focusQuestion bk_addEventHandler:^(id weakSender) {
             NSLog(@"Focus Action");
-            
-            [wjOperationManager followQuestionWithQuestionID:questionInfo[@"question_id"] success:^(NSString *operationType) {
+            [wjOperationManager followQuestionWithQuestionID:[NSString stringWithFormat:@"%ld", questionInfo.questionId] success:^(NSString *operationType) {
                 
                 if ([operationType isEqualToString:@"remove"]) {
                     [focusQuestion setTitle:@"关注问题" forState:UIControlStateNormal];
