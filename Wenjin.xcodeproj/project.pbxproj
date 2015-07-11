@@ -56,6 +56,11 @@
 		E96F092F1AD7F44100847E5E /* SettingTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E96F092E1AD7F44100847E5E /* SettingTableViewController.m */; };
 		E96F09361AD8FF7700847E5E /* ExploreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E96F09351AD8FF7700847E5E /* ExploreDataManager.m */; };
 		E97F7A421B29FED700746E0B /* MDSwipePageView.m in Sources */ = {isa = PBXBuildFile; fileRef = E97F7A411B29FED700746E0B /* MDSwipePageView.m */; };
+		E98EBE761B51558100710B38 /* HomeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E98EBE751B51558100710B38 /* HomeCell.m */; };
+		E98EBE791B51565000710B38 /* UserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = E98EBE781B51565000710B38 /* UserInfo.m */; };
+		E98EBE7C1B5156E400710B38 /* TopicInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = E98EBE7B1B5156E400710B38 /* TopicInfo.m */; };
+		E98EBE7F1B51579B00710B38 /* AnswerInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = E98EBE7E1B51579B00710B38 /* AnswerInfo.m */; };
+		E98EBE821B5157E400710B38 /* QuestionInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = E98EBE811B5157E400710B38 /* QuestionInfo.m */; };
 		E99079081ACECCB5008DCA22 /* PostAnswerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E99079061ACECCB5008DCA22 /* PostAnswerViewController.m */; };
 		E990790B1ACEE1C7008DCA22 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E990790A1ACEE1C7008DCA22 /* LoginViewController.xib */; };
 		E990790F1ACEE371008DCA22 /* NotLoggedInView.m in Sources */ = {isa = PBXBuildFile; fileRef = E990790E1ACEE371008DCA22 /* NotLoggedInView.m */; };
@@ -208,6 +213,16 @@
 		E96F09351AD8FF7700847E5E /* ExploreDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ExploreDataManager.m; path = Model/Sections/Explore/ExploreDataManager.m; sourceTree = "<group>"; };
 		E97F7A401B29FED700746E0B /* MDSwipePageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDSwipePageView.h; sourceTree = "<group>"; };
 		E97F7A411B29FED700746E0B /* MDSwipePageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDSwipePageView.m; sourceTree = "<group>"; };
+		E98EBE741B51558100710B38 /* HomeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomeCell.h; path = Model/DataModel/HomeCell.h; sourceTree = "<group>"; };
+		E98EBE751B51558100710B38 /* HomeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomeCell.m; path = Model/DataModel/HomeCell.m; sourceTree = "<group>"; };
+		E98EBE771B51565000710B38 /* UserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserInfo.h; path = Model/DataModel/UserInfo.h; sourceTree = "<group>"; };
+		E98EBE781B51565000710B38 /* UserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserInfo.m; path = Model/DataModel/UserInfo.m; sourceTree = "<group>"; };
+		E98EBE7A1B5156E400710B38 /* TopicInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TopicInfo.h; path = Model/DataModel/TopicInfo.h; sourceTree = "<group>"; };
+		E98EBE7B1B5156E400710B38 /* TopicInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TopicInfo.m; path = Model/DataModel/TopicInfo.m; sourceTree = "<group>"; };
+		E98EBE7D1B51579B00710B38 /* AnswerInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AnswerInfo.h; path = Model/DataModel/AnswerInfo.h; sourceTree = "<group>"; };
+		E98EBE7E1B51579B00710B38 /* AnswerInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AnswerInfo.m; path = Model/DataModel/AnswerInfo.m; sourceTree = "<group>"; };
+		E98EBE801B5157E400710B38 /* QuestionInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QuestionInfo.h; path = Model/DataModel/QuestionInfo.h; sourceTree = "<group>"; };
+		E98EBE811B5157E400710B38 /* QuestionInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QuestionInfo.m; path = Model/DataModel/QuestionInfo.m; sourceTree = "<group>"; };
 		E99079051ACECCB5008DCA22 /* PostAnswerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PostAnswerViewController.h; path = Controller/PostAnswer/PostAnswerViewController.h; sourceTree = "<group>"; };
 		E99079061ACECCB5008DCA22 /* PostAnswerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PostAnswerViewController.m; path = Controller/PostAnswer/PostAnswerViewController.m; sourceTree = "<group>"; };
 		E990790A1ACEE1C7008DCA22 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LoginViewController.xib; path = Controller/Login/LoginViewController.xib; sourceTree = "<group>"; };
@@ -1008,6 +1023,16 @@
 		E9E67A2B1B4A54950053564C /* Data Models */ = {
 			isa = PBXGroup;
 			children = (
+				E98EBE741B51558100710B38 /* HomeCell.h */,
+				E98EBE751B51558100710B38 /* HomeCell.m */,
+				E98EBE771B51565000710B38 /* UserInfo.h */,
+				E98EBE781B51565000710B38 /* UserInfo.m */,
+				E98EBE7A1B5156E400710B38 /* TopicInfo.h */,
+				E98EBE7B1B5156E400710B38 /* TopicInfo.m */,
+				E98EBE7D1B51579B00710B38 /* AnswerInfo.h */,
+				E98EBE7E1B51579B00710B38 /* AnswerInfo.m */,
+				E98EBE801B5157E400710B38 /* QuestionInfo.h */,
+				E98EBE811B5157E400710B38 /* QuestionInfo.m */,
 			);
 			name = "Data Models";
 			sourceTree = "<group>";
@@ -1201,6 +1226,7 @@
 				E99577691AE76282002E5107 /* NSTimer+Blocks.m in Sources */,
 				E9EB618A1ACC187A001F5DA3 /* QuestionAnswerTableViewCell.m in Sources */,
 				E990790F1ACEE371008DCA22 /* NotLoggedInView.m in Sources */,
+				E98EBE791B51565000710B38 /* UserInfo.m in Sources */,
 				E9D56F011ADE881B00C54466 /* TopicBestAnswerViewController.m in Sources */,
 				E9C9C70E1AC7203500CC228A /* LoginViewController.m in Sources */,
 				E9642E941AC5714800FF7875 /* AppDelegate.m in Sources */,
@@ -1230,10 +1256,12 @@
 				E92298501AF0E4EF000CC8F7 /* WeChatSessionActivity.m in Sources */,
 				E9DB26E51AD4F32200C3C60D /* UserListTableViewController.m in Sources */,
 				E96F09241AD7D29700847E5E /* TLTagsControl.m in Sources */,
+				E98EBE7C1B5156E400710B38 /* TopicInfo.m in Sources */,
 				E93063D71ACAABC7000140C1 /* AnswerViewController.m in Sources */,
 				E995776D1AE76F57002E5107 /* ShowNotLoggedInViewController.m in Sources */,
 				E9C9C7151AC7249900CC228A /* MsgDisplay.m in Sources */,
 				E93063DC1ACAABD9000140C1 /* UserViewController.m in Sources */,
+				E98EBE761B51558100710B38 /* HomeCell.m in Sources */,
 				E9E286C61AC7F632005B6ED7 /* HomeDataManager.m in Sources */,
 				E9C9C6F31AC6B39200CC228A /* HomeViewController.m in Sources */,
 				E93063D21ACAAB81000140C1 /* QuestionViewController.m in Sources */,
@@ -1241,10 +1269,12 @@
 				E91270771B00A7F500E32110 /* NotificationManager.m in Sources */,
 				E92388F01B4695A000C3EE3A /* ProfileEditForm.m in Sources */,
 				E9479EE31AE2AB42003BCE97 /* AboutViewController.m in Sources */,
+				E98EBE7F1B51579B00710B38 /* AnswerInfo.m in Sources */,
 				E9AC9E561AD3A4840016CA23 /* wjOperationManager.m in Sources */,
 				E9642E911AC5714800FF7875 /* main.m in Sources */,
 				E96F09361AD8FF7700847E5E /* ExploreDataManager.m in Sources */,
 				E9DB26F01AD506BC00C3C60D /* UserFeedTableViewController.m in Sources */,
+				E98EBE821B5157E400710B38 /* QuestionInfo.m in Sources */,
 				E922984D1AF0B9CA000CC8F7 /* WeChatMomentsActivity.m in Sources */,
 				E9DB26FE1AD562E100C3C60D /* PostAnswerCommentViewController.m in Sources */,
 				E9C9C70A1AC71E4200CC228A /* wpyEncryption.m in Sources */,

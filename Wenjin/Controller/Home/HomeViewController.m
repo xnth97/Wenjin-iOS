@@ -17,6 +17,7 @@
 #import "AnswerViewController.h"
 #import "data.h"
 #import "wjAppearanceManager.h"
+#import "HomeCell.h"
 
 @interface HomeViewController ()
 
@@ -165,24 +166,24 @@
         cell = [nib objectAtIndex:0];
     }
     NSUInteger row = [indexPath row];
-    NSDictionary *tmp = dataInView[row];
-    NSString *actionIDString = [tmp[@"associate_action"] stringValue];
+    HomeCell *tmp = dataInView[row];
+    NSString *actionIDString = [NSString stringWithFormat:@"%ld", (long)tmp.associateAction];
     NSDictionary *actionDiction = @{@"101": @"发布了问题",
                                     @"105": @"关注了问题",
                                     @"201": @"回答了问题",
                                     @"204": @"赞同了回答"};
-    NSString *actionString = [NSString stringWithFormat:@"%@ %@", (tmp[@"user_info"])[@"nick_name"], actionDiction[actionIDString]];
+    NSString *actionString = [NSString stringWithFormat:@"%@ %@", tmp.userInfo.nickName, actionDiction[actionIDString]];
     NSMutableAttributedString *str = [[NSMutableAttributedString alloc]initWithString:actionString];
-    [str addAttribute:NSForegroundColorAttributeName value:[wjAppearanceManager userActionTextColor] range:NSMakeRange(0, [(tmp[@"user_info"])[@"nick_name"] length])];
+    [str addAttribute:NSForegroundColorAttributeName value:[wjAppearanceManager userActionTextColor] range:NSMakeRange(0, [tmp.userInfo.nickName length])];
     cell.actionLabel.attributedText = str;
-    cell.questionLabel.text = [wjStringProcessor filterHTMLWithString:(tmp[@"question_info"])[@"question_content"]];
-    cell.detailLabel.text = [wjStringProcessor processAnswerDetailString:(tmp[@"answer_info"])[@"answer_content"]];
+    cell.questionLabel.text = [wjStringProcessor filterHTMLWithString:tmp.questionInfo.questionContent];
+    cell.detailLabel.text = [wjStringProcessor processAnswerDetailString:tmp.answerInfo.answerContent];
     cell.actionLabel.tag = row;
     cell.questionLabel.tag = row;
     cell.detailLabel.tag = row;
     cell.avatarView.tag = row;
     cell.delegate = self;
-    [cell loadAvatarImageWithApartURL:(tmp[@"user_info"])[@"avatar_file"]];
+    [cell loadAvatarImageWithApartURL:tmp.userInfo.avatarFile];
     return cell;
 }
 
@@ -213,7 +214,8 @@
     if (!([((dataInView[row])[@"user_info"])[@"uid"] integerValue] == -1)) {
         UserViewController *uVC = [[UserViewController alloc]initWithNibName:@"UserViewController" bundle:nil];
         uVC.hidesBottomBarWhenPushed = YES;
-        uVC.userId = [((dataInView[row])[@"user_info"])[@"uid"] stringValue];
+        HomeCell *cell = (HomeCell *)dataInView[row];
+        uVC.userId = [NSString stringWithFormat:@"%ld", cell.userInfo.uid];
         [self.navigationController pushViewController:uVC animated:YES];
     } else {
         [MsgDisplay showErrorMsg:@"无法查看匿名用户~"];
@@ -222,7 +224,8 @@
 
 - (void)pushQuestionControllerWithRow:(NSUInteger)row {
     QuestionViewController *qVC = [[QuestionViewController alloc]initWithNibName:@"QuestionViewController" bundle:nil];
-    qVC.questionId = [((dataInView[row])[@"question_info"])[@"question_id"] stringValue];
+    HomeCell *cell = (HomeCell *)dataInView[row];
+    qVC.questionId = [NSString stringWithFormat:@"%ld", cell.questionInfo.questionId];
     qVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:qVC animated:YES];
 }
@@ -230,7 +233,8 @@
 - (void)pushAnswerControllerWithRow:(NSUInteger)row {
     AnswerViewController *aVC = [[AnswerViewController alloc]initWithNibName:@"AnswerViewController" bundle:nil];
     aVC.hidesBottomBarWhenPushed = YES;
-    aVC.answerId = [((dataInView[row])[@"answer_info"])[@"answer_id"] stringValue];
+    HomeCell *cell = (HomeCell *)dataInView[row];
+    aVC.answerId = [NSString stringWithFormat:@"%ld", cell.answerInfo.answerId];
     [self.navigationController pushViewController:aVC animated:YES];
 }
 

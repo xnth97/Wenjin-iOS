@@ -19,6 +19,7 @@ Wenjin-iOS
 	* info.plist
 	* Base.lproj & zh-Hans.lproj
 * Model
+	* 数据模型
 	* 各模块数据管理器
 	* 消息显示模块
 	* 本地数据管理
@@ -59,10 +60,11 @@ Wenjin-iOS
 
 衷心感谢以下开源项目为 问津 作出的不可磨灭的贡献。
 
-* Cocoapods
+* CocoaPods
 * AFNetworking
 * JSONKit
-* ALActionBlocks
+* BlocksKit
+* MJExtension
 * SVProgressHUD
 * SVPullToRefresh
 * POP
@@ -70,6 +72,7 @@ Wenjin-iOS
 * FXForms
 * NYSegmentedControl
 * TLTagsControl
+* Realm
 
 为适应 问津 的需求，部分代码被做出了一些更改并 fork 到我自己的分支中（而未通过 Cocoapods 进行管理）。具体详见代码。
 

@@ -12,6 +12,7 @@
 #import "AFNetworking.h"
 #import "JSONKit.h"
 #import "TWTDataChecker.h"
+#import "HomeCell.h"
 
 @implementation HomeDataManager
 
@@ -22,13 +23,13 @@
                                  @"per_page": @20,
                                  @"platform": @"ios"};
     if (page == 0) {
-        [wjCacheManager loadCacheDataWithKey:@"homeCache" andBlock:^(NSArray *rows, NSDate *saveDate) {
-            if ([TWTDataChecker checkDataCompletion:rows]) {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    success(rows, NO);
-                });
-            }
-        }];
+//        [wjCacheManager loadCacheDataWithKey:@"homeCache" andBlock:^(NSArray *rows, NSDate *saveDate) {
+//            if ([TWTDataChecker checkDataCompletion:rows]) {
+//                dispatch_async(dispatch_get_main_queue(), ^{
+//                    success(rows, NO);
+//                });
+//            }
+//        }];
     }
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
@@ -37,10 +38,10 @@
         
         NSDictionary *responseDic = [operation.responseString objectFromJSONString];
         if ([responseDic[@"errno"] isEqual: @1]) {
-            NSArray *rows = (responseDic[@"rsm"])[@"rows"];
-            if (page == 0) {
-                [wjCacheManager saveCacheData:rows withKey:@"homeCache"];
-            }
+            NSArray *rows = [HomeCell objectArrayWithKeyValuesArray:(responseDic[@"rsm"])[@"rows"]];
+//            if (page == 0) {
+//                [wjCacheManager saveCacheData:rows withKey:@"homeCache"];
+//            }
             if ([(responseDic[@"rsm"])[@"total_rows"] isEqual: @0]) {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     success(rows, YES);
