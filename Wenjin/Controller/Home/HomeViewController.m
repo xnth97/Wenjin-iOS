@@ -211,10 +211,10 @@
 // HomeTableViewCell delegate
 
 - (void)pushUserControllerWithRow:(NSUInteger)row {
-    if (!([((dataInView[row])[@"user_info"])[@"uid"] integerValue] == -1)) {
+    HomeCell *cell = (HomeCell *)dataInView[row];
+    if (cell.userInfo.uid != -1) {
         UserViewController *uVC = [[UserViewController alloc]initWithNibName:@"UserViewController" bundle:nil];
         uVC.hidesBottomBarWhenPushed = YES;
-        HomeCell *cell = (HomeCell *)dataInView[row];
         uVC.userId = [NSString stringWithFormat:@"%ld", cell.userInfo.uid];
         [self.navigationController pushViewController:uVC animated:YES];
     } else {
