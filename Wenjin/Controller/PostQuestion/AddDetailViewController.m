@@ -150,7 +150,7 @@
         NSUInteger loc = detailTextView.selectedRange.location;
         [detailTextView.textStorage insertAttributedString:attrStrWithImage atIndex:loc];
         [detailTextView becomeFirstResponder];
-        [detailTextView setSelectedRange:NSMakeRange(detailTextView.attributedText.length, 0)];
+        [detailTextView setSelectedRange:NSMakeRange(loc + 1, 0)];
         [detailTextView.textStorage addAttributes:@{NSFontAttributeName: [UIFont systemFontOfSize:17.0]} range:NSMakeRange(0, detailTextView.attributedText.length)];
         
 //        [MsgDisplay showLoading];

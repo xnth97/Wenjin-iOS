@@ -163,7 +163,7 @@
     
     // 成功提交后需清除单例模式里的数据
     
-    if ([self.questionView.text isEqualToString:@""]) {
+    if (self.questionView.attributedText.length == 0) {
         [MsgDisplay showErrorMsg:@"请填写问题内容喔"];
     } else {
         [PostDataManager uploadAttachFromAttributedString:[data shareInstance].postQuestionDetail withAttachType:@"question"];

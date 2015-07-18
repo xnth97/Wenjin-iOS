@@ -76,24 +76,30 @@
     [self.navigationItem setLeftBarButtonItem:cancelBtn];
     
     UIBarButtonItem *doneBtn = [[UIBarButtonItem alloc] bk_initWithBarButtonSystemItem:UIBarButtonSystemItemDone handler:^(id weakSender) {
-        [MsgDisplay showLoading];
-        NSDictionary *parameters = @{@"question_id": questionId,
-                                     @"answer_content": answerView.text,
-                                     @"attach_access_key": [data shareInstance].attachAccessKey,
-                                     @"anonymous": [NSNumber numberWithInteger:isAnonymousControl.selectedSegmentIndex],
-                                     @"auto_focus": [NSNumber numberWithInteger: [[NSUserDefaults standardUserDefaults] integerForKey:@"autoFocus"]]};
-        [PostDataManager postAnswerWithParameters:parameters success:^(NSString *answerId) {
-            [MsgDisplay dismiss];
-            [MsgDisplay showSuccessMsg:@"答案添加成功！"];
-            [self.navigationController dismissViewControllerAnimated:YES completion:^{
-                // 回调以后刷新 QuestionViewController
-                [self.navigationController.presentingViewController setValue:@YES forKey:@"shouldRefresh"];
-            }];
-            
-        } failure:^(NSString *errorStr) {
-            [MsgDisplay dismiss];
-            [MsgDisplay showErrorMsg:errorStr];
-        }];
+        if (self.answerView.attributedText.length == 0) {
+            [MsgDisplay showErrorMsg:@"请填写内容喔"];
+        } else {
+            [MsgDisplay showLoading];
+            [PostDataManager uploadAttachFromAttributedString:answerView.attributedText withAttachType:@"answer"];
+        }
+//        [MsgDisplay showLoading];
+//        NSDictionary *parameters = @{@"question_id": questionId,
+//                                     @"answer_content": answerView.text,
+//                                     @"attach_access_key": [data shareInstance].attachAccessKey,
+//                                     @"anonymous": [NSNumber numberWithInteger:isAnonymousControl.selectedSegmentIndex],
+//                                     @"auto_focus": [NSNumber numberWithInteger: [[NSUserDefaults standardUserDefaults] integerForKey:@"autoFocus"]]};
+//        [PostDataManager postAnswerWithParameters:parameters success:^(NSString *answerId) {
+//            [MsgDisplay dismiss];
+//            [MsgDisplay showSuccessMsg:@"答案添加成功！"];
+//            [self.navigationController dismissViewControllerAnimated:YES completion:^{
+//                // 回调以后刷新 QuestionViewController
+//                [self.navigationController.presentingViewController setValue:@YES forKey:@"shouldRefresh"];
+//            }];
+//            
+//        } failure:^(NSString *errorStr) {
+//            [MsgDisplay dismiss];
+//            [MsgDisplay showErrorMsg:errorStr];
+//        }];
         
     }];
     [self.navigationItem setRightBarButtonItem:doneBtn];
@@ -158,6 +164,8 @@
         [data shareInstance].attachAccessKey = self.draftToBeLoaded.attachAccessKey;
         questionId = self.draftToBeLoaded.questionId;
     }
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(attachUploadFinished:) name:@"attachIDCompleted" object:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -183,6 +191,35 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
+- (void)attachUploadFinished:(NSNotification *)notification {
+    NSArray *attachIDArr = notification.object;
+    attachIDArr = [attachIDArr sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        if ([obj1 integerValue] >= [obj2 integerValue]) {
+            return NSOrderedAscending;
+        } else {
+            return NSOrderedDescending;
+        }
+    }];
+    NSString *plainString = [PostDataManager plainStringConvertedFromAttributedString:answerView.attributedText andAttachIDArray:attachIDArr];
+    
+    NSDictionary *parameters = @{@"question_id": questionId,
+                                 @"answer_content": plainString,
+                                 @"attach_access_key": [data shareInstance].attachAccessKey,
+                                 @"anonymous": [NSNumber numberWithInteger:isAnonymousControl.selectedSegmentIndex],
+                                 @"auto_focus": [NSNumber numberWithInteger: [[NSUserDefaults standardUserDefaults] integerForKey:@"autoFocus"]]};
+    [PostDataManager postAnswerWithParameters:parameters success:^(NSString *answerId) {
+        [MsgDisplay dismiss];
+        [MsgDisplay showSuccessMsg:@"答案添加成功！"];
+        [self.navigationController dismissViewControllerAnimated:YES completion:^{
+            // 回调以后刷新 QuestionViewController
+            [self.navigationController.presentingViewController setValue:@YES forKey:@"shouldRefresh"];
+        }];
+    } failure:^(NSString *errorStr) {
+        [MsgDisplay dismiss];
+        [MsgDisplay showErrorMsg:errorStr];
+    }];
+}
+
 - (NSString *)MD5FromNowDate {
     NSDate *now = [NSDate date];
     NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
@@ -205,28 +242,38 @@
     return string;
 }
 
-// Image Picker Delegate
+#pragma mark - image picker delegate
+
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     if ([[info objectForKey:UIImagePickerControllerMediaType] isEqualToString:(NSString *)kUTTypeMovie]) {
         [MsgDisplay showErrorMsg:@"Type unsupported"];
         [picker dismissViewControllerAnimated:YES completion:nil];
     } else {
         UIImage *img = [info objectForKey:UIImagePickerControllerOriginalImage];
-        NSData *picData = UIImageJPEGRepresentation(img, 0.5);
+//        NSData *picData = UIImageJPEGRepresentation(img, 0.5);
         [picker dismissViewControllerAnimated:YES completion:nil];
-        [MsgDisplay showLoading];
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            [PostDataManager uploadAttachFile:picData attachType:@"answer" success:^(NSString *attachId) {
-                [MsgDisplay dismiss];
-                NSUInteger loc = answerView.selectedRange.location;
-                answerView.text = [NSString stringWithFormat:@"%@\n[attach]%@[/attach]\n%@", [answerView.text substringToIndex:loc], attachId, [answerView.text substringFromIndex:loc]];
-                [answerView becomeFirstResponder];
-            } failure:^(NSString *errStr) {
-                [MsgDisplay dismiss];
-                [MsgDisplay showErrorMsg:errStr];
-                [answerView becomeFirstResponder];
-            }];
-        });
+//        [MsgDisplay showLoading];
+//        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+//            [PostDataManager uploadAttachFile:picData attachType:@"answer" success:^(NSString *attachId) {
+//                [MsgDisplay dismiss];
+//                NSUInteger loc = answerView.selectedRange.location;
+//                answerView.text = [NSString stringWithFormat:@"%@\n[attach]%@[/attach]\n%@", [answerView.text substringToIndex:loc], attachId, [answerView.text substringFromIndex:loc]];
+//                [answerView becomeFirstResponder];
+//            } failure:^(NSString *errStr) {
+//                [MsgDisplay dismiss];
+//                [MsgDisplay showErrorMsg:errStr];
+//                [answerView becomeFirstResponder];
+//            }];
+//        });
+        
+        NSTextAttachment *textAttachment = [[NSTextAttachment alloc] init];
+        textAttachment.image = [UIImage imageWithCGImage:img.CGImage scale:img.size.width / (answerView.frame.size.width - 10) orientation:UIImageOrientationUp];
+        NSAttributedString *attrStrWithImage = [NSAttributedString attributedStringWithAttachment:textAttachment];
+        NSUInteger loc = answerView.selectedRange.location;
+        [answerView.textStorage insertAttributedString:attrStrWithImage atIndex:loc];
+        [answerView becomeFirstResponder];
+        [answerView setSelectedRange:NSMakeRange(loc + 1, 0)];
+        [answerView.textStorage addAttributes:@{NSFontAttributeName: [UIFont systemFontOfSize:17.0]} range:NSMakeRange(0, answerView.attributedText.length)];
     }
 }
 
