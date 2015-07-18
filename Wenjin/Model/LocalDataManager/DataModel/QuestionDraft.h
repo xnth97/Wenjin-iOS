@@ -11,7 +11,7 @@
 @interface QuestionDraft : RLMObject
 
 @property NSString *questionTitle;
-@property NSString *questionDetail;
+@property NSData *questionDetail;
 @property NSData *topicArrData;
 @property NSString *attachAccessKey;
 @property NSInteger anonymous;

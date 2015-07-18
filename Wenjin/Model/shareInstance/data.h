@@ -12,7 +12,7 @@
 @interface data : NSObject
 
 // for posting questions
-@property (strong, nonatomic) NSString *postQuestionDetail;
+@property (strong, nonatomic) NSAttributedString *postQuestionDetail;
 
 // user information
 @property (strong, nonatomic) NSString *myUID;

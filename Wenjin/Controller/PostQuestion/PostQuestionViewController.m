@@ -40,7 +40,7 @@
     [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
     
     // Instaces init.
-    [data shareInstance].postQuestionDetail = @"";
+    [data shareInstance].postQuestionDetail = nil;
     topicsArr = [[NSMutableArray alloc]init];
     tagsControlHeight = 24.0;
     [data shareInstance].attachAccessKey = [self MD5FromNowDate];
@@ -50,7 +50,7 @@
     [self.view addSubview:questionView];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide) name:UIKeyboardWillHideNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
     
     UIToolbar *accessoryToolbar = [[UIToolbar alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 44)];
     accessoryToolbar.barStyle = UIBarStyleDefault;
@@ -88,6 +88,8 @@
     questionTagsControl.tagsDeleteButtonColor = [UIColor whiteColor];
     [questionTagsControl reloadTagSubviews];
     [self.view addSubview:questionTagsControl];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(attachUploadFinished:) name:@"attachIDCompleted" object:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -118,7 +120,7 @@
     
 }
 
-- (void)keyboardWillHide {
+- (void)keyboardWillHide:(NSNotification *)notification {
     [UIView animateWithDuration:0.3 animations:^{
         [questionView setFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 44 - tagsControlHeight - 4)];
         [questionTagsControl setFrame:CGRectMake(8, questionView.frame.size.height, self.view.frame.size.width - 16, tagsControlHeight)];
@@ -133,7 +135,7 @@
 
 - (void)loadFromQuestionDraft:(QuestionDraft *)draft {
     // set data
-    [data shareInstance].postQuestionDetail = draft.questionDetail;
+    [data shareInstance].postQuestionDetail = [NSKeyedUnarchiver unarchiveObjectWithData:draft.questionDetail];
     [data shareInstance].attachAccessKey = draft.attachAccessKey;
     topicsArr = [[NSKeyedUnarchiver unarchiveObjectWithData:draft.topicArrData] mutableCopy];
     
@@ -145,8 +147,67 @@
 - (IBAction)postQuestion {
     [MsgDisplay showLoading];
     
-    topicsArr = questionTagsControl.tags;
+//    topicsArr = questionTagsControl.tags;
+//    
+//    NSString *topicsStr = @"";
+//    if ([topicsArr count] > 0) {
+//        for (int i = 0; i < [topicsArr count]; i ++) {
+//            if (i == 0) {
+//                topicsStr = (topicsArr)[0];
+//            } else {
+//                NSString *topic = (topicsArr)[i];
+//                topicsStr = [NSString stringWithFormat:@"%@,%@", topicsStr, topic];
+//            }
+//        }
+//    }
     
+    // 成功提交后需清除单例模式里的数据
+    
+    if ([self.questionView.text isEqualToString:@""]) {
+        [MsgDisplay showErrorMsg:@"请填写问题内容喔"];
+    } else {
+        [PostDataManager uploadAttachFromAttributedString:[data shareInstance].postQuestionDetail withAttachType:@"question"];
+//        NSDictionary *parameters = @{@"question_content": self.questionView.text,
+//                                     @"question_detail": plainString,
+//                                     @"topics": topicsStr,
+//                                     @"attach_access_key": [data shareInstance].attachAccessKey,
+//                                     @"anonymous": [NSNumber numberWithInteger:isAnonymousControl.selectedSegmentIndex]};
+//        [PostDataManager postQuestionWithParameters:parameters success:^(NSString *questionId) {
+//            [MsgDisplay dismiss];
+//            [MsgDisplay showSuccessMsg:[NSString stringWithFormat:@"问题发布成功！"]];
+//            
+//            for (UIViewController *navVc in self.navigationController.tabBarController.viewControllers) {
+//                if ([navVc isKindOfClass:[UINavigationController class]]) {
+//                    UINavigationController *nVC = (UINavigationController *)navVc;
+//                    if ([nVC.viewControllers[0] isKindOfClass:[HomeViewController class]]) {
+//                        HomeViewController *hVC = (HomeViewController *)nVC.viewControllers[0];
+//                        hVC.shouldRefresh = YES;
+//                    }
+//                }
+//            }
+//            
+//            [self.navigationController popToRootViewControllerAnimated:YES];
+//            [data shareInstance].postQuestionDetail = nil;
+//            [data shareInstance].attachAccessKey = @"";
+//        } failure:^(NSString *errStr) {
+//            [MsgDisplay dismiss];
+//            [MsgDisplay showErrorMsg:errStr];
+//        }];
+    }
+}
+
+- (void)attachUploadFinished:(NSNotification *)notification {
+    NSArray *attachIDArr = notification.object;
+    attachIDArr = [attachIDArr sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        if ([obj1 integerValue] >= [obj2 integerValue]) {
+            return NSOrderedAscending;
+        } else {
+            return NSOrderedDescending;
+        }
+    }];
+    NSString *plainString = [PostDataManager plainStringConvertedFromAttributedString:[data shareInstance].postQuestionDetail andAttachIDArray:attachIDArr];
+    
+    topicsArr = questionTagsControl.tags;
     NSString *topicsStr = @"";
     if ([topicsArr count] > 0) {
         for (int i = 0; i < [topicsArr count]; i ++) {
@@ -159,38 +220,31 @@
         }
     }
     
-    // 成功提交后需清除单例模式里的数据
+    NSDictionary *parameters = @{@"question_content": self.questionView.text,
+                                 @"question_detail": plainString,
+                                 @"topics": topicsStr,
+                                 @"attach_access_key": [data shareInstance].attachAccessKey,
+                                 @"anonymous": [NSNumber numberWithInteger:isAnonymousControl.selectedSegmentIndex]};
+    [PostDataManager postQuestionWithParameters:parameters success:^(NSString *questionId) {
+        [MsgDisplay dismiss];
+        [MsgDisplay showSuccessMsg:[NSString stringWithFormat:@"问题发布成功！"]];
     
-    if ([self.questionView.text isEqualToString:@""]) {
-        [MsgDisplay showErrorMsg:@"请填写问题内容喔"];
-    } else {
-        NSDictionary *parameters = @{@"question_content": self.questionView.text,
-                                     @"question_detail": [data shareInstance].postQuestionDetail,
-                                     @"topics": topicsStr,
-                                     @"attach_access_key": [data shareInstance].attachAccessKey,
-                                     @"anonymous": [NSNumber numberWithInteger:isAnonymousControl.selectedSegmentIndex]};
-        [PostDataManager postQuestionWithParameters:parameters success:^(NSString *questionId) {
-            [MsgDisplay dismiss];
-            [MsgDisplay showSuccessMsg:[NSString stringWithFormat:@"问题发布成功！"]];
-            
-            for (UIViewController *navVc in self.navigationController.tabBarController.viewControllers) {
-                if ([navVc isKindOfClass:[UINavigationController class]]) {
-                    UINavigationController *nVC = (UINavigationController *)navVc;
-                    if ([nVC.viewControllers[0] isKindOfClass:[HomeViewController class]]) {
-                        HomeViewController *hVC = (HomeViewController *)nVC.viewControllers[0];
-                        hVC.shouldRefresh = YES;
-                    }
+        for (UIViewController *navVc in self.navigationController.presentingViewController.tabBarController.viewControllers) {
+            if ([navVc isKindOfClass:[UINavigationController class]]) {
+                UINavigationController *nVC = (UINavigationController *)navVc;
+                if ([nVC.viewControllers[0] isKindOfClass:[HomeViewController class]]) {
+                    HomeViewController *hVC = (HomeViewController *)nVC.viewControllers[0];
+                    hVC.shouldRefresh = YES;
                 }
             }
-            
-            [self.navigationController popToRootViewControllerAnimated:YES];
-            [data shareInstance].postQuestionDetail = @"";
-            [data shareInstance].attachAccessKey = @"";
-        } failure:^(NSString *errStr) {
-            [MsgDisplay dismiss];
-            [MsgDisplay showErrorMsg:errStr];
-        }];
-    }
+        }
+        [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+        [data shareInstance].postQuestionDetail = nil;
+        [data shareInstance].attachAccessKey = @"";
+    } failure:^(NSString *errStr) {
+        [MsgDisplay dismiss];
+        [MsgDisplay showErrorMsg:errStr];
+    }];
 }
 
 - (NSString *)MD5FromNowDate {
@@ -216,7 +270,7 @@
 }
 
 - (IBAction)cancelModal {
-    if ([self.questionView.text isEqualToString:@""] && [[data shareInstance].postQuestionDetail isEqualToString:@""]) {
+    if ([self.questionView.text isEqualToString:@""] && [data shareInstance].postQuestionDetail.length == 0) {
         [self.navigationController dismissViewControllerAnimated:YES completion:nil];
     } else {
         UIAlertController *saveController = [UIAlertController alertControllerWithTitle:@"草稿" message:@"还有未发布的内容\n是否要保存为草稿？" preferredStyle:UIAlertControllerStyleActionSheet];

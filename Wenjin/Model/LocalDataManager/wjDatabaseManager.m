@@ -15,7 +15,7 @@
 + (void)saveAnswerDraftWithQuestionID:(NSString *)questionId answerContent:(NSString *)answerContent attachAccessKey:(NSString *)attachAccessKey anonymous:(NSInteger)isAnonymous finishBlock:(void (^)())block {
     AnswerDraft *draft = [[AnswerDraft alloc] init];
     draft.questionId = questionId;
-    draft.answerContent = answerContent;
+    draft.answerContent = [NSKeyedArchiver archivedDataWithRootObject:answerContent];
     draft.attachAccessKey = attachAccessKey;
     draft.anonymous = isAnonymous;
     draft.time = [NSDate date];
@@ -30,10 +30,10 @@
     });
 }
 
-+ (void)saveQuestionDraftWithTitle:(NSString *)questionTitle detail:(NSString *)questionDetail topicsArray:(NSArray *)topicsArr attachAccessKey:(NSString *)attachAccessKey anonymous:(NSInteger)isAnonymous finishBlock:(void (^)())block {
++ (void)saveQuestionDraftWithTitle:(NSString *)questionTitle detail:(NSAttributedString *)questionDetail topicsArray:(NSArray *)topicsArr attachAccessKey:(NSString *)attachAccessKey anonymous:(NSInteger)isAnonymous finishBlock:(void (^)())block {
     QuestionDraft *draft = [[QuestionDraft alloc] init];
     draft.questionTitle = questionTitle;
-    draft.questionDetail = questionDetail;
+    draft.questionDetail = [NSKeyedArchiver archivedDataWithRootObject:questionDetail];
     draft.topicArrData = [NSKeyedArchiver archivedDataWithRootObject:topicsArr];
     draft.attachAccessKey = attachAccessKey;
     draft.anonymous = isAnonymous;

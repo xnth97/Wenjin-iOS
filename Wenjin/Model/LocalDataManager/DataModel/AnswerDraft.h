@@ -11,7 +11,7 @@
 @interface AnswerDraft : RLMObject
 
 @property NSString *questionId;
-@property NSString *answerContent;
+@property NSData *answerContent;
 @property NSString *attachAccessKey;
 @property NSInteger anonymous;
 @property NSDate *time;

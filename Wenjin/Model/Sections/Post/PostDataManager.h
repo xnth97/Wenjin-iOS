@@ -31,6 +31,9 @@
 
 + (void)postAnswerCommentWithAnswerID:(NSString *)answerId andMessage:(NSString *)message success:(void(^)())success failure:(void(^)(NSString *errorStr))failure;
 
++ (void)uploadAttachFromAttributedString:(NSAttributedString *)attrStr withAttachType:(NSString *)type;
++ (NSString *)plainStringConvertedFromAttributedString:(NSAttributedString *)attrStr andAttachIDArray:(NSArray *)attachIDArr;
+
 /**
  *  提交附件
  *
