@@ -97,7 +97,7 @@
                                         [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
                                         [dateFormatter stringFromDate:tmp.time];
                                     }),
-                                     @"content": tmp.answerContent}];
+                                     @"content": ((NSAttributedString *)[NSKeyedUnarchiver unarchiveObjectWithData:tmp.answerContent]).string}];
         }
         [self.tableView reloadData];
     }

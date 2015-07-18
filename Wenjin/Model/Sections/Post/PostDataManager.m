@@ -84,6 +84,8 @@
     }];
 }
 
+#pragma warning - NOT COMPLETED ABOUT ERRORS
+
 + (void)uploadAttachFromAttributedString:(NSAttributedString *)attrStr withAttachType:(NSString *)type {
     NSMutableArray *attachmentArray = [[NSMutableArray alloc] init];
     NSMutableArray *attachIDArray = [[NSMutableArray alloc] init];

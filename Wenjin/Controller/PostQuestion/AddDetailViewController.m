@@ -141,6 +141,13 @@
         [picker dismissViewControllerAnimated:YES completion:nil];
     } else {
         UIImage *img = [info objectForKey:UIImagePickerControllerOriginalImage];
+        if (img.size.width > 600) {
+            CGSize newSize = CGSizeMake(600, 600 * img.size.height / img.size.width);
+            UIGraphicsBeginImageContext(newSize);
+            [img drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
+            img = UIGraphicsGetImageFromCurrentImageContext();
+            UIGraphicsEndImageContext();
+        }
 //        NSData *picData = UIImageJPEGRepresentation(img, 0.5);
         [picker dismissViewControllerAnimated:YES completion:nil];
         

@@ -117,9 +117,9 @@
                       "<body> \n"
                       "<div class=\"container\"> \n"
                       "<div class=\"row\"> \n"
-                      "<div class=\"col-sm-12\" style=\"margin-left:8px; margin-right:8px; font-size:16px; line-height:1.5;\"> <br><br><br> \n" // 这个 br 用来换行到 userInfoView 以下
+                      "<div class=\"col-sm-12\" style=\"margin-left:8px; margin-right:8px; font-size:16px; line-height:1.5;\"> <br><br> \n" // 这个 br 用来换行到 userInfoView 以下
                       "%@ \n"
-                      "</div></div><br><br><br></div> \n" // 这个 br 用于不被 toolbar 遮挡
+                      "</div></div><br><br></div> \n" // 这个 br 用于不被 toolbar 遮挡
                       "<script src=\"%@\"></script> \n"
                       "</body> \n"
                       "</html>" , cssPath, contentStr, jsPath];

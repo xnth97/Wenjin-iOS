@@ -12,7 +12,7 @@
 
 @implementation wjDatabaseManager
 
-+ (void)saveAnswerDraftWithQuestionID:(NSString *)questionId answerContent:(NSString *)answerContent attachAccessKey:(NSString *)attachAccessKey anonymous:(NSInteger)isAnonymous finishBlock:(void (^)())block {
++ (void)saveAnswerDraftWithQuestionID:(NSString *)questionId answerContent:(NSAttributedString *)answerContent attachAccessKey:(NSString *)attachAccessKey anonymous:(NSInteger)isAnonymous finishBlock:(void (^)())block {
     AnswerDraft *draft = [[AnswerDraft alloc] init];
     draft.questionId = questionId;
     draft.answerContent = [NSKeyedArchiver archivedDataWithRootObject:answerContent];
