@@ -7,7 +7,7 @@
 //
 
 #import "AnswerCommentTableViewController.h"
-#import "AnswerDataManager.h"
+#import "DetailDataManager.h"
 #import "SVPullToRefresh.h"
 #import "MsgDisplay.h"
 #import "AnswerCommentTableViewCell.h"
@@ -77,7 +77,7 @@
         }
     }
     
-    [AnswerDataManager getAnswerCommentWithAnswerID:answerId success:^(NSArray *commentData) {
+    [DetailDataManager getAnswerCommentWithAnswerID:answerId success:^(NSArray *commentData) {
         rowsData = [[NSMutableArray alloc]initWithArray:commentData];
         if ([rowsData count] > 0) {
             [self.tableView reloadData];

@@ -7,7 +7,6 @@
 //
 
 #import "NotificationManager.h"
-#import "JSONKit.h"
 #import "AFNetworking.h"
 #import "wjAPIs.h"
 
@@ -18,7 +17,7 @@
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     NSDictionary *parameters = @{@"platform": @"ios"};
     [manager GET:[wjAPIs notificationNumber] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSDictionary *dicData = [operation.responseString objectFromJSONString];
+        NSDictionary *dicData = (NSDictionary *)responseObject;
         if ([dicData[@"errno"] isEqual:@1]) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 success([(dicData[@"rsm"])[@"inbox_num"] integerValue], [(dicData[@"rsm"])[@"notifications_num"] integerValue]);
@@ -45,7 +44,7 @@
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     [manager GET:[wjAPIs notificationList] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
-        NSDictionary *responseDic = [operation.responseString objectFromJSONString];
+        NSDictionary *responseDic = (NSDictionary *)responseObject;
         if ([responseDic[@"errno"] isEqual:@1]) {
             NSArray *rows = (responseDic[@"rsm"])[@"rows"];
             dispatch_async(dispatch_get_main_queue(), ^{

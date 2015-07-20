@@ -8,10 +8,13 @@
 
 #import <Foundation/Foundation.h>
 #import "AnswerInfo.h"
+#import "ArticleInfo.h"
 
-@interface AnswerDataManager : NSObject
+@interface DetailDataManager : NSObject
 
 + (void)getAnswerDataWithAnswerID:(NSString *)answerId success:(void(^)(AnswerInfo *answerData))success failure:(void(^)(NSString *errorStr))failure;
 + (void)getAnswerCommentWithAnswerID:(NSString *)answerId success:(void(^)(NSArray *commentData))success failure:(void(^)(NSString *errorStr))failure;
+
++ (void)getArticleDataWithID:(NSString *)aid success:(void(^)(ArticleInfo *articleData))success failure:(void(^)(NSString *errorStr))failure;
 
 @end

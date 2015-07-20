@@ -7,10 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#define DetailTypeAnswer 0
+#define DetailTypeArticle 1
 
 @interface AnswerViewController : UIViewController<UIWebViewDelegate>
 
 @property (strong, nonatomic) NSString *answerId;
+@property (nonatomic) NSInteger detailType;
 
 @property (weak, nonatomic) IBOutlet UIImageView *userAvatarView;
 @property (weak, nonatomic) IBOutlet UILabel *userNameLabel;

@@ -8,7 +8,6 @@
 
 #import "UserDataManager.h"
 #import "AFNetworking.h"
-#import "JSONKit.h"
 #import "wjAPIs.h"
 #import "data.h"
 #import "wjCacheManager.h"
@@ -30,7 +29,7 @@
                                  @"platform": @"ios"};
     [manager GET:[wjAPIs viewUser] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
-        NSDictionary *userDic = [operation.responseString objectFromJSONString];
+        NSDictionary *userDic = (NSDictionary *)responseObject;
         if ([userDic[@"errno"] isEqual:@1]) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 success(userDic[@"rsm"]);
@@ -63,7 +62,7 @@
     NSString *queueURL = (operation == 0) ? [wjAPIs myFollowUser] : [wjAPIs myFansUser];
     [manager GET:queueURL parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
-        NSDictionary *dicData = [operation.responseString objectFromJSONString];
+        NSDictionary *dicData = (NSDictionary *)responseObject;
         if ([dicData[@"errno"] isEqual:@1]) {
             NSInteger totalRows = [(dicData[@"rsm"])[@"total_rows"] integerValue];
             if (totalRows != 0) {
@@ -100,7 +99,7 @@
     NSArray *queueURLArray = @[[wjAPIs myQuestions], [wjAPIs myAnswers], [wjAPIs myFollowQuestions]];
     [manager GET:queueURLArray[feedType] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
-        NSDictionary *dicData = [operation.responseString objectFromJSONString];
+        NSDictionary *dicData = (NSDictionary *)responseObject;
         if ([dicData[@"errno"] isEqual:@1]) {
             NSInteger totalRows = [(dicData[@"rsm"])[@"total_rows"] integerValue];
             if (totalRows != 0) {
@@ -134,7 +133,7 @@
                                  @"page": [NSNumber numberWithInteger:page],
                                  @"platform": @"ios"};
     [manager GET:[wjAPIs myFollowTopics] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSDictionary *dicData = [operation.responseString objectFromJSONString];
+        NSDictionary *dicData = (NSDictionary *)responseObject;
         if ([dicData[@"errno"] isEqual:@1]) {
             NSInteger totalRows = [(dicData[@"rsm"])[@"total_rows"] integerValue];
             if (totalRows != 0) {

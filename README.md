@@ -62,7 +62,6 @@ Wenjin-iOS
 
 * CocoaPods
 * AFNetworking
-* JSONKit
 * BlocksKit
 * MJExtension
 * SVProgressHUD

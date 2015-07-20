@@ -10,7 +10,6 @@
 #import "wjAPIs.h"
 #import "wjCacheManager.h"
 #import "AFNetworking.h"
-#import "JSONKit.h"
 #import "TWTDataChecker.h"
 #import "HomeCell.h"
 
@@ -36,7 +35,7 @@
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     [manager GET:[wjAPIs homeURL] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
-        NSDictionary *responseDic = [operation.responseString objectFromJSONString];
+        NSDictionary *responseDic = (NSDictionary *)responseObject;
         if ([responseDic[@"errno"] isEqual: @1]) {
             NSArray *rows = [HomeCell objectArrayWithKeyValuesArray:(responseDic[@"rsm"])[@"rows"]];
 //            if (page == 0) {

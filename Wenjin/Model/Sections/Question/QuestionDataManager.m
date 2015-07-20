@@ -9,7 +9,6 @@
 #import "QuestionDataManager.h"
 #import "wjAPIs.h"
 #import "AFNetworking.h"
-#import "JSONKit.h"
 
 @implementation QuestionDataManager
 
@@ -21,7 +20,7 @@
                                   @"platform": @"ios"};
     [manager GET:[wjAPIs viewQuestion] parameters:questionDic success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
-        NSDictionary *quesData = [operation.responseString objectFromJSONString];
+        NSDictionary *quesData = (NSDictionary *)responseObject;
         if ([quesData[@"errno"] isEqual:@1]) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 QuestionInfo *info = [QuestionInfo objectWithKeyValues:(quesData[@"rsm"])[@"question_info"]];

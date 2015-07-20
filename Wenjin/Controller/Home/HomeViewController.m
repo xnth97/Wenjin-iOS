@@ -171,12 +171,13 @@
     NSDictionary *actionDiction = @{@"101": @"发布了问题",
                                     @"105": @"关注了问题",
                                     @"201": @"回答了问题",
-                                    @"204": @"赞同了回答"};
+                                    @"204": @"赞同了回答",
+                                    @"501": @"发布了文章"};
     NSString *actionString = [NSString stringWithFormat:@"%@ %@", tmp.userInfo.nickName, actionDiction[actionIDString]];
     NSMutableAttributedString *str = [[NSMutableAttributedString alloc]initWithString:actionString];
     [str addAttribute:NSForegroundColorAttributeName value:[wjAppearanceManager userActionTextColor] range:NSMakeRange(0, [tmp.userInfo.nickName length])];
     cell.actionLabel.attributedText = str;
-    cell.questionLabel.text = [wjStringProcessor filterHTMLWithString:tmp.questionInfo.questionContent];
+    cell.questionLabel.text = (tmp.associateAction == 501) ? tmp.articleInfo.title : [wjStringProcessor filterHTMLWithString:tmp.questionInfo.questionContent];
     cell.detailLabel.text = [wjStringProcessor processAnswerDetailString:tmp.answerInfo.answerContent];
     cell.actionLabel.tag = row;
     cell.questionLabel.tag = row;
@@ -225,9 +226,19 @@
 - (void)pushQuestionControllerWithRow:(NSUInteger)row {
     QuestionViewController *qVC = [[QuestionViewController alloc]initWithNibName:@"QuestionViewController" bundle:nil];
     HomeCell *cell = (HomeCell *)dataInView[row];
-    qVC.questionId = [NSString stringWithFormat:@"%ld", cell.questionInfo.questionId];
-    qVC.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:qVC animated:YES];
+    if (cell.associateAction == 501) {
+        // 文章
+        NSLog(@"%ld", cell.articleInfo.aid);
+        AnswerViewController *aVC = [[AnswerViewController alloc] initWithNibName:@"AnswerViewController" bundle:nil];
+        aVC.detailType = 1;
+        aVC.answerId = [NSString stringWithFormat:@"%ld", cell.articleInfo.aid];
+        aVC.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:aVC animated:YES];
+    } else {
+        qVC.questionId = [NSString stringWithFormat:@"%ld", cell.questionInfo.questionId];
+        qVC.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:qVC animated:YES];
+    }
 }
 
 - (void)pushAnswerControllerWithRow:(NSUInteger)row {

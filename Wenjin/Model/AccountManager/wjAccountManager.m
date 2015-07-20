@@ -8,7 +8,6 @@
 
 #import "wjAccountManager.h"
 #import "AFNetworking.h"
-#import "JSONKit.h"
 #import "wjAPIs.h"
 #import "wjCookieManager.h"
 #import "data.h"
@@ -21,7 +20,7 @@
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     [manager POST:[NSString stringWithFormat:@"%@?platform=ios", [wjAPIs login]] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
-        NSDictionary *loginData = [operation.responseString objectFromJSONString];
+        NSDictionary *loginData = (NSDictionary *)responseObject;
         if ([loginData[@"errno"] isEqual: @1]) {
             NSDictionary *userData = loginData[@"rsm"];
             NSString *uid = [userData[@"uid"] stringValue];

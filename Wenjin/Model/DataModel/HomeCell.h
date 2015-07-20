@@ -12,6 +12,7 @@
 #import "TopicInfo.h"
 #import "AnswerInfo.h"
 #import "QuestionInfo.h"
+#import "ArticleInfo.h"
 
 @interface HomeCell : NSObject
 
@@ -24,5 +25,6 @@
 @property (strong, nonatomic) TopicInfo *topicInfo;
 @property (strong, nonatomic) AnswerInfo *answerInfo;
 @property (strong, nonatomic) QuestionInfo *questionInfo;
+@property (strong, nonatomic) ArticleInfo *articleInfo;
 
 @end

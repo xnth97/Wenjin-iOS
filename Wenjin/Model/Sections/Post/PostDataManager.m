@@ -7,7 +7,6 @@
 //
 
 #import "PostDataManager.h"
-#import "JSONKit.h"
 #import "AFNetworking.h"
 #import "wjAPIs.h"
 #import "data.h"
@@ -18,9 +17,9 @@
 + (void)postQuestionWithParameters:(NSDictionary *)parameters success:(void (^)(NSString *))success failure:(void (^)(NSString *))failure {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
-    [manager POST:[NSString stringWithFormat:@"%@?platform=ios", [wjAPIs postQuestion]] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObj) {
+    [manager POST:[NSString stringWithFormat:@"%@?platform=ios", [wjAPIs postQuestion]] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
-        NSDictionary *pqDic = [operation.responseString objectFromJSONString];
+        NSDictionary *pqDic = (NSDictionary *)responseObject;
         if ([pqDic[@"errno"] isEqual: @1]) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 success((pqDic[@"rsm"])[@"question_id"]);
@@ -43,7 +42,7 @@
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     [manager POST:[NSString stringWithFormat:@"%@?platform=ios", [wjAPIs postAnswer]] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObj) {
         
-        NSDictionary *pqDic = [operation.responseString objectFromJSONString];
+        NSDictionary *pqDic = (NSDictionary *)responseObj;
         if ([pqDic[@"errno"] isEqual: @1]) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 success((pqDic[@"rsm"])[@"answer_id"]);
@@ -67,7 +66,7 @@
     NSString *getURLString = [NSString stringWithFormat:@"%@?answer_id=%@&platform=ios", [wjAPIs postAnswerComment], answerId];
     NSDictionary *parameters = @{@"message": message};
     [manager POST:getURLString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSDictionary *dicData = [operation.responseString objectFromJSONString];
+        NSDictionary *dicData = (NSDictionary *)responseObject;
         if ([dicData[@"errno"] isEqual:@1]) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 success();
@@ -133,7 +132,7 @@
     [manager POST:urlString parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         [formData appendPartWithFileData:file name:@"qqfile" fileName:@"img.jpg" mimeType:@"image/jpg"];
     } success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSDictionary *dicData = [operation.responseString objectFromJSONString];
+        NSDictionary *dicData = (NSDictionary *)responseObject;
         if ([dicData[@"errno"] isEqual:@1]) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 success((dicData[@"rsm"])[@"attach_id"]);
@@ -158,8 +157,8 @@
                                  @"source": [data osVersion]};
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
-    [manager POST:[NSString stringWithFormat:@"%@?platform=ios", [wjAPIs feedback]] parameters:parameters success:^(AFHTTPRequestOperation *operation, id robj) {
-        NSDictionary *dicData = [operation.responseString objectFromJSONString];
+    [manager POST:[NSString stringWithFormat:@"%@?platform=ios", [wjAPIs feedback]] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSDictionary *dicData = (NSDictionary *)responseObject;
         if ([dicData[@"errno"] isEqual:@1]) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 success();

@@ -104,12 +104,13 @@
 		E9DB26F91AD55D3E00C3C60D /* AnswerCommentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E9DB26F71AD55D3E00C3C60D /* AnswerCommentTableViewCell.m */; };
 		E9DB26FA1AD55D3E00C3C60D /* AnswerCommentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9DB26F81AD55D3E00C3C60D /* AnswerCommentTableViewCell.xib */; };
 		E9DB26FE1AD562E100C3C60D /* PostAnswerCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9DB26FD1AD562E100C3C60D /* PostAnswerCommentViewController.m */; };
+		E9DCE9481B5CF10000076CA3 /* ArticleInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = E9DCE9471B5CF10000076CA3 /* ArticleInfo.m */; };
 		E9E286C61AC7F632005B6ED7 /* HomeDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E9E286C51AC7F632005B6ED7 /* HomeDataManager.m */; };
 		E9E286C81AC805F2005B6ED7 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E9E286C71AC805F2005B6ED7 /* Localizable.strings */; };
 		E9E38F361ADA288400136161 /* ExploreTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9E38F351ADA288400136161 /* ExploreTableViewController.m */; };
 		E9EB618A1ACC187A001F5DA3 /* QuestionAnswerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E9EB61881ACC187A001F5DA3 /* QuestionAnswerTableViewCell.m */; };
 		E9EB618B1ACC187A001F5DA3 /* QuestionAnswerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9EB61891ACC187A001F5DA3 /* QuestionAnswerTableViewCell.xib */; };
-		E9EB618F1ACC2B2D001F5DA3 /* AnswerDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E9EB618E1ACC2B2D001F5DA3 /* AnswerDataManager.m */; };
+		E9EB618F1ACC2B2D001F5DA3 /* DetailDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E9EB618E1ACC2B2D001F5DA3 /* DetailDataManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -294,6 +295,8 @@
 		E9DB26F81AD55D3E00C3C60D /* AnswerCommentTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AnswerCommentTableViewCell.xib; path = View/AnswerCommentCell/AnswerCommentTableViewCell.xib; sourceTree = "<group>"; };
 		E9DB26FC1AD562E100C3C60D /* PostAnswerCommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PostAnswerCommentViewController.h; path = Controller/PostAnswerComment/PostAnswerCommentViewController.h; sourceTree = "<group>"; };
 		E9DB26FD1AD562E100C3C60D /* PostAnswerCommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PostAnswerCommentViewController.m; path = Controller/PostAnswerComment/PostAnswerCommentViewController.m; sourceTree = "<group>"; };
+		E9DCE9461B5CF10000076CA3 /* ArticleInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ArticleInfo.h; path = Model/DataModel/ArticleInfo.h; sourceTree = "<group>"; };
+		E9DCE9471B5CF10000076CA3 /* ArticleInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ArticleInfo.m; path = Model/DataModel/ArticleInfo.m; sourceTree = "<group>"; };
 		E9E286C41AC7F632005B6ED7 /* HomeDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomeDataManager.h; path = Model/Sections/Home/HomeDataManager.h; sourceTree = "<group>"; };
 		E9E286C51AC7F632005B6ED7 /* HomeDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomeDataManager.m; path = Model/Sections/Home/HomeDataManager.m; sourceTree = "<group>"; };
 		E9E286C71AC805F2005B6ED7 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
@@ -302,8 +305,8 @@
 		E9EB61871ACC187A001F5DA3 /* QuestionAnswerTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QuestionAnswerTableViewCell.h; path = View/QuestionAnswerTableViewCell/QuestionAnswerTableViewCell.h; sourceTree = "<group>"; };
 		E9EB61881ACC187A001F5DA3 /* QuestionAnswerTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QuestionAnswerTableViewCell.m; path = View/QuestionAnswerTableViewCell/QuestionAnswerTableViewCell.m; sourceTree = "<group>"; };
 		E9EB61891ACC187A001F5DA3 /* QuestionAnswerTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = QuestionAnswerTableViewCell.xib; path = View/QuestionAnswerTableViewCell/QuestionAnswerTableViewCell.xib; sourceTree = "<group>"; };
-		E9EB618D1ACC2B2D001F5DA3 /* AnswerDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AnswerDataManager.h; path = Model/Sections/Answer/AnswerDataManager.h; sourceTree = "<group>"; };
-		E9EB618E1ACC2B2D001F5DA3 /* AnswerDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AnswerDataManager.m; path = Model/Sections/Answer/AnswerDataManager.m; sourceTree = "<group>"; };
+		E9EB618D1ACC2B2D001F5DA3 /* DetailDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DetailDataManager.h; path = Model/Sections/Answer/DetailDataManager.h; sourceTree = "<group>"; };
+		E9EB618E1ACC2B2D001F5DA3 /* DetailDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DetailDataManager.m; path = Model/Sections/Answer/DetailDataManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -994,7 +997,7 @@
 				E96F09301AD8FF1700847E5E /* Explore */,
 				E96F09291AD7E39F00847E5E /* Topic */,
 				E90F42711ACD978100263622 /* User */,
-				E9EB618C1ACC2B0D001F5DA3 /* Answer */,
+				E9EB618C1ACC2B0D001F5DA3 /* Answer & Article */,
 				E9C1A1BD1ACAF20300892B60 /* Question */,
 				E93063BF1ACA4E4F000140C1 /* Post */,
 				E9E286C31AC7F617005B6ED7 /* Home */,
@@ -1033,6 +1036,8 @@
 				E98EBE7E1B51579B00710B38 /* AnswerInfo.m */,
 				E98EBE801B5157E400710B38 /* QuestionInfo.h */,
 				E98EBE811B5157E400710B38 /* QuestionInfo.m */,
+				E9DCE9461B5CF10000076CA3 /* ArticleInfo.h */,
+				E9DCE9471B5CF10000076CA3 /* ArticleInfo.m */,
 			);
 			name = "Data Models";
 			sourceTree = "<group>";
@@ -1047,13 +1052,13 @@
 			name = QuestionAnswerTableViewCell;
 			sourceTree = "<group>";
 		};
-		E9EB618C1ACC2B0D001F5DA3 /* Answer */ = {
+		E9EB618C1ACC2B0D001F5DA3 /* Answer & Article */ = {
 			isa = PBXGroup;
 			children = (
-				E9EB618D1ACC2B2D001F5DA3 /* AnswerDataManager.h */,
-				E9EB618E1ACC2B2D001F5DA3 /* AnswerDataManager.m */,
+				E9EB618D1ACC2B2D001F5DA3 /* DetailDataManager.h */,
+				E9EB618E1ACC2B2D001F5DA3 /* DetailDataManager.m */,
 			);
-			name = Answer;
+			name = "Answer & Article";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1220,7 +1225,7 @@
 				E92388E71B46936E00C3EE3A /* ProfileEditTableViewController.m in Sources */,
 				E9D602131B47E09000C95B35 /* QuestionDraft.m in Sources */,
 				E9C9C7071AC71E3600CC228A /* wjAPIs.m in Sources */,
-				E9EB618F1ACC2B2D001F5DA3 /* AnswerDataManager.m in Sources */,
+				E9EB618F1ACC2B2D001F5DA3 /* DetailDataManager.m in Sources */,
 				E952E1671AE520DE00F8B7BF /* FeedbackForm.m in Sources */,
 				E93063B51ACA3982000140C1 /* HomeTableViewCell.m in Sources */,
 				E99577691AE76282002E5107 /* NSTimer+Blocks.m in Sources */,
@@ -1251,6 +1256,7 @@
 				E97F7A421B29FED700746E0B /* MDSwipePageView.m in Sources */,
 				E9C1A1C01ACAF21F00892B60 /* QuestionDataManager.m in Sources */,
 				E93063C21ACA4E69000140C1 /* PostDataManager.m in Sources */,
+				E9DCE9481B5CF10000076CA3 /* ArticleInfo.m in Sources */,
 				E91D17E21B47CE79003A532E /* wjDatabaseManager.m in Sources */,
 				E90FBB8E1B4829F8005DD1B6 /* DraftTableViewCell.m in Sources */,
 				E92298501AF0E4EF000CC8F7 /* WeChatSessionActivity.m in Sources */,

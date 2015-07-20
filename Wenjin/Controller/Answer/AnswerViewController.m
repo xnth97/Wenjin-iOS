@@ -7,7 +7,7 @@
 //
 
 #import "AnswerViewController.h"
-#import "AnswerDataManager.h"
+#import "DetailDataManager.h"
 #import "wjStringProcessor.h"
 #import "MsgDisplay.h"
 #import "wjAPIs.h"
@@ -17,6 +17,7 @@
 #import "wjOperationManager.h"
 #import <KVOController/FBKVOController.h>
 #import "AnswerInfo.h"
+#import "ArticleInfo.h"
 #import "AnswerCommentTableViewController.h"
 #import "wjAppearanceManager.h"
 #import "WeChatMomentsActivity.h"
@@ -34,9 +35,15 @@
     
     NSString *questionId;
     NSString *answerSummary;
+    NSInteger uid;
+    NSString *content;
+    NSString *nickName;
+    NSString *signature;
+    NSString *avatarFile;
 }
 
 @synthesize answerId;
+@synthesize detailType;
 
 @synthesize userAvatarView;
 @synthesize userNameLabel;
@@ -50,6 +57,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
     self.title = @"回答";
     self.automaticallyAdjustsScrollViewInsets = YES;
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
@@ -98,45 +106,71 @@
         
     }];
     
-    [AnswerDataManager getAnswerDataWithAnswerID:answerId success:^(AnswerInfo *ansData) {
-        NSString *processedHTML = [wjStringProcessor convertToBootstrapHTMLWithExtraBlankLinesWithContent:ansData.answerContent];
-        [answerContentView loadHTMLString:processedHTML baseURL:[NSURL URLWithString:[wjAPIs baseURL]]];
-        userNameLabel.text = ansData.nickName;
-        self.title = [NSString stringWithFormat:@"%@ 的回答", ansData.nickName];
-        NSString *ans = [wjStringProcessor processAnswerDetailString:ansData.answerContent];
-        NSString *ansStr = (ans.length > 60) ? [NSString stringWithFormat:@"%@...", [ans substringToIndex:60]] : ans;
-        answerSummary = [NSString stringWithFormat:@"%@ 的回答：%@", ansData.nickName, ansStr];
-        userSigLabel.text = ansData.signature;
-        [userAvatarView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", [wjAPIs avatarPath], ansData.avatarFile]] placeholderImage:[UIImage imageNamed:@"placeholderAvatar.png"]];
-        
-        voteValue = ansData.voteValue;
-        [self setValue:@(ansData.agreeCount) forKey:@"agreeCount"];
-        if (voteValue == 0) {
-            [agreeImageView setTintColor:notVotedColor];
-        } else {
-            [agreeImageView setTintColor:votedColor];
-        }
-
-        [agreeBtn addTarget:self action:@selector(voteOperation) forControlEvents:UIControlEventTouchUpInside];
-        
-        questionId = [NSString stringWithFormat:@"%ld", ansData.questionId];
-        
-        UITapGestureRecognizer *userTapRecognizer = [[UITapGestureRecognizer alloc] bk_initWithHandler:^(id weakSender, UIGestureRecognizerState state, CGPoint location) {
-            if (ansData.uid != -1) {
-                UserViewController *uVC = [[UserViewController alloc]initWithNibName:@"UserViewController" bundle:nil];
-                uVC.userId = [NSString stringWithFormat:@"%ld", ansData.uid];
-                [self.navigationController pushViewController:uVC animated:YES];
-            } else {
-                [MsgDisplay showErrorMsg:@"无法查看匿名用户哦~"];
-            }
+    if (detailType == DetailTypeAnswer) {
+        [DetailDataManager getAnswerDataWithAnswerID:answerId success:^(AnswerInfo *ansData) {
+            content = ansData.answerContent;
+            nickName = ansData.nickName;
+            signature = ansData.signature;
+            voteValue = ansData.voteValue;
+            [self setValue:@(ansData.agreeCount) forKey:@"agreeCount"];
+            questionId = [NSString stringWithFormat:@"%ld", ansData.questionId];
+            uid = ansData.uid;
+            avatarFile = ansData.avatarFile;
+            
+            [self updateView];
+            
+        } failure:^(NSString *errStr) {
+            [MsgDisplay showErrorMsg:errStr];
         }];
-        [userTapRecognizer setNumberOfTapsRequired:1];
-        [userInfoView setUserInteractionEnabled:YES];
-        [userInfoView addGestureRecognizer:userTapRecognizer];
-        
-    } failure:^(NSString *errStr) {
-        [MsgDisplay showErrorMsg:errStr];
+    } else if (detailType == DetailTypeArticle) {
+        [DetailDataManager getArticleDataWithID:answerId success:^(ArticleInfo *articleData) {
+            content = articleData.message;
+            nickName = articleData.nickName;
+            signature = articleData.signature;
+            voteValue = articleData.voteValue;
+            [self setValue:@(articleData.votes) forKey:@"agreeCount"];
+            uid = articleData.uid;
+            avatarFile = articleData.avatarFile;
+            
+            [self updateView];
+        } failure:^(NSString *errorStr) {
+            [MsgDisplay showErrorMsg:errorStr];
+        }];
+    }
+}
+
+- (void)updateView {
+    NSString *processedHTML = [wjStringProcessor convertToBootstrapHTMLWithExtraBlankLinesWithContent:content];
+    [answerContentView loadHTMLString:processedHTML baseURL:[NSURL URLWithString:[wjAPIs baseURL]]];
+    
+    userNameLabel.text = nickName;
+    self.title = [NSString stringWithFormat:@"%@ 的回答", nickName];
+    NSString *ans = [wjStringProcessor processAnswerDetailString:content];
+    NSString *ansStr = (ans.length > 60) ? [NSString stringWithFormat:@"%@...", [ans substringToIndex:60]] : ans;
+    answerSummary = [NSString stringWithFormat:@"%@ 的回答：%@", nickName, ansStr];
+    userSigLabel.text = signature;
+    [userAvatarView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", [wjAPIs avatarPath], avatarFile]] placeholderImage:[UIImage imageNamed:@"placeholderAvatar.png"]];
+    
+    if (voteValue == 0) {
+        [agreeImageView setTintColor:notVotedColor];
+    } else {
+        [agreeImageView setTintColor:votedColor];
+    }
+    
+    [agreeBtn addTarget:self action:@selector(voteOperation) forControlEvents:UIControlEventTouchUpInside];
+    
+    UITapGestureRecognizer *userTapRecognizer = [[UITapGestureRecognizer alloc] bk_initWithHandler:^(id weakSender, UIGestureRecognizerState state, CGPoint location) {
+        if (uid != -1) {
+            UserViewController *uVC = [[UserViewController alloc]initWithNibName:@"UserViewController" bundle:nil];
+            uVC.userId = [NSString stringWithFormat:@"%ld", uid];
+            [self.navigationController pushViewController:uVC animated:YES];
+        } else {
+            [MsgDisplay showErrorMsg:@"无法查看匿名用户哦~"];
+        }
     }];
+    [userTapRecognizer setNumberOfTapsRequired:1];
+    [userInfoView setUserInteractionEnabled:YES];
+    [userInfoView addGestureRecognizer:userTapRecognizer];
 }
 
 - (void)didReceiveMemoryWarning {

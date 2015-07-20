@@ -8,7 +8,6 @@
 
 #import "TopicDataManager.h"
 #import "AFNetworking.h"
-#import "JSONKit.h"
 #import "wjAPIs.h"
 
 @implementation TopicDataManager
@@ -20,7 +19,7 @@
                                  @"page": [NSNumber numberWithInteger:page],
                                  @"platform": @"ios"};
     [manager GET:[wjAPIs topicList] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSDictionary *dicData = [operation.responseString objectFromJSONString];
+        NSDictionary *dicData = (NSDictionary *)responseObject;
         if ([dicData[@"errno"] isEqual:@1]) {
             NSInteger totalRows = [(dicData[@"rsm"])[@"total_rows"] integerValue];
             if (totalRows != 0) {
@@ -53,7 +52,7 @@
                                  @"topic_id": topicID,
                                  @"platform": @"ios"};
     [manager GET:[wjAPIs topicInfo] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSDictionary *dicData = [operation.responseString objectFromJSONString];
+        NSDictionary *dicData = (NSDictionary *)responseObject;
         if ([dicData[@"errno"] isEqual:@1]) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 success(dicData[@"rsm"]);
@@ -76,7 +75,7 @@
     NSDictionary *parameters = @{@"id": topicId,
                                  @"platform": @"ios"};
     [manager GET:[wjAPIs topicBestAnswer] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSDictionary *dicData = [operation.responseString objectFromJSONString];
+        NSDictionary *dicData = (NSDictionary *)responseObject;
         if ([dicData[@"errno"] isEqual:@1]) {
             NSDictionary *dic = dicData[@"rsm"];
             if ([dic count] != 0) {

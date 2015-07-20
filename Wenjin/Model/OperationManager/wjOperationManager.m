@@ -8,7 +8,6 @@
 
 #import "wjOperationManager.h"
 #import "AFNetworking.h"
-#import "JSONKit.h"
 #import "wjAPIs.h"
 
 @implementation wjOperationManager
@@ -21,7 +20,7 @@
                                  @"platform": @"ios"};
     [manager GET:[wjAPIs followQuestion] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
-        NSDictionary *respObj = [operation.responseString objectFromJSONString];
+        NSDictionary *respObj = (NSDictionary *)responseObject;
         if ([respObj[@"errno"] isEqual: @1]) {
             success((respObj[@"rsm"])[@"type"]);
         } else {
@@ -43,7 +42,7 @@
                                  @"platform": @"ios"};
     [manager GET:[wjAPIs followUser] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
-        NSDictionary *respObj = [operation.responseString objectFromJSONString];
+        NSDictionary *respObj = (NSDictionary *)responseObject;
         if ([respObj[@"errno"] isEqual: @1]) {
             success((respObj[@"rsm"])[@"type"]);
             [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
@@ -65,7 +64,7 @@
     NSDictionary *parameters = @{@"answer_id": answerId,
                                  @"value": [NSNumber numberWithInteger:operation]};
     [manager POST:[NSString stringWithFormat:@"%@?platform=ios", [wjAPIs voteAnswer]] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSDictionary *respObj = [operation.responseString objectFromJSONString];
+        NSDictionary *respObj = (NSDictionary *)responseObject;
         if ([respObj[@"errno"] isEqual: @1]) {
             success();
             [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
@@ -87,7 +86,7 @@
                                  @"platform": @"ios"};
     [manager GET:[wjAPIs followTopic] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
-        NSDictionary *respObj = [operation.responseString objectFromJSONString];
+        NSDictionary *respObj = (NSDictionary *)responseObject;
         if ([respObj[@"errno"] isEqual: @1]) {
             success((respObj[@"rsm"])[@"type"]);
             [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];

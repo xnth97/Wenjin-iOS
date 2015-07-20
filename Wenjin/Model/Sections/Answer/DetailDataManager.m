@@ -6,12 +6,11 @@
 //  Copyright (c) 2015年 TWT Studio. All rights reserved.
 //
 
-#import "AnswerDataManager.h"
+#import "DetailDataManager.h"
 #import "AFNetworking.h"
-#import "JSONKit.h"
 #import "wjAPIs.h"
 
-@implementation AnswerDataManager
+@implementation DetailDataManager
 
 + (void)getAnswerDataWithAnswerID:(NSString *)answerId success:(void (^)(AnswerInfo *))success failure:(void (^)(NSString *))failure {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
@@ -20,7 +19,7 @@
                                  @"platform": @"ios"};
     [manager GET:[wjAPIs viewAnswer] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
-        NSDictionary *ansData = [operation.responseString objectFromJSONString];
+        NSDictionary *ansData = (NSDictionary *)responseObject;
         if ([ansData[@"errno"] isEqual:@1]) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 AnswerInfo *answerData = [AnswerInfo objectWithKeyValues:ansData[@"rsm"]];
@@ -46,7 +45,7 @@
                                  @"platform": @"ios"};
     [manager GET:[wjAPIs answerComment] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
-        NSDictionary *commentData = [operation.responseString objectFromJSONString];
+        NSDictionary *commentData = (NSDictionary *)responseObject;
         if ([commentData[@"errno"] isEqual:@1]) {
             id dataObj = commentData[@"rsm"];
             if ([dataObj isKindOfClass:[NSArray class]]) {
@@ -61,6 +60,32 @@
         } else {
             dispatch_async(dispatch_get_main_queue(), ^{
                 failure(commentData[@"err"]);
+            });
+        }
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            failure(error.localizedDescription);
+        });
+    }];
+}
+
++ (void)getArticleDataWithID:(NSString *)aid success:(void (^)(ArticleInfo *))success failure:(void (^)(NSString *))failure {
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+    NSDictionary *parameters = @{@"id": aid,
+                                 @"platform": @"ios"};
+    [manager GET:[wjAPIs articleDetail] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        NSDictionary *artData = (NSDictionary *)responseObject;
+        if ([artData[@"errno"] isEqual:@1]) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                ArticleInfo *articleData = [ArticleInfo objectWithKeyValues:(artData[@"rsm"])[@"article_info"]];
+                success(articleData);
+            });
+        } else {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                failure(artData[@"err"]);
             });
         }
         

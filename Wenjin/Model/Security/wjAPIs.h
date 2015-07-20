@@ -86,6 +86,18 @@
 // 关注话题
 + (NSString *)followTopic;
 
+// 文章详细
++ (NSString *)articleDetail;
+
+// 文章评论
++ (NSString *)articleComment;
+
+// 发表文章评论
++ (NSString *)postArticleComment;
+
+// 文章点赞
++ (NSString *)articleVote;
+
 // 发现
 + (NSString *)explore;
 
