@@ -23,6 +23,7 @@
 #import "WeChatMomentsActivity.h"
 #import "WeChatSessionActivity.h"
 #import "OpenInSafariActivity.h"
+#import "PopMenu.h"
 
 @interface AnswerViewController ()
 
@@ -184,6 +185,8 @@
     NSString *msgString;
     NSString *agreeActionString;
     NSString *disagreeActionString;
+    NSString *agreeIcon = @"voteAgree";
+    NSString *disagreeIcon = @"voteDisagree";
     
     titleString = NSLocalizedString(@"Vote", nil);
     
@@ -204,66 +207,89 @@
         disagreeActionString = @"反对";
     }
     
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:titleString message:msgString preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *agreeAction = [UIAlertAction actionWithTitle:agreeActionString style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-        [wjOperationManager voteAnswerWithAnswerID:answerId operation:1 success:^{
-            switch (voteValue) {
-                case 1:
-                    voteValue = 0;
-                    [self setValue:[NSNumber numberWithInteger:agreeCount - 1] forKey:@"agreeCount"];
-                    [agreeImageView setTintColor:notVotedColor];
-                    break;
-                    
-                case 0:
-                    voteValue = 1;
-                    [self setValue:[NSNumber numberWithInteger:agreeCount + 1] forKey:@"agreeCount"];
-                    [agreeImageView setTintColor:votedColor];
-                    break;
-                    
-                case -1:
-                    voteValue = 1;
-                    [self setValue:[NSNumber numberWithInteger:agreeCount + 1] forKey:@"agreeCount"];
-                    [agreeImageView setTintColor:votedColor];
-                    break;
-                    
-                default:
-                    break;
-            }
-        } failure:^(NSString *errStr) {
-            [MsgDisplay showErrorMsg:errStr];
-        }];
+    NSMutableArray *items = [[NSMutableArray alloc] initWithCapacity:2];
+    MenuItem *agreeItem = [[MenuItem alloc] initWithTitle:agreeActionString iconName:agreeIcon glowColor:[UIColor grayColor]];
+    [items addObject:agreeItem];
+    MenuItem *disagreeItem = [[MenuItem alloc] initWithTitle:disagreeActionString iconName:disagreeIcon glowColor:[UIColor grayColor]];
+    [items addObject:disagreeItem];
+    
+    PopMenu *voteMenu = [[PopMenu alloc] initWithFrame:self.view.bounds items:items];
+    voteMenu.menuAnimationType = kPopMenuAnimationTypeSina;
+    voteMenu.perRowItemCount = 2;
+    [voteMenu setDidSelectedItemCompletion:^(MenuItem *selectedItem) {
+        switch (selectedItem.index) {
+            case 0:
+                [self voteAgreeAction];
+                break;
+            case 1:
+                [self voteDisagreeAction];
+                break;
+            default:
+                break;
+        }
     }];
-    UIAlertAction *disagreeAction = [UIAlertAction actionWithTitle:disagreeActionString style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-        [wjOperationManager voteAnswerWithAnswerID:answerId operation:-1 success:^{
-            switch (voteValue) {
-                case 1:
-                    voteValue = -1;
-                    [self setValue:[NSNumber numberWithInteger:agreeCount - 1] forKey:@"agreeCount"];
-                    [agreeImageView setTintColor:notVotedColor];
-                    break;
-                    
-                case 0:
-                    voteValue = -1;
-                    [agreeImageView setTintColor:notVotedColor];
-                    break;
-                    
-                case -1:
-                    voteValue = 0;
-                    [agreeImageView setTintColor:notVotedColor];
-                    break;
-                    
-                default:
-                    break;
-            }
-        } failure:^(NSString *errStr) {
-            [MsgDisplay showErrorMsg:errStr];
-        }];
-    }];
-    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", nil) style:UIAlertActionStyleCancel handler:nil];
-    [alertController addAction:agreeAction];
-    [alertController addAction:disagreeAction];
-    [alertController addAction:cancelAction];
-    [self presentViewController:alertController animated:YES completion:nil];
+    [voteMenu showMenuAtView:self.navigationController.view];
+    
+//    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:titleString message:msgString preferredStyle:UIAlertControllerStyleAlert];
+//    UIAlertAction *agreeAction = [UIAlertAction actionWithTitle:agreeActionString style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+//        [wjOperationManager voteAnswerWithAnswerID:answerId operation:1 success:^{
+//            switch (voteValue) {
+//                case 1:
+//                    voteValue = 0;
+//                    [self setValue:[NSNumber numberWithInteger:agreeCount - 1] forKey:@"agreeCount"];
+//                    [agreeImageView setTintColor:notVotedColor];
+//                    break;
+//                    
+//                case 0:
+//                    voteValue = 1;
+//                    [self setValue:[NSNumber numberWithInteger:agreeCount + 1] forKey:@"agreeCount"];
+//                    [agreeImageView setTintColor:votedColor];
+//                    break;
+//                    
+//                case -1:
+//                    voteValue = 1;
+//                    [self setValue:[NSNumber numberWithInteger:agreeCount + 1] forKey:@"agreeCount"];
+//                    [agreeImageView setTintColor:votedColor];
+//                    break;
+//                    
+//                default:
+//                    break;
+//            }
+//        } failure:^(NSString *errStr) {
+//            [MsgDisplay showErrorMsg:errStr];
+//        }];
+//    }];
+//    UIAlertAction *disagreeAction = [UIAlertAction actionWithTitle:disagreeActionString style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+//        [wjOperationManager voteAnswerWithAnswerID:answerId operation:-1 success:^{
+//            switch (voteValue) {
+//                case 1:
+//                    voteValue = -1;
+//                    [self setValue:[NSNumber numberWithInteger:agreeCount - 1] forKey:@"agreeCount"];
+//                    [agreeImageView setTintColor:notVotedColor];
+//                    break;
+//                    
+//                case 0:
+//                    voteValue = -1;
+//                    [agreeImageView setTintColor:notVotedColor];
+//                    break;
+//                    
+//                case -1:
+//                    voteValue = 0;
+//                    [agreeImageView setTintColor:notVotedColor];
+//                    break;
+//                    
+//                default:
+//                    break;
+//            }
+//        } failure:^(NSString *errStr) {
+//            [MsgDisplay showErrorMsg:errStr];
+//        }];
+//    }];
+//    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", nil) style:UIAlertActionStyleCancel handler:nil];
+//    [alertController addAction:agreeAction];
+//    [alertController addAction:disagreeAction];
+//    [alertController addAction:cancelAction];
+//    [self presentViewController:alertController animated:YES completion:nil];
 }
 
 - (void)voteAgreeAction {

@@ -11,6 +11,7 @@ pod 'FXForms'
 pod 'FIR.im'
 pod 'FDFullscreenPopGesture'
 pod 'MJExtension'
+pod 'PopMenu'
 
 # pod 'LTNavigationBar'
 # pod 'iOS7Colors'
