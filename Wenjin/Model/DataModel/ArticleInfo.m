@@ -17,6 +17,7 @@
              @"message": @"message",
              @"votes": @"votes",
              @"userName": @"user_name",
+             @"nickName": @"nick_name",
              @"avatarFile": @"avatar_file",
              @"signature": @"signature",
              @"voteValue": @"vote_value"};

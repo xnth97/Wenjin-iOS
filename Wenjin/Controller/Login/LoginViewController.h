@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *loginBtn;
 
 - (IBAction)login;
+- (IBAction)signIn;
 - (IBAction)cancel;
 - (IBAction)nextTextField;
 - (IBAction)backgroundTapped;

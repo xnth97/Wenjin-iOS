@@ -105,6 +105,7 @@
 		E9DB26FA1AD55D3E00C3C60D /* AnswerCommentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9DB26F81AD55D3E00C3C60D /* AnswerCommentTableViewCell.xib */; };
 		E9DB26FE1AD562E100C3C60D /* PostAnswerCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9DB26FD1AD562E100C3C60D /* PostAnswerCommentViewController.m */; };
 		E9DCE9481B5CF10000076CA3 /* ArticleInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = E9DCE9471B5CF10000076CA3 /* ArticleInfo.m */; };
+		E9DCE9511B5D4CBD00076CA3 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9DCE9501B5D4CBD00076CA3 /* WebViewController.m */; };
 		E9E286C61AC7F632005B6ED7 /* HomeDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E9E286C51AC7F632005B6ED7 /* HomeDataManager.m */; };
 		E9E286C81AC805F2005B6ED7 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E9E286C71AC805F2005B6ED7 /* Localizable.strings */; };
 		E9E38F361ADA288400136161 /* ExploreTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9E38F351ADA288400136161 /* ExploreTableViewController.m */; };
@@ -297,6 +298,8 @@
 		E9DB26FD1AD562E100C3C60D /* PostAnswerCommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PostAnswerCommentViewController.m; path = Controller/PostAnswerComment/PostAnswerCommentViewController.m; sourceTree = "<group>"; };
 		E9DCE9461B5CF10000076CA3 /* ArticleInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ArticleInfo.h; path = Model/DataModel/ArticleInfo.h; sourceTree = "<group>"; };
 		E9DCE9471B5CF10000076CA3 /* ArticleInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ArticleInfo.m; path = Model/DataModel/ArticleInfo.m; sourceTree = "<group>"; };
+		E9DCE94F1B5D4CBD00076CA3 /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WebViewController.h; path = Controller/WebView/WebViewController.h; sourceTree = "<group>"; };
+		E9DCE9501B5D4CBD00076CA3 /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WebViewController.m; path = Controller/WebView/WebViewController.m; sourceTree = "<group>"; };
 		E9E286C41AC7F632005B6ED7 /* HomeDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomeDataManager.h; path = Model/Sections/Home/HomeDataManager.h; sourceTree = "<group>"; };
 		E9E286C51AC7F632005B6ED7 /* HomeDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomeDataManager.m; path = Model/Sections/Home/HomeDataManager.m; sourceTree = "<group>"; };
 		E9E286C71AC805F2005B6ED7 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
@@ -840,6 +843,7 @@
 				E99079041ACECC97008DCA22 /* PostAnswer */,
 				E9DB26FB1AD562B800C3C60D /* PostComment */,
 				E9C9C70B1AC7201800CC228A /* Login */,
+				E9DCE9491B5D4B0100076CA3 /* WebViewController */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -989,6 +993,15 @@
 				E9DB26FD1AD562E100C3C60D /* PostAnswerCommentViewController.m */,
 			);
 			name = PostComment;
+			sourceTree = "<group>";
+		};
+		E9DCE9491B5D4B0100076CA3 /* WebViewController */ = {
+			isa = PBXGroup;
+			children = (
+				E9DCE94F1B5D4CBD00076CA3 /* WebViewController.h */,
+				E9DCE9501B5D4CBD00076CA3 /* WebViewController.m */,
+			);
+			name = WebViewController;
 			sourceTree = "<group>";
 		};
 		E9E286C21AC7F611005B6ED7 /* Sections */ = {
@@ -1219,6 +1232,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E9C1A1C41ACBCBB000892B60 /* QuestionHeaderView.m in Sources */,
+				E9DCE9511B5D4CBD00076CA3 /* WebViewController.m in Sources */,
 				E91D17E61B47D14B003A532E /* AnswerDraft.m in Sources */,
 				E9C9C6FE1AC71D4A00CC228A /* data.m in Sources */,
 				E90FBB891B4827D0005DD1B6 /* DraftTableViewController.m in Sources */,
