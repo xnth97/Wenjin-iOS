@@ -9,6 +9,7 @@
 #import "DetailDataManager.h"
 #import "AFNetworking.h"
 #import "wjAPIs.h"
+#import "CommentInfo.h"
 
 @implementation DetailDataManager
 
@@ -50,7 +51,7 @@
             id dataObj = commentData[@"rsm"];
             if ([dataObj isKindOfClass:[NSArray class]]) {
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    success(commentData[@"rsm"]);
+                    success([CommentInfo objectArrayWithKeyValuesArray:commentData[@"rsm"]]);
                 });
             } else {
                 dispatch_async(dispatch_get_main_queue(), ^{

@@ -185,6 +185,7 @@
     cell.avatarView.tag = row;
     cell.delegate = self;
     [cell loadAvatarImageWithApartURL:tmp.userInfo.avatarFile];
+    [cell layoutIfNeeded];
     return cell;
 }
 

@@ -17,6 +17,8 @@
 #import "data.h"
 #import "wjAppearanceManager.h"
 #import "MsgDisplay.h"
+#import "NotificationCell.h"
+#import "MJExtension.h"
 
 @interface NotificationTableViewController () <homeTableViewCellDelegate>
 
@@ -55,7 +57,7 @@
     }];
     
     self.tableView.estimatedRowHeight = 93;
-    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    //self.tableView.rowHeight = UITableViewAutomaticDimension;
     
     [self.tableView triggerPullToRefresh];
     
@@ -128,39 +130,52 @@
     // 101：关注
     // 102：回复
     // 105：评论了你在问题...中的回复
-    // 106：在问题回答评论中提到了你
+    // 116：在问题回答评论中提到了你
     // 107：赞同了你
     
     NSInteger row = [indexPath row];
-    NSDictionary *tmp = dataInView[row];
-    NSString *actionType = [tmp[@"action_type"] stringValue];
+    NotificationCell *tmp = dataInView[row];
+    NSString *actionType = [NSString stringWithFormat:@"%ld", tmp.actionType];
     NSDictionary *actionDic = @{@"101": @"关注了你",
                                 @"102": @"回复了问题",
                                 @"105": @"评论了你在问题中的回复",
-                                @"106": @"在问题回答评论中提到了你",
+                                @"116": @"在问题回答评论中提到了你",
                                 @"107": @"赞同了你"};
-    NSString *actionString = [NSString stringWithFormat:@"%@ %@", tmp[@"nick_name"], actionDic[actionType]];
+    NSString *actionString = [NSString stringWithFormat:@"%@ %@", tmp.nickName, actionDic[actionType]];
     NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:actionString];
-    [str addAttribute:NSForegroundColorAttributeName value:[wjAppearanceManager userActionTextColor] range:NSMakeRange(0, [tmp[@"nick_name"] length])];
+    [str addAttribute:NSForegroundColorAttributeName value:[wjAppearanceManager userActionTextColor] range:NSMakeRange(0, [tmp.nickName length])];
     cell.actionLabel.attributedText = str;
-    cell.questionLabel.text = [wjStringProcessor filterHTMLWithString:tmp[@"title"]];
-    cell.detailLabel.text = (([actionType isEqualToString:@"102"] || [actionType isEqualToString:@"105"]) ? @"I NEED ANSWER DETAIL" : nil);
+    cell.questionLabel.text = [wjStringProcessor filterHTMLWithString:tmp.title];
+    //cell.detailLabel.text = (([actionType isEqualToString:@"102"] || [actionType isEqualToString:@"105"]) ? @"I NEED ANSWER DETAIL" : nil);
+    cell.detailLabel.text = @"";
     cell.actionLabel.tag = row;
     cell.questionLabel.tag = row;
     cell.detailLabel.tag = row;
     cell.avatarView.tag = row;
     cell.delegate = self;
-    [cell loadAvatarImageWithApartURL:tmp[@"avatar"]];
+    [cell loadAvatarImageWithApartURL:tmp.avatar];
+    [cell layoutIfNeeded];
     return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSInteger row = [indexPath row];
+    NotificationCell *tmp = dataInView[row];
+    if (tmp.actionType == 101) {
+        return 52;
+    } else {
+        return UITableViewAutomaticDimension;
+    }
 }
 
 #pragma mark - HomeTableViewCellDelegate
 
 - (void)pushUserControllerWithRow:(NSUInteger)row {
-    if (!([(dataInView[row])[@"uid"] integerValue] == -1)) {
+    NotificationCell *tmp = dataInView[row];
+    if (tmp.uid != -1) {
         UserViewController *uVC = [[UserViewController alloc]initWithNibName:@"UserViewController" bundle:nil];
         uVC.hidesBottomBarWhenPushed = YES;
-        uVC.userId = [(dataInView[row])[@"uid"] stringValue];
+        uVC.userId = [NSString stringWithFormat:@"%ld", tmp.uid];
         [self.navigationController pushViewController:uVC animated:YES];
     } else {
         [MsgDisplay showErrorMsg:@"无法查看匿名用户~"];
@@ -168,21 +183,22 @@
 }
 
 - (void)pushQuestionControllerWithRow:(NSUInteger)row {
-    NSDictionary *tmp = (NSDictionary *)dataInView[row];
-    if (tmp[@"related"] != nil) {
-        QuestionViewController *qVC = [[QuestionViewController alloc]initWithNibName:@"QuestionViewController" bundle:nil];
-        qVC.questionId = [(tmp[@"related"])[@"question_id"] stringValue];
-        qVC.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:qVC animated:YES];
-    }
+//    NotificationCell *tmp = dataInView[row];
+//    if (tmp.related != nil) {
+//        QuestionViewController *qVC = [[QuestionViewController alloc]initWithNibName:@"QuestionViewController" bundle:nil];
+//        qVC.questionId = [NSString stringWithFormat:@"%ld", tmp.related.questionId];
+//        qVC.hidesBottomBarWhenPushed = YES;
+//        [self.navigationController pushViewController:qVC animated:YES];
+//    }
+    [self pushAnswerControllerWithRow:row];
 }
 
 - (void)pushAnswerControllerWithRow:(NSUInteger)row {
-    NSDictionary *tmp = (NSDictionary *)dataInView[row];
-    if (tmp[@"related"] != nil) {
+    NotificationCell *tmp = dataInView[row];
+    if (tmp.related != nil) {
         AnswerViewController *aVC = [[AnswerViewController alloc]initWithNibName:@"AnswerViewController" bundle:nil];
         aVC.hidesBottomBarWhenPushed = YES;
-        aVC.answerId = [(tmp[@"related"])[@"answer_id"] stringValue];
+        aVC.answerId = [NSString stringWithFormat:@"%ld", tmp.related.answerId];
         [self.navigationController pushViewController:aVC animated:YES];
     }
 }

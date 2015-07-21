@@ -9,6 +9,8 @@
 #import "NotificationManager.h"
 #import "AFNetworking.h"
 #import "wjAPIs.h"
+#import "NotificationCell.h"
+#import "MJExtension.h"
 
 @implementation NotificationManager
 
@@ -46,7 +48,7 @@
         
         NSDictionary *responseDic = (NSDictionary *)responseObject;
         if ([responseDic[@"errno"] isEqual:@1]) {
-            NSArray *rows = (responseDic[@"rsm"])[@"rows"];
+            NSArray *rows = [NotificationCell objectArrayWithKeyValuesArray:(responseDic[@"rsm"])[@"rows"]];
             dispatch_async(dispatch_get_main_queue(), ^{
                 success(rows);
             });

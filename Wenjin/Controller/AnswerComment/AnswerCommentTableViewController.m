@@ -13,6 +13,7 @@
 #import "AnswerCommentTableViewCell.h"
 #import "PostAnswerCommentViewController.h"
 #import <BlocksKit/BlocksKit+UIKit.h>
+#import "CommentInfo.h"
 
 @interface AnswerCommentTableViewController ()
 
@@ -124,10 +125,10 @@
         cell = [nib objectAtIndex:0];
     }
     NSUInteger row = [indexPath row];
-    NSDictionary *tmp = rowsData[row];
-    cell.usernameLabel.text = tmp[@"nick_name"];
-    NSString *replyUserText = (tmp[@"at_user"] != nil) ? [NSString stringWithFormat:@"回复 %@：", (tmp[@"at_user"])[@"nick_name"]] : @"";
-    cell.commentLabel.text = [NSString stringWithFormat:@"%@%@", replyUserText, tmp[@"content"]];
+    CommentInfo *tmp = rowsData[row];
+    cell.usernameLabel.text = tmp.nickName;
+    NSString *replyUserText = (tmp.atUid != 0) ? [NSString stringWithFormat:@"回复 %@：", tmp.atNickName] : @"";
+    cell.commentLabel.text = [NSString stringWithFormat:@"%@%@", replyUserText, tmp.content];
     return cell;
 }
 
@@ -139,7 +140,8 @@
     }];
     UIAlertAction *replyAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Reply", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
         
-        NSString *replyName = (rowsData[row])[@"nick_name"];
+        CommentInfo *tmp = rowsData[row];
+        NSString *replyName = tmp.nickName;
         
         PostAnswerCommentViewController *postAC = [[PostAnswerCommentViewController alloc]init];
         postAC.answerId = answerId;
