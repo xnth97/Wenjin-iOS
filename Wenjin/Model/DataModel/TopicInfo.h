@@ -14,5 +14,8 @@
 @property (strong, nonatomic) NSString *topicTitle;
 @property (strong, nonatomic) NSString *urlToken;
 @property (strong, nonatomic) NSString *topicPic;
+@property (strong, nonatomic) NSString *topicDescription;
+@property (nonatomic) NSInteger focusCount;
+@property (nonatomic) NSInteger hasFocus;
 
 @end

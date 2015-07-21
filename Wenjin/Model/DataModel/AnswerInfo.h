@@ -27,5 +27,6 @@
 @property (nonatomic) NSInteger commentCount;
 @property (nonatomic) NSInteger anonymous;
 @property (nonatomic) NSInteger uninterested;
+@property (strong, nonatomic) NSString *questionTitle;
 
 @end

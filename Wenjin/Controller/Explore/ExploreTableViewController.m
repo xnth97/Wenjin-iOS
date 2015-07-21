@@ -15,6 +15,7 @@
 #import "QuestionViewController.h"
 #import "NYSegmentedControl.h"
 #import "wjAppearanceManager.h"
+#import "ExploreCell.h"
 
 @interface ExploreTableViewController ()
 
@@ -191,13 +192,13 @@
         cell = [nib objectAtIndex:0];
     }
     NSUInteger row = [indexPath row];
-    NSDictionary *tmp = dataInTable[row];
-    NSString *actionString = [NSString stringWithFormat:@"%@ 发布了问题", (tmp[@"user_info"])[@"nick_name"]];
+    ExploreCell *tmp = dataInTable[row];
+    NSString *actionString = [NSString stringWithFormat:@"%@ 发布了问题", tmp.userInfo.nickName];
     NSMutableAttributedString *str = [[NSMutableAttributedString alloc]initWithString:actionString];
-    [str addAttribute:NSForegroundColorAttributeName value:[wjAppearanceManager userActionTextColor] range:NSMakeRange(0, [(tmp[@"user_info"])[@"nick_name"] length])];
+    [str addAttribute:NSForegroundColorAttributeName value:[wjAppearanceManager userActionTextColor] range:NSMakeRange(0, [tmp.userInfo.nickName length])];
     cell.actionLabel.attributedText = str;
-    cell.questionLabel.text = [wjStringProcessor filterHTMLWithString:tmp[@"question_content"]];
-    [cell loadAvatarImageWithApartURL:(tmp[@"user_info"])[@"avatar_file"]];
+    cell.questionLabel.text = [wjStringProcessor filterHTMLWithString:tmp.questionContent];
+    [cell loadAvatarImageWithApartURL:tmp.userInfo.avatarFile];
     cell.detailLabel.text = @"";
     cell.actionLabel.tag = row;
     cell.questionLabel.tag = row;
@@ -223,10 +224,11 @@
 // Cell Delegate
 
 - (void)pushUserControllerWithRow:(NSUInteger)row {
-    if (!([((dataInTable[row])[@"user_info"])[@"uid"] integerValue] == -1)) {
+    ExploreCell *tmp = dataInTable[row];
+    if (tmp.userInfo.uid != -1) {
         UserViewController *uVC = [[UserViewController alloc]initWithNibName:@"UserViewController" bundle:nil];
         uVC.hidesBottomBarWhenPushed = YES;
-        uVC.userId = [((dataInTable[row])[@"user_info"])[@"uid"] stringValue];
+        uVC.userId = [NSString stringWithFormat:@"%ld", tmp.userInfo.uid];
         [self.navigationController pushViewController:uVC animated:YES];
     } else {
         [MsgDisplay showErrorMsg:@"无法查看匿名用户~"];
@@ -234,8 +236,9 @@
 }
 
 - (void)pushQuestionControllerWithRow:(NSUInteger)row {
+    ExploreCell *tmp = dataInTable[row];
     QuestionViewController *qVC = [[QuestionViewController alloc]initWithNibName:@"QuestionViewController" bundle:nil];
-    qVC.questionId = [(dataInTable[row])[@"question_id"] stringValue];
+    qVC.questionId = [NSString stringWithFormat:@"%ld", tmp.questionId];
     qVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:qVC animated:YES];
 }

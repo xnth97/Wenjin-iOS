@@ -7,13 +7,14 @@
 //
 
 #import "UserFeedTableViewController.h"
-#import "UserDataManager.h"
 #import "SVPullToRefresh.h"
 #import "MsgDisplay.h"
 #import "wjStringProcessor.h"
 #import "AnswerViewController.h"
 #import "QuestionViewController.h"
 #import "wjAppearanceManager.h"
+#import "AnswerInfo.h"
+#import "FeedQuestion.h"
 
 @interface UserFeedTableViewController ()
 
@@ -157,29 +158,34 @@
     }
     // feedType = 0：提问；1：回答；2：关注
     NSUInteger row = [indexPath row];
-    NSDictionary *tmp = dataInTable[row];
     
     NSString *title = @"";
     NSString *detail = @"";
     NSString *userAction = @"";
     
     switch (feedType) {
-        case 0:
+        case UserFeedTypeQuestion: {
+            FeedQuestion *t = dataInTable[row];
             userAction = @"发布了问题";
-            title = tmp[@"title"];
-            detail = [wjStringProcessor processAnswerDetailString:tmp[@"detail"]];
+            title = t.title;
+            detail = [wjStringProcessor processAnswerDetailString:t.detail];
             break;
+        }
             
-        case 1:
+        case UserFeedTypeAnswer: {
+            AnswerInfo *tmp = dataInTable[row];
             userAction = @"回答了问题";
-            title = tmp[@"question_title"];
-            detail = [wjStringProcessor processAnswerDetailString:tmp[@"answer_content"]];
+            title = tmp.questionTitle;
+            detail = [wjStringProcessor processAnswerDetailString:tmp.answerContent];
             break;
+        }
             
-        case 2:
+        case UserFeedTypeFollowQuestion: {
+            FeedQuestion *tmp = dataInTable[row];
             userAction = @"关注了问题";
-            title = tmp[@"title"];
+            title = tmp.title;
             break;
+        }
             
         default:
             break;
@@ -216,16 +222,19 @@
 // HomeCellDelegate
 
 - (void)pushAnswerControllerWithRow:(NSUInteger)row {
-    if (feedType == 1) {
+    if (feedType == UserFeedTypeAnswer) {
+        AnswerInfo *tmp = dataInTable[row];
         AnswerViewController *aVC = [[AnswerViewController alloc]initWithNibName:@"AnswerViewController" bundle:nil];
-        aVC.answerId = [(dataInTable[row])[@"answer_id"] stringValue];
+        aVC.answerId = [NSString stringWithFormat:@"%ld", tmp.answerId];
         [self.navigationController pushViewController:aVC animated:YES];
-    } else if (feedType == 0) {
+    } else if (feedType == UserFeedTypeQuestion) {
         QuestionViewController *qVC = [[QuestionViewController alloc]initWithNibName:@"QuestionViewController" bundle:nil];
-        if ((feedType == 0) || (feedType == 2)) {
-            qVC.questionId = [(dataInTable[row])[@"id"] stringValue];
-        } else if (feedType == 1) {
-            qVC.questionId = [(dataInTable[row])[@"question_id"] stringValue];
+        if ((feedType == UserFeedTypeQuestion) || (feedType == UserFeedTypeFollowQuestion)) {
+            FeedQuestion *tmp = dataInTable[row];
+            qVC.questionId = [NSString stringWithFormat:@"%ld", tmp.feedId];
+        } else if (feedType == UserFeedTypeAnswer) {
+            AnswerInfo *tmp = dataInTable[row];
+            qVC.questionId = [NSString stringWithFormat:@"%ld", tmp.questionId];
         }
         [self.navigationController pushViewController:qVC animated:YES];
     }
@@ -233,10 +242,12 @@
 
 - (void)pushQuestionControllerWithRow:(NSUInteger)row {
     QuestionViewController *qVC = [[QuestionViewController alloc]initWithNibName:@"QuestionViewController" bundle:nil];
-    if ((feedType == 0) || (feedType == 2)) {
-        qVC.questionId = [(dataInTable[row])[@"id"] stringValue];
-    } else if (feedType == 1) {
-        qVC.questionId = [(dataInTable[row])[@"question_id"] stringValue];
+    if ((feedType == UserFeedTypeQuestion) || (feedType == UserFeedTypeFollowQuestion)) {
+        FeedQuestion *tmp = dataInTable[row];
+        qVC.questionId = [NSString stringWithFormat:@"%ld", tmp.feedId];
+    } else if (feedType == UserFeedTypeAnswer) {
+        AnswerInfo *tmp = dataInTable[row];
+        qVC.questionId = [NSString stringWithFormat:@"%ld", tmp.questionId];
     }
     [self.navigationController pushViewController:qVC animated:YES];
 }

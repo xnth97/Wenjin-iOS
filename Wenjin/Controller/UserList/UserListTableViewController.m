@@ -12,6 +12,7 @@
 #import "UserDataManager.h"
 #import "MsgDisplay.h"
 #import "UserViewController.h"
+#import "UserInfo.h"
 
 @interface UserListTableViewController ()
 
@@ -125,19 +126,19 @@
         cell = [nib objectAtIndex:0];
     }
     NSUInteger row = [indexPath row];
-    NSDictionary *tmp = dataInTable[row];
-    cell.userNameLabel.text = tmp[@"nick_name"];
-    cell.userSigLabel.text = (tmp[@"signature"] == [NSNull null]) ? @"" : tmp[@"signature"];
-    [cell loadImageWithApartURL:tmp[@"avatar_file"]];
+    UserInfo *tmp = dataInTable[row];
+    cell.userNameLabel.text = tmp.nickName;
+    cell.userSigLabel.text = tmp.signature;
+    [cell loadImageWithApartURL:tmp.avatarFile];
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     NSUInteger row = [indexPath row];
-    NSDictionary *tmp = dataInTable[row];
+    UserInfo *tmp = dataInTable[row];
     UserViewController *uVC = [[UserViewController alloc]initWithNibName:@"UserViewController" bundle:nil];
-    uVC.userId = [tmp[@"uid"] stringValue];
+    uVC.userId = [NSString stringWithFormat:@"%ld", tmp.uid];
     [self.navigationController pushViewController:uVC animated:YES];
 }
 

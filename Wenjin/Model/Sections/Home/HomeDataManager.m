@@ -23,7 +23,7 @@
                                  @"platform": @"ios"};
     if (page == 0) {
 //        [wjCacheManager loadCacheDataWithKey:@"homeCache" andBlock:^(NSArray *rows, NSDate *saveDate) {
-//            if ([TWTDataChecker checkDataCompletion:rows]) {
+//            if (rows != nil) {
 //                dispatch_async(dispatch_get_main_queue(), ^{
 //                    success(rows, NO);
 //                });
@@ -38,9 +38,9 @@
         NSDictionary *responseDic = (NSDictionary *)responseObject;
         if ([responseDic[@"errno"] isEqual: @1]) {
             NSArray *rows = [HomeCell objectArrayWithKeyValuesArray:(responseDic[@"rsm"])[@"rows"]];
-//            if (page == 0) {
-//                [wjCacheManager saveCacheData:rows withKey:@"homeCache"];
-//            }
+            if (page == 0) {
+                //[wjCacheManager saveCacheData:rows withKey:@"homeCache"];
+            }
             if ([(responseDic[@"rsm"])[@"total_rows"] isEqual: @0]) {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     success(rows, YES);

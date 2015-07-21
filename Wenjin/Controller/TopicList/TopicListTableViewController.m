@@ -16,6 +16,7 @@
 #import "UserViewController.h"
 #import "NYSegmentedControl.h"
 #import "wjAppearanceManager.h"
+#import "TopicInfo.h"
 
 @interface TopicListTableViewController ()
 
@@ -187,18 +188,18 @@
         cell = [nib objectAtIndex:0];
     }
     NSUInteger row = [indexPath row];
-    NSDictionary *tmp = dataInTable[row];
-    cell.userNameLabel.text = tmp[@"topic_title"];
-    cell.userSigLabel.text = tmp[@"topic_description"];
-    [cell loadTopicImageWithApartURL:tmp[@"topic_pic"]];
+    TopicInfo *tmp = dataInTable[row];
+    cell.userNameLabel.text = tmp.topicTitle;
+    cell.userSigLabel.text = tmp.topicDescription;
+    [cell loadTopicImageWithApartURL:tmp.topicPic];
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSUInteger row = [indexPath row];
-    NSString *topicId = (dataInTable[row])[@"topic_id"];
+    TopicInfo *tmp = dataInTable[row];
     TopicBestAnswerViewController *topicBestAnswer = [[TopicBestAnswerViewController alloc]initWithNibName:@"TopicBestAnswerViewController" bundle:nil];
-    topicBestAnswer.topicId = topicId;
+    topicBestAnswer.topicId = [NSString stringWithFormat:@"%ld", tmp.topicId];
     topicBestAnswer.hidesBottomBarWhenPushed = YES;
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     [self.navigationController pushViewController:topicBestAnswer animated:YES];

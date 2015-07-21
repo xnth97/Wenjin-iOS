@@ -81,23 +81,23 @@
 
 - (void)refreshData {
     if (userId != nil) {
-        [UserDataManager getUserDataWithID:userId success:^(NSDictionary *_userData) {
+        [UserDataManager getUserDataWithID:userId success:^(UserInfo *_userData) {
             userData = _userData;
             
             UserHeaderView *headerView = [[UserHeaderView alloc]init];
             headerView.delegate = self;
-            headerView.usernameLabel.text = userData[@"nick_name"];
-            headerView.userSigLabel.text = (userData[@"signature"] == [NSNull null]) ? @"" : userData[@"signature"];
-            NSUInteger agreeCount = [userData[@"agree_count"] integerValue];
-            NSUInteger thanksCount = [userData[@"thanks_count"] integerValue];
-            headerView.agreeCountLabel.text = (agreeCount >= 1000) ? [NSString stringWithFormat:@"%ldK", agreeCount/1000] : [userData[@"agree_count"] stringValue];
-            headerView.thanksCountLabel.text = (thanksCount >= 1000) ? [NSString stringWithFormat:@"%ldK", thanksCount/1000] : [userData[@"thanks_count"] stringValue];
-            [headerView loadAvatarImageWithApartURLString:userData[@"avatar_file"]];
+            headerView.usernameLabel.text = userData.nickName;
+            headerView.userSigLabel.text = userData.signature;
+            NSUInteger agreeCount = userData.agreeCount;
+            NSUInteger thanksCount = userData.thanksCount;
+            headerView.agreeCountLabel.text = (agreeCount >= 1000) ? [NSString stringWithFormat:@"%ldK", agreeCount/1000] : [NSString stringWithFormat:@"%ld", userData.agreeCount];
+            headerView.thanksCountLabel.text = (thanksCount >= 1000) ? [NSString stringWithFormat:@"%ldK", thanksCount/1000] : [NSString stringWithFormat:@"%ld", userData.thanksCount];
+            [headerView loadAvatarImageWithApartURLString:userData.avatarFile];
             
-            userName = userData[@"nick_name"];
-            userAvatar = userData[@"avatar_file"];
+            userName = userData.nickName;
+            userAvatar = userData.avatarFile;
             
-            if ([userData[@"has_focus"] isEqual:@1]) {
+            if (userData.hasFocus == 1) {
                 [headerView.followButton setTitle:@"取消关注" forState:UIControlStateNormal];
             } else {
                 [headerView.followButton setTitle:@"关注" forState:UIControlStateNormal];
@@ -113,7 +113,7 @@
                                                 @"signature": headerView.userSigLabel.text};
             } else {
                 cellArray = @[@[@"Ta 的提问", @"Ta 的回答", @"Ta 关注的问题", @"Ta 关注的话题"], @[@"Ta 关注的", @"关注 Ta 的"]];
-                self.title = userData[@"nick_name"];
+                self.title = userData.nickName;
             }
             
             [userTableView reloadData];
@@ -146,15 +146,15 @@
     cell.textLabel.text = (cellArray[section])[row];
     if (section == 0) {
         if (row == 0) {
-            cell.detailTextLabel.text = [userData[@"question_count"] stringValue];
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld", userData.questionCount];
         } else if (row == 1) {
-            cell.detailTextLabel.text = [userData[@"answer_count"] stringValue];
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld", userData.answerCount];
         }
     } else if (section == 1) {
         if (row == 0) {
-            cell.detailTextLabel.text = [userData[@"friend_count"] stringValue];
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld", userData.friendCount];
         } else {
-            cell.detailTextLabel.text = [userData[@"fans_count"] stringValue];
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld", userData.fansCount];
         }
     } else if (section == 2) {
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;

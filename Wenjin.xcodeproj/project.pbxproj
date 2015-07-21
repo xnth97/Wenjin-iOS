@@ -22,6 +22,9 @@
 		E91D17DE1B47CDCF003A532E /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E91D17DD1B47CDCF003A532E /* Realm.framework */; };
 		E91D17E21B47CE79003A532E /* wjDatabaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E91D17E11B47CE79003A532E /* wjDatabaseManager.m */; };
 		E91D17E61B47D14B003A532E /* AnswerDraft.m in Sources */ = {isa = PBXBuildFile; fileRef = E91D17E51B47D14B003A532E /* AnswerDraft.m */; };
+		E9203E6C1B5EA12D00C17F10 /* ExploreCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E9203E6B1B5EA12D00C17F10 /* ExploreCell.m */; };
+		E9203E6F1B5EA93B00C17F10 /* TopicBestAnswerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E9203E6E1B5EA93B00C17F10 /* TopicBestAnswerCell.m */; };
+		E9203E721B5EB3AC00C17F10 /* FeedQuestion.m in Sources */ = {isa = PBXBuildFile; fileRef = E9203E711B5EB3AC00C17F10 /* FeedQuestion.m */; };
 		E922984D1AF0B9CA000CC8F7 /* WeChatMomentsActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = E922984C1AF0B9CA000CC8F7 /* WeChatMomentsActivity.m */; };
 		E92298501AF0E4EF000CC8F7 /* WeChatSessionActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = E922984F1AF0E4EF000CC8F7 /* WeChatSessionActivity.m */; };
 		E92388E71B46936E00C3EE3A /* ProfileEditTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E92388E61B46936E00C3EE3A /* ProfileEditTableViewController.m */; };
@@ -151,6 +154,12 @@
 		E91D17E11B47CE79003A532E /* wjDatabaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = wjDatabaseManager.m; path = Model/LocalDataManager/wjDatabaseManager.m; sourceTree = "<group>"; };
 		E91D17E41B47D14B003A532E /* AnswerDraft.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AnswerDraft.h; path = Model/LocalDataManager/DataModel/AnswerDraft.h; sourceTree = "<group>"; };
 		E91D17E51B47D14B003A532E /* AnswerDraft.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AnswerDraft.m; path = Model/LocalDataManager/DataModel/AnswerDraft.m; sourceTree = "<group>"; };
+		E9203E6A1B5EA12D00C17F10 /* ExploreCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ExploreCell.h; path = Model/DataModel/ExploreCell.h; sourceTree = "<group>"; };
+		E9203E6B1B5EA12D00C17F10 /* ExploreCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ExploreCell.m; path = Model/DataModel/ExploreCell.m; sourceTree = "<group>"; };
+		E9203E6D1B5EA93B00C17F10 /* TopicBestAnswerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TopicBestAnswerCell.h; path = Model/DataModel/TopicBestAnswerCell.h; sourceTree = "<group>"; };
+		E9203E6E1B5EA93B00C17F10 /* TopicBestAnswerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TopicBestAnswerCell.m; path = Model/DataModel/TopicBestAnswerCell.m; sourceTree = "<group>"; };
+		E9203E701B5EB3AC00C17F10 /* FeedQuestion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FeedQuestion.h; path = Model/DataModel/FeedQuestion.h; sourceTree = "<group>"; };
+		E9203E711B5EB3AC00C17F10 /* FeedQuestion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FeedQuestion.m; path = Model/DataModel/FeedQuestion.m; sourceTree = "<group>"; };
 		E922984B1AF0B9CA000CC8F7 /* WeChatMomentsActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeChatMomentsActivity.h; sourceTree = "<group>"; };
 		E922984C1AF0B9CA000CC8F7 /* WeChatMomentsActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeChatMomentsActivity.m; sourceTree = "<group>"; };
 		E922984E1AF0E4EF000CC8F7 /* WeChatSessionActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeChatSessionActivity.h; sourceTree = "<group>"; };
@@ -1051,6 +1060,12 @@
 				E98EBE811B5157E400710B38 /* QuestionInfo.m */,
 				E9DCE9461B5CF10000076CA3 /* ArticleInfo.h */,
 				E9DCE9471B5CF10000076CA3 /* ArticleInfo.m */,
+				E9203E6A1B5EA12D00C17F10 /* ExploreCell.h */,
+				E9203E6B1B5EA12D00C17F10 /* ExploreCell.m */,
+				E9203E6D1B5EA93B00C17F10 /* TopicBestAnswerCell.h */,
+				E9203E6E1B5EA93B00C17F10 /* TopicBestAnswerCell.m */,
+				E9203E701B5EB3AC00C17F10 /* FeedQuestion.h */,
+				E9203E711B5EB3AC00C17F10 /* FeedQuestion.m */,
 			);
 			name = "Data Models";
 			sourceTree = "<group>";
@@ -1234,6 +1249,7 @@
 				E9C1A1C41ACBCBB000892B60 /* QuestionHeaderView.m in Sources */,
 				E9DCE9511B5D4CBD00076CA3 /* WebViewController.m in Sources */,
 				E91D17E61B47D14B003A532E /* AnswerDraft.m in Sources */,
+				E9203E721B5EB3AC00C17F10 /* FeedQuestion.m in Sources */,
 				E9C9C6FE1AC71D4A00CC228A /* data.m in Sources */,
 				E90FBB891B4827D0005DD1B6 /* DraftTableViewController.m in Sources */,
 				E92388E71B46936E00C3EE3A /* ProfileEditTableViewController.m in Sources */,
@@ -1273,6 +1289,7 @@
 				E9DCE9481B5CF10000076CA3 /* ArticleInfo.m in Sources */,
 				E91D17E21B47CE79003A532E /* wjDatabaseManager.m in Sources */,
 				E90FBB8E1B4829F8005DD1B6 /* DraftTableViewCell.m in Sources */,
+				E9203E6C1B5EA12D00C17F10 /* ExploreCell.m in Sources */,
 				E92298501AF0E4EF000CC8F7 /* WeChatSessionActivity.m in Sources */,
 				E9DB26E51AD4F32200C3C60D /* UserListTableViewController.m in Sources */,
 				E96F09241AD7D29700847E5E /* TLTagsControl.m in Sources */,
@@ -1299,6 +1316,7 @@
 				E9DB26FE1AD562E100C3C60D /* PostAnswerCommentViewController.m in Sources */,
 				E9C9C70A1AC71E4200CC228A /* wpyEncryption.m in Sources */,
 				E92388F71B46D60200C3EE3A /* TWTDataChecker.m in Sources */,
+				E9203E6F1B5EA93B00C17F10 /* TopicBestAnswerCell.m in Sources */,
 				E9DB26EA1AD4F44B00C3C60D /* UserListTableViewCell.m in Sources */,
 				E93063BE1ACA4DAA000140C1 /* PostQuestionViewController.m in Sources */,
 			);

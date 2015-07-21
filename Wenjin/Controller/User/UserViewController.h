@@ -8,11 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "UserHeaderView.h"
+#import "UserInfo.h"
 
 @interface UserViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, UserHeaderViewDelegate>
 
 @property (strong, nonatomic) NSString *userId;
-@property (strong, nonatomic) NSDictionary *userData;
+@property (strong, nonatomic) UserInfo *userData;
 
 @property (weak, nonatomic) IBOutlet UITableView *userTableView;
 

@@ -7,13 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
-#define DetailTypeAnswer 0
-#define DetailTypeArticle 1
+
+typedef NS_ENUM(NSInteger, DetailType) {
+    DetailTypeAnswer = 0,
+    DetailTypeArticle = 1,
+};
 
 @interface AnswerViewController : UIViewController<UIWebViewDelegate>
 
 @property (strong, nonatomic) NSString *answerId;
-@property (nonatomic) NSInteger detailType;
+@property (nonatomic) DetailType detailType;
 
 @property (weak, nonatomic) IBOutlet UIImageView *userAvatarView;
 @property (weak, nonatomic) IBOutlet UILabel *userNameLabel;

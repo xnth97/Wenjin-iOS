@@ -9,6 +9,8 @@
 #import "TopicDataManager.h"
 #import "AFNetworking.h"
 #import "wjAPIs.h"
+#import "MJExtension.h"
+#import "TopicBestAnswerCell.h"
 
 @implementation TopicDataManager
 
@@ -23,7 +25,7 @@
         if ([dicData[@"errno"] isEqual:@1]) {
             NSInteger totalRows = [(dicData[@"rsm"])[@"total_rows"] integerValue];
             if (totalRows != 0) {
-                NSArray *rowsData = (dicData[@"rsm"])[@"rows"];
+                NSArray *rowsData = [TopicInfo objectArrayWithKeyValuesArray:(dicData[@"rsm"])[@"rows"]];
                 dispatch_async(dispatch_get_main_queue(), ^{
                     success(totalRows, rowsData);
                 });
@@ -45,7 +47,7 @@
     }];
 }
 
-+ (void)getTopicInfoWithTopicID:(NSString *)topicID userID:(NSString *)uid success:(void (^)(NSDictionary *))success failure:(void (^)(NSString *))failure {
++ (void)getTopicInfoWithTopicID:(NSString *)topicID userID:(NSString *)uid success:(void (^)(TopicInfo *))success failure:(void (^)(NSString *))failure {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     NSDictionary *parameters = @{@"uid": uid,
@@ -55,7 +57,7 @@
         NSDictionary *dicData = (NSDictionary *)responseObject;
         if ([dicData[@"errno"] isEqual:@1]) {
             dispatch_async(dispatch_get_main_queue(), ^{
-                success(dicData[@"rsm"]);
+                success([TopicInfo objectWithKeyValues:dicData[@"rsm"]]);
             });
         } else {
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -80,7 +82,7 @@
             NSDictionary *dic = dicData[@"rsm"];
             if ([dic count] != 0) {
                 NSInteger totalRows = [(dicData[@"rsm"])[@"total_rows"] integerValue];
-                NSArray *rowsData = (dicData[@"rsm"])[@"rows"];
+                NSArray *rowsData = [TopicBestAnswerCell objectArrayWithKeyValuesArray:(dicData[@"rsm"])[@"rows"]];
                 dispatch_async(dispatch_get_main_queue(), ^{
                     success(totalRows, rowsData);
                 });

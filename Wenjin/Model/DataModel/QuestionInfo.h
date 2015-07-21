@@ -15,5 +15,7 @@
 @property (strong, nonatomic) NSString *questionDetail;
 @property (nonatomic) NSInteger focusCount;
 @property (nonatomic) NSInteger hasFocus;
+@property (nonatomic) NSInteger publishedUid;
+@property (nonatomic) NSInteger anonymous;
 
 @end

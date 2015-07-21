@@ -9,6 +9,8 @@
 #import "ExploreDataManager.h"
 #import "AFNetworking.h"
 #import "wjAPIs.h"
+#import "MJExtension.h"
+#import "ExploreCell.h"
 
 @implementation ExploreDataManager
 
@@ -25,7 +27,7 @@
         if ([dicData[@"errno"] isEqual:@1]) {
             NSInteger totalRows = [(dicData[@"rsm"])[@"total_rows"] integerValue];
             if (totalRows != 0) {
-                NSArray *rowsData = (dicData[@"rsm"])[@"rows"];
+                NSArray *rowsData = [ExploreCell objectArrayWithKeyValuesArray:(dicData[@"rsm"])[@"rows"]];
                 dispatch_async(dispatch_get_main_queue(), ^{
                     success(NO, rowsData);
                 });
