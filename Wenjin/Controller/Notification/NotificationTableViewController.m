@@ -19,6 +19,7 @@
 #import "MsgDisplay.h"
 #import "NotificationCell.h"
 #import "MJExtension.h"
+#import <BlocksKit+UIKit.h>
 
 @interface NotificationTableViewController () <homeTableViewCellDelegate>
 
@@ -28,6 +29,8 @@
     NSMutableArray *rowsData;
     NSMutableArray *dataInView;
     NSInteger currentPage;
+    
+    UIView *noNotificationView;
 }
 
 - (void)viewDidLoad {
@@ -48,6 +51,18 @@
     dataInView = [[NSMutableArray alloc]init];
     currentPage = 0;
     
+    noNotificationView = ({
+        UIView *view = [[UIView alloc] initWithFrame:self.tableView.bounds];
+        view.backgroundColor = [UIColor whiteColor];
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0.5 * view.frame.size.height - 10, view.frame.size.width, 20)];
+        label.text = @"暂无未读通知";
+        label.textAlignment = NSTextAlignmentCenter;
+        label.textColor = [UIColor darkGrayColor];
+        label.font = [UIFont systemFontOfSize:18.0];
+        [view addSubview:label];
+        view;
+    });
+    
     __weak NotificationTableViewController *weakSelf = self;
     [self.tableView addPullToRefreshWithActionHandler:^{
         [weakSelf refreshContent];
@@ -55,6 +70,22 @@
     [self.tableView addInfiniteScrollingWithActionHandler:^{
         [weakSelf nextPage];
     }];
+    
+    UIBarButtonItem *clearAllBtn = [[UIBarButtonItem alloc] bk_initWithTitle:@"全部已读" style:UIBarButtonItemStylePlain handler:^(id sender) {
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"全部清除" message:@"是否要清除全部未读消息？" preferredStyle: UIAlertControllerStyleAlert];
+        UIAlertAction *cancel = [UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", nil) style:UIAlertActionStyleCancel handler:nil];
+        UIAlertAction *clearAll = [UIAlertAction actionWithTitle:@"全部清除" style: UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
+            [NotificationManager readAllNotificationsWithCompletionBlock:^{
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"newNotification" object:nil];
+                [dataInView removeAllObjects];
+                [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
+            }];
+        }];
+        [alertController addAction:cancel];
+        [alertController addAction:clearAll];
+        [self presentViewController:alertController animated:YES completion:nil];
+    }];
+    self.navigationItem.leftBarButtonItem = clearAllBtn;
     
     self.tableView.estimatedRowHeight = 93;
     //self.tableView.rowHeight = UITableViewAutomaticDimension;
@@ -68,10 +99,17 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"newNotification" object:nil];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+#pragma mark - Private Methods
 
 - (void)getList {
     [NotificationManager getNotificationDataReadOrNot:NO page:currentPage success:^(NSArray *_rowsData) {
@@ -89,6 +127,7 @@
         }
         [self.tableView.infiniteScrollingView stopAnimating];
         [self.tableView.pullToRefreshView stopAnimating];
+        [self checkNoNotificationView];
     } failure:^(NSString *errStr) {
         [MsgDisplay showErrorMsg:errStr];
         [self.tableView.infiniteScrollingView stopAnimating];
@@ -105,6 +144,16 @@
     currentPage = 0;
     rowsData = [[NSMutableArray alloc] init];
     [self getList];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"newNotification" object:nil];
+    [self checkNoNotificationView];
+}
+
+- (void)checkNoNotificationView {
+    if (dataInView.count == 0) {
+        [self.view addSubview:noNotificationView];
+    } else if (dataInView.count > 0) {
+        [noNotificationView removeFromSuperview];
+    }
 }
 
 #pragma mark - UITableViewDelegate
@@ -154,7 +203,8 @@
     cell.avatarView.tag = row;
     cell.delegate = self;
     [cell loadAvatarImageWithApartURL:tmp.avatar];
-    [cell layoutIfNeeded];
+    cell.questionLabel.preferredMaxLayoutWidth = CGRectGetWidth(cell.questionLabel.frame);
+    //[cell layoutIfNeeded];
     return cell;
 }
 
@@ -177,6 +227,13 @@
         uVC.hidesBottomBarWhenPushed = YES;
         uVC.userId = [NSString stringWithFormat:@"%ld", tmp.uid];
         [self.navigationController pushViewController:uVC animated:YES];
+        if (tmp.actionType == 101 || tmp.actionType == 107) {
+            [NotificationManager readNotificationWithNotificationID:tmp.notificationId];
+            [dataInView removeObjectAtIndex:row];
+            [self.tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:row inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
+            [self.tableView reloadData];
+            [self checkNoNotificationView];
+        }
     } else {
         [MsgDisplay showErrorMsg:@"无法查看匿名用户~"];
     }
@@ -201,6 +258,11 @@
         aVC.answerId = [NSString stringWithFormat:@"%ld", tmp.related.answerId];
         [self.navigationController pushViewController:aVC animated:YES];
     }
+    [NotificationManager readNotificationWithNotificationID:tmp.notificationId];
+    [dataInView removeObjectAtIndex:row];
+    [self.tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:row inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
+    [self.tableView reloadData];
+    [self checkNoNotificationView];
 }
 
 

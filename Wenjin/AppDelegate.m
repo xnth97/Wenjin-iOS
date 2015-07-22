@@ -106,7 +106,7 @@
 //    }
     completionHandler(UIBackgroundFetchResultNewData);
     if (application.applicationState == UIApplicationStateActive) {
-        
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"newNotification" object:userInfo];
     }
 }
 

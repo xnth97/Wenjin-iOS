@@ -14,4 +14,7 @@
 
 + (void)getNotificationDataReadOrNot:(BOOL)isRead page:(NSInteger)page success:(void(^)(NSArray *rowsData))success failure:(void(^)(NSString *errStr))failure;
 
++ (void)readNotificationWithNotificationID:(NSInteger)notificationId;
++ (void)readAllNotificationsWithCompletionBlock:(void(^)())block;
+
 @end

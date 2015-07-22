@@ -66,4 +66,22 @@
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 }
 
++ (void)readNotificationWithNotificationID:(NSInteger)notificationId {
+    NSDictionary *parameters = @{@"notification_id": [NSString stringWithFormat:@"%ld", notificationId],
+                                 @"platform": @"ios"};
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+    [manager GET:[wjAPIs readNotification] parameters:parameters success:nil failure:nil];
+}
+
++ (void)readAllNotificationsWithCompletionBlock:(void (^)())block {
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+    [manager GET:[wjAPIs readNotification] parameters:@{@"platform": @"ios"} success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        block();
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+    }];
+}
+
 @end
