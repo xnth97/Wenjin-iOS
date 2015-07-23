@@ -33,6 +33,8 @@
 @synthesize userTableView;
 @synthesize userData;
 
+#pragma mark - Life Cycle
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
@@ -42,6 +44,8 @@
     self.userTableView.delegate = self;
     
     cellArray = @[];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshAvatar) name:@"refreshAvatar" object:nil];
     
     /*
     if ([self respondsToSelector:@selector(automaticallyAdjustsScrollViewInsets)]) {
@@ -78,6 +82,21 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"pushSetting"] || [segue.identifier isEqualToString:@"pushProfileEdit"]) {
+        self.navigationController.view.backgroundColor = [UIColor whiteColor];
+        UIViewController *des = segue.destinationViewController;
+        des.hidesBottomBarWhenPushed = YES;
+    }
+}
+
+#pragma mark - Private Methods
 
 - (void)refreshData {
     if (userId != nil) {
@@ -124,6 +143,13 @@
         }];
     }
 }
+
+- (void)refreshAvatar {
+    UserHeaderView *headerView = (UserHeaderView *)self.userTableView.tableHeaderView;
+    [headerView reloadAvatarImageWithApartURLString:userAvatar];
+}
+
+#pragma mark - Table View Delegate & Data Source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return [cellArray count];
@@ -211,7 +237,7 @@
     }
 }
 
-// UserHeaderViewDelegate
+#pragma mark - UserHeaderViewDelegate
 
 - (void)followUser {
     [wjOperationManager followPeopleWithUserID:userId success:^(NSString *operationType) {
@@ -228,15 +254,5 @@
         [MsgDisplay showErrorMsg:errStr];
     }];
 }
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"pushSetting"] || [segue.identifier isEqualToString:@"pushProfileEdit"]) {
-        self.navigationController.view.backgroundColor = [UIColor whiteColor];
-        UIViewController *des = segue.destinationViewController;
-        des.hidesBottomBarWhenPushed = YES;
-    }
-}
-
 
 @end

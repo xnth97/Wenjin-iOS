@@ -112,6 +112,12 @@
 + (NSString *)readNotification;
 + (NSString *)notificationNumber;
 
+// 修改用户信息
++ (NSString *)profileSetting;
+
+// 修改用户头像
++ (NSString *)avatarUpload;
+
 // Bug HD Key
 + (NSString *)firKey;
 

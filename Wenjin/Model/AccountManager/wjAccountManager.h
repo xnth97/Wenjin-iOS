@@ -22,4 +22,7 @@
 + (void)logout;
 + (BOOL)userIsLoggedIn;
 
++ (void)profileSettingWithUID:(NSString *)uid nickName:(NSString *)nickName signature:(NSString *)signature birthday:(NSDate *)birthday success:(void(^)())success failure:(void(^)(NSString *errorStr))failure;
++ (void)uploadAvatar:(id)avatarFile success:(void(^)())success failure:(void(^)(NSString *errorStr))failure;
+
 @end

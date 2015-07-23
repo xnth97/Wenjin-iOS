@@ -58,6 +58,21 @@
     userAvatarView.clipsToBounds = YES;
 }
 
+- (void)reloadAvatarImageWithApartURLString:(NSString *)urlStr {
+    // Do not cache in case user changed his avatar.
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", [wjAPIs avatarPath], urlStr]]];
+    request.cachePolicy = NSURLRequestReloadIgnoringCacheData;
+    [userAvatarView setImageWithURLRequest:request placeholderImage:[UIImage imageNamed:@"placeholderAvatar.png"] success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            userAvatarView.image = image;
+        });
+    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+        
+    }];
+    userAvatarView.layer.cornerRadius = userAvatarView.frame.size.width / 2;
+    userAvatarView.clipsToBounds = YES;
+}
+
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.

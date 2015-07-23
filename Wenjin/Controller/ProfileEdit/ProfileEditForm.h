@@ -20,7 +20,6 @@ typedef NS_ENUM(NSInteger, gender) {
 
 @property (copy, nonatomic) NSString *nickname;
 @property (copy, nonatomic) UIImage *avatar;
-@property (assign, nonatomic) NSInteger gender;
 @property (copy, nonatomic) NSDate *birthday;
 @property (copy, nonatomic) NSString *signature;
 

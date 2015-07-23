@@ -24,6 +24,7 @@
 #import "WeChatSessionActivity.h"
 #import "OpenInSafariActivity.h"
 #import "PopMenu.h"
+#import "QuestionViewController.h"
 
 @interface AnswerViewController ()
 
@@ -54,6 +55,8 @@
 @synthesize userInfoView;
 @synthesize agreeCount;
 @synthesize agreeImageView;
+
+#pragma mark - Life Cycle
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -140,6 +143,27 @@
     }
 }
 
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - IBActions
+
+- (IBAction)pushCommentViewController {
+    AnswerCommentTableViewController *commentVC = [[AnswerCommentTableViewController alloc]initWithStyle:UITableViewStylePlain];
+    commentVC.answerId = answerId;
+    [self.navigationController pushViewController:commentVC animated:YES];
+}
+
+- (IBAction)pushQuestionViewController {
+    QuestionViewController *questionVC = [[QuestionViewController alloc] initWithNibName:@"QuestionViewController" bundle:nil];
+    questionVC.questionId = questionId;
+    [self.navigationController pushViewController:questionVC animated:YES];
+}
+
+#pragma mark - Private Methods
+
 - (void)updateView {
     NSString *processedHTML = [wjStringProcessor convertToBootstrapHTMLWithExtraBlankLinesWithContent:content];
     [answerContentView loadHTMLString:processedHTML baseURL:[NSURL URLWithString:[wjAPIs baseURL]]];
@@ -172,11 +196,6 @@
     [userTapRecognizer setNumberOfTapsRequired:1];
     [userInfoView setUserInteractionEnabled:YES];
     [userInfoView addGestureRecognizer:userTapRecognizer];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (void)voteOperation {
@@ -348,11 +367,7 @@
     }];
 }
 
-- (IBAction)pushCommentViewController {
-    AnswerCommentTableViewController *commentVC = [[AnswerCommentTableViewController alloc]initWithStyle:UITableViewStylePlain];
-    commentVC.answerId = answerId;
-    [self.navigationController pushViewController:commentVC animated:YES];
-}
+#pragma mark - UIWebViewDelegate
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
     if (navigationType == UIWebViewNavigationTypeLinkClicked) {

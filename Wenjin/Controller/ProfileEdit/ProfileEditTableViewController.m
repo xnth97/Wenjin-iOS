@@ -8,6 +8,9 @@
 
 #import "ProfileEditTableViewController.h"
 #import "ProfileEditForm.h"
+#import "data.h"
+#import "wjAccountManager.h"
+#import "MsgDisplay.h"
 
 @interface ProfileEditTableViewController ()
 
@@ -43,12 +46,39 @@
 }
 
 - (IBAction)submitInfo {
+    [MsgDisplay showLoading];
     ProfileEditForm *form = (ProfileEditForm *)self.formController.form;
     NSString *nickname = form.nickname;
-    UIImage *avatar = form.avatar;
-    NSInteger gender = form.gender;
+    __block UIImage *avatar = form.avatar;
     NSDate *birthday = form.birthday;
     NSString *signature = form.signature;
+    [wjAccountManager profileSettingWithUID:[data shareInstance].myUID nickName:nickname signature:signature birthday:birthday success:^{
+        if (![avatar isEqual:([data shareInstance].myInfo)[@"avatar"]]) {
+            if (avatar.size.width > 600) {
+                CGSize newSize = CGSizeMake(600, 600 * avatar.size.height / avatar.size.width);
+                UIGraphicsBeginImageContext(newSize);
+                [avatar drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
+                avatar = UIGraphicsGetImageFromCurrentImageContext();
+                UIGraphicsEndImageContext();
+            }
+            NSData *avatarData = UIImageJPEGRepresentation(avatar, 0.5);
+            [wjAccountManager uploadAvatar:avatarData success:^{
+                [self.navigationController popViewControllerAnimated:YES];
+                [MsgDisplay dismiss];
+                [MsgDisplay showSuccessMsg:@"个人资料修改成功！"];
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshAvatar" object:nil];
+            } failure:^(NSString *errorStr) {
+                [MsgDisplay dismiss];
+                [MsgDisplay showErrorMsg:errorStr];
+            }];
+        } else {
+            [self.navigationController popViewControllerAnimated:YES];
+            [MsgDisplay dismiss];
+            [MsgDisplay showSuccessMsg:@"个人资料修改成功！"];
+        }
+    } failure:^(NSString *errorStr) {
+        [MsgDisplay showErrorMsg:errorStr];
+    }];
 }
 
 @end

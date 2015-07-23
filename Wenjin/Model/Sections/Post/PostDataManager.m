@@ -86,25 +86,31 @@
 #pragma warning - NOT COMPLETED ABOUT ERRORS
 
 + (void)uploadAttachFromAttributedString:(NSAttributedString *)attrStr withAttachType:(NSString *)type {
+    __block BOOL attributedTextContainsNSTextAttachment = NO;
     NSMutableArray *attachmentArray = [[NSMutableArray alloc] init];
     NSMutableArray *attachIDArray = [[NSMutableArray alloc] init];
     [attrStr enumerateAttribute:NSAttachmentAttributeName inRange:NSMakeRange(0, attrStr.length) options:0 usingBlock:^(id value, NSRange range, BOOL *stop) {
         if (value && [value isKindOfClass:[NSTextAttachment class]] && ((NSTextAttachment *)value).image != nil) {
             [attachmentArray addObject:((NSTextAttachment *)value).image];
+            attributedTextContainsNSTextAttachment = YES;
         }
     }];
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
-        for (int i = 0; i < attachmentArray.count; i ++) {
-            UIImage *img = (UIImage *)attachmentArray[i];
-            NSData *picData = UIImageJPEGRepresentation(img, 0.5);
-            [self uploadAttachFile:picData attachType:type success:^(NSString *attachId) {
-                [attachIDArray addObject:attachId];
-                if (attachIDArray.count == attachmentArray.count) {
-                    [[NSNotificationCenter defaultCenter] postNotificationName:@"attachIDCompleted" object:attachIDArray];
-                }
-            } failure:^(NSString *errorStr) {
-                
-            }];
+        if (attributedTextContainsNSTextAttachment) {
+            for (int i = 0; i < attachmentArray.count; i ++) {
+                UIImage *img = (UIImage *)attachmentArray[i];
+                NSData *picData = UIImageJPEGRepresentation(img, 0.5);
+                [self uploadAttachFile:picData attachType:type success:^(NSString *attachId) {
+                    [attachIDArray addObject:attachId];
+                    if (attachIDArray.count == attachmentArray.count) {
+                        [[NSNotificationCenter defaultCenter] postNotificationName:@"attachIDCompleted" object:attachIDArray];
+                    }
+                } failure:^(NSString *errorStr) {
+                    
+                }];
+            }
+        } else {
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"attachIDCompleted" object:@[]];
         }
     });
 }

@@ -28,5 +28,6 @@ typedef NS_ENUM(NSInteger, DetailType) {
 @property (nonatomic) NSInteger agreeCount;
 
 - (IBAction)pushCommentViewController;
+- (IBAction)pushQuestionViewController;
 
 @end

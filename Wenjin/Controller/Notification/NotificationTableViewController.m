@@ -37,6 +37,7 @@
     [super viewDidLoad];
     self.navigationController.view.backgroundColor = [UIColor whiteColor];
     self.tableView.allowsSelection = NO;
+    self.tableView.tableFooterView = [UIView new];
     
     if ([self respondsToSelector:@selector(automaticallyAdjustsScrollViewInsets)]) {
         self.automaticallyAdjustsScrollViewInsets = NO;
@@ -71,6 +72,11 @@
         [weakSelf nextPage];
     }];
     
+    UIBarButtonItem *refreshBtn = [[UIBarButtonItem alloc] bk_initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh handler:^(id sender) {
+        [self.tableView triggerPullToRefresh];
+    }];
+    self.navigationItem.leftBarButtonItem = refreshBtn;
+    
     UIBarButtonItem *clearAllBtn = [[UIBarButtonItem alloc] bk_initWithTitle:@"全部已读" style:UIBarButtonItemStylePlain handler:^(id sender) {
         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"全部清除" message:@"是否要清除全部未读消息？" preferredStyle: UIAlertControllerStyleAlert];
         UIAlertAction *cancel = [UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", nil) style:UIAlertActionStyleCancel handler:nil];
@@ -85,7 +91,7 @@
         [alertController addAction:clearAll];
         [self presentViewController:alertController animated:YES completion:nil];
     }];
-    self.navigationItem.leftBarButtonItem = clearAllBtn;
+    self.navigationItem.rightBarButtonItem = clearAllBtn;
     
     self.tableView.estimatedRowHeight = 93;
     //self.tableView.rowHeight = UITableViewAutomaticDimension;
@@ -122,7 +128,9 @@
             dataInView = rowsData;
             [self.tableView reloadData];
         } else {
-            [MsgDisplay showErrorMsg:@"已经到最后一页了喔"];
+            if (rowsData.count > 0) {
+                [MsgDisplay showErrorMsg:@"已经到最后一页了喔"];
+            }
             currentPage --;
         }
         [self.tableView.infiniteScrollingView stopAnimating];

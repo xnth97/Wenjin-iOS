@@ -192,15 +192,20 @@
 }
 
 - (void)attachUploadFinished:(NSNotification *)notification {
+    NSString *plainString = @"";
     NSArray *attachIDArr = notification.object;
-    attachIDArr = [attachIDArr sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-        if ([obj1 integerValue] >= [obj2 integerValue]) {
-            return NSOrderedAscending;
-        } else {
-            return NSOrderedDescending;
-        }
-    }];
-    NSString *plainString = [PostDataManager plainStringConvertedFromAttributedString:answerView.attributedText andAttachIDArray:attachIDArr];
+    if (attachIDArr.count == 0) {
+        plainString = answerView.attributedText.string;
+    } else {
+        attachIDArr = [attachIDArr sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+            if ([obj1 integerValue] >= [obj2 integerValue]) {
+                return NSOrderedAscending;
+            } else {
+                return NSOrderedDescending;
+            }
+        }];
+        plainString = [PostDataManager plainStringConvertedFromAttributedString:answerView.attributedText andAttachIDArray:attachIDArr];
+    }
     
     NSDictionary *parameters = @{@"question_id": questionId,
                                  @"answer_content": plainString,
