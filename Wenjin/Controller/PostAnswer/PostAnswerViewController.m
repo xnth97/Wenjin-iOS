@@ -113,7 +113,7 @@
     accessoryToolbar.translucent = YES;
     
     UIBarButtonItem *anonymousBtn = [[UIBarButtonItem alloc]initWithCustomView:isAnonymousControl];
-    UIBarButtonItem *addImageBtn = [[UIBarButtonItem alloc] bk_initWithTitle:@"添加图片" style:UIBarButtonItemStylePlain handler:^(id weakSender) {
+    UIBarButtonItem *addImageBtn = [[UIBarButtonItem alloc] bk_initWithImage:[UIImage imageNamed:@"insertPic"] landscapeImagePhone:nil style:UIBarButtonItemStylePlain handler:^(id weakSender) {
         
         UIAlertController *uploadController = [UIAlertController alertControllerWithTitle:@"上传图片" message:@"" preferredStyle:UIAlertControllerStyleActionSheet];
         UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", nil) style:UIAlertActionStyleCancel handler:nil];

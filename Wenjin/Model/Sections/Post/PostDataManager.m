@@ -97,7 +97,10 @@
     }];
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
         if (attributedTextContainsNSTextAttachment) {
+            
             for (int i = 0; i < attachmentArray.count; i ++) {
+                NSCondition *condition = [[NSCondition alloc] init];
+                
                 UIImage *img = (UIImage *)attachmentArray[i];
                 NSData *picData = UIImageJPEGRepresentation(img, 0.5);
                 [self uploadAttachFile:picData attachType:type success:^(NSString *attachId) {
@@ -105,9 +108,19 @@
                     if (attachIDArray.count == attachmentArray.count) {
                         [[NSNotificationCenter defaultCenter] postNotificationName:@"attachIDCompleted" object:attachIDArray];
                     }
-                } failure:^(NSString *errorStr) {
                     
+                    [condition lock];
+                    [condition signal];
+                    [condition unlock];
+                } failure:^(NSString *errorStr) {
+                    [condition lock];
+                    [condition signal];
+                    [condition unlock];
                 }];
+                
+                [condition lock];
+                [condition wait];
+                [condition unlock];
             }
         } else {
             [[NSNotificationCenter defaultCenter] postNotificationName:@"attachIDCompleted" object:@[]];

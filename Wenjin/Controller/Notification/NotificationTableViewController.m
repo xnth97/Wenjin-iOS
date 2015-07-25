@@ -20,6 +20,7 @@
 #import "NotificationCell.h"
 #import "MJExtension.h"
 #import <BlocksKit+UIKit.h>
+#import "APService.h"
 
 @interface NotificationTableViewController () <homeTableViewCellDelegate>
 
@@ -163,6 +164,7 @@
         [self getList];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"newNotification" object:nil];
         [self checkNoNotificationView];
+        [APService resetBadge];
     }
 }
 

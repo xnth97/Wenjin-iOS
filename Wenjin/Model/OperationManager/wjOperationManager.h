@@ -7,6 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#define VoteAnswerTypeThank @"thank"
+#define VoteAnswerTypeUninterested @"uninterested"
 
 @interface wjOperationManager : NSObject
 
@@ -46,5 +48,7 @@
  *  @param failure   失败后回调
  */
 + (void)voteAnswerWithAnswerID:(NSString *)answerId operation:(NSInteger)operation success:(void(^)())success failure:(void(^)(NSString *errStr))failure;
+
++ (void)thankAnswerOrUninterestedWithAnswerID:(NSString *)answerId voteAnswerType:(NSString *)thankOrUninterested success:(void(^)())success failure:(void(^)(NSString *errStr))failure;
 
 @end

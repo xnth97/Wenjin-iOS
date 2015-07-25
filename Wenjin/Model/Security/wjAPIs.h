@@ -47,6 +47,9 @@
 // 赞同答案
 + (NSString *)voteAnswer;
 
+// 感谢答案 & 没有帮助
++ (NSString *)thankAnswerAndUninterested;
+
 // 关注用户
 + (NSString *)followUser;
 

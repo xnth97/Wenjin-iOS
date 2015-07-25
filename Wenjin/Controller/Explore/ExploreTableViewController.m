@@ -13,9 +13,11 @@
 #import "wjStringProcessor.h"
 #import "UserViewController.h"
 #import "QuestionViewController.h"
+#import "AnswerViewController.h"
 #import "NYSegmentedControl.h"
 #import "wjAppearanceManager.h"
 #import "ExploreCell.h"
+#import "AnswerInfo.h"
 
 @interface ExploreTableViewController ()
 
@@ -193,13 +195,25 @@
     }
     NSUInteger row = [indexPath row];
     ExploreCell *tmp = dataInTable[row];
-    NSString *actionString = [NSString stringWithFormat:@"%@ 发布了问题", tmp.userInfo.nickName];
-    NSMutableAttributedString *str = [[NSMutableAttributedString alloc]initWithString:actionString];
-    [str addAttribute:NSForegroundColorAttributeName value:[wjAppearanceManager userActionTextColor] range:NSMakeRange(0, [tmp.userInfo.nickName length])];
-    cell.actionLabel.attributedText = str;
+    if (tmp.answerUsers.count > 0) {
+        // 是回复的
+        AnswerInfo *answerInfo = [tmp.answerUsers objectAtIndex:0];
+        NSString *actionString = [NSString stringWithFormat:@"%@ 回答了问题", answerInfo.nickName];
+        NSMutableAttributedString *str = [[NSMutableAttributedString alloc]initWithString:actionString];
+        [str addAttribute:NSForegroundColorAttributeName value:[wjAppearanceManager userActionTextColor] range:NSMakeRange(0, [answerInfo.nickName length])];
+        cell.actionLabel.attributedText = str;
+        cell.detailLabel.text = answerInfo.answerContent;
+        [cell loadAvatarImageWithApartURL:answerInfo.avatarFile];
+    } else {
+        // 是提问的
+        NSString *actionString = [NSString stringWithFormat:@"%@ 发布了问题", tmp.userInfo.nickName];
+        NSMutableAttributedString *str = [[NSMutableAttributedString alloc]initWithString:actionString];
+        [str addAttribute:NSForegroundColorAttributeName value:[wjAppearanceManager userActionTextColor] range:NSMakeRange(0, [tmp.userInfo.nickName length])];
+        cell.actionLabel.attributedText = str;
+        cell.detailLabel.text = @"";
+        [cell loadAvatarImageWithApartURL:tmp.userInfo.avatarFile];
+    }
     cell.questionLabel.text = [wjStringProcessor filterHTMLWithString:tmp.questionContent];
-    [cell loadAvatarImageWithApartURL:tmp.userInfo.avatarFile];
-    cell.detailLabel.text = @"";
     cell.actionLabel.tag = row;
     cell.questionLabel.tag = row;
     cell.avatarView.tag = row;
@@ -224,14 +238,29 @@
 // Cell Delegate
 
 - (void)pushUserControllerWithRow:(NSUInteger)row {
+    NSInteger uid = 0;
     ExploreCell *tmp = dataInTable[row];
-    if (tmp.userInfo.uid != -1) {
-        UserViewController *uVC = [[UserViewController alloc]initWithNibName:@"UserViewController" bundle:nil];
-        uVC.hidesBottomBarWhenPushed = YES;
-        uVC.userId = [NSString stringWithFormat:@"%ld", tmp.userInfo.uid];
-        [self.navigationController pushViewController:uVC animated:YES];
+    if (tmp.answerUsers.count > 0) {
+        AnswerInfo *answerInfo = tmp.answerUsers[0];
+        if (answerInfo.uid != -1) {
+            uid = answerInfo.uid;
+            UserViewController *uVC = [[UserViewController alloc]initWithNibName:@"UserViewController" bundle:nil];
+            uVC.hidesBottomBarWhenPushed = YES;
+            uVC.userId = [NSString stringWithFormat:@"%ld", uid];
+            [self.navigationController pushViewController:uVC animated:YES];
+        } else {
+            [MsgDisplay showErrorMsg:@"无法查看匿名用户~"];
+        }
     } else {
-        [MsgDisplay showErrorMsg:@"无法查看匿名用户~"];
+        if (tmp.userInfo.uid != -1) {
+            uid = tmp.userInfo.uid;
+            UserViewController *uVC = [[UserViewController alloc]initWithNibName:@"UserViewController" bundle:nil];
+            uVC.hidesBottomBarWhenPushed = YES;
+            uVC.userId = [NSString stringWithFormat:@"%ld", uid];
+            [self.navigationController pushViewController:uVC animated:YES];
+        } else {
+            [MsgDisplay showErrorMsg:@"无法查看匿名用户~"];
+        }
     }
 }
 
@@ -244,7 +273,7 @@
 }
 
 - (void)pushAnswerControllerWithRow:(NSUInteger)row {
-    
+    [self pushQuestionControllerWithRow:row];
 }
 
 

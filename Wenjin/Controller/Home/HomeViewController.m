@@ -180,12 +180,14 @@
         NSMutableAttributedString *str = [[NSMutableAttributedString alloc]initWithString:actionString];
         [str addAttribute:NSForegroundColorAttributeName value:[wjAppearanceManager userActionTextColor] range:NSMakeRange(0, [tmp.userInfo.nickName length])];
         cell.actionLabel.attributedText = str;
+        [cell loadAvatarImageWithApartURL:tmp.userInfo.avatarFile];
     } else {
         // 是话题的
         NSString *actionString = [NSString stringWithFormat:@"%@ 话题新增了回复", tmp.topicInfo.topicTitle];
         NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc] initWithString:actionString];
         [attrStr addAttribute:NSForegroundColorAttributeName value:[wjAppearanceManager userActionTextColor] range:NSMakeRange(0, [tmp.topicInfo.topicTitle length])];
         cell.actionLabel.attributedText = attrStr;
+        [cell loadTopicImageWithApartURL:tmp.topicInfo.topicPic];
     }
     cell.questionLabel.text = (tmp.associateAction == 501) ? tmp.articleInfo.title : [wjStringProcessor filterHTMLWithString:tmp.questionInfo.questionContent];
     cell.detailLabel.text = [wjStringProcessor processAnswerDetailString:tmp.answerInfo.answerContent];
@@ -194,7 +196,6 @@
     cell.detailLabel.tag = row;
     cell.avatarView.tag = row;
     cell.delegate = self;
-    [cell loadAvatarImageWithApartURL:tmp.userInfo.avatarFile];
     [cell layoutIfNeeded];
     return cell;
 }

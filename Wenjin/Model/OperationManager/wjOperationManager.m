@@ -101,4 +101,27 @@
     }];
 }
 
++ (void)thankAnswerOrUninterestedWithAnswerID:(NSString *)answerId voteAnswerType:(NSString *)thankOrUninterested success:(void (^)())success failure:(void (^)(NSString *))failure {
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+    NSDictionary *parameters = @{@"answer_id": answerId,
+                                 @"type": thankOrUninterested,
+                                 @"platform": @"ios"};
+    [manager POST:[wjAPIs thankAnswerAndUninterested] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSDictionary *respObj = (NSDictionary *)responseObject;
+        if ([respObj[@"errno"] isEqual: @"1"]) {
+            success();
+            [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+        } else {
+            failure(respObj[@"err"]);
+            [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        failure(error.localizedDescription);
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+    }];
+    
+}
+
 @end

@@ -16,7 +16,7 @@
 }
 
 + (NSDictionary *)objectClassInArray {
-    return @{@"answer_users": @"AnswerInfo",
+    return @{@"answerUsers": @"AnswerInfo",
              @"topics": @"TopicInfo"};
 }
 
