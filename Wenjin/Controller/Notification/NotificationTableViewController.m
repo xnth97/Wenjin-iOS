@@ -31,6 +31,8 @@
     NSInteger currentPage;
     
     UIView *noNotificationView;
+    
+    BOOL fetchingData;
 }
 
 - (void)viewDidLoad {
@@ -51,6 +53,7 @@
     rowsData = [[NSMutableArray alloc]init];
     dataInView = [[NSMutableArray alloc]init];
     currentPage = 0;
+    fetchingData = NO;
     
     noNotificationView = ({
         UIView *view = [[UIView alloc] initWithFrame:self.tableView.bounds];
@@ -118,6 +121,7 @@
 #pragma mark - Private Methods
 
 - (void)getList {
+    fetchingData = YES;
     [NotificationManager getNotificationDataReadOrNot:NO page:currentPage success:^(NSArray *_rowsData) {
         if (_rowsData.count > 0) {
             if (currentPage == 0) {
@@ -136,24 +140,30 @@
         [self.tableView.infiniteScrollingView stopAnimating];
         [self.tableView.pullToRefreshView stopAnimating];
         [self checkNoNotificationView];
+        fetchingData = NO;
     } failure:^(NSString *errStr) {
         [MsgDisplay showErrorMsg:errStr];
         [self.tableView.infiniteScrollingView stopAnimating];
         [self.tableView.pullToRefreshView stopAnimating];
+        fetchingData = NO;
     }];
 }
 
 - (void)nextPage {
-    currentPage ++;
-    [self getList];
+    if (!fetchingData) {
+        currentPage ++;
+        [self getList];
+    }
 }
 
 - (void)refreshContent {
-    currentPage = 0;
-    rowsData = [[NSMutableArray alloc] init];
-    [self getList];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"newNotification" object:nil];
-    [self checkNoNotificationView];
+    if (!fetchingData) {
+        currentPage = 0;
+        rowsData = [[NSMutableArray alloc] init];
+        [self getList];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"newNotification" object:nil];
+        [self checkNoNotificationView];
+    }
 }
 
 - (void)checkNoNotificationView {
@@ -195,6 +205,7 @@
     NSString *actionType = [NSString stringWithFormat:@"%ld", tmp.actionType];
     NSDictionary *actionDic = @{@"101": @"关注了你",
                                 @"102": @"回复了问题",
+                                @"104": @"邀请你回答问题",
                                 @"105": @"评论了你在问题中的回复",
                                 @"116": @"在问题回答评论中提到了你",
                                 @"107": @"赞同了你"};
@@ -248,14 +259,16 @@
 }
 
 - (void)pushQuestionControllerWithRow:(NSUInteger)row {
-//    NotificationCell *tmp = dataInView[row];
-//    if (tmp.related != nil) {
-//        QuestionViewController *qVC = [[QuestionViewController alloc]initWithNibName:@"QuestionViewController" bundle:nil];
-//        qVC.questionId = [NSString stringWithFormat:@"%ld", tmp.related.questionId];
-//        qVC.hidesBottomBarWhenPushed = YES;
-//        [self.navigationController pushViewController:qVC animated:YES];
-//    }
-    [self pushAnswerControllerWithRow:row];
+    NotificationCell *tmp = dataInView[row];
+    if (tmp.actionType == 104) {
+        // 被邀请
+        QuestionViewController *qVC = [[QuestionViewController alloc]initWithNibName:@"QuestionViewController" bundle:nil];
+        qVC.questionId = [NSString stringWithFormat:@"%ld", tmp.related.questionId];
+        qVC.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:qVC animated:YES];
+    } else {
+        [self pushAnswerControllerWithRow:row];
+    }
 }
 
 - (void)pushAnswerControllerWithRow:(NSUInteger)row {

@@ -15,6 +15,7 @@
 #import "UserViewController.h"
 #import "QuestionViewController.h"
 #import "AnswerViewController.h"
+#import "TopicBestAnswerViewController.h"
 #import "data.h"
 #import "wjAppearanceManager.h"
 #import "HomeCell.h"
@@ -167,16 +168,25 @@
     }
     NSUInteger row = [indexPath row];
     HomeCell *tmp = dataInView[row];
-    NSString *actionIDString = [NSString stringWithFormat:@"%ld", (long)tmp.associateAction];
-    NSDictionary *actionDiction = @{@"101": @"发布了问题",
-                                    @"105": @"关注了问题",
-                                    @"201": @"回答了问题",
-                                    @"204": @"赞同了回答",
-                                    @"501": @"发布了文章"};
-    NSString *actionString = [NSString stringWithFormat:@"%@ %@", tmp.userInfo.nickName, actionDiction[actionIDString]];
-    NSMutableAttributedString *str = [[NSMutableAttributedString alloc]initWithString:actionString];
-    [str addAttribute:NSForegroundColorAttributeName value:[wjAppearanceManager userActionTextColor] range:NSMakeRange(0, [tmp.userInfo.nickName length])];
-    cell.actionLabel.attributedText = str;
+    if (tmp.topicInfo.topicId == 0) {
+        // 不是话题的
+        NSString *actionIDString = [NSString stringWithFormat:@"%ld", (long)tmp.associateAction];
+        NSDictionary *actionDiction = @{@"101": @"发布了问题",
+                                        @"105": @"关注了问题",
+                                        @"201": @"回答了问题",
+                                        @"204": @"赞同了回答",
+                                        @"501": @"发布了文章"};
+        NSString *actionString = [NSString stringWithFormat:@"%@ %@", tmp.userInfo.nickName, actionDiction[actionIDString]];
+        NSMutableAttributedString *str = [[NSMutableAttributedString alloc]initWithString:actionString];
+        [str addAttribute:NSForegroundColorAttributeName value:[wjAppearanceManager userActionTextColor] range:NSMakeRange(0, [tmp.userInfo.nickName length])];
+        cell.actionLabel.attributedText = str;
+    } else {
+        // 是话题的
+        NSString *actionString = [NSString stringWithFormat:@"%@ 话题新增了回复", tmp.topicInfo.topicTitle];
+        NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc] initWithString:actionString];
+        [attrStr addAttribute:NSForegroundColorAttributeName value:[wjAppearanceManager userActionTextColor] range:NSMakeRange(0, [tmp.topicInfo.topicTitle length])];
+        cell.actionLabel.attributedText = attrStr;
+    }
     cell.questionLabel.text = (tmp.associateAction == 501) ? tmp.articleInfo.title : [wjStringProcessor filterHTMLWithString:tmp.questionInfo.questionContent];
     cell.detailLabel.text = [wjStringProcessor processAnswerDetailString:tmp.answerInfo.answerContent];
     cell.actionLabel.tag = row;
@@ -214,13 +224,21 @@
 
 - (void)pushUserControllerWithRow:(NSUInteger)row {
     HomeCell *cell = (HomeCell *)dataInView[row];
-    if (cell.userInfo.uid != -1) {
-        UserViewController *uVC = [[UserViewController alloc]initWithNibName:@"UserViewController" bundle:nil];
-        uVC.hidesBottomBarWhenPushed = YES;
-        uVC.userId = [NSString stringWithFormat:@"%ld", cell.userInfo.uid];
-        [self.navigationController pushViewController:uVC animated:YES];
+    if (cell.topicInfo.topicId == 0) {
+        // 不是话题
+        if (cell.userInfo.uid != -1) {
+            UserViewController *uVC = [[UserViewController alloc]initWithNibName:@"UserViewController" bundle:nil];
+            uVC.hidesBottomBarWhenPushed = YES;
+            uVC.userId = [NSString stringWithFormat:@"%ld", cell.userInfo.uid];
+            [self.navigationController pushViewController:uVC animated:YES];
+        } else {
+            [MsgDisplay showErrorMsg:@"无法查看匿名用户~"];
+        }
     } else {
-        [MsgDisplay showErrorMsg:@"无法查看匿名用户~"];
+        TopicBestAnswerViewController *topicVC = [[TopicBestAnswerViewController alloc] initWithNibName:@"TopicBestAnswerViewController" bundle:nil];
+        topicVC.hidesBottomBarWhenPushed = YES;
+        topicVC.topicId = [NSString stringWithFormat:@"%ld", cell.topicInfo.topicId];
+        [self.navigationController pushViewController:topicVC animated:YES];
     }
 }
 
