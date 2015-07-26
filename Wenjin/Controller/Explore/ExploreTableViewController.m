@@ -203,19 +203,27 @@
         [str addAttribute:NSForegroundColorAttributeName value:[wjAppearanceManager userActionTextColor] range:NSMakeRange(0, [answerInfo.nickName length])];
         cell.actionLabel.attributedText = str;
         cell.detailLabel.text = answerInfo.answerContent;
+        cell.questionLabel.text = [wjStringProcessor filterHTMLWithString:tmp.questionContent];
         [cell loadAvatarImageWithApartURL:answerInfo.avatarFile];
     } else {
-        // 是提问的
-        NSString *actionString = [NSString stringWithFormat:@"%@ 发布了问题", tmp.userInfo.nickName];
+        NSString *actionString;
+        if ([tmp.postType isEqualToString:@"question"]) {
+            // 是提问的
+            actionString = [NSString stringWithFormat:@"%@ 发布了问题", tmp.userInfo.nickName];
+            cell.questionLabel.text = [wjStringProcessor filterHTMLWithString:tmp.questionContent];
+        } else if ([tmp.postType isEqualToString:@"article"]) {
+            actionString = [NSString stringWithFormat:@"%@ 发布了文章", tmp.userInfo.nickName];
+            cell.questionLabel.text = tmp.title;
+        }
         NSMutableAttributedString *str = [[NSMutableAttributedString alloc]initWithString:actionString];
         [str addAttribute:NSForegroundColorAttributeName value:[wjAppearanceManager userActionTextColor] range:NSMakeRange(0, [tmp.userInfo.nickName length])];
         cell.actionLabel.attributedText = str;
         cell.detailLabel.text = @"";
         [cell loadAvatarImageWithApartURL:tmp.userInfo.avatarFile];
     }
-    cell.questionLabel.text = [wjStringProcessor filterHTMLWithString:tmp.questionContent];
     cell.actionLabel.tag = row;
     cell.questionLabel.tag = row;
+    cell.detailLabel.tag = row;
     cell.avatarView.tag = row;
     cell.delegate = self;
     return cell;
@@ -266,14 +274,28 @@
 
 - (void)pushQuestionControllerWithRow:(NSUInteger)row {
     ExploreCell *tmp = dataInTable[row];
-    QuestionViewController *qVC = [[QuestionViewController alloc]initWithNibName:@"QuestionViewController" bundle:nil];
-    qVC.questionId = [NSString stringWithFormat:@"%ld", tmp.questionId];
-    qVC.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:qVC animated:YES];
+    if ([tmp.postType isEqualToString:@"question"]) {
+        // 是提问的
+        QuestionViewController *qVC = [[QuestionViewController alloc]initWithNibName:@"QuestionViewController" bundle:nil];
+        qVC.questionId = [NSString stringWithFormat:@"%ld", tmp.questionId];
+        qVC.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:qVC animated:YES];
+    } else if ([tmp.postType isEqualToString:@"article"]) {
+        AnswerViewController *aVC = [[AnswerViewController alloc] initWithNibName:@"AnswerViewController" bundle:nil];
+        aVC.answerId = [NSString stringWithFormat:@"%ld", tmp.id];
+        aVC.detailType = DetailTypeArticle;
+        aVC.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:aVC animated:YES];
+    }
+    
 }
 
 - (void)pushAnswerControllerWithRow:(NSUInteger)row {
-    [self pushQuestionControllerWithRow:row];
+    ExploreCell *tmp = dataInTable[row];
+    AnswerViewController *aVC = [[AnswerViewController alloc] initWithNibName:@"AnswerViewController" bundle:nil];
+    aVC.answerId = [NSString stringWithFormat:@"%ld", ((AnswerInfo *)tmp.answerUsers[0]).answerId];
+    aVC.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:aVC animated:YES];
 }
 
 

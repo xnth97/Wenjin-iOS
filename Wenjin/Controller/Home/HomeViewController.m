@@ -175,7 +175,8 @@
                                         @"105": @"关注了问题",
                                         @"201": @"回答了问题",
                                         @"204": @"赞同了回答",
-                                        @"501": @"发布了文章"};
+                                        @"501": @"发布了文章",
+                                        @"503": @"评论了文章"};
         NSString *actionString = [NSString stringWithFormat:@"%@ %@", tmp.userInfo.nickName, actionDiction[actionIDString]];
         NSMutableAttributedString *str = [[NSMutableAttributedString alloc]initWithString:actionString];
         [str addAttribute:NSForegroundColorAttributeName value:[wjAppearanceManager userActionTextColor] range:NSMakeRange(0, [tmp.userInfo.nickName length])];
@@ -200,29 +201,6 @@
     return cell;
 }
 
-//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-//    NSUInteger row = [indexPath row];
-//    NSString *questionTitle = ((dataInView[row])[@"question_info"])[@"question_content"];
-//    NSString *detailStr = [wjStringProcessor processAnswerDetailString:((dataInView[row])[@"answer_info"])[@"answer_content"]];
-//    return 56 + [self heightOfLabelWithTextString:questionTitle andFontSize:17.0] + [self heightOfLabelWithTextString:detailStr andFontSize:15.0];
-//}
-
-//- (CGFloat)heightOfLabelWithTextString:(NSString *)textString andFontSize:(CGFloat)fontSize {
-//    CGFloat width = self.tableView.frame.size.width - 32;
-//    
-//    UILabel *gettingSizeLabel = [[UILabel alloc]init];
-//    gettingSizeLabel.text = textString;
-//    gettingSizeLabel.font = [UIFont systemFontOfSize:fontSize];
-//    gettingSizeLabel.numberOfLines = 3;
-//    gettingSizeLabel.lineBreakMode = NSLineBreakByWordWrapping;
-//    CGSize maxSize = CGSizeMake(width, 1000.0);
-//    
-//    CGSize size = [gettingSizeLabel sizeThatFits:maxSize];
-//    return size.height;
-//}
-
-// HomeTableViewCell delegate
-
 - (void)pushUserControllerWithRow:(NSUInteger)row {
     HomeCell *cell = (HomeCell *)dataInView[row];
     if (cell.topicInfo.topicId == 0) {
@@ -246,11 +224,11 @@
 - (void)pushQuestionControllerWithRow:(NSUInteger)row {
     QuestionViewController *qVC = [[QuestionViewController alloc]initWithNibName:@"QuestionViewController" bundle:nil];
     HomeCell *cell = (HomeCell *)dataInView[row];
-    if (cell.associateAction == 501) {
+    if (cell.associateAction == 501 || cell.associateAction == 503) {
         // 文章
         NSLog(@"%ld", cell.articleInfo.aid);
         AnswerViewController *aVC = [[AnswerViewController alloc] initWithNibName:@"AnswerViewController" bundle:nil];
-        aVC.detailType = 1;
+        aVC.detailType = DetailTypeArticle;
         aVC.answerId = [NSString stringWithFormat:@"%ld", cell.articleInfo.aid];
         aVC.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:aVC animated:YES];

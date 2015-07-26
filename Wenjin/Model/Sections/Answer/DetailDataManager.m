@@ -97,4 +97,37 @@
     }];
 }
 
++ (void)getArticleCommentWithID:(NSString *)aid page:(NSInteger)page success:(void (^)(NSArray *))success failure:(void (^)(NSString *))failure {
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+    NSDictionary *parameters = @{@"id": aid,
+                                 @"page": @(page),
+                                 @"platform": @"ios"};
+    [manager GET:[wjAPIs articleComment] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        NSDictionary *commentData = (NSDictionary *)responseObject;
+        if ([commentData[@"errno"] isEqual:@1]) {
+            id dataObj = (commentData[@"rsm"])[@"rows"];
+            if ([dataObj isKindOfClass:[NSArray class]]) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    success([CommentInfo objectArrayWithKeyValuesArray: dataObj]);
+                });
+            } else {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    success(@[]);
+                });
+            }
+        } else {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                failure(commentData[@"err"]);
+            });
+        }
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            failure(error.localizedDescription);
+        });
+    }];
+}
+
 @end

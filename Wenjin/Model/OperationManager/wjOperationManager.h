@@ -7,8 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
-#define VoteAnswerTypeThank @"thank"
+#define VoteAnswerTypeThank @"thanks"
 #define VoteAnswerTypeUninterested @"uninterested"
+
+typedef NS_ENUM(NSInteger, VoteArticleRating) {
+    VoteArticleRatingAgree = 1,
+    VoteArticleRatingDisagree = -1,
+    VoteArticleRatingCancel = 0
+};
 
 @interface wjOperationManager : NSObject
 
@@ -50,5 +56,7 @@
 + (void)voteAnswerWithAnswerID:(NSString *)answerId operation:(NSInteger)operation success:(void(^)())success failure:(void(^)(NSString *errStr))failure;
 
 + (void)thankAnswerOrUninterestedWithAnswerID:(NSString *)answerId voteAnswerType:(NSString *)thankOrUninterested success:(void(^)())success failure:(void(^)(NSString *errStr))failure;
+
++ (void)voteArticleWithArticleID:(NSString *)articleId rating:(VoteArticleRating)rating success:(void(^)())success failure:(void(^)(NSString *errStr))failure;
 
 @end

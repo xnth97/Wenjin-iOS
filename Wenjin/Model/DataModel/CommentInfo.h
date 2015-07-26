@@ -19,5 +19,8 @@
 @property (nonatomic) NSInteger atUid;
 @property (strong, nonatomic) NSString *atUserName;
 @property (strong, nonatomic) NSString *atNickName;
+@property (strong, nonatomic) NSString *artComContent;
+@property (strong, nonatomic) NSString *artComNickName;
+@property (strong, nonatomic) NSString *artComAvatarFile;
 
 @end

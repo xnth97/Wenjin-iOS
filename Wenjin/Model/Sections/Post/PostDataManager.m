@@ -194,4 +194,27 @@
     }];
 }
 
++ (void)postArticleCommentWithArticleID:(NSString *)articleId andMessage:(NSString *)message success:(void (^)())success failure:(void (^)(NSString *))failure {
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+    NSDictionary *parameters = @{@"article_id": articleId,
+                                 @"message": message};
+    [manager POST:[NSString stringWithFormat:@"%@?platform=ios", [wjAPIs postArticleComment]] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSDictionary *dicData = (NSDictionary *)responseObject;
+        if ([dicData[@"errno"] isEqual:@1]) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                success();
+            });
+        } else {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                failure(dicData[@"err"]);
+            });
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            failure(error.localizedDescription);
+        });
+    }];
+}
+
 @end

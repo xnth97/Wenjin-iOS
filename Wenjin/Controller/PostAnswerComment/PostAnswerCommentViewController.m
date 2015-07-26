@@ -10,7 +10,6 @@
 #import <BlocksKit/BlocksKit+UIKit.h>
 #import "PostDataManager.h"
 #import "MsgDisplay.h"
-#import "AnswerCommentTableViewController.h"
 
 @interface PostAnswerCommentViewController ()
 
@@ -21,6 +20,7 @@
 @synthesize commentTextView;
 @synthesize answerId;
 @synthesize replyText;
+@synthesize detailType;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -45,16 +45,25 @@
     UIBarButtonItem *doneBtn = [[UIBarButtonItem alloc] bk_initWithBarButtonSystemItem:UIBarButtonSystemItemDone handler:^(id weakSender) {
         [MsgDisplay showLoading];
         
-        [PostDataManager postAnswerCommentWithAnswerID:answerId andMessage:commentTextView.text success:^{
-            [MsgDisplay dismiss];
-            [MsgDisplay showSuccessMsg:@"评论添加成功！"];
-            // 如何让 commentTable 刷新？
-            [self.navigationController dismissViewControllerAnimated:YES completion:nil];
-        } failure:^(NSString *errStr) {
-            [MsgDisplay dismiss];
-            [MsgDisplay showErrorMsg:errStr];
-        }];
-        
+        if (detailType == DetailTypeAnswer) {
+            [PostDataManager postAnswerCommentWithAnswerID:answerId andMessage:commentTextView.text success:^{
+                [MsgDisplay dismiss];
+                [MsgDisplay showSuccessMsg:@"评论添加成功！"];
+                [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+            } failure:^(NSString *errStr) {
+                [MsgDisplay dismiss];
+                [MsgDisplay showErrorMsg:errStr];
+            }];
+        } else {
+            [PostDataManager postArticleCommentWithArticleID:answerId andMessage:commentTextView.text success:^{
+                [MsgDisplay dismiss];
+                [MsgDisplay showSuccessMsg:@"评论添加成功！"];
+                [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+            } failure:^(NSString *errStr) {
+                [MsgDisplay dismiss];
+                [MsgDisplay showErrorMsg:errStr];
+            }];
+        }
     }];
     [self.navigationItem setRightBarButtonItem:doneBtn];
     

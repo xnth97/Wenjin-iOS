@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AnswerViewController.h"
 
 @interface AnswerCommentTableViewController : UITableViewController
 
 @property (nonatomic) NSString *answerId;
+@property (nonatomic) DetailType detailType;
 
 @end

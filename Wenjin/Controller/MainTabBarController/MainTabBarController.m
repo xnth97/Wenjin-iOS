@@ -99,8 +99,10 @@
         [NotificationManager getUnreadNotificationNumberWithSuccess:^(NSUInteger inboxNum, NSUInteger notificationNum) {
             if (notificationNum > 0) {
                 [[self.tabBar.items objectAtIndex:1] setBadgeValue:[NSString stringWithFormat:@"%lu", (unsigned long)notificationNum]];
+                [APService setBadge:notificationNum];
             } else if (notificationNum == 0) {
                 [[self.tabBar.items objectAtIndex:1] setBadgeValue:nil];
+                [APService resetBadge];
             }
         } failure:^(NSString *errStr) {
             

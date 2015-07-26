@@ -13,8 +13,10 @@
 
 @interface ExploreCell : NSObject
 
+@property (nonatomic) NSInteger id;
 @property (nonatomic) NSInteger questionId;
 @property (strong, nonatomic) NSString *questionContent;
+@property (strong, nonatomic) NSString *title;
 @property (nonatomic) NSInteger addTime;
 @property (nonatomic) NSInteger updateTime;
 @property (nonatomic) NSInteger publishedUid;

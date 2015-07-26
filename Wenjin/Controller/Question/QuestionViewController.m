@@ -181,7 +181,8 @@
 
 // Question Push User Delegate
 - (void)pushUserControllerWithRow:(NSUInteger)row {
-    if (!([(questionAnswersData[row])[@"uid"] integerValue] == -1)) {
+    AnswerInfo *tmp = questionAnswersData[row];
+    if (tmp.uid != -1) {
         UserViewController *uVC = [[UserViewController alloc]initWithNibName:@"UserViewController" bundle:nil];
         AnswerInfo *tmpAns = (AnswerInfo *)questionAnswersData[row];
         uVC.userId = [NSString stringWithFormat:@"%ld", tmpAns.uid];

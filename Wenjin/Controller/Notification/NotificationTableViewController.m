@@ -164,7 +164,6 @@
         [self getList];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"newNotification" object:nil];
         [self checkNoNotificationView];
-        [APService resetBadge];
     }
 }
 
@@ -210,7 +209,8 @@
                                 @"104": @"邀请你回答问题",
                                 @"105": @"评论了你在问题中的回复",
                                 @"116": @"在问题回答评论中提到了你",
-                                @"107": @"赞同了你"};
+                                @"107": @"赞同了你",
+                                @"117": @"评论了文章"};
     NSString *actionString = [NSString stringWithFormat:@"%@ %@", tmp.nickName, actionDic[actionType]];
     NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:actionString];
     [str addAttribute:NSForegroundColorAttributeName value:[wjAppearanceManager userActionTextColor] range:NSMakeRange(0, [tmp.nickName length])];
@@ -268,6 +268,18 @@
         qVC.questionId = [NSString stringWithFormat:@"%ld", tmp.related.questionId];
         qVC.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:qVC animated:YES];
+        [NotificationManager readNotificationWithNotificationID:tmp.notificationId];
+        [dataInView removeObjectAtIndex:row];
+        [self.tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:row inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
+        [self.tableView reloadData];
+        [self checkNoNotificationView];
+    } else if (tmp.actionType == 117) {
+        // 评论了文章
+        AnswerViewController *aVC = [[AnswerViewController alloc]initWithNibName:@"AnswerViewController" bundle:nil];
+        aVC.hidesBottomBarWhenPushed = YES;
+        aVC.detailType = DetailTypeArticle;
+        aVC.answerId = [NSString stringWithFormat:@"%ld", tmp.keyUrl];
+        [self.navigationController pushViewController:aVC animated:YES];
     } else {
         [self pushAnswerControllerWithRow:row];
     }

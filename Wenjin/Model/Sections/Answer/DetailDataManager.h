@@ -16,5 +16,6 @@
 + (void)getAnswerCommentWithAnswerID:(NSString *)answerId success:(void(^)(NSArray *commentData))success failure:(void(^)(NSString *errorStr))failure;
 
 + (void)getArticleDataWithID:(NSString *)aid success:(void(^)(ArticleInfo *articleData))success failure:(void(^)(NSString *errorStr))failure;
++ (void)getArticleCommentWithID:(NSString *)aid page:(NSInteger)page success:(void(^)(NSArray *commentData))success failure:(void(^)(NSString *errorStr))failure;
 
 @end

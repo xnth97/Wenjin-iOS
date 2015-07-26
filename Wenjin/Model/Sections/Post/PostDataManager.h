@@ -46,4 +46,6 @@
 
 + (void)postFeedbackWithTitle:(NSString *)title message:(NSString *)message success:(void(^)())success failure:(void(^)(NSString *errorStr))failure;
 
++ (void)postArticleCommentWithArticleID:(NSString *)articleId andMessage:(NSString *)message success:(void(^)())success failure:(void(^)(NSString *errorStr))failure;
+
 @end

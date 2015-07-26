@@ -14,5 +14,6 @@
 + (NSString *)filterHTMLWithString:(NSString *)s;
 + (NSString *)convertToBootstrapHTMLWithContent:(NSString *)contentStr;
 + (NSString *)convertToBootstrapHTMLWithExtraBlankLinesWithContent:(NSString *)contentStr;
++ (NSString *)convertToBootstrapHTMLWithTimeWithContent:(NSString *)contentStr andTimeStamp:(NSInteger)timeStamp;
 
 @end

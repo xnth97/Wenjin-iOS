@@ -10,6 +10,7 @@
                 <outlet property="agreeImageView" destination="Eh8-CX-r6a" id="sdA-LR-K9u"/>
                 <outlet property="answerContentView" destination="hfd-Ha-o5k" id="MIf-Cy-P9H"/>
                 <outlet property="commentItem" destination="78a-Ac-IP9" id="WBB-q2-y8L"/>
+                <outlet property="questionItem" destination="e3v-yJ-OoW" id="dgb-c8-K7d"/>
                 <outlet property="userAvatarView" destination="URu-vY-CRR" id="Evy-SJ-fqp"/>
                 <outlet property="userInfoView" destination="LML-qB-C5r" id="VF4-TR-ijr"/>
                 <outlet property="userNameLabel" destination="dGw-mV-eSB" id="Eb6-Y9-7l4"/>

@@ -36,6 +36,7 @@
 @property (weak, nonatomic) IBOutlet UIView *userInfoView;
 @property (weak, nonatomic) IBOutlet UIImageView *agreeImageView;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *commentItem;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *questionItem;
 
 @property (nonatomic) NSInteger agreeCount;
 
@@ -46,16 +47,19 @@
     UIColor *notVotedColor;
     UIColor *votedColor;
     
+    NSString *titleString;
+    NSString *summaryString;
+    
     NSInteger thankValue;
     NSInteger uninterestedValue;
     
     NSString *questionId;
-    NSString *answerSummary;
     NSInteger uid;
     NSString *content;
     NSString *nickName;
     NSString *signature;
     NSString *avatarFile;
+    NSInteger timeStamp;
 }
 
 @synthesize answerId;
@@ -70,6 +74,7 @@
 @synthesize agreeCount;
 @synthesize agreeImageView;
 @synthesize commentItem;
+@synthesize questionItem;
 
 #pragma mark - Life Cycle
 
@@ -99,9 +104,14 @@
     })];
     
     UIBarButtonItem *shareBtn = [[UIBarButtonItem alloc] bk_initWithBarButtonSystemItem:UIBarButtonSystemItemAction handler:^(id weakSender) {
-        if (questionId != nil && answerSummary != nil) {
-            NSURL *shareURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://wenjin.twtstudio.com/?/question/%@?answer_id=%@&single=TRUE", questionId, answerId]];
-            NSArray *activityItems = @[shareURL, answerSummary];
+        if ((detailType == DetailTypeAnswer && questionId != nil && summaryString != nil) || (detailType == DetailTypeArticle && answerId != nil && summaryString != nil)) {
+            NSURL *shareURL;
+            if (detailType == DetailTypeAnswer) {
+                shareURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://wenjin.in/?/question/%@?answer_id=%@&single=TRUE", questionId, answerId]];
+            } else {
+                shareURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://wenjin.in/article/%@", answerId]];
+            }
+            NSArray *activityItems = @[shareURL, summaryString];
             OpenInSafariActivity *openInSafari = [[OpenInSafariActivity alloc] init];
             WeChatMomentsActivity *wxMoment = [[WeChatMomentsActivity alloc] init];
             WeChatSessionActivity *wxSession = [[WeChatSessionActivity alloc] init];
@@ -136,10 +146,16 @@
             questionId = [NSString stringWithFormat:@"%ld", ansData.questionId];
             uid = ansData.uid;
             avatarFile = ansData.avatarFile;
+            timeStamp = ansData.addTime;
             
             if (ansData.commentCount > 0) {
                 [commentItem setTitle:[NSString stringWithFormat:@"评论 (%ld)", ansData.commentCount]];
             }
+            
+            titleString = [NSString stringWithFormat:@"%@ 的回答", nickName];
+            NSString *ans = [wjStringProcessor processAnswerDetailString:content];
+            NSString *ansStr = (ans.length > 60) ? [NSString stringWithFormat:@"%@...", [ans substringToIndex:60]] : ans;
+            summaryString = [NSString stringWithFormat:@"%@ 的回答：%@", nickName, ansStr];
             
             [self updateView];
             
@@ -147,6 +163,8 @@
             [MsgDisplay showErrorMsg:errStr];
         }];
     } else if (detailType == DetailTypeArticle) {
+        [questionItem setTitle:@""];
+        self.title = @"文章";
         [DetailDataManager getArticleDataWithID:answerId success:^(ArticleInfo *articleData) {
             content = articleData.message;
             nickName = articleData.nickName;
@@ -155,6 +173,11 @@
             [self setValue:@(articleData.votes) forKey:@"agreeCount"];
             uid = articleData.uid;
             avatarFile = articleData.avatarFile;
+            
+            titleString = articleData.title;
+            NSString *ans = [wjStringProcessor processAnswerDetailString:articleData.message];
+            NSString *ansStr = (ans.length > 80) ? [NSString stringWithFormat:@"%@...", [ans substringToIndex:80]] : ans;
+            summaryString = [NSString stringWithFormat:@"%@：%@", titleString, ansStr];
             
             [self updateView];
         } failure:^(NSString *errorStr) {
@@ -173,26 +196,31 @@
 - (IBAction)pushCommentViewController {
     AnswerCommentTableViewController *commentVC = [[AnswerCommentTableViewController alloc]initWithStyle:UITableViewStylePlain];
     commentVC.answerId = answerId;
+    commentVC.detailType = detailType;
     [self.navigationController pushViewController:commentVC animated:YES];
 }
 
 - (IBAction)pushQuestionViewController {
-    QuestionViewController *questionVC = [[QuestionViewController alloc] initWithNibName:@"QuestionViewController" bundle:nil];
-    questionVC.questionId = questionId;
-    [self.navigationController pushViewController:questionVC animated:YES];
+    if (detailType == DetailTypeAnswer) {
+        QuestionViewController *questionVC = [[QuestionViewController alloc] initWithNibName:@"QuestionViewController" bundle:nil];
+        questionVC.questionId = questionId;
+        [self.navigationController pushViewController:questionVC animated:YES];
+    }
 }
 
 #pragma mark - Private Methods
 
 - (void)updateView {
-    NSString *processedHTML = [wjStringProcessor convertToBootstrapHTMLWithExtraBlankLinesWithContent:content];
+    NSString *processedHTML;
+    if (detailType == DetailTypeAnswer) {
+        processedHTML = [wjStringProcessor convertToBootstrapHTMLWithTimeWithContent:content andTimeStamp:timeStamp];
+    } else {
+        processedHTML = [wjStringProcessor convertToBootstrapHTMLWithExtraBlankLinesWithContent:content];
+    }
     [answerContentView loadHTMLString:processedHTML baseURL:[NSURL URLWithString:[wjAPIs baseURL]]];
     
     userNameLabel.text = nickName;
-    self.title = [NSString stringWithFormat:@"%@ 的回答", nickName];
-    NSString *ans = [wjStringProcessor processAnswerDetailString:content];
-    NSString *ansStr = (ans.length > 60) ? [NSString stringWithFormat:@"%@...", [ans substringToIndex:60]] : ans;
-    answerSummary = [NSString stringWithFormat:@"%@ 的回答：%@", nickName, ansStr];
+    self.title = titleString;
     userSigLabel.text = signature;
     [userAvatarView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", [wjAPIs avatarPath], avatarFile]] placeholderImage:[UIImage imageNamed:@"placeholderAvatar.png"]];
     
@@ -220,7 +248,6 @@
 
 - (void)voteOperation {
     
-    NSString *titleString;
     NSString *msgString;
     NSString *agreeActionString;
     NSString *disagreeActionString;
@@ -228,8 +255,6 @@
     NSString *disagreeIcon = @"voteDisagree";
     NSString *thankIcon = @"voteThank";
     NSString *uninterestedIcon = @"voteUninterested";
-    
-    titleString = NSLocalizedString(@"Vote", nil);
     
     if (voteValue == 1) {
         // 已赞同
@@ -248,18 +273,20 @@
         disagreeActionString = @"反对";
     }
     
-    NSString *thankActionString = (thankValue == 0) ? @"感谢" : @"取消感谢";
-    NSString *uninterestedActionString = (uninterestedValue == 0) ? @"没有帮助" : @"取消没有帮助";
+    NSString *thankActionString = (thankValue == 0) ? @"感谢" : @"已感谢";
+    NSString *uninterestedActionString = (uninterestedValue == 0) ? @"没有帮助" : @"已选没有帮助";
     
     NSMutableArray *items = [[NSMutableArray alloc] initWithCapacity:2];
     MenuItem *agreeItem = [[MenuItem alloc] initWithTitle:agreeActionString iconName:agreeIcon glowColor:[UIColor grayColor]];
     [items addObject:agreeItem];
     MenuItem *disagreeItem = [[MenuItem alloc] initWithTitle:disagreeActionString iconName:disagreeIcon glowColor:[UIColor grayColor]];
     [items addObject:disagreeItem];
-    MenuItem *thankItem = [[MenuItem alloc] initWithTitle:thankActionString iconName:thankIcon glowColor:[UIColor grayColor]];
-    [items addObject:thankItem];
-    MenuItem *uninterestedItem = [[MenuItem alloc] initWithTitle:uninterestedActionString iconName:uninterestedIcon glowColor:[UIColor grayColor]];
-    [items addObject:uninterestedItem];
+    if (detailType == DetailTypeAnswer) {
+        MenuItem *thankItem = [[MenuItem alloc] initWithTitle:thankActionString iconName:thankIcon glowColor:[UIColor grayColor]];
+        [items addObject:thankItem];
+        MenuItem *uninterestedItem = [[MenuItem alloc] initWithTitle:uninterestedActionString iconName:uninterestedIcon glowColor:[UIColor grayColor]];
+        [items addObject:uninterestedItem];
+    }
     
     PopMenu *voteMenu = [[PopMenu alloc] initWithFrame:self.view.bounds items:items];
     voteMenu.menuAnimationType = kPopMenuAnimationTypeSina;
@@ -286,67 +313,41 @@
 }
 
 - (void)voteAgreeAction {
-    [wjOperationManager voteAnswerWithAnswerID:answerId operation:1 success:^{
-        switch (voteValue) {
-            case 1:
-                voteValue = 0;
-                [self setValue:[NSNumber numberWithInteger:agreeCount - 1] forKey:@"agreeCount"];
-                [agreeImageView setTintColor:notVotedColor];
-                break;
-                
-            case 0:
-                voteValue = 1;
-                [self setValue:[NSNumber numberWithInteger:agreeCount + 1] forKey:@"agreeCount"];
-                [agreeImageView setTintColor:votedColor];
-                break;
-                
-            case -1:
-                voteValue = 1;
-                [self setValue:[NSNumber numberWithInteger:agreeCount + 1] forKey:@"agreeCount"];
-                [agreeImageView setTintColor:votedColor];
-                break;
-                
-            default:
-                break;
-        }
-    } failure:^(NSString *errStr) {
-        [MsgDisplay showErrorMsg:errStr];
-    }];
+    if (detailType == DetailTypeAnswer) {
+        [wjOperationManager voteAnswerWithAnswerID:answerId operation:1 success:^{
+            [self handleVoteValueWithAgreeOrNot:YES];
+        } failure:^(NSString *errStr) {
+            [MsgDisplay showErrorMsg:errStr];
+        }];
+    } else {
+        [wjOperationManager voteArticleWithArticleID:answerId rating:VoteArticleRatingAgree success:^{
+            [self handleVoteValueWithAgreeOrNot:YES];
+        } failure:^(NSString *errorStr) {
+            [MsgDisplay showErrorMsg:errorStr];
+        }];
+    }
 }
 
 - (void)voteDisagreeAction {
-    [wjOperationManager voteAnswerWithAnswerID:answerId operation:-1 success:^{
-        switch (voteValue) {
-            case 1:
-                voteValue = -1;
-                [self setValue:[NSNumber numberWithInteger:agreeCount - 1] forKey:@"agreeCount"];
-                [agreeImageView setTintColor:notVotedColor];
-                break;
-                
-            case 0:
-                voteValue = -1;
-                [agreeImageView setTintColor:notVotedColor];
-                break;
-                
-            case -1:
-                voteValue = 0;
-                [agreeImageView setTintColor:notVotedColor];
-                break;
-                
-            default:
-                break;
-        }
-    } failure:^(NSString *errStr) {
-        [MsgDisplay showErrorMsg:errStr];
-    }];
+    if (detailType == DetailTypeAnswer) {
+        [wjOperationManager voteAnswerWithAnswerID:answerId operation:-1 success:^{
+            [self handleVoteValueWithAgreeOrNot:NO];
+        } failure:^(NSString *errStr) {
+            [MsgDisplay showErrorMsg:errStr];
+        }];
+    } else {
+        [wjOperationManager voteArticleWithArticleID:answerId rating:VoteArticleRatingDisagree success:^{
+            [self handleVoteValueWithAgreeOrNot:NO];
+        } failure:^(NSString *errStr) {
+            [MsgDisplay showErrorMsg:errStr];
+        }];
+    }
 }
 
 - (void)voteThankAction {
     [wjOperationManager thankAnswerOrUninterestedWithAnswerID:answerId voteAnswerType:VoteAnswerTypeThank success:^{
         if (thankValue == 0) {
             thankValue = 1;
-        } else {
-            thankValue = 0;
         }
     } failure:^(NSString *errorStr) {
         [MsgDisplay showErrorMsg:errorStr];
@@ -357,12 +358,58 @@
     [wjOperationManager thankAnswerOrUninterestedWithAnswerID:answerId voteAnswerType:VoteAnswerTypeUninterested success:^{
         if (uninterestedValue == 0) {
             uninterestedValue = 1;
-        } else {
-            uninterestedValue = 0;
         }
     } failure:^(NSString *errorStr) {
         [MsgDisplay showErrorMsg:errorStr];
     }];
+}
+
+- (void)handleVoteValueWithAgreeOrNot:(BOOL)agreed {
+    if (agreed) {
+        switch (voteValue) {
+            case 1:
+                voteValue = 0;
+                [self setValue:[NSNumber numberWithInteger:agreeCount - 1] forKey:@"agreeCount"];
+                [agreeImageView setTintColor:notVotedColor];
+                break;
+                
+            case 0:
+                voteValue = 1;
+                [self setValue:[NSNumber numberWithInteger:agreeCount + 1] forKey:@"agreeCount"];
+                [agreeImageView setTintColor:votedColor];
+                break;
+                
+            case -1:
+                voteValue = 1;
+                [self setValue:[NSNumber numberWithInteger:agreeCount + 1] forKey:@"agreeCount"];
+                [agreeImageView setTintColor:votedColor];
+                break;
+                
+            default:
+                break;
+        }
+    } else {
+        switch (voteValue) {
+            case 1:
+                voteValue = -1;
+                [self setValue:[NSNumber numberWithInteger:agreeCount - 1] forKey:@"agreeCount"];
+                [agreeImageView setTintColor:notVotedColor];
+                break;
+                
+            case 0:
+                voteValue = -1;
+                [agreeImageView setTintColor:notVotedColor];
+                break;
+                
+            case -1:
+                voteValue = 0;
+                [agreeImageView setTintColor:notVotedColor];
+                break;
+                
+            default:
+                break;
+        }
+    }
 }
 
 #pragma mark - UIWebViewDelegate

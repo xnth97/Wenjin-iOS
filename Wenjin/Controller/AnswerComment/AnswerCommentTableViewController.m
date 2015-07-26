@@ -21,9 +21,11 @@
 
 @implementation AnswerCommentTableViewController {
     NSMutableArray *rowsData;
+    NSUInteger currentPage;
 }
 
 @synthesize answerId;
+@synthesize detailType;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -34,9 +36,12 @@
     self.tableView.tableFooterView = [[UIView alloc]init];
     self.title = @"评论";
     
+    currentPage = 0;
+    
     UIBarButtonItem *commentBtn = [[UIBarButtonItem alloc] bk_initWithTitle:@"写评论" style:UIBarButtonItemStylePlain handler:^(id weakSender) {
         PostAnswerCommentViewController *pacVC = [[PostAnswerCommentViewController alloc]init];
         pacVC.answerId = answerId;
+        pacVC.detailType = detailType;
         UINavigationController *pNav = [[UINavigationController alloc]initWithRootViewController:pacVC];
         [self presentViewController:pNav animated:YES completion:nil];
     }];
@@ -78,24 +83,39 @@
         }
     }
     
-    [DetailDataManager getAnswerCommentWithAnswerID:answerId success:^(NSArray *commentData) {
-        rowsData = [[NSMutableArray alloc]initWithArray:commentData];
-        if ([rowsData count] > 0) {
-            [self.tableView reloadData];
-        } else {
-            [self.tableView reloadData];
-            UILabel *noCLabel = [[UILabel alloc]initWithFrame:CGRectMake((self.view.frame.size.width - 120) / 2, (self.view.frame.size.height - 20 ) / 2 - 44, 120, 20)];
-            noCLabel.text = @"暂无评论";
-            noCLabel.font = [UIFont systemFontOfSize:20];
-            noCLabel.textColor = [UIColor darkGrayColor];
-            noCLabel.textAlignment = NSTextAlignmentCenter;
-            [self.view addSubview:noCLabel];
-        }
-        [self.tableView.pullToRefreshView stopAnimating];
-    } failure:^(NSString *errStr) {
-        [MsgDisplay showErrorMsg:errStr];
-        [self.tableView.pullToRefreshView stopAnimating];
-    }];
+    if (detailType == DetailTypeAnswer) {
+        [DetailDataManager getAnswerCommentWithAnswerID:answerId success:^(NSArray *commentData) {
+            rowsData = [[NSMutableArray alloc]initWithArray:commentData];
+            [self checkNoCommentView];
+            [self.tableView.pullToRefreshView stopAnimating];
+        } failure:^(NSString *errStr) {
+            [MsgDisplay showErrorMsg:errStr];
+            [self.tableView.pullToRefreshView stopAnimating];
+        }];
+    } else {
+        [DetailDataManager getArticleCommentWithID:answerId page:currentPage success:^(NSArray *commentData) {
+            rowsData = [[NSMutableArray alloc]initWithArray:commentData];
+            [self checkNoCommentView];
+            [self.tableView.pullToRefreshView stopAnimating];
+        } failure:^(NSString *errStr) {
+            [MsgDisplay showErrorMsg:errStr];
+            [self.tableView.pullToRefreshView stopAnimating];
+        }];
+    }
+}
+
+- (void)checkNoCommentView {
+    if ([rowsData count] > 0) {
+        [self.tableView reloadData];
+    } else {
+        [self.tableView reloadData];
+        UILabel *noCLabel = [[UILabel alloc]initWithFrame:CGRectMake((self.view.frame.size.width - 120) / 2, (self.view.frame.size.height - 20 ) / 2 - 44, 120, 20)];
+        noCLabel.text = @"暂无评论";
+        noCLabel.font = [UIFont systemFontOfSize:20];
+        noCLabel.textColor = [UIColor darkGrayColor];
+        noCLabel.textAlignment = NSTextAlignmentCenter;
+        [self.view addSubview:noCLabel];
+    }
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -109,14 +129,6 @@
     return [rowsData count];
 }
 
-//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-//    NSUInteger row = [indexPath row];
-//    NSDictionary *tmp = rowsData[row];
-//    NSString *replyUserText = (tmp[@"at_user"] != nil) ? [NSString stringWithFormat:@"回复 %@：", (tmp[@"at_user"])[@"nick_name"]] : @"";
-//    NSString *commentText = [NSString stringWithFormat:@"%@%@", replyUserText, tmp[@"content"]];
-//    return 46 + [self heightOfLabelWithTextString:commentText];
-//}
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *simpleCellIdentifier = @"simpleTableCellIdentifier";
     AnswerCommentTableViewCell *cell = (AnswerCommentTableViewCell *)[tableView dequeueReusableCellWithIdentifier:simpleCellIdentifier];
@@ -126,9 +138,15 @@
     }
     NSUInteger row = [indexPath row];
     CommentInfo *tmp = rowsData[row];
-    cell.usernameLabel.text = tmp.nickName;
-    NSString *replyUserText = (tmp.atUid != 0) ? [NSString stringWithFormat:@"回复 %@：", tmp.atNickName] : @"";
-    cell.commentLabel.text = [NSString stringWithFormat:@"%@%@", replyUserText, tmp.content];
+    if (detailType == DetailTypeAnswer) {
+        cell.usernameLabel.text = tmp.nickName;
+        NSString *replyUserText = (tmp.atUid != 0) ? [NSString stringWithFormat:@"回复 %@：", tmp.atNickName] : @"";
+        cell.commentLabel.text = [NSString stringWithFormat:@"%@%@", replyUserText, tmp.content];
+    } else {
+        cell.usernameLabel.text = tmp.artComNickName;
+        NSString *replyUserText = (tmp.atUid != 0) ? [NSString stringWithFormat:@"回复 %@：", tmp.atNickName] : @"";
+        cell.commentLabel.text = [NSString stringWithFormat:@"%@%@", replyUserText, tmp.artComContent];
+    }
     return cell;
 }
 
@@ -158,19 +176,5 @@
     replyAlert.popoverPresentationController.sourceRect = rect;
     [self presentViewController:replyAlert animated:YES completion:nil];
 }
-
-//- (CGFloat)heightOfLabelWithTextString:(NSString *)textString {
-//    CGFloat width = self.tableView.frame.size.width - 32;
-//    
-//    UILabel *gettingSizeLabel = [[UILabel alloc]init];
-//    gettingSizeLabel.text = textString;
-//    gettingSizeLabel.font = [UIFont systemFontOfSize:15];
-//    gettingSizeLabel.numberOfLines = 0;
-//    gettingSizeLabel.lineBreakMode = NSLineBreakByWordWrapping;
-//    CGSize maxSize = CGSizeMake(width, 1000.0);
-//    
-//    CGSize size = [gettingSizeLabel sizeThatFits:maxSize];
-//    return size.height;
-//}
 
 @end

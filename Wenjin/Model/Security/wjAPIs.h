@@ -99,7 +99,7 @@
 + (NSString *)postArticleComment;
 
 // 文章点赞
-+ (NSString *)articleVote;
++ (NSString *)voteArticle;
 
 // 发现
 + (NSString *)explore;
