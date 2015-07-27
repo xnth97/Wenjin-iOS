@@ -18,7 +18,7 @@
 #import <KVOController/FBKVOController.h>
 #import "AnswerInfo.h"
 #import "ArticleInfo.h"
-#import "AnswerCommentTableViewController.h"
+#import "CommentViewController.h"
 #import "wjAppearanceManager.h"
 #import "WeChatMomentsActivity.h"
 #import "WeChatSessionActivity.h"
@@ -194,7 +194,8 @@
 #pragma mark - IBActions
 
 - (IBAction)pushCommentViewController {
-    AnswerCommentTableViewController *commentVC = [[AnswerCommentTableViewController alloc]initWithStyle:UITableViewStylePlain];
+//    AnswerCommentTableViewController *commentVC = [[AnswerCommentTableViewController alloc] initWithStyle:UITableViewStylePlain];
+    CommentViewController *commentVC = [[CommentViewController alloc] init];
     commentVC.answerId = answerId;
     commentVC.detailType = detailType;
     [self.navigationController pushViewController:commentVC animated:YES];

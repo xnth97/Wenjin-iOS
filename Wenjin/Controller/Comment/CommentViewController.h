@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "AnswerViewController.h"
+#import "SLKTextViewController.h"
 
-@interface AnswerCommentTableViewController : UITableViewController
+@interface CommentViewController : SLKTextViewController
 
 @property (nonatomic) NSString *answerId;
 @property (nonatomic) DetailType detailType;

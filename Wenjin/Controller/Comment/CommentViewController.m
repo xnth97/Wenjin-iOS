@@ -6,21 +6,22 @@
 //  Copyright (c) 2015年 TWT Studio. All rights reserved.
 //
 
-#import "AnswerCommentTableViewController.h"
+#import "CommentViewController.h"
 #import "DetailDataManager.h"
 #import "SVPullToRefresh.h"
 #import "MsgDisplay.h"
 #import "AnswerCommentTableViewCell.h"
-#import "PostAnswerCommentViewController.h"
+#import "PostDataManager.h"
 #import <BlocksKit/BlocksKit+UIKit.h>
 #import "CommentInfo.h"
 #import "UIScrollView+EmptyDataSet.h"
+#import "CommentTextView.h"
 
-@interface AnswerCommentTableViewController () <DZNEmptyDataSetDelegate, DZNEmptyDataSetSource>
+@interface CommentViewController () <DZNEmptyDataSetDelegate, DZNEmptyDataSetSource>
 
 @end
 
-@implementation AnswerCommentTableViewController {
+@implementation CommentViewController {
     NSMutableArray *rowsData;
     NSUInteger currentPage;
 }
@@ -28,27 +29,34 @@
 @synthesize answerId;
 @synthesize detailType;
 
+#pragma mark - Life Cycle
+
+- (id)init {
+    self = [super initWithTableViewStyle:UITableViewStylePlain];
+    if (self) {
+        [self registerClassForTextView:[CommentTextView class]];
+    }
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     rowsData = [[NSMutableArray alloc]init];
     
-    self.clearsSelectionOnViewWillAppear = YES;
+//    self.clearsSelectionOnViewWillAppear = YES;
     self.tableView.tableFooterView = [[UIView alloc]init];
     self.tableView.emptyDataSetDelegate = self;
     self.tableView.emptyDataSetSource = self;
     self.title = @"评论";
     
-    currentPage = 0;
+    self.bounces = YES;
+    self.shakeToClearEnabled = YES;
+    self.keyboardPanningEnabled = YES;
+    self.shouldScrollToBottomAfterKeyboardShows = NO;
+    self.inverted = NO;
     
-    UIBarButtonItem *commentBtn = [[UIBarButtonItem alloc] bk_initWithTitle:@"写评论" style:UIBarButtonItemStylePlain handler:^(id weakSender) {
-        PostAnswerCommentViewController *pacVC = [[PostAnswerCommentViewController alloc]init];
-        pacVC.answerId = answerId;
-        pacVC.detailType = detailType;
-        UINavigationController *pNav = [[UINavigationController alloc]initWithRootViewController:pacVC];
-        [self presentViewController:pNav animated:YES completion:nil];
-    }];
-    [self.navigationItem setRightBarButtonItem:commentBtn];
+    currentPage = 0;
     
     if ([self respondsToSelector:@selector(automaticallyAdjustsScrollViewInsets)]) {
         self.automaticallyAdjustsScrollViewInsets = NO;
@@ -59,7 +67,7 @@
         self.tableView.scrollIndicatorInsets = insets;
     }
     
-    __weak AnswerCommentTableViewController *weakSelf = self;
+    __weak CommentViewController *weakSelf = self;
     [self.tableView addPullToRefreshWithActionHandler:^{
         [weakSelf getRowsData];
     }];
@@ -78,6 +86,8 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+#pragma mark - Private Methods
 
 - (void)getRowsData {
     
@@ -101,6 +111,41 @@
         }];
     }
 }
+
+- (void)postComment:(NSString *)comment {
+    if (detailType == DetailTypeAnswer) {
+        [PostDataManager postAnswerCommentWithAnswerID:answerId andMessage:comment success:^{
+            [MsgDisplay dismiss];
+            [MsgDisplay showSuccessMsg:@"评论添加成功！"];
+            [self getRowsData];
+        } failure:^(NSString *errStr) {
+            [MsgDisplay dismiss];
+            [MsgDisplay showErrorMsg:errStr];
+        }];
+    } else {
+        [PostDataManager postArticleCommentWithArticleID:answerId andMessage:comment success:^{
+            [MsgDisplay dismiss];
+            [MsgDisplay showSuccessMsg:@"评论添加成功！"];
+            [self getRowsData];
+            
+        } failure:^(NSString *errStr) {
+            [MsgDisplay dismiss];
+            [MsgDisplay showErrorMsg:errStr];
+        }];
+    }
+}
+
+#pragma mark - Text Action Methods
+
+- (void)didPressRightButton:(id)sender {
+    [self.textView refreshFirstResponder];
+    [MsgDisplay showLoading];
+    [self postComment:self.textView.text];
+    
+    [super didPressRightButton:sender];
+}
+
+#pragma mark - UITableViewDelegate & DataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
@@ -131,6 +176,7 @@
         NSString *replyUserText = (tmp.atUid != 0) ? [NSString stringWithFormat:@"回复 %@：", tmp.atNickName] : @"";
         cell.commentLabel.text = [NSString stringWithFormat:@"%@%@", replyUserText, tmp.artComContent];
     }
+    cell.transform = self.tableView.transform;
     return cell;
 }
 
@@ -144,12 +190,9 @@
         
         CommentInfo *tmp = rowsData[row];
         NSString *replyName = (detailType == DetailTypeAnswer) ? tmp.nickName : tmp.artComNickName;
-        PostAnswerCommentViewController *postAC = [[PostAnswerCommentViewController alloc]init];
-        postAC.answerId = answerId;
-        postAC.replyText = [NSString stringWithFormat:@"@%@:", replyName];
-        postAC.detailType = detailType;
-        [self presentViewController:[[UINavigationController alloc] initWithRootViewController:postAC] animated:YES completion:nil];
-        [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+        replyName = [replyName stringByReplacingOccurrencesOfString:@"(作者)" withString:@""];
+        self.textView.text = [NSString stringWithFormat:@"@%@:", replyName];
+        [self.textView becomeFirstResponder];
     }];
     [replyAlert addAction:cancelAction];
     [replyAlert addAction:replyAction];

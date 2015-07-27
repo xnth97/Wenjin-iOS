@@ -106,18 +106,18 @@
 		E9DB26EA1AD4F44B00C3C60D /* UserListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E9DB26E81AD4F44B00C3C60D /* UserListTableViewCell.m */; };
 		E9DB26EB1AD4F44B00C3C60D /* UserListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9DB26E91AD4F44B00C3C60D /* UserListTableViewCell.xib */; };
 		E9DB26F01AD506BC00C3C60D /* UserFeedTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9DB26EF1AD506BC00C3C60D /* UserFeedTableViewController.m */; };
-		E9DB26F41AD5523B00C3C60D /* AnswerCommentTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9DB26F31AD5523B00C3C60D /* AnswerCommentTableViewController.m */; };
 		E9DB26F91AD55D3E00C3C60D /* AnswerCommentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E9DB26F71AD55D3E00C3C60D /* AnswerCommentTableViewCell.m */; };
 		E9DB26FA1AD55D3E00C3C60D /* AnswerCommentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9DB26F81AD55D3E00C3C60D /* AnswerCommentTableViewCell.xib */; };
-		E9DB26FE1AD562E100C3C60D /* PostAnswerCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9DB26FD1AD562E100C3C60D /* PostAnswerCommentViewController.m */; };
 		E9DCE9481B5CF10000076CA3 /* ArticleInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = E9DCE9471B5CF10000076CA3 /* ArticleInfo.m */; };
 		E9DCE9511B5D4CBD00076CA3 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9DCE9501B5D4CBD00076CA3 /* WebViewController.m */; };
 		E9E286C61AC7F632005B6ED7 /* HomeDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E9E286C51AC7F632005B6ED7 /* HomeDataManager.m */; };
 		E9E286C81AC805F2005B6ED7 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E9E286C71AC805F2005B6ED7 /* Localizable.strings */; };
 		E9E38F361ADA288400136161 /* ExploreTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9E38F351ADA288400136161 /* ExploreTableViewController.m */; };
+		E9EB5C4D1B664FA00011559F /* CommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9EB5C4C1B664FA00011559F /* CommentViewController.m */; };
 		E9EB618A1ACC187A001F5DA3 /* QuestionAnswerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E9EB61881ACC187A001F5DA3 /* QuestionAnswerTableViewCell.m */; };
 		E9EB618B1ACC187A001F5DA3 /* QuestionAnswerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9EB61891ACC187A001F5DA3 /* QuestionAnswerTableViewCell.xib */; };
 		E9EB618F1ACC2B2D001F5DA3 /* DetailDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E9EB618E1ACC2B2D001F5DA3 /* DetailDataManager.m */; };
+		E9ED1AC01B663DF500B5C2DC /* CommentTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = E9ED1ABF1B663DF500B5C2DC /* CommentTextView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -307,13 +307,9 @@
 		E9DB26E91AD4F44B00C3C60D /* UserListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UserListTableViewCell.xib; path = View/UserListTableViewCell/UserListTableViewCell.xib; sourceTree = "<group>"; };
 		E9DB26EE1AD506BC00C3C60D /* UserFeedTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserFeedTableViewController.h; path = Controller/UserFeed/UserFeedTableViewController.h; sourceTree = "<group>"; };
 		E9DB26EF1AD506BC00C3C60D /* UserFeedTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserFeedTableViewController.m; path = Controller/UserFeed/UserFeedTableViewController.m; sourceTree = "<group>"; };
-		E9DB26F21AD5523B00C3C60D /* AnswerCommentTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AnswerCommentTableViewController.h; path = Controller/AnswerComment/AnswerCommentTableViewController.h; sourceTree = "<group>"; };
-		E9DB26F31AD5523B00C3C60D /* AnswerCommentTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AnswerCommentTableViewController.m; path = Controller/AnswerComment/AnswerCommentTableViewController.m; sourceTree = "<group>"; };
 		E9DB26F61AD55D3E00C3C60D /* AnswerCommentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AnswerCommentTableViewCell.h; path = View/AnswerCommentCell/AnswerCommentTableViewCell.h; sourceTree = "<group>"; };
 		E9DB26F71AD55D3E00C3C60D /* AnswerCommentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AnswerCommentTableViewCell.m; path = View/AnswerCommentCell/AnswerCommentTableViewCell.m; sourceTree = "<group>"; };
 		E9DB26F81AD55D3E00C3C60D /* AnswerCommentTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AnswerCommentTableViewCell.xib; path = View/AnswerCommentCell/AnswerCommentTableViewCell.xib; sourceTree = "<group>"; };
-		E9DB26FC1AD562E100C3C60D /* PostAnswerCommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PostAnswerCommentViewController.h; path = Controller/PostAnswerComment/PostAnswerCommentViewController.h; sourceTree = "<group>"; };
-		E9DB26FD1AD562E100C3C60D /* PostAnswerCommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PostAnswerCommentViewController.m; path = Controller/PostAnswerComment/PostAnswerCommentViewController.m; sourceTree = "<group>"; };
 		E9DCE9461B5CF10000076CA3 /* ArticleInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ArticleInfo.h; path = Model/DataModel/ArticleInfo.h; sourceTree = "<group>"; };
 		E9DCE9471B5CF10000076CA3 /* ArticleInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ArticleInfo.m; path = Model/DataModel/ArticleInfo.m; sourceTree = "<group>"; };
 		E9DCE94F1B5D4CBD00076CA3 /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WebViewController.h; path = Controller/WebView/WebViewController.h; sourceTree = "<group>"; };
@@ -323,11 +319,15 @@
 		E9E286C71AC805F2005B6ED7 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		E9E38F341ADA288400136161 /* ExploreTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ExploreTableViewController.h; path = Controller/Explore/ExploreTableViewController.h; sourceTree = "<group>"; };
 		E9E38F351ADA288400136161 /* ExploreTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ExploreTableViewController.m; path = Controller/Explore/ExploreTableViewController.m; sourceTree = "<group>"; };
+		E9EB5C4B1B664FA00011559F /* CommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentViewController.h; sourceTree = "<group>"; };
+		E9EB5C4C1B664FA00011559F /* CommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentViewController.m; sourceTree = "<group>"; };
 		E9EB61871ACC187A001F5DA3 /* QuestionAnswerTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QuestionAnswerTableViewCell.h; path = View/QuestionAnswerTableViewCell/QuestionAnswerTableViewCell.h; sourceTree = "<group>"; };
 		E9EB61881ACC187A001F5DA3 /* QuestionAnswerTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QuestionAnswerTableViewCell.m; path = View/QuestionAnswerTableViewCell/QuestionAnswerTableViewCell.m; sourceTree = "<group>"; };
 		E9EB61891ACC187A001F5DA3 /* QuestionAnswerTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = QuestionAnswerTableViewCell.xib; path = View/QuestionAnswerTableViewCell/QuestionAnswerTableViewCell.xib; sourceTree = "<group>"; };
 		E9EB618D1ACC2B2D001F5DA3 /* DetailDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DetailDataManager.h; path = Model/Sections/Answer/DetailDataManager.h; sourceTree = "<group>"; };
 		E9EB618E1ACC2B2D001F5DA3 /* DetailDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DetailDataManager.m; path = Model/Sections/Answer/DetailDataManager.m; sourceTree = "<group>"; };
+		E9ED1ABE1B663DF500B5C2DC /* CommentTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommentTextView.h; path = View/CommentTextView/CommentTextView.h; sourceTree = "<group>"; };
+		E9ED1ABF1B663DF500B5C2DC /* CommentTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CommentTextView.m; path = View/CommentTextView/CommentTextView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -485,6 +485,7 @@
 				E97F7A3F1B29FED700746E0B /* MDSwipePageView */,
 				E96F09211AD7D29700847E5E /* TLTagsContol */,
 				E9DB26F51AD55D1E00C3C60D /* AnswerCommentCell */,
+				E9ED1ABD1B663DCB00B5C2DC /* CommentTextView */,
 				E990790C1ACEE350008DCA22 /* NotLoggedInView */,
 				E90F42751ACE6A3200263622 /* UserHeaderView */,
 				E9EB61861ACC1828001F5DA3 /* QuestionAnswerTableViewCell */,
@@ -564,7 +565,6 @@
 				E93063D41ACAABC7000140C1 /* AnswerViewController.h */,
 				E93063D51ACAABC7000140C1 /* AnswerViewController.m */,
 				E93063D61ACAABC7000140C1 /* AnswerViewController.xib */,
-				E9DB26F11AD54F5E00C3C60D /* AnswerCommentViewController */,
 			);
 			name = AnswerViewController;
 			sourceTree = "<group>";
@@ -850,6 +850,7 @@
 				E9C9C6F01AC6B35B00CC228A /* Home */,
 				E97F7A481B2A003700746E0B /* Notification */,
 				E93063CB1ACAAB3C000140C1 /* AnswerViewController */,
+				E9EB5C4A1B664FA00011559F /* Comment */,
 				E93063CA1ACAAB33000140C1 /* QuestionViewController */,
 				E9D56EFD1ADE865D00C54466 /* TopicBestAnswerViewController */,
 				E96F09251AD7E28E00847E5E /* TopicListTableViewController */,
@@ -859,7 +860,6 @@
 				E92388E41B46934300C3EE3A /* ProfileEdit */,
 				E93063BB1ACA4D83000140C1 /* PostQuestion */,
 				E99079041ACECC97008DCA22 /* PostAnswer */,
-				E9DB26FB1AD562B800C3C60D /* PostComment */,
 				E9C9C70B1AC7201800CC228A /* Login */,
 				E9DCE9491B5D4B0100076CA3 /* WebViewController */,
 			);
@@ -985,15 +985,6 @@
 			name = UserFeedTable;
 			sourceTree = "<group>";
 		};
-		E9DB26F11AD54F5E00C3C60D /* AnswerCommentViewController */ = {
-			isa = PBXGroup;
-			children = (
-				E9DB26F21AD5523B00C3C60D /* AnswerCommentTableViewController.h */,
-				E9DB26F31AD5523B00C3C60D /* AnswerCommentTableViewController.m */,
-			);
-			name = AnswerCommentViewController;
-			sourceTree = "<group>";
-		};
 		E9DB26F51AD55D1E00C3C60D /* AnswerCommentCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -1002,15 +993,6 @@
 				E9DB26F81AD55D3E00C3C60D /* AnswerCommentTableViewCell.xib */,
 			);
 			name = AnswerCommentCell;
-			sourceTree = "<group>";
-		};
-		E9DB26FB1AD562B800C3C60D /* PostComment */ = {
-			isa = PBXGroup;
-			children = (
-				E9DB26FC1AD562E100C3C60D /* PostAnswerCommentViewController.h */,
-				E9DB26FD1AD562E100C3C60D /* PostAnswerCommentViewController.m */,
-			);
-			name = PostComment;
 			sourceTree = "<group>";
 		};
 		E9DCE9491B5D4B0100076CA3 /* WebViewController */ = {
@@ -1085,6 +1067,16 @@
 			name = "Data Models";
 			sourceTree = "<group>";
 		};
+		E9EB5C4A1B664FA00011559F /* Comment */ = {
+			isa = PBXGroup;
+			children = (
+				E9EB5C4B1B664FA00011559F /* CommentViewController.h */,
+				E9EB5C4C1B664FA00011559F /* CommentViewController.m */,
+			);
+			name = Comment;
+			path = Controller/Comment;
+			sourceTree = "<group>";
+		};
 		E9EB61861ACC1828001F5DA3 /* QuestionAnswerTableViewCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -1102,6 +1094,15 @@
 				E9EB618E1ACC2B2D001F5DA3 /* DetailDataManager.m */,
 			);
 			name = "Answer & Article";
+			sourceTree = "<group>";
+		};
+		E9ED1ABD1B663DCB00B5C2DC /* CommentTextView */ = {
+			isa = PBXGroup;
+			children = (
+				E9ED1ABE1B663DF500B5C2DC /* CommentTextView.h */,
+				E9ED1ABF1B663DF500B5C2DC /* CommentTextView.m */,
+			);
+			name = CommentTextView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1283,6 +1284,7 @@
 				E9642E941AC5714800FF7875 /* AppDelegate.m in Sources */,
 				E99079081ACECCB5008DCA22 /* PostAnswerViewController.m in Sources */,
 				E9DB26F91AD55D3E00C3C60D /* AnswerCommentTableViewCell.m in Sources */,
+				E9EB5C4D1B664FA00011559F /* CommentViewController.m in Sources */,
 				E995776A1AE76282002E5107 /* OpenInSafariActivity.m in Sources */,
 				E93063BA1ACA47EB000140C1 /* wjStringProcessor.m in Sources */,
 				E93063C81ACA966E000140C1 /* AddDetailViewController.m in Sources */,
@@ -1293,7 +1295,6 @@
 				E96F09281AD7E2DD00847E5E /* TopicListTableViewController.m in Sources */,
 				E96F092C1AD7E3BA00847E5E /* TopicDataManager.m in Sources */,
 				E952E16A1AE522D500F8B7BF /* FeedbackViewController.m in Sources */,
-				E9DB26F41AD5523B00C3C60D /* AnswerCommentTableViewController.m in Sources */,
 				E992CA141AE10F75003A9123 /* wjAppearanceManager.m in Sources */,
 				E96F092F1AD7F44100847E5E /* SettingTableViewController.m in Sources */,
 				E9C9C6F61AC719FC00CC228A /* MainTabBarController.m in Sources */,
@@ -1331,11 +1332,11 @@
 				E9DB26F01AD506BC00C3C60D /* UserFeedTableViewController.m in Sources */,
 				E98EBE821B5157E400710B38 /* QuestionInfo.m in Sources */,
 				E922984D1AF0B9CA000CC8F7 /* WeChatMomentsActivity.m in Sources */,
-				E9DB26FE1AD562E100C3C60D /* PostAnswerCommentViewController.m in Sources */,
 				E9C9C70A1AC71E4200CC228A /* wpyEncryption.m in Sources */,
 				E92388F71B46D60200C3EE3A /* TWTDataChecker.m in Sources */,
 				E9203E6F1B5EA93B00C17F10 /* TopicBestAnswerCell.m in Sources */,
 				E9DB26EA1AD4F44B00C3C60D /* UserListTableViewCell.m in Sources */,
+				E9ED1AC01B663DF500B5C2DC /* CommentTextView.m in Sources */,
 				E93063BE1ACA4DAA000140C1 /* PostQuestionViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
