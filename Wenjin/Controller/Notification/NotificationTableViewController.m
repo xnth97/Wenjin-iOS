@@ -19,10 +19,11 @@
 #import "MsgDisplay.h"
 #import "NotificationCell.h"
 #import "MJExtension.h"
-#import <BlocksKit+UIKit.h>
+#import "BlocksKit+UIKit.h"
 #import "APService.h"
+#import "UIScrollView+EmptyDataSet.h"
 
-@interface NotificationTableViewController () <homeTableViewCellDelegate>
+@interface NotificationTableViewController () <homeTableViewCellDelegate, DZNEmptyDataSetDelegate, DZNEmptyDataSetSource>
 
 @end
 
@@ -30,8 +31,6 @@
     NSMutableArray *rowsData;
     NSMutableArray *dataInView;
     NSInteger currentPage;
-    
-    UIView *noNotificationView;
     
     BOOL fetchingData;
 }
@@ -41,6 +40,8 @@
     self.navigationController.view.backgroundColor = [UIColor whiteColor];
     self.tableView.allowsSelection = NO;
     self.tableView.tableFooterView = [UIView new];
+    self.tableView.emptyDataSetSource = self;
+    self.tableView.emptyDataSetDelegate = self;
     
     if ([self respondsToSelector:@selector(automaticallyAdjustsScrollViewInsets)]) {
         self.automaticallyAdjustsScrollViewInsets = NO;
@@ -55,18 +56,6 @@
     dataInView = [[NSMutableArray alloc]init];
     currentPage = 0;
     fetchingData = NO;
-    
-    noNotificationView = ({
-        UIView *view = [[UIView alloc] initWithFrame:self.tableView.bounds];
-        view.backgroundColor = [UIColor whiteColor];
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0.5 * view.frame.size.height - 10, view.frame.size.width, 20)];
-        label.text = @"暂无未读通知";
-        label.textAlignment = NSTextAlignmentCenter;
-        label.textColor = [UIColor darkGrayColor];
-        label.font = [UIFont systemFontOfSize:18.0];
-        [view addSubview:label];
-        view;
-    });
     
     __weak NotificationTableViewController *weakSelf = self;
     [self.tableView addPullToRefreshWithActionHandler:^{
@@ -140,7 +129,6 @@
         }
         [self.tableView.infiniteScrollingView stopAnimating];
         [self.tableView.pullToRefreshView stopAnimating];
-        [self checkNoNotificationView];
         fetchingData = NO;
     } failure:^(NSString *errStr) {
         [MsgDisplay showErrorMsg:errStr];
@@ -163,15 +151,6 @@
         rowsData = [[NSMutableArray alloc] init];
         [self getList];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"newNotification" object:nil];
-        [self checkNoNotificationView];
-    }
-}
-
-- (void)checkNoNotificationView {
-    if (dataInView.count == 0) {
-        [self.view addSubview:noNotificationView];
-    } else if (dataInView.count > 0) {
-        [noNotificationView removeFromSuperview];
     }
 }
 
@@ -253,7 +232,6 @@
             [dataInView removeObjectAtIndex:row];
             [self.tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:row inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
             [self.tableView reloadData];
-            [self checkNoNotificationView];
         }
     } else {
         [MsgDisplay showErrorMsg:@"无法查看匿名用户~"];
@@ -272,7 +250,6 @@
         [dataInView removeObjectAtIndex:row];
         [self.tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:row inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
         [self.tableView reloadData];
-        [self checkNoNotificationView];
     } else if (tmp.actionType == 117) {
         // 评论了文章
         AnswerViewController *aVC = [[AnswerViewController alloc]initWithNibName:@"AnswerViewController" bundle:nil];
@@ -297,7 +274,15 @@
     [dataInView removeObjectAtIndex:row];
     [self.tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:row inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
     [self.tableView reloadData];
-    [self checkNoNotificationView];
+}
+
+#pragma mark - EmptyDataSet
+
+- (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView {
+    NSString *text = @"暂无未读消息";
+    NSDictionary *attributes = @{NSFontAttributeName: [UIFont systemFontOfSize:18.0],
+                                 NSForegroundColorAttributeName: [UIColor darkGrayColor]};
+    return [[NSAttributedString alloc] initWithString:text attributes:attributes];
 }
 
 

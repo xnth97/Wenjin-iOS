@@ -12,6 +12,7 @@
 #import "wjCookieManager.h"
 #import "data.h"
 #import "wjCacheManager.h"
+#import "wjDatabaseManager.h"
 
 @implementation wjAccountManager
 
@@ -50,6 +51,7 @@
     [wjCacheManager removeCacheDataForKey:@"userData"];
     [wjCacheManager removeCacheDataForKey:@"userLoginData"];
     [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"userIsLoggedIn"];
+    [wjDatabaseManager removeDatabase];
 }
 
 + (BOOL)userIsLoggedIn {

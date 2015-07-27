@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3B0615DC3D57B8691C9034B0 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 757BA8EC47203DAF45B2AE0E /* libPods.a */; };
+		CF6A6D91415074A7D8441D4C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 41BFEB2A3405F2318C5DCF7D /* libPods.a */; };
 		E90968371AF0B79B00E65F7E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E90968361AF0B79B00E65F7E /* SystemConfiguration.framework */; };
 		E90968391AF0B7A600E65F7E /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E90968381AF0B7A600E65F7E /* libz.dylib */; };
 		E909683B1AF0B7AF00E65F7E /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E909683A1AF0B7AF00E65F7E /* libsqlite3.0.dylib */; };
@@ -131,7 +131,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		757BA8EC47203DAF45B2AE0E /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		41BFEB2A3405F2318C5DCF7D /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		99C1D034404BBB2CDDB8DD79 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		9CFC932D72517F9951FCBB16 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		E90968361AF0B79B00E65F7E /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -349,7 +349,7 @@
 				E9D56EF61ADE2ACE00C54466 /* CoreGraphics.framework in Frameworks */,
 				E9D56EF41ADE2AC800C54466 /* Foundation.framework in Frameworks */,
 				E9D56EF21ADE2AC000C54466 /* UIKit.framework in Frameworks */,
-				3B0615DC3D57B8691C9034B0 /* libPods.a in Frameworks */,
+				CF6A6D91415074A7D8441D4C /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -377,7 +377,7 @@
 				E9D56EF51ADE2ACE00C54466 /* CoreGraphics.framework */,
 				E9D56EF31ADE2AC800C54466 /* Foundation.framework */,
 				E9D56EF11ADE2AC000C54466 /* UIKit.framework */,
-				757BA8EC47203DAF45B2AE0E /* libPods.a */,
+				41BFEB2A3405F2318C5DCF7D /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

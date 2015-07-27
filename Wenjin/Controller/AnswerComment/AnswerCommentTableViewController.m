@@ -14,8 +14,9 @@
 #import "PostAnswerCommentViewController.h"
 #import <BlocksKit/BlocksKit+UIKit.h>
 #import "CommentInfo.h"
+#import "UIScrollView+EmptyDataSet.h"
 
-@interface AnswerCommentTableViewController ()
+@interface AnswerCommentTableViewController () <DZNEmptyDataSetDelegate, DZNEmptyDataSetSource>
 
 @end
 
@@ -34,6 +35,8 @@
     
     self.clearsSelectionOnViewWillAppear = YES;
     self.tableView.tableFooterView = [[UIView alloc]init];
+    self.tableView.emptyDataSetDelegate = self;
+    self.tableView.emptyDataSetSource = self;
     self.title = @"评论";
     
     currentPage = 0;
@@ -77,17 +80,12 @@
 }
 
 - (void)getRowsData {
-    for (UIView *tmpView in self.view.subviews) {
-        if ([tmpView isKindOfClass:[UILabel class]]) {
-            [tmpView removeFromSuperview];
-        }
-    }
     
     if (detailType == DetailTypeAnswer) {
         [DetailDataManager getAnswerCommentWithAnswerID:answerId success:^(NSArray *commentData) {
             rowsData = [[NSMutableArray alloc]initWithArray:commentData];
-            [self checkNoCommentView];
             [self.tableView.pullToRefreshView stopAnimating];
+            [self.tableView reloadData];
         } failure:^(NSString *errStr) {
             [MsgDisplay showErrorMsg:errStr];
             [self.tableView.pullToRefreshView stopAnimating];
@@ -95,26 +93,12 @@
     } else {
         [DetailDataManager getArticleCommentWithID:answerId page:currentPage success:^(NSArray *commentData) {
             rowsData = [[NSMutableArray alloc]initWithArray:commentData];
-            [self checkNoCommentView];
             [self.tableView.pullToRefreshView stopAnimating];
+            [self.tableView reloadData];
         } failure:^(NSString *errStr) {
             [MsgDisplay showErrorMsg:errStr];
             [self.tableView.pullToRefreshView stopAnimating];
         }];
-    }
-}
-
-- (void)checkNoCommentView {
-    if ([rowsData count] > 0) {
-        [self.tableView reloadData];
-    } else {
-        [self.tableView reloadData];
-        UILabel *noCLabel = [[UILabel alloc]initWithFrame:CGRectMake((self.view.frame.size.width - 120) / 2, (self.view.frame.size.height - 20 ) / 2 - 44, 120, 20)];
-        noCLabel.text = @"暂无评论";
-        noCLabel.font = [UIFont systemFontOfSize:20];
-        noCLabel.textColor = [UIColor darkGrayColor];
-        noCLabel.textAlignment = NSTextAlignmentCenter;
-        [self.view addSubview:noCLabel];
     }
 }
 
@@ -159,12 +143,12 @@
     UIAlertAction *replyAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Reply", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
         
         CommentInfo *tmp = rowsData[row];
-        NSString *replyName = tmp.nickName;
-        
+        NSString *replyName = (detailType == DetailTypeAnswer) ? tmp.nickName : tmp.artComNickName;
         PostAnswerCommentViewController *postAC = [[PostAnswerCommentViewController alloc]init];
         postAC.answerId = answerId;
         postAC.replyText = [NSString stringWithFormat:@"@%@:", replyName];
-        [self presentViewController:[[UINavigationController alloc]initWithRootViewController:postAC] animated:YES completion:nil];
+        postAC.detailType = detailType;
+        [self presentViewController:[[UINavigationController alloc] initWithRootViewController:postAC] animated:YES completion:nil];
         [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     }];
     [replyAlert addAction:cancelAction];
@@ -175,6 +159,15 @@
     replyAlert.popoverPresentationController.sourceView = self.view;
     replyAlert.popoverPresentationController.sourceRect = rect;
     [self presentViewController:replyAlert animated:YES completion:nil];
+}
+
+#pragma mark - EmptyDataSet
+
+- (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView {
+    NSString *text = @"暂无评论";
+    NSDictionary *attributes = @{NSFontAttributeName: [UIFont systemFontOfSize:18.0],
+                                 NSForegroundColorAttributeName: [UIColor darkGrayColor]};
+    return [[NSAttributedString alloc] initWithString:text attributes:attributes];
 }
 
 @end

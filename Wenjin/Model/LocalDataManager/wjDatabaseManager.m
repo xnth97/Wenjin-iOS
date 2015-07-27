@@ -9,6 +9,7 @@
 #import "wjDatabaseManager.h"
 #import "AnswerDraft.h"
 #import "QuestionDraft.h"
+#import <Realm/Realm.h>
 
 @implementation wjDatabaseManager
 
@@ -46,6 +47,15 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             block();
         });
+    });
+}
+
++ (void)removeDatabase {
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        RLMRealm *realm = [RLMRealm defaultRealm];
+        [realm beginWriteTransaction];
+        [realm deleteAllObjects];
+        [realm commitWriteTransaction];
     });
 }
 

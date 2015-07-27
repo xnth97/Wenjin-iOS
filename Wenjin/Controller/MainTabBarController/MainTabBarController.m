@@ -34,6 +34,9 @@
     NSString *path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
     NSLog(@"%@", path);
     
+    // 防止1.0用户闪退
+    [wjCacheManager removeCacheDataForKey:@"homeCache"];
+    
     FBKVOController *kvoController = [FBKVOController controllerWithObserver:self];
     self.KVOController = kvoController;
     [self.KVOController observe:self keyPath:@"showNotLoggedInView" options:NSKeyValueObservingOptionInitial|NSKeyValueObservingOptionNew block:^(id observer, id object, NSDictionary *change) {

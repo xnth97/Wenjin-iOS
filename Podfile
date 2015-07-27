@@ -12,9 +12,9 @@ pod 'FIR.im'
 pod 'FDFullscreenPopGesture'
 pod 'MJExtension'
 pod 'PopMenu'
-
-# pod 'LTNavigationBar'
-# pod 'iOS7Colors'
+pod 'DZNEmptyDataSet'
+pod 'ChameleonFramework'
+pod 'SlackTextViewController'
 
 target 'Wenjin' do
 

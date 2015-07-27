@@ -152,7 +152,7 @@
                       "%@ \n"
                       "</div><br>"
                       "<div class=\"col-sm-12\" style=\"margin-left:8px; margin-right:8px; font-size:16px; line-height:1.5; text-align: right; font-family: sans-serif; color: #999999;\">%@</div>"
-                      "<br></div></div> \n" // 这个 br 用于不被 toolbar 遮挡
+                      "<br><br></div></div> \n" // 这个 br 用于不被 toolbar 遮挡
                       "<script src=\"%@\"></script> \n"
                       "</body> \n"
                       "</html>" , cssPath, contentStr, dateString, jsPath];

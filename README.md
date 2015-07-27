@@ -23,19 +23,27 @@ Wenjin-iOS
 	* 各模块数据管理器
 	* 消息显示模块
 	* 本地数据管理
+		* 缓存管理
+		* Cookie 管理
+		* 数据库管理
+		* 数据库数据模型
 	* 字符串处理
 	* App 外观颜色管理
 	* API 调用及加密模块
 	* 单例模式实现
+	* UIActivity
 * View
-	* 各种 TableViewCell
+	* UITableViewCell
 	* 各种自定义 View
 * Controller
 	* MainTabBarController
-	* 各种 ViewController
+	* UIViewController
+	* Main.storyboard
+	* XIB
 * Resource
 	* Images.xcassets
 	* Bootstrap
+	* 第三方 framework
 
 # 数据结构
 
