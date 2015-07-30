@@ -190,7 +190,7 @@
         cell.actionLabel.attributedText = attrStr;
         [cell loadTopicImageWithApartURL:tmp.topicInfo.topicPic];
     }
-    cell.questionLabel.text = (tmp.associateAction == 501) ? tmp.articleInfo.title : [wjStringProcessor filterHTMLWithString:tmp.questionInfo.questionContent];
+    cell.questionLabel.text = (tmp.associateAction == 501 || tmp.associateAction == 503) ? tmp.articleInfo.title : [wjStringProcessor filterHTMLWithString:tmp.questionInfo.questionContent];
     cell.detailLabel.text = [wjStringProcessor processAnswerDetailString:tmp.answerInfo.answerContent];
     cell.actionLabel.tag = row;
     cell.questionLabel.tag = row;

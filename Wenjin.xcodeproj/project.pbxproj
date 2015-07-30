@@ -79,7 +79,6 @@
 		E9C1A1C41ACBCBB000892B60 /* QuestionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = E9C1A1C31ACBCBB000892B60 /* QuestionHeaderView.m */; };
 		E9C1A1CA1ACC080700892B60 /* bootstrap.css in Resources */ = {isa = PBXBuildFile; fileRef = E9C1A1C81ACC080700892B60 /* bootstrap.css */; };
 		E9C1A1CB1ACC080700892B60 /* bootstrap.min.js in Resources */ = {isa = PBXBuildFile; fileRef = E9C1A1C91ACC080700892B60 /* bootstrap.min.js */; };
-		E9C804BD1B07853D0021C388 /* libPushSDK-1.8.3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E9C804BC1B07853D0021C388 /* libPushSDK-1.8.3.a */; };
 		E9C804BF1B0785510021C388 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9C804BE1B0785510021C388 /* CFNetwork.framework */; };
 		E9C804C11B0785580021C388 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9C804C01B0785580021C388 /* CoreFoundation.framework */; };
 		E9C804C31B0785600021C388 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9C804C21B0785600021C388 /* CoreTelephony.framework */; };
@@ -114,6 +113,7 @@
 		E9E286C81AC805F2005B6ED7 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E9E286C71AC805F2005B6ED7 /* Localizable.strings */; };
 		E9E38F361ADA288400136161 /* ExploreTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9E38F351ADA288400136161 /* ExploreTableViewController.m */; };
 		E9EB5C4D1B664FA00011559F /* CommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9EB5C4C1B664FA00011559F /* CommentViewController.m */; };
+		E9EB5C591B6662CC0011559F /* libPushSDK-1.8.3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E9EB5C581B6662CC0011559F /* libPushSDK-1.8.3.a */; };
 		E9EB618A1ACC187A001F5DA3 /* QuestionAnswerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E9EB61881ACC187A001F5DA3 /* QuestionAnswerTableViewCell.m */; };
 		E9EB618B1ACC187A001F5DA3 /* QuestionAnswerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9EB61891ACC187A001F5DA3 /* QuestionAnswerTableViewCell.xib */; };
 		E9EB618F1ACC2B2D001F5DA3 /* DetailDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E9EB618E1ACC2B2D001F5DA3 /* DetailDataManager.m */; };
@@ -264,8 +264,6 @@
 		E9C1A1C31ACBCBB000892B60 /* QuestionHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QuestionHeaderView.m; path = View/QuestionHeaderView/QuestionHeaderView.m; sourceTree = "<group>"; };
 		E9C1A1C81ACC080700892B60 /* bootstrap.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = bootstrap.css; sourceTree = "<group>"; };
 		E9C1A1C91ACC080700892B60 /* bootstrap.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = bootstrap.min.js; sourceTree = "<group>"; };
-		E9C804BB1B07853D0021C388 /* APService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APService.h; sourceTree = "<group>"; };
-		E9C804BC1B07853D0021C388 /* libPushSDK-1.8.3.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libPushSDK-1.8.3.a"; sourceTree = "<group>"; };
 		E9C804BE1B0785510021C388 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		E9C804C01B0785580021C388 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		E9C804C21B0785600021C388 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
@@ -321,6 +319,8 @@
 		E9E38F351ADA288400136161 /* ExploreTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ExploreTableViewController.m; path = Controller/Explore/ExploreTableViewController.m; sourceTree = "<group>"; };
 		E9EB5C4B1B664FA00011559F /* CommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentViewController.h; sourceTree = "<group>"; };
 		E9EB5C4C1B664FA00011559F /* CommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentViewController.m; sourceTree = "<group>"; };
+		E9EB5C541B6660DA0011559F /* APService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APService.h; sourceTree = "<group>"; };
+		E9EB5C581B6662CC0011559F /* libPushSDK-1.8.3.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libPushSDK-1.8.3.a"; sourceTree = "<group>"; };
 		E9EB61871ACC187A001F5DA3 /* QuestionAnswerTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QuestionAnswerTableViewCell.h; path = View/QuestionAnswerTableViewCell/QuestionAnswerTableViewCell.h; sourceTree = "<group>"; };
 		E9EB61881ACC187A001F5DA3 /* QuestionAnswerTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QuestionAnswerTableViewCell.m; path = View/QuestionAnswerTableViewCell/QuestionAnswerTableViewCell.m; sourceTree = "<group>"; };
 		E9EB61891ACC187A001F5DA3 /* QuestionAnswerTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = QuestionAnswerTableViewCell.xib; path = View/QuestionAnswerTableViewCell/QuestionAnswerTableViewCell.xib; sourceTree = "<group>"; };
@@ -338,11 +338,11 @@
 				E90968391AF0B7A600E65F7E /* libz.dylib in Frameworks */,
 				E9C804C51B07856F0021C388 /* Security.framework in Frameworks */,
 				E9C804C31B0785600021C388 /* CoreTelephony.framework in Frameworks */,
+				E9EB5C591B6662CC0011559F /* libPushSDK-1.8.3.a in Frameworks */,
 				E9C804C11B0785580021C388 /* CoreFoundation.framework in Frameworks */,
 				E9C804BF1B0785510021C388 /* CFNetwork.framework in Frameworks */,
 				E909683B1AF0B7AF00E65F7E /* libsqlite3.0.dylib in Frameworks */,
 				E90968401AF0B7E600E65F7E /* libWeChatSDK.a in Frameworks */,
-				E9C804BD1B07853D0021C388 /* libPushSDK-1.8.3.a in Frameworks */,
 				E90968371AF0B79B00E65F7E /* SystemConfiguration.framework in Frameworks */,
 				E91D17DE1B47CDCF003A532E /* Realm.framework in Frameworks */,
 				E9D56EF81ADE2AD500C54466 /* QuartzCore.framework in Frameworks */,
@@ -792,22 +792,13 @@
 			isa = PBXGroup;
 			children = (
 				E91D17DD1B47CDCF003A532E /* Realm.framework */,
-				E9C804BA1B07853D0021C388 /* JPushSDK */,
+				E9EB5C531B6660DA0011559F /* JPushSDK */,
 				E909683C1AF0B7C700E65F7E /* WXSDK */,
 				E9642E9B1AC5714800FF7875 /* Images.xcassets */,
 				E9C1A1C81ACC080700892B60 /* bootstrap.css */,
 				E9C1A1C91ACC080700892B60 /* bootstrap.min.js */,
 			);
 			path = Resource;
-			sourceTree = "<group>";
-		};
-		E9C804BA1B07853D0021C388 /* JPushSDK */ = {
-			isa = PBXGroup;
-			children = (
-				E9C804BB1B07853D0021C388 /* APService.h */,
-				E9C804BC1B07853D0021C388 /* libPushSDK-1.8.3.a */,
-			);
-			path = JPushSDK;
 			sourceTree = "<group>";
 		};
 		E9C9C6E51AC694BB00CC228A /* Main */ = {
@@ -1075,6 +1066,15 @@
 			);
 			name = Comment;
 			path = Controller/Comment;
+			sourceTree = "<group>";
+		};
+		E9EB5C531B6660DA0011559F /* JPushSDK */ = {
+			isa = PBXGroup;
+			children = (
+				E9EB5C581B6662CC0011559F /* libPushSDK-1.8.3.a */,
+				E9EB5C541B6660DA0011559F /* APService.h */,
+			);
+			path = JPushSDK;
 			sourceTree = "<group>";
 		};
 		E9EB61861ACC1828001F5DA3 /* QuestionAnswerTableViewCell */ = {
@@ -1420,6 +1420,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/Wenjin/Resource/JPushSDK";
 			};
 			name = Debug;
 		};
@@ -1456,6 +1457,7 @@
 				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/Wenjin/Resource/JPushSDK";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;

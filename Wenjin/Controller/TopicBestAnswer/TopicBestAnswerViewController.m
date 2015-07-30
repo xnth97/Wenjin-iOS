@@ -167,7 +167,7 @@
     [str addAttribute:NSForegroundColorAttributeName value:[wjAppearanceManager userActionTextColor] range:NSMakeRange(0, [tmp.answerInfo.nickName length])];
     cell.actionLabel.attributedText = str;
     cell.questionLabel.text = [wjStringProcessor filterHTMLWithString:tmp.questionInfo.questionContent];
-    cell.detailLabel.text = [wjStringProcessor processAnswerDetailString:tmp.answerInfo.answerContent];
+    cell.detailLabel.text = [wjStringProcessor getSummaryFromString:tmp.answerInfo.answerContent lengthLimit:70];
     cell.actionLabel.tag = row;
     cell.questionLabel.tag = row;
     cell.detailLabel.tag = row;
@@ -215,9 +215,11 @@
 
 - (void)pushAnswerControllerWithRow:(NSUInteger)row {
     TopicBestAnswerCell *tmp = rowsData[row];
-    AnswerViewController *aVC = [[AnswerViewController alloc]initWithNibName:@"AnswerViewController" bundle:nil];
-    aVC.answerId = [NSString stringWithFormat:@"%ld", tmp.answerInfo.answerId];
-    [self.navigationController pushViewController:aVC animated:YES];
+    if (![tmp.answerInfo.answerContent isEqualToString:@""]) {
+        AnswerViewController *aVC = [[AnswerViewController alloc]initWithNibName:@"AnswerViewController" bundle:nil];
+        aVC.answerId = [NSString stringWithFormat:@"%ld", tmp.answerInfo.answerId];
+        [self.navigationController pushViewController:aVC animated:YES];
+    }
 }
 
 /*

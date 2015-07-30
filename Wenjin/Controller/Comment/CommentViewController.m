@@ -56,7 +56,7 @@
     self.shouldScrollToBottomAfterKeyboardShows = NO;
     self.inverted = NO;
     
-    currentPage = 0;
+    currentPage = 1;
     
     if ([self respondsToSelector:@selector(automaticallyAdjustsScrollViewInsets)]) {
         self.automaticallyAdjustsScrollViewInsets = NO;
@@ -71,6 +71,11 @@
     [self.tableView addPullToRefreshWithActionHandler:^{
         [weakSelf getRowsData];
     }];
+//    if (detailType == DetailTypeArticle) {
+//        [self.tableView addInfiniteScrollingWithActionHandler:^{
+//            [weakSelf nextPage];
+//        }];
+//    }
     
     self.tableView.estimatedRowHeight = 68;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
@@ -102,14 +107,30 @@
         }];
     } else {
         [DetailDataManager getArticleCommentWithID:answerId page:currentPage success:^(NSArray *commentData) {
-            rowsData = [[NSMutableArray alloc]initWithArray:commentData];
+            if (currentPage == 1) {
+                rowsData = [[NSMutableArray alloc] initWithArray:commentData];
+            } else {
+                if (commentData.count > 0) {
+                    [rowsData addObjectsFromArray:commentData];
+                } else {
+                    [MsgDisplay showErrorMsg:@"已到达最后一页~"];
+                    currentPage --;
+                }
+            }
             [self.tableView.pullToRefreshView stopAnimating];
+            [self.tableView.infiniteScrollingView stopAnimating];
             [self.tableView reloadData];
         } failure:^(NSString *errStr) {
             [MsgDisplay showErrorMsg:errStr];
             [self.tableView.pullToRefreshView stopAnimating];
+            [self.tableView.infiniteScrollingView stopAnimating];
         }];
     }
+}
+
+- (void)nextPage {
+    currentPage ++;
+    [self getRowsData];
 }
 
 - (void)postComment:(NSString *)comment {
@@ -202,6 +223,7 @@
     replyAlert.popoverPresentationController.sourceView = self.view;
     replyAlert.popoverPresentationController.sourceRect = rect;
     [self presentViewController:replyAlert animated:YES completion:nil];
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 #pragma mark - EmptyDataSet

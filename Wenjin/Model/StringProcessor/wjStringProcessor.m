@@ -25,6 +25,15 @@
     return detailString;
 }
 
++ (NSString *)getSummaryFromString:(NSString *)string lengthLimit:(NSInteger)limit {
+    string = [self processAnswerDetailString:string];
+    if (string.length > limit) {
+        string = [string substringToIndex:limit];
+        string = [NSString stringWithFormat:@"%@...", string];
+    }
+    return string;
+}
+
 + (NSString *)filterHTMLWithString:(NSString *)s {
     s = [s stringByReplacingOccurrencesOfString:@"<br>" withString:@""];
     s = [s stringByReplacingOccurrencesOfString:@"<br />" withString:@""];

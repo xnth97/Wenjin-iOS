@@ -22,6 +22,7 @@
 #import "BlocksKit+UIKit.h"
 #import "APService.h"
 #import "UIScrollView+EmptyDataSet.h"
+#import "NYSegmentedControl.h"
 
 @interface NotificationTableViewController () <homeTableViewCellDelegate, DZNEmptyDataSetDelegate, DZNEmptyDataSetSource>
 
@@ -33,6 +34,10 @@
     NSInteger currentPage;
     
     BOOL fetchingData;
+    BOOL notificationIsReadOrNot;
+    
+    NYSegmentedControl *segmentedControl;
+    UIBarButtonItem *clearAllBtn;
 }
 
 - (void)viewDidLoad {
@@ -57,6 +62,20 @@
     currentPage = 0;
     fetchingData = NO;
     
+    notificationIsReadOrNot = NO;
+    segmentedControl = [[NYSegmentedControl alloc]initWithItems:@[@"未读", @"已读"]];
+    [segmentedControl addTarget:self action:@selector(segmentedSelected) forControlEvents:UIControlEventValueChanged];
+    segmentedControl.selectedSegmentIndex = 0;
+    segmentedControl.borderWidth = 0.0f;
+    segmentedControl.segmentIndicatorBorderWidth = 0.0f;
+    segmentedControl.backgroundColor = [wjAppearanceManager segmentedUnselectedColor];
+    segmentedControl.segmentIndicatorBackgroundColor = [wjAppearanceManager segmentedSelectedColor];
+    segmentedControl.segmentIndicatorInset = 0.0f;
+    segmentedControl.titleTextColor = [wjAppearanceManager segmentedUnselectedTextColor];
+    segmentedControl.selectedTitleTextColor = [UIColor whiteColor];
+    [segmentedControl sizeToFit];
+    [self.navigationItem setTitleView:segmentedControl];
+    
     __weak NotificationTableViewController *weakSelf = self;
     [self.tableView addPullToRefreshWithActionHandler:^{
         [weakSelf refreshContent];
@@ -70,7 +89,7 @@
     }];
     self.navigationItem.leftBarButtonItem = refreshBtn;
     
-    UIBarButtonItem *clearAllBtn = [[UIBarButtonItem alloc] bk_initWithTitle:@"全部已读" style:UIBarButtonItemStylePlain handler:^(id sender) {
+    clearAllBtn = [[UIBarButtonItem alloc] bk_initWithImage:[UIImage imageNamed:@"clearAll"] style:UIBarButtonItemStylePlain handler:^(id sender) {
         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"全部清除" message:@"是否要清除全部未读消息？" preferredStyle: UIAlertControllerStyleAlert];
         UIAlertAction *cancel = [UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", nil) style:UIAlertActionStyleCancel handler:nil];
         UIAlertAction *clearAll = [UIAlertAction actionWithTitle:@"全部清除" style: UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
@@ -112,15 +131,18 @@
 
 - (void)getList {
     fetchingData = YES;
-    [NotificationManager getNotificationDataReadOrNot:NO page:currentPage success:^(NSArray *_rowsData) {
+    [NotificationManager getNotificationDataReadOrNot:notificationIsReadOrNot page:currentPage success:^(NSArray *_rowsData) {
         if (_rowsData.count > 0) {
             if (currentPage == 0) {
                 rowsData = [[NSMutableArray alloc] initWithArray:_rowsData];
+                dataInView = rowsData;
+                [self.tableView reloadData];
+                [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
             } else {
                 [rowsData addObjectsFromArray:_rowsData];
+                dataInView = rowsData;
+                [self.tableView reloadData];
             }
-            dataInView = rowsData;
-            [self.tableView reloadData];
         } else {
             if (rowsData.count > 0) {
                 [MsgDisplay showErrorMsg:@"已经到最后一页了喔"];
@@ -148,10 +170,27 @@
 - (void)refreshContent {
     if (!fetchingData) {
         currentPage = 0;
-        rowsData = [[NSMutableArray alloc] init];
+//        [rowsData removeAllObjects];
+//        [self.tableView reloadData];
         [self getList];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"newNotification" object:nil];
     }
+}
+
+- (void)segmentedSelected {
+    if (segmentedControl.selectedSegmentIndex == 0) {
+        notificationIsReadOrNot = NO;
+        self.navigationItem.rightBarButtonItem = clearAllBtn;
+    } else {
+        notificationIsReadOrNot = YES;
+        self.navigationItem.rightBarButtonItem = nil;
+    }
+    if (rowsData.count > 0) {
+        [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
+    }
+    [rowsData removeAllObjects];
+    [self.tableView reloadData];
+    [self refreshContent];
 }
 
 #pragma mark - UITableViewDelegate
@@ -228,10 +267,12 @@
         uVC.userId = [NSString stringWithFormat:@"%ld", tmp.uid];
         [self.navigationController pushViewController:uVC animated:YES];
         if (tmp.actionType == 101 || tmp.actionType == 107) {
-            [NotificationManager readNotificationWithNotificationID:tmp.notificationId];
-            [dataInView removeObjectAtIndex:row];
-            [self.tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:row inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
-            [self.tableView reloadData];
+            if (notificationIsReadOrNot == NO) {
+                [NotificationManager readNotificationWithNotificationID:tmp.notificationId];
+                [dataInView removeObjectAtIndex:row];
+                [self.tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:row inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
+                [self.tableView reloadData];
+            }
         }
     } else {
         [MsgDisplay showErrorMsg:@"无法查看匿名用户~"];
@@ -246,10 +287,12 @@
         qVC.questionId = [NSString stringWithFormat:@"%ld", tmp.related.questionId];
         qVC.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:qVC animated:YES];
-        [NotificationManager readNotificationWithNotificationID:tmp.notificationId];
-        [dataInView removeObjectAtIndex:row];
-        [self.tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:row inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
-        [self.tableView reloadData];
+        if (notificationIsReadOrNot == NO) {
+            [NotificationManager readNotificationWithNotificationID:tmp.notificationId];
+            [dataInView removeObjectAtIndex:row];
+            [self.tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:row inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
+            [self.tableView reloadData];
+        }
     } else if (tmp.actionType == 117) {
         // 评论了文章
         AnswerViewController *aVC = [[AnswerViewController alloc]initWithNibName:@"AnswerViewController" bundle:nil];
@@ -257,6 +300,12 @@
         aVC.detailType = DetailTypeArticle;
         aVC.answerId = [NSString stringWithFormat:@"%ld", tmp.keyUrl];
         [self.navigationController pushViewController:aVC animated:YES];
+        if (notificationIsReadOrNot == NO) {
+            [NotificationManager readNotificationWithNotificationID:tmp.notificationId];
+            [dataInView removeObjectAtIndex:row];
+            [self.tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:row inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
+            [self.tableView reloadData];
+        }
     } else {
         [self pushAnswerControllerWithRow:row];
     }
@@ -270,16 +319,18 @@
         aVC.answerId = [NSString stringWithFormat:@"%ld", tmp.related.answerId];
         [self.navigationController pushViewController:aVC animated:YES];
     }
-    [NotificationManager readNotificationWithNotificationID:tmp.notificationId];
-    [dataInView removeObjectAtIndex:row];
-    [self.tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:row inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
-    [self.tableView reloadData];
+    if (notificationIsReadOrNot == NO) {
+        [NotificationManager readNotificationWithNotificationID:tmp.notificationId];
+        [dataInView removeObjectAtIndex:row];
+        [self.tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:row inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
+        [self.tableView reloadData];
+    }
 }
 
 #pragma mark - EmptyDataSet
 
 - (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView {
-    NSString *text = @"暂无未读消息";
+    NSString *text = notificationIsReadOrNot ? @"暂无已读消息" : @"暂无未读消息";
     NSDictionary *attributes = @{NSFontAttributeName: [UIFont systemFontOfSize:18.0],
                                  NSForegroundColorAttributeName: [UIColor darkGrayColor]};
     return [[NSAttributedString alloc] initWithString:text attributes:attributes];

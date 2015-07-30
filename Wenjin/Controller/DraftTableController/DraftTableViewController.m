@@ -15,11 +15,12 @@
 #import "wjAppearanceManager.h"
 #import "PostQuestionViewController.h"
 #import "PostAnswerViewController.h"
+#import "UIScrollView+EmptyDataSet.h"
 
 #define draftTypeQuestion 0
 #define draftTypeAnswer 1
 
-@interface DraftTableViewController ()
+@interface DraftTableViewController () <DZNEmptyDataSetDelegate, DZNEmptyDataSetSource>
 
 @property (strong) RLMNotificationToken *token;
 
@@ -44,6 +45,8 @@
     
     self.tableView.estimatedRowHeight = 66;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.emptyDataSetDelegate = self;
+    self.tableView.emptyDataSetSource = self;
     
     dataInTable = [[NSMutableArray alloc] init];
     
@@ -101,6 +104,15 @@
         }
         [self.tableView reloadData];
     }
+}
+
+#pragma mark - EmptyDataSet 
+
+- (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView {
+    NSString *text = @"暂无保存的草稿";
+    NSDictionary *attributes = @{NSFontAttributeName: [UIFont systemFontOfSize:18.0],
+                                 NSForegroundColorAttributeName: [UIColor darkGrayColor]};
+    return [[NSAttributedString alloc] initWithString:text attributes:attributes];
 }
 
 #pragma mark - Table view data source
