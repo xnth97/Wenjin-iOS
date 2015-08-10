@@ -16,11 +16,15 @@
 
 @implementation AppDelegate
 
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     [FIR handleCrashWithKey:[wjAPIs firKey]];
     [WXApi registerApp:[wjAPIs wechatAppID]];
+    [APService registerForRemoteNotificationTypes:(UIUserNotificationTypeBadge |
+                                                       UIUserNotificationTypeSound |
+                                                       UIUserNotificationTypeAlert)
+                                           categories:nil];
+    [APService setupWithOption:launchOptions];
     
     return YES;
 }
@@ -41,6 +45,7 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
@@ -65,6 +70,48 @@
     if ([resp isKindOfClass:[SendMessageToWXReq class]]) {
         
     }
+}
+
+// Push
+
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    
+    // Required
+    [APService registerDeviceToken:deviceToken];
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+    
+    // Required
+    [APService handleRemoteNotification:userInfo];
+    
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
+    
+    // IOS 7 Support Required
+    [APService handleRemoteNotification:userInfo];
+    
+    // Process UserInfo
+    // UserInfo 结构如下：
+//    {
+//        "_j_msgid" = 1454795594;
+//        aps =     {
+//            alert = "Wayne Yan\U8d5e\U540c\U4e86\U4f60\U5728\U95ee\U9898\U5982\U4f55\U8bc4\U4ef7\U5929\U5916\U5929\U540c\U5b66\U5728\U529e\U516c\U5ba4\U901a\U5bb5\U770b\U6b27\U51a0\U51b3\U8d5b\U7684\U884c\U4e3a\Uff1f\U4e2d\U7684\U56de\U590d";
+//            badge = 1;
+//            sound = default;
+//        };
+//        id = 5099;
+//        type = 107;
+//    }
+    completionHandler(UIBackgroundFetchResultNewData);
+    if (application.applicationState == UIApplicationStateActive) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"newNotification" object:userInfo];
+    }
+}
+
+- (void)application:(UIApplication *)application handleActionWithIdentifier:(NSString *)identifier forRemoteNotification:(NSDictionary *)userInfo completionHandler:(void (^)())completionHandler {
+    
 }
 
 @end

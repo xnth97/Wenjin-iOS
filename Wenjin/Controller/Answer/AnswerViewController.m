@@ -7,19 +7,38 @@
 //
 
 #import "AnswerViewController.h"
-#import "AnswerDataManager.h"
+#import "DetailDataManager.h"
 #import "wjStringProcessor.h"
 #import "MsgDisplay.h"
 #import "wjAPIs.h"
-#import "ALActionBlocks.h"
+#import <BlocksKit/BlocksKit+UIKit.h>
 #import "UserViewController.h"
 #import "UIImageView+AFNetworking.h"
 #import "wjOperationManager.h"
 #import <KVOController/FBKVOController.h>
-#import "AnswerCommentTableViewController.h"
+#import "AnswerInfo.h"
+#import "ArticleInfo.h"
+#import "CommentViewController.h"
 #import "wjAppearanceManager.h"
+#import "WeChatMomentsActivity.h"
+#import "WeChatSessionActivity.h"
+#import "OpenInSafariActivity.h"
+#import "PopMenu.h"
+#import "QuestionViewController.h"
 
 @interface AnswerViewController ()
+
+@property (weak, nonatomic) IBOutlet UIImageView *userAvatarView;
+@property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *userSigLabel;
+@property (weak, nonatomic) IBOutlet UIButton *agreeBtn;
+@property (weak, nonatomic) IBOutlet UIWebView *answerContentView;
+@property (weak, nonatomic) IBOutlet UIView *userInfoView;
+@property (weak, nonatomic) IBOutlet UIImageView *agreeImageView;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *commentItem;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *questionItem;
+
+@property (nonatomic) NSInteger agreeCount;
 
 @end
 
@@ -27,9 +46,24 @@
     NSInteger voteValue;
     UIColor *notVotedColor;
     UIColor *votedColor;
+    
+    NSString *titleString;
+    NSString *summaryString;
+    
+    NSInteger thankValue;
+    NSInteger uninterestedValue;
+    
+    NSString *questionId;
+    NSInteger uid;
+    NSString *content;
+    NSString *nickName;
+    NSString *signature;
+    NSString *avatarFile;
+    NSInteger timeStamp;
 }
 
 @synthesize answerId;
+@synthesize detailType;
 
 @synthesize userAvatarView;
 @synthesize userNameLabel;
@@ -39,10 +73,15 @@
 @synthesize userInfoView;
 @synthesize agreeCount;
 @synthesize agreeImageView;
+@synthesize commentItem;
+@synthesize questionItem;
+
+#pragma mark - Life Cycle
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
     self.title = @"回答";
     self.automaticallyAdjustsScrollViewInsets = YES;
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
@@ -58,9 +97,32 @@
     userAvatarView.layer.cornerRadius = userAvatarView.frame.size.width / 2;
     userAvatarView.clipsToBounds = YES;
     
-    UIView *splitLine = [[UIView alloc]initWithFrame:CGRectMake(0, userInfoView.frame.size.height - 0.5, [UIScreen mainScreen].bounds.size.width, 0.5)];
-    [splitLine setBackgroundColor:[UIColor colorWithWhite:0.8 alpha:1.0]];
-    [userInfoView addSubview:splitLine];
+    [userInfoView addSubview:({
+        UIView *splitLine = [[UIView alloc]initWithFrame:CGRectMake(0, userInfoView.frame.size.height - 0.5, [UIScreen mainScreen].bounds.size.width, 0.5)];
+        [splitLine setBackgroundColor:[UIColor colorWithWhite:0.8 alpha:1.0]];
+        splitLine;
+    })];
+    
+    UIBarButtonItem *shareBtn = [[UIBarButtonItem alloc] bk_initWithBarButtonSystemItem:UIBarButtonSystemItemAction handler:^(id weakSender) {
+        if ((detailType == DetailTypeAnswer && questionId != nil && summaryString != nil) || (detailType == DetailTypeArticle && answerId != nil && summaryString != nil)) {
+            NSURL *shareURL;
+            if (detailType == DetailTypeAnswer) {
+                shareURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://wenjin.in/?/question/%@?answer_id=%@&single=TRUE", questionId, answerId]];
+            } else {
+                shareURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://wenjin.in/article/%@", answerId]];
+            }
+            NSArray *activityItems = @[shareURL, summaryString];
+            OpenInSafariActivity *openInSafari = [[OpenInSafariActivity alloc] init];
+            WeChatMomentsActivity *wxMoment = [[WeChatMomentsActivity alloc] init];
+            WeChatSessionActivity *wxSession = [[WeChatSessionActivity alloc] init];
+            UIActivityViewController *activityController = [[UIActivityViewController alloc]initWithActivityItems:activityItems applicationActivities:@[openInSafari, wxMoment, wxSession]];
+            activityController.modalPresentationStyle = UIModalPresentationPopover;
+            activityController.popoverPresentationController.permittedArrowDirections = UIPopoverArrowDirectionAny;
+            activityController.popoverPresentationController.barButtonItem = self.navigationItem.rightBarButtonItem;
+            [self presentViewController:activityController animated:YES completion:nil];
+        }
+    }];
+    [self.navigationItem setRightBarButtonItem:shareBtn];
     
     FBKVOController *kvoController = [FBKVOController controllerWithObserver:self];
     self.KVOController = kvoController;
@@ -70,43 +132,58 @@
         } else {
             [agreeBtn setTitle:[NSString stringWithFormat:@"%ldK", (long)agreeCount/1000] forState:UIControlStateNormal];
         }
-        
     }];
     
-    [AnswerDataManager getAnswerDataWithAnswerID:answerId success:^(NSDictionary *ansData) {
-        NSString *processedHTML = [wjStringProcessor convertToBootstrapHTMLWithExtraBlankLinesWithContent:ansData[@"answer_content"]];
-        [answerContentView loadHTMLString:processedHTML baseURL:[NSURL URLWithString:[wjAPIs baseURL]]];
-        userNameLabel.text = ansData[@"nick_name"];
-        self.title = [NSString stringWithFormat:@"%@ 的回答", ansData[@"nick_name"]];
-        userSigLabel.text = (ansData[@"signature"] == [NSNull null]) ? @"" : ansData[@"signature"];
-        [userAvatarView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", [wjAPIs avatarPath], ansData[@"avatar_file"]]] placeholderImage:[UIImage imageNamed:@"placeholderAvatar.png"]];
-        
-        voteValue = [ansData[@"vote_value"] integerValue];
-        [self setValue:ansData[@"agree_count"] forKey:@"agreeCount"];
-        if (voteValue == 0) {
-            [agreeImageView setTintColor:notVotedColor];
-        } else {
-            [agreeImageView setTintColor:votedColor];
-        }
-
-        [agreeBtn addTarget:self action:@selector(voteOperation) forControlEvents:UIControlEventTouchUpInside];
-        
-        UITapGestureRecognizer *userTapRecognizer = [[UITapGestureRecognizer alloc]initWithBlock:^(id weakSender) {
-            if (!([ansData[@"uid"] integerValue] == -1)) {
-                UserViewController *uVC = [[UserViewController alloc]initWithNibName:@"UserViewController" bundle:nil];
-                uVC.userId = [ansData[@"uid"] stringValue];
-                [self.navigationController pushViewController:uVC animated:YES];
-            } else {
-                [MsgDisplay showErrorMsg:@"无法查看匿名用户哦~"];
+    if (detailType == DetailTypeAnswer) {
+        [DetailDataManager getAnswerDataWithAnswerID:answerId success:^(AnswerInfo *ansData) {
+            content = ansData.answerContent;
+            nickName = ansData.nickName;
+            signature = ansData.signature;
+            voteValue = ansData.voteValue;
+            thankValue = ansData.thankValue;
+            uninterestedValue = ansData.uninterested;
+            [self setValue:@(ansData.agreeCount) forKey:@"agreeCount"];
+            questionId = [NSString stringWithFormat:@"%ld", ansData.questionId];
+            uid = ansData.uid;
+            avatarFile = ansData.avatarFile;
+            timeStamp = ansData.addTime;
+            
+            if (ansData.commentCount > 0) {
+                [commentItem setTitle:[NSString stringWithFormat:@"评论 (%ld)", ansData.commentCount]];
             }
+            
+            titleString = [NSString stringWithFormat:@"%@ 的回答", nickName];
+            NSString *ans = [wjStringProcessor processAnswerDetailString:content];
+            NSString *ansStr = (ans.length > 60) ? [NSString stringWithFormat:@"%@...", [ans substringToIndex:60]] : ans;
+            summaryString = [NSString stringWithFormat:@"%@ 的回答：%@", nickName, ansStr];
+            
+            [self updateView];
+            
+        } failure:^(NSString *errStr) {
+            [MsgDisplay showErrorMsg:errStr];
         }];
-        [userTapRecognizer setNumberOfTapsRequired:1];
-        [userInfoView setUserInteractionEnabled:YES];
-        [userInfoView addGestureRecognizer:userTapRecognizer];
-        
-    } failure:^(NSString *errStr) {
-        [MsgDisplay showErrorMsg:errStr];
-    }];
+    } else if (detailType == DetailTypeArticle) {
+        [questionItem setTitle:@""];
+        self.title = @"文章";
+        [DetailDataManager getArticleDataWithID:answerId success:^(ArticleInfo *articleData) {
+            content = articleData.message;
+            nickName = articleData.nickName;
+            signature = articleData.signature;
+            voteValue = articleData.voteValue;
+            [self setValue:@(articleData.votes) forKey:@"agreeCount"];
+            uid = articleData.uid;
+            avatarFile = articleData.avatarFile;
+            
+            titleString = articleData.title;
+            NSString *ans = [wjStringProcessor processAnswerDetailString:articleData.message];
+            NSString *ansStr = (ans.length > 80) ? [NSString stringWithFormat:@"%@...", [ans substringToIndex:80]] : ans;
+            summaryString = [NSString stringWithFormat:@"%@：%@", titleString, ansStr];
+            
+            [self updateView];
+        } failure:^(NSString *errorStr) {
+            [MsgDisplay showErrorMsg:errorStr];
+        }];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -114,14 +191,71 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - IBActions
+
+- (IBAction)pushCommentViewController {
+//    AnswerCommentTableViewController *commentVC = [[AnswerCommentTableViewController alloc] initWithStyle:UITableViewStylePlain];
+    CommentViewController *commentVC = [[CommentViewController alloc] init];
+    commentVC.answerId = answerId;
+    commentVC.detailType = detailType;
+    [self.navigationController pushViewController:commentVC animated:YES];
+}
+
+- (IBAction)pushQuestionViewController {
+    if (detailType == DetailTypeAnswer) {
+        QuestionViewController *questionVC = [[QuestionViewController alloc] initWithNibName:@"QuestionViewController" bundle:nil];
+        questionVC.questionId = questionId;
+        [self.navigationController pushViewController:questionVC animated:YES];
+    }
+}
+
+#pragma mark - Private Methods
+
+- (void)updateView {
+    NSString *processedHTML;
+    if (detailType == DetailTypeAnswer) {
+        processedHTML = [wjStringProcessor convertToBootstrapHTMLWithTimeWithContent:content andTimeStamp:timeStamp];
+    } else {
+        processedHTML = [wjStringProcessor convertToBootstrapHTMLWithExtraBlankLinesWithContent:content];
+    }
+    [answerContentView loadHTMLString:processedHTML baseURL:[NSURL URLWithString:[wjAPIs baseURL]]];
+    
+    userNameLabel.text = nickName;
+    self.title = titleString;
+    userSigLabel.text = signature;
+    [userAvatarView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", [wjAPIs avatarPath], avatarFile]] placeholderImage:[UIImage imageNamed:@"placeholderAvatar.png"]];
+    
+    if (voteValue == 0) {
+        [agreeImageView setTintColor:notVotedColor];
+    } else {
+        [agreeImageView setTintColor:votedColor];
+    }
+    
+    [agreeBtn addTarget:self action:@selector(voteOperation) forControlEvents:UIControlEventTouchUpInside];
+    
+    UITapGestureRecognizer *userTapRecognizer = [[UITapGestureRecognizer alloc] bk_initWithHandler:^(id weakSender, UIGestureRecognizerState state, CGPoint location) {
+        if (uid != -1) {
+            UserViewController *uVC = [[UserViewController alloc]initWithNibName:@"UserViewController" bundle:nil];
+            uVC.userId = [NSString stringWithFormat:@"%ld", uid];
+            [self.navigationController pushViewController:uVC animated:YES];
+        } else {
+            [MsgDisplay showErrorMsg:@"无法查看匿名用户哦~"];
+        }
+    }];
+    [userTapRecognizer setNumberOfTapsRequired:1];
+    [userInfoView setUserInteractionEnabled:YES];
+    [userInfoView addGestureRecognizer:userTapRecognizer];
+}
+
 - (void)voteOperation {
     
-    NSString *titleString;
     NSString *msgString;
     NSString *agreeActionString;
     NSString *disagreeActionString;
-    
-    titleString = NSLocalizedString(@"Vote", nil);
+    NSString *agreeIcon = @"voteAgree";
+    NSString *disagreeIcon = @"voteDisagree";
+    NSString *thankIcon = @"voteThank";
+    NSString *uninterestedIcon = @"voteUninterested";
     
     if (voteValue == 1) {
         // 已赞同
@@ -140,73 +274,146 @@
         disagreeActionString = @"反对";
     }
     
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:titleString message:msgString preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *agreeAction = [UIAlertAction actionWithTitle:agreeActionString style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-        [wjOperationManager voteAnswerWithAnswerID:answerId operation:1 success:^{
-            switch (voteValue) {
-                case 1:
-                    voteValue = 0;
-                    [self setValue:[NSNumber numberWithInteger:agreeCount - 1] forKey:@"agreeCount"];
-                    [agreeImageView setTintColor:notVotedColor];
-                    break;
-                    
-                case 0:
-                    voteValue = 1;
-                    [self setValue:[NSNumber numberWithInteger:agreeCount + 1] forKey:@"agreeCount"];
-                    [agreeImageView setTintColor:votedColor];
-                    break;
-                    
-                case -1:
-                    voteValue = 1;
-                    [self setValue:[NSNumber numberWithInteger:agreeCount + 1] forKey:@"agreeCount"];
-                    [agreeImageView setTintColor:votedColor];
-                    break;
-                    
-                default:
-                    break;
-            }
-        } failure:^(NSString *errStr) {
-            [MsgDisplay showErrorMsg:errStr];
-        }];
+    NSString *thankActionString = (thankValue == 0) ? @"感谢" : @"已感谢";
+    NSString *uninterestedActionString = (uninterestedValue == 0) ? @"没有帮助" : @"已选没有帮助";
+    
+    NSMutableArray *items = [[NSMutableArray alloc] initWithCapacity:2];
+    MenuItem *agreeItem = [[MenuItem alloc] initWithTitle:agreeActionString iconName:agreeIcon glowColor:[UIColor grayColor]];
+    [items addObject:agreeItem];
+    MenuItem *disagreeItem = [[MenuItem alloc] initWithTitle:disagreeActionString iconName:disagreeIcon glowColor:[UIColor grayColor]];
+    [items addObject:disagreeItem];
+    if (detailType == DetailTypeAnswer) {
+        MenuItem *thankItem = [[MenuItem alloc] initWithTitle:thankActionString iconName:thankIcon glowColor:[UIColor grayColor]];
+        [items addObject:thankItem];
+        MenuItem *uninterestedItem = [[MenuItem alloc] initWithTitle:uninterestedActionString iconName:uninterestedIcon glowColor:[UIColor grayColor]];
+        [items addObject:uninterestedItem];
+    }
+    
+    PopMenu *voteMenu = [[PopMenu alloc] initWithFrame:self.view.bounds items:items];
+    voteMenu.menuAnimationType = kPopMenuAnimationTypeSina;
+    voteMenu.perRowItemCount = 2;
+    [voteMenu setDidSelectedItemCompletion:^(MenuItem *selectedItem) {
+        switch (selectedItem.index) {
+            case 0:
+                [self voteAgreeAction];
+                break;
+            case 1:
+                [self voteDisagreeAction];
+                break;
+            case 2:
+                [self voteThankAction];
+                break;
+            case 3:
+                [self voteUninterestedAction];
+                break;
+            default:
+                break;
+        }
     }];
-    UIAlertAction *disagreeAction = [UIAlertAction actionWithTitle:disagreeActionString style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-        [wjOperationManager voteAnswerWithAnswerID:answerId operation:-1 success:^{
-            switch (voteValue) {
-                case 1:
-                    voteValue = -1;
-                    [self setValue:[NSNumber numberWithInteger:agreeCount - 1] forKey:@"agreeCount"];
-                    [agreeImageView setTintColor:notVotedColor];
-                    break;
-                    
-                case 0:
-                    voteValue = -1;
-                    [agreeImageView setTintColor:notVotedColor];
-                    break;
-                    
-                case -1:
-                    voteValue = 0;
-                    [agreeImageView setTintColor:notVotedColor];
-                    break;
-                    
-                default:
-                    break;
-            }
-        } failure:^(NSString *errStr) {
-            [MsgDisplay showErrorMsg:errStr];
-        }];
-    }];
-    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", nil) style:UIAlertActionStyleCancel handler:nil];
-    [alertController addAction:agreeAction];
-    [alertController addAction:disagreeAction];
-    [alertController addAction:cancelAction];
-    [self presentViewController:alertController animated:YES completion:nil];
+    [voteMenu showMenuAtView:self.navigationController.view];
 }
 
-- (IBAction)pushCommentViewController {
-    AnswerCommentTableViewController *commentVC = [[AnswerCommentTableViewController alloc]initWithStyle:UITableViewStylePlain];
-    commentVC.answerId = answerId;
-    [self.navigationController pushViewController:commentVC animated:YES];
+- (void)voteAgreeAction {
+    if (detailType == DetailTypeAnswer) {
+        [wjOperationManager voteAnswerWithAnswerID:answerId operation:1 success:^{
+            [self handleVoteValueWithAgreeOrNot:YES];
+        } failure:^(NSString *errStr) {
+            [MsgDisplay showErrorMsg:errStr];
+        }];
+    } else {
+        [wjOperationManager voteArticleWithArticleID:answerId rating:VoteArticleRatingAgree success:^{
+            [self handleVoteValueWithAgreeOrNot:YES];
+        } failure:^(NSString *errorStr) {
+            [MsgDisplay showErrorMsg:errorStr];
+        }];
+    }
 }
+
+- (void)voteDisagreeAction {
+    if (detailType == DetailTypeAnswer) {
+        [wjOperationManager voteAnswerWithAnswerID:answerId operation:-1 success:^{
+            [self handleVoteValueWithAgreeOrNot:NO];
+        } failure:^(NSString *errStr) {
+            [MsgDisplay showErrorMsg:errStr];
+        }];
+    } else {
+        [wjOperationManager voteArticleWithArticleID:answerId rating:VoteArticleRatingDisagree success:^{
+            [self handleVoteValueWithAgreeOrNot:NO];
+        } failure:^(NSString *errStr) {
+            [MsgDisplay showErrorMsg:errStr];
+        }];
+    }
+}
+
+- (void)voteThankAction {
+    [wjOperationManager thankAnswerOrUninterestedWithAnswerID:answerId voteAnswerType:VoteAnswerTypeThank success:^{
+        if (thankValue == 0) {
+            thankValue = 1;
+        }
+    } failure:^(NSString *errorStr) {
+        [MsgDisplay showErrorMsg:errorStr];
+    }];
+}
+
+- (void)voteUninterestedAction {
+    [wjOperationManager thankAnswerOrUninterestedWithAnswerID:answerId voteAnswerType:VoteAnswerTypeUninterested success:^{
+        if (uninterestedValue == 0) {
+            uninterestedValue = 1;
+        }
+    } failure:^(NSString *errorStr) {
+        [MsgDisplay showErrorMsg:errorStr];
+    }];
+}
+
+- (void)handleVoteValueWithAgreeOrNot:(BOOL)agreed {
+    if (agreed) {
+        switch (voteValue) {
+            case 1:
+                voteValue = 0;
+                [self setValue:[NSNumber numberWithInteger:agreeCount - 1] forKey:@"agreeCount"];
+                [agreeImageView setTintColor:notVotedColor];
+                break;
+                
+            case 0:
+                voteValue = 1;
+                [self setValue:[NSNumber numberWithInteger:agreeCount + 1] forKey:@"agreeCount"];
+                [agreeImageView setTintColor:votedColor];
+                break;
+                
+            case -1:
+                voteValue = 1;
+                [self setValue:[NSNumber numberWithInteger:agreeCount + 1] forKey:@"agreeCount"];
+                [agreeImageView setTintColor:votedColor];
+                break;
+                
+            default:
+                break;
+        }
+    } else {
+        switch (voteValue) {
+            case 1:
+                voteValue = -1;
+                [self setValue:[NSNumber numberWithInteger:agreeCount - 1] forKey:@"agreeCount"];
+                [agreeImageView setTintColor:notVotedColor];
+                break;
+                
+            case 0:
+                voteValue = -1;
+                [agreeImageView setTintColor:notVotedColor];
+                break;
+                
+            case -1:
+                voteValue = 0;
+                [agreeImageView setTintColor:notVotedColor];
+                break;
+                
+            default:
+                break;
+        }
+    }
+}
+
+#pragma mark - UIWebViewDelegate
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
     if (navigationType == UIWebViewNavigationTypeLinkClicked) {

@@ -11,8 +11,10 @@
 @interface wjStringProcessor : NSObject
 
 + (NSString *)processAnswerDetailString:(NSString *)detailString;
++ (NSString *)getSummaryFromString:(NSString *)string lengthLimit:(NSInteger)limit;
 + (NSString *)filterHTMLWithString:(NSString *)s;
 + (NSString *)convertToBootstrapHTMLWithContent:(NSString *)contentStr;
 + (NSString *)convertToBootstrapHTMLWithExtraBlankLinesWithContent:(NSString *)contentStr;
++ (NSString *)convertToBootstrapHTMLWithTimeWithContent:(NSString *)contentStr andTimeStamp:(NSInteger)timeStamp;
 
 @end

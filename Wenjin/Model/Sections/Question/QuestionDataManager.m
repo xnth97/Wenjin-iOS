@@ -9,11 +9,10 @@
 #import "QuestionDataManager.h"
 #import "wjAPIs.h"
 #import "AFNetworking.h"
-#import "JSONKit.h"
 
 @implementation QuestionDataManager
 
-+ (void)getQuestionDataWithID:(NSString *)questionId success:(void (^)(NSDictionary *, NSArray *, NSArray *, NSString *))success failure:(void (^)(NSString *))failure {
++ (void)getQuestionDataWithID:(NSString *)questionId success:(void (^)(QuestionInfo *, NSArray *, NSArray *, NSString *))success failure:(void (^)(NSString *))failure {
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
@@ -21,10 +20,13 @@
                                   @"platform": @"ios"};
     [manager GET:[wjAPIs viewQuestion] parameters:questionDic success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
-        NSDictionary *quesData = [operation.responseString objectFromJSONString];
+        NSDictionary *quesData = (NSDictionary *)responseObject;
         if ([quesData[@"errno"] isEqual:@1]) {
             dispatch_async(dispatch_get_main_queue(), ^{
-                success((quesData[@"rsm"])[@"question_info"], (quesData[@"rsm"])[@"answers"], (quesData[@"rsm"])[@"question_topics"], [(quesData[@"rsm"])[@"answer_count"] stringValue]);
+                QuestionInfo *info = [QuestionInfo objectWithKeyValues:(quesData[@"rsm"])[@"question_info"]];
+                NSArray *answers = [AnswerInfo objectArrayWithKeyValuesArray:(quesData[@"rsm"])[@"answers"]];
+                NSArray *topics = [TopicInfo objectArrayWithKeyValuesArray:(quesData[@"rsm"])[@"question_topics"]];
+                success(info, answers, topics, [(quesData[@"rsm"])[@"answer_count"] stringValue]);
             });
             [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         } else {

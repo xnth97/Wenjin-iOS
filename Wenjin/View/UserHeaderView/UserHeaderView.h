@@ -28,5 +28,6 @@
 @property (assign, nonatomic) id<UserHeaderViewDelegate> delegate;
 
 - (void)loadAvatarImageWithApartURLString:(NSString *)urlStr;
+- (void)reloadAvatarImageWithApartURLString:(NSString *)urlStr;
 
 @end

@@ -13,8 +13,11 @@
 #import "wjStringProcessor.h"
 #import "UserViewController.h"
 #import "QuestionViewController.h"
+#import "AnswerViewController.h"
 #import "NYSegmentedControl.h"
 #import "wjAppearanceManager.h"
+#import "ExploreCell.h"
+#import "AnswerInfo.h"
 
 @interface ExploreTableViewController ()
 
@@ -74,6 +77,9 @@
         [weakSelf nextPage];
     }];
     [self.tableView triggerPullToRefresh];
+    
+    self.tableView.estimatedRowHeight = 93;
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -171,13 +177,14 @@
     return dataInTable.count;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSUInteger row = [indexPath row];
-    NSString *questionTitle = (dataInTable[row])[@"question_content"];
-    NSString *detailStr = @"";
-    return 56 + [self heightOfLabelWithTextString:questionTitle] + [self heightOfLabelWithTextString:detailStr];
-}
+//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+//    NSUInteger row = [indexPath row];
+//    NSString *questionTitle = (dataInTable[row])[@"question_content"];
+//    NSString *detailStr = @"";
+//    return 56 + [self heightOfLabelWithTextString:questionTitle] + [self heightOfLabelWithTextString:detailStr];
+//}
 
+#pragma warning - not completed. lack support for articles.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     static NSString *simpleTableIdentifier = @"SimpleTableCell";
@@ -187,57 +194,108 @@
         cell = [nib objectAtIndex:0];
     }
     NSUInteger row = [indexPath row];
-    NSDictionary *tmp = dataInTable[row];
-    NSString *actionString = [NSString stringWithFormat:@"%@ 发布了问题", (tmp[@"user_info"])[@"nick_name"]];
-    NSMutableAttributedString *str = [[NSMutableAttributedString alloc]initWithString:actionString];
-    [str addAttribute:NSForegroundColorAttributeName value:[wjAppearanceManager userActionTextColor] range:NSMakeRange(0, [(tmp[@"user_info"])[@"nick_name"] length])];
-    cell.actionLabel.attributedText = str;
-    cell.questionLabel.text = [wjStringProcessor filterHTMLWithString:tmp[@"question_content"]];
-    [cell loadAvatarImageWithApartURL:(tmp[@"user_info"])[@"avatar_file"]];
-    cell.detailLabel.text = @"";
+    ExploreCell *tmp = dataInTable[row];
+    if (tmp.answerUsers.count > 0) {
+        // 是回复的
+        AnswerInfo *answerInfo = [tmp.answerUsers objectAtIndex:0];
+        NSString *actionString = [NSString stringWithFormat:@"%@ 回答了问题", answerInfo.nickName];
+        NSMutableAttributedString *str = [[NSMutableAttributedString alloc]initWithString:actionString];
+        [str addAttribute:NSForegroundColorAttributeName value:[wjAppearanceManager userActionTextColor] range:NSMakeRange(0, [answerInfo.nickName length])];
+        cell.actionLabel.attributedText = str;
+        cell.detailLabel.text = answerInfo.answerContent;
+        cell.questionLabel.text = [wjStringProcessor filterHTMLWithString:tmp.questionContent];
+        [cell loadAvatarImageWithApartURL:answerInfo.avatarFile];
+    } else {
+        NSString *actionString;
+        if ([tmp.postType isEqualToString:@"question"]) {
+            // 是提问的
+            actionString = [NSString stringWithFormat:@"%@ 发布了问题", tmp.userInfo.nickName];
+            cell.questionLabel.text = [wjStringProcessor filterHTMLWithString:tmp.questionContent];
+        } else if ([tmp.postType isEqualToString:@"article"]) {
+            actionString = [NSString stringWithFormat:@"%@ 发布了文章", tmp.userInfo.nickName];
+            cell.questionLabel.text = tmp.title;
+        }
+        NSMutableAttributedString *str = [[NSMutableAttributedString alloc]initWithString:actionString];
+        [str addAttribute:NSForegroundColorAttributeName value:[wjAppearanceManager userActionTextColor] range:NSMakeRange(0, [tmp.userInfo.nickName length])];
+        cell.actionLabel.attributedText = str;
+        cell.detailLabel.text = @"";
+        [cell loadAvatarImageWithApartURL:tmp.userInfo.avatarFile];
+    }
     cell.actionLabel.tag = row;
     cell.questionLabel.tag = row;
+    cell.detailLabel.tag = row;
     cell.avatarView.tag = row;
     cell.delegate = self;
     return cell;
 }
 
-- (CGFloat)heightOfLabelWithTextString:(NSString *)textString {
-    CGFloat width = self.tableView.frame.size.width - 32;
-    
-    UILabel *gettingSizeLabel = [[UILabel alloc]init];
-    gettingSizeLabel.text = textString;
-    gettingSizeLabel.font = [UIFont systemFontOfSize:17];
-    gettingSizeLabel.numberOfLines = 0;
-    gettingSizeLabel.lineBreakMode = NSLineBreakByWordWrapping;
-    CGSize maxSize = CGSizeMake(width, 1000.0);
-    
-    CGSize size = [gettingSizeLabel sizeThatFits:maxSize];
-    return size.height;
-}
+//- (CGFloat)heightOfLabelWithTextString:(NSString *)textString {
+//    CGFloat width = self.tableView.frame.size.width - 32;
+//    
+//    UILabel *gettingSizeLabel = [[UILabel alloc]init];
+//    gettingSizeLabel.text = textString;
+//    gettingSizeLabel.font = [UIFont systemFontOfSize:17];
+//    gettingSizeLabel.numberOfLines = 0;
+//    gettingSizeLabel.lineBreakMode = NSLineBreakByWordWrapping;
+//    CGSize maxSize = CGSizeMake(width, 1000.0);
+//    
+//    CGSize size = [gettingSizeLabel sizeThatFits:maxSize];
+//    return size.height;
+//}
 
 // Cell Delegate
 
 - (void)pushUserControllerWithRow:(NSUInteger)row {
-    if (!([((dataInTable[row])[@"user_info"])[@"uid"] integerValue] == -1)) {
-        UserViewController *uVC = [[UserViewController alloc]initWithNibName:@"UserViewController" bundle:nil];
-        uVC.hidesBottomBarWhenPushed = YES;
-        uVC.userId = [((dataInTable[row])[@"user_info"])[@"uid"] stringValue];
-        [self.navigationController pushViewController:uVC animated:YES];
+    NSInteger uid = 0;
+    ExploreCell *tmp = dataInTable[row];
+    if (tmp.answerUsers.count > 0) {
+        AnswerInfo *answerInfo = tmp.answerUsers[0];
+        if (answerInfo.uid != -1) {
+            uid = answerInfo.uid;
+            UserViewController *uVC = [[UserViewController alloc]initWithNibName:@"UserViewController" bundle:nil];
+            uVC.hidesBottomBarWhenPushed = YES;
+            uVC.userId = [NSString stringWithFormat:@"%ld", uid];
+            [self.navigationController pushViewController:uVC animated:YES];
+        } else {
+            [MsgDisplay showErrorMsg:@"无法查看匿名用户~"];
+        }
     } else {
-        [MsgDisplay showErrorMsg:@"无法查看匿名用户~"];
+        if (tmp.userInfo.uid != -1) {
+            uid = tmp.userInfo.uid;
+            UserViewController *uVC = [[UserViewController alloc]initWithNibName:@"UserViewController" bundle:nil];
+            uVC.hidesBottomBarWhenPushed = YES;
+            uVC.userId = [NSString stringWithFormat:@"%ld", uid];
+            [self.navigationController pushViewController:uVC animated:YES];
+        } else {
+            [MsgDisplay showErrorMsg:@"无法查看匿名用户~"];
+        }
     }
 }
 
 - (void)pushQuestionControllerWithRow:(NSUInteger)row {
-    QuestionViewController *qVC = [[QuestionViewController alloc]initWithNibName:@"QuestionViewController" bundle:nil];
-    qVC.questionId = [(dataInTable[row])[@"question_id"] stringValue];
-    qVC.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:qVC animated:YES];
+    ExploreCell *tmp = dataInTable[row];
+    if ([tmp.postType isEqualToString:@"question"]) {
+        // 是提问的
+        QuestionViewController *qVC = [[QuestionViewController alloc]initWithNibName:@"QuestionViewController" bundle:nil];
+        qVC.questionId = [NSString stringWithFormat:@"%ld", tmp.questionId];
+        qVC.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:qVC animated:YES];
+    } else if ([tmp.postType isEqualToString:@"article"]) {
+        AnswerViewController *aVC = [[AnswerViewController alloc] initWithNibName:@"AnswerViewController" bundle:nil];
+        aVC.answerId = [NSString stringWithFormat:@"%ld", tmp.id];
+        aVC.detailType = DetailTypeArticle;
+        aVC.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:aVC animated:YES];
+    }
+    
 }
 
 - (void)pushAnswerControllerWithRow:(NSUInteger)row {
-    
+    ExploreCell *tmp = dataInTable[row];
+    AnswerViewController *aVC = [[AnswerViewController alloc] initWithNibName:@"AnswerViewController" bundle:nil];
+    aVC.answerId = [NSString stringWithFormat:@"%ld", ((AnswerInfo *)tmp.answerUsers[0]).answerId];
+    aVC.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:aVC animated:YES];
 }
 
 

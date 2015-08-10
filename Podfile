@@ -1,17 +1,20 @@
-platform :ios, '7.0'
+platform :ios, '8.0'
 
 pod 'AFNetworking'
 pod 'SVProgressHUD'
 pod 'pop'
 pod 'SVPullToRefresh'
-pod 'JSONKit'
 pod 'KVOController'
-pod 'ALActionBlocks'
+pod 'BlocksKit'
 pod 'NYSegmentedControl'
 pod 'FXForms'
 pod 'FIR.im'
-# pod 'LTNavigationBar'
-# pod 'iOS7Colors'
+pod 'FDFullscreenPopGesture'
+pod 'MJExtension'
+pod 'PopMenu'
+pod 'DZNEmptyDataSet'
+pod 'ChameleonFramework'
+pod 'SlackTextViewController'
 
 target 'Wenjin' do
 

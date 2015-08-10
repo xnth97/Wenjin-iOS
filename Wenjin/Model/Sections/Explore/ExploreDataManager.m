@@ -8,8 +8,9 @@
 
 #import "ExploreDataManager.h"
 #import "AFNetworking.h"
-#import "JSONKit.h"
 #import "wjAPIs.h"
+#import "MJExtension.h"
+#import "ExploreCell.h"
 
 @implementation ExploreDataManager
 
@@ -22,11 +23,11 @@
                                  @"sort_type": type,
                                  @"platform": @"ios"};
     [manager GET:[wjAPIs explore] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSDictionary *dicData = [operation.responseString objectFromJSONString];
+        NSDictionary *dicData = (NSDictionary *)responseObject;
         if ([dicData[@"errno"] isEqual:@1]) {
             NSInteger totalRows = [(dicData[@"rsm"])[@"total_rows"] integerValue];
             if (totalRows != 0) {
-                NSArray *rowsData = (dicData[@"rsm"])[@"rows"];
+                NSArray *rowsData = [ExploreCell objectArrayWithKeyValuesArray:(dicData[@"rsm"])[@"rows"]];
                 dispatch_async(dispatch_get_main_queue(), ^{
                     success(NO, rowsData);
                 });

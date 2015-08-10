@@ -14,6 +14,7 @@
 #import "wjAppearanceManager.h"
 #import "data.h"
 #import <POP/POP.h>
+#import "WebViewController.h"
 
 @interface LoginViewController ()
 
@@ -91,6 +92,12 @@
             [MsgDisplay showErrorMsg:errStr];
         }];
     }
+}
+
+- (IBAction)signIn {
+    WebViewController *webController = [[WebViewController alloc] init];
+    UINavigationController *webNav = [[UINavigationController alloc] initWithRootViewController:webController];
+    [self presentViewController:webNav animated:YES completion:nil];
 }
 
 - (IBAction)cancel {

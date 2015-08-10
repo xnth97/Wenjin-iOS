@@ -10,7 +10,7 @@
 #import "LoginViewController.h"
 #import "wjAccountManager.h"
 #import <POP/POP.h>
-#import "ALActionBlocks.h"
+#import <BlocksKit/BlocksKit+UIKit.h>
 #import "wjAppearanceManager.h"
 
 @implementation NotLoggedInView {
@@ -79,9 +79,9 @@
         [loginBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [loginBtn.layer setCornerRadius:7.0];
         [loginBtn setClipsToBounds:YES];
-        [loginBtn handleControlEvents:UIControlEventTouchUpInside withBlock:^(id weakSender) {
+        [loginBtn bk_addEventHandler:^(id sender) {
             [delegate presentLoginController];
-        }];
+        } forControlEvents:UIControlEventTouchUpInside];
         [loginBtn setBackgroundColor:[UIColor clearColor]];
         [loginBtn.layer setBorderColor:[UIColor whiteColor].CGColor];
         [loginBtn.layer setBorderWidth:1.0];
@@ -125,19 +125,5 @@
         }
     }
 }
-
-/*
-- (IBAction)login {
-    [delegate presentLoginController];
-}
- */
-
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
-}
-*/
 
 @end

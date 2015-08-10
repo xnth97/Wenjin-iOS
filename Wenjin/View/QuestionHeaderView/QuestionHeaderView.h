@@ -8,12 +8,26 @@
 
 #import <UIKit/UIKit.h>
 #import "TLTagsControl.h"
+#import "QuestionInfo.h"
+#import "TopicInfo.h"
 
 @protocol QuestionHeaderViewDelegate <NSObject>
 
 - (void)presentPostAnswerController;
-- (void)headerDetailViewFinishLoadingWithView:(id)view;
+
+/**
+ *  标签点击事件
+ *
+ *  @param index 被点击的标签序号
+ */
 - (void)tagTappedAtIndex:(NSInteger)index;
+
+/**
+ *  WebView 改变大小时回调 headerView
+ *
+ *  @param view 回调的 QuestionHeaderView
+ */
+- (void)headerDetailViewFinishLoadingWithView:(id)view;
 
 @end
 
@@ -21,6 +35,6 @@
 
 @property (assign, nonatomic) id<QuestionHeaderViewDelegate> delegate;
 
-- (id)initWithQuestionInfo:(NSDictionary *)questionInfo andTopics:(NSArray *)topics;
+- (id)initWithQuestionInfo:(QuestionInfo *)questionInfo andTopics:(NSArray *)topics;
 
 @end

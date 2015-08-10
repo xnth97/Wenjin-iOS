@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7531" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginViewController">
@@ -88,10 +88,24 @@
                         <constraint firstAttribute="width" constant="209" id="Piz-PM-wP9"/>
                     </constraints>
                 </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="958-ah-iOD">
+                    <rect key="frame" x="210" y="486" width="180" height="44"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="180" id="T0F-xb-mjQ"/>
+                        <constraint firstAttribute="height" constant="44" id="qn0-aK-xqg"/>
+                    </constraints>
+                    <state key="normal" title="快速注册">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="signIn" destination="-1" eventType="touchUpInside" id="Mst-qI-TgV"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="ERW-He-I5u" firstAttribute="top" secondItem="f3J-Ag-mIl" secondAttribute="bottom" constant="8" id="14l-2E-QZh"/>
+                <constraint firstItem="R7a-Yx-ItV" firstAttribute="top" secondItem="958-ah-iOD" secondAttribute="bottom" constant="2" id="1qn-Ix-7Si"/>
                 <constraint firstAttribute="centerX" secondItem="Gcy-hM-PhW" secondAttribute="centerX" constant="-23.5" id="2pk-fJ-O0J"/>
                 <constraint firstAttribute="centerX" secondItem="3QD-ea-bOo" secondAttribute="centerX" id="6yA-ua-dxp"/>
                 <constraint firstItem="3QD-ea-bOo" firstAttribute="top" secondItem="ERW-He-I5u" secondAttribute="bottom" constant="8" id="7ln-Ae-fDF"/>
@@ -104,6 +118,7 @@
                 <constraint firstAttribute="centerX" secondItem="f3J-Ag-mIl" secondAttribute="centerX" id="Yny-cv-xAL"/>
                 <constraint firstItem="Gcy-hM-PhW" firstAttribute="top" secondItem="WWW-dH-3Gm" secondAttribute="bottom" constant="62" id="ayA-iq-g28"/>
                 <constraint firstAttribute="centerX" secondItem="3QD-ea-bOo" secondAttribute="centerX" id="gbC-Lj-Cli"/>
+                <constraint firstAttribute="centerX" secondItem="958-ah-iOD" secondAttribute="centerX" id="jRQ-OE-jhu"/>
                 <constraint firstAttribute="bottom" secondItem="R7a-Yx-ItV" secondAttribute="bottom" constant="18" id="mvR-dv-D2g"/>
                 <constraint firstAttribute="centerX" secondItem="444-Xt-Bts" secondAttribute="centerX" constant="-23.5" id="qJu-cL-q5x"/>
             </constraints>

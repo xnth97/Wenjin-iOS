@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7531" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AnswerViewController">
@@ -9,6 +9,8 @@
                 <outlet property="agreeBtn" destination="lhU-uQ-ZbX" id="nLk-sh-bBT"/>
                 <outlet property="agreeImageView" destination="Eh8-CX-r6a" id="sdA-LR-K9u"/>
                 <outlet property="answerContentView" destination="hfd-Ha-o5k" id="MIf-Cy-P9H"/>
+                <outlet property="commentItem" destination="78a-Ac-IP9" id="WBB-q2-y8L"/>
+                <outlet property="questionItem" destination="e3v-yJ-OoW" id="dgb-c8-K7d"/>
                 <outlet property="userAvatarView" destination="URu-vY-CRR" id="Evy-SJ-fqp"/>
                 <outlet property="userInfoView" destination="LML-qB-C5r" id="VF4-TR-ijr"/>
                 <outlet property="userNameLabel" destination="dGw-mV-eSB" id="Eb6-Y9-7l4"/>
@@ -31,12 +33,20 @@
                 <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iHH-dC-5wF">
                     <rect key="frame" x="0.0" y="556" width="600" height="44"/>
                     <items>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="KRS-TJ-Sdg"/>
+                        <barButtonItem title="原问题" id="e3v-yJ-OoW">
+                            <connections>
+                                <action selector="pushQuestionViewController" destination="-1" id="0wc-xD-qom"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="6q6-HM-Svg"/>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="09E-nI-KVL"/>
                         <barButtonItem title="评论" id="78a-Ac-IP9">
                             <connections>
                                 <action selector="pushCommentViewController" destination="-1" id="Wrg-bO-blO"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="ABw-35-gzb"/>
                     </items>
                 </toolbar>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LML-qB-C5r">

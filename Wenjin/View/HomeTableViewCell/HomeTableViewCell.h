@@ -10,8 +10,25 @@
 
 @protocol homeTableViewCellDelegate <NSObject>
 
+/**
+ *  点击用户及头像响应事件
+ *
+ *  @param row 点击 cell 行数
+ */
 - (void)pushUserControllerWithRow:(NSUInteger)row;
+
+/**
+ *  点击标题响应事件
+ *
+ *  @param row 点击 cell 行数
+ */
 - (void)pushQuestionControllerWithRow:(NSUInteger)row;
+
+/**
+ *  点击内容响应事件
+ *
+ *  @param row 点击 cell 行数
+ */
 - (void)pushAnswerControllerWithRow:(NSUInteger)row;
 
 @end
@@ -26,5 +43,6 @@
 @property (assign, nonatomic) id<homeTableViewCellDelegate> delegate;
 
 - (void)loadAvatarImageWithApartURL:(NSString *)urlStr;
+- (void)loadTopicImageWithApartURL:(NSString *)urlStr;
 
 @end

@@ -47,6 +47,9 @@
 // 赞同答案
 + (NSString *)voteAnswer;
 
+// 感谢答案 & 没有帮助
++ (NSString *)thankAnswerAndUninterested;
+
 // 关注用户
 + (NSString *)followUser;
 
@@ -86,6 +89,18 @@
 // 关注话题
 + (NSString *)followTopic;
 
+// 文章详细
++ (NSString *)articleDetail;
+
+// 文章评论
++ (NSString *)articleComment;
+
+// 发表文章评论
++ (NSString *)postArticleComment;
+
+// 文章点赞
++ (NSString *)voteArticle;
+
 // 发现
 + (NSString *)explore;
 
@@ -94,6 +109,17 @@
 
 // 反馈
 + (NSString *)feedback;
+
+// 通知
++ (NSString *)notificationList;
++ (NSString *)readNotification;
++ (NSString *)notificationNumber;
+
+// 修改用户信息
++ (NSString *)profileSetting;
+
+// 修改用户头像
++ (NSString *)avatarUpload;
 
 // Bug HD Key
 + (NSString *)firKey;

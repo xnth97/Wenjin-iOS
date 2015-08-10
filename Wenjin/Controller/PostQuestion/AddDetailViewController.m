@@ -9,7 +9,7 @@
 #import "AddDetailViewController.h"
 #import "data.h"
 #import "wjStringProcessor.h"
-#import "ALActionBlocks.h"
+#import "BlocksKit+UIKit.h"
 #import "PostDataManager.h"
 #import "MsgDisplay.h"
 #import <MobileCoreServices/MobileCoreServices.h>
@@ -29,7 +29,7 @@
     
     detailTextView = [[UITextView alloc]initWithFrame:CGRectMake(0, 0, 0, 0)];
     detailTextView.font = [UIFont systemFontOfSize:17.0];
-    detailTextView.text = [data shareInstance].postQuestionDetail;
+    detailTextView.attributedText = [data shareInstance].postQuestionDetail;
     [self.view addSubview:detailTextView];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
@@ -41,8 +41,7 @@
     accessoryToolbar.barStyle = UIBarStyleDefault;
     accessoryToolbar.translucent = YES;
     
-    UIBarButtonItem *addImageBtn = [[UIBarButtonItem alloc]initWithTitle:@"添加图片" style:UIBarButtonItemStylePlain block:^(id weakSender) {
-        
+    UIBarButtonItem *addImageBtn = [[UIBarButtonItem alloc] bk_initWithImage:[UIImage imageNamed:@"insertPic"] landscapeImagePhone:nil style: UIBarButtonItemStylePlain handler:^(id weakSender) {
         UIAlertController *uploadController = [UIAlertController alertControllerWithTitle:@"上传图片" message:@"" preferredStyle:UIAlertControllerStyleActionSheet];
         UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", nil) style:UIAlertActionStyleCancel handler:nil];
         UIAlertAction *photoAction = [UIAlertAction actionWithTitle:@"拍照" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
@@ -75,7 +74,7 @@
         [uploadController.popoverPresentationController setSourceView:self.view];
         [uploadController.popoverPresentationController setSourceRect:self.view.frame];
         [self presentViewController:uploadController animated:YES completion:nil];
-        
+
     }];
     UIBarButtonItem *flexibleSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
     [accessoryToolbar setItems:@[flexibleSpace, flexibleSpace, addImageBtn]];
@@ -117,7 +116,7 @@
             [self.navigationController dismissViewControllerAnimated:YES completion:nil];
         }];
         UIAlertAction *saveAction = [UIAlertAction actionWithTitle:@"保存" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-            [data shareInstance].postQuestionDetail = detailTextView.text;
+            [data shareInstance].postQuestionDetail = detailTextView.attributedText;
             [self.navigationController dismissViewControllerAnimated:YES completion:nil];
         }];
         [cancelAlert addAction:cancelAction];
@@ -131,7 +130,7 @@
 }
 
 - (IBAction)done {
-    [data shareInstance].postQuestionDetail = self.detailTextView.text;
+    [data shareInstance].postQuestionDetail = self.detailTextView.attributedText;
     [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -142,21 +141,38 @@
         [picker dismissViewControllerAnimated:YES completion:nil];
     } else {
         UIImage *img = [info objectForKey:UIImagePickerControllerOriginalImage];
-        NSData *picData = UIImageJPEGRepresentation(img, 0.5);
+        if (img.size.width > 600) {
+            CGSize newSize = CGSizeMake(600, 600 * img.size.height / img.size.width);
+            UIGraphicsBeginImageContext(newSize);
+            [img drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
+            img = UIGraphicsGetImageFromCurrentImageContext();
+            UIGraphicsEndImageContext();
+        }
+//        NSData *picData = UIImageJPEGRepresentation(img, 0.5);
         [picker dismissViewControllerAnimated:YES completion:nil];
-        [MsgDisplay showLoading];
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            [PostDataManager uploadAttachFile:picData attachType:@"question" success:^(NSString *attachId) {
-                [MsgDisplay dismiss];
-                NSUInteger loc = detailTextView.selectedRange.location;
-                detailTextView.text = [NSString stringWithFormat:@"%@\n[attach]%@[/attach]\n%@", [detailTextView.text substringToIndex:loc], attachId, [detailTextView.text substringFromIndex:loc]];
-                [detailTextView becomeFirstResponder];
-            } failure:^(NSString *errStr) {
-                [MsgDisplay dismiss];
-                [MsgDisplay showErrorMsg:errStr];
-                [detailTextView becomeFirstResponder];
-            }];
-        });
+        
+        NSTextAttachment *textAttachment = [[NSTextAttachment alloc] init];
+        textAttachment.image = [UIImage imageWithCGImage:img.CGImage scale:img.size.width / (detailTextView.frame.size.width - 10) orientation:UIImageOrientationUp];
+        NSAttributedString *attrStrWithImage = [NSAttributedString attributedStringWithAttachment:textAttachment];
+        NSUInteger loc = detailTextView.selectedRange.location;
+        [detailTextView.textStorage insertAttributedString:attrStrWithImage atIndex:loc];
+        [detailTextView becomeFirstResponder];
+        [detailTextView setSelectedRange:NSMakeRange(loc + 1, 0)];
+        [detailTextView.textStorage addAttributes:@{NSFontAttributeName: [UIFont systemFontOfSize:17.0]} range:NSMakeRange(0, detailTextView.attributedText.length)];
+        
+//        [MsgDisplay showLoading];
+//        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+//            [PostDataManager uploadAttachFile:picData attachType:@"question" success:^(NSString *attachId) {
+//                [MsgDisplay dismiss];
+//                NSUInteger loc = detailTextView.selectedRange.location;
+//                detailTextView.text = [NSString stringWithFormat:@"%@\n[attach]%@[/attach]\n%@", [detailTextView.text substringToIndex:loc], attachId, [detailTextView.text substringFromIndex:loc]];
+//                [detailTextView becomeFirstResponder];
+//            } failure:^(NSString *errStr) {
+//                [MsgDisplay dismiss];
+//                [MsgDisplay showErrorMsg:errStr];
+//                [detailTextView becomeFirstResponder];
+//            }];
+//        });
     }
 }
 

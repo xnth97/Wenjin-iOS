@@ -8,11 +8,11 @@
 
 #import "wjAccountManager.h"
 #import "AFNetworking.h"
-#import "JSONKit.h"
 #import "wjAPIs.h"
 #import "wjCookieManager.h"
 #import "data.h"
 #import "wjCacheManager.h"
+#import "wjDatabaseManager.h"
 
 @implementation wjAccountManager
 
@@ -21,7 +21,7 @@
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     [manager POST:[NSString stringWithFormat:@"%@?platform=ios", [wjAPIs login]] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
-        NSDictionary *loginData = [operation.responseString objectFromJSONString];
+        NSDictionary *loginData = (NSDictionary *)responseObject;
         if ([loginData[@"errno"] isEqual: @1]) {
             NSDictionary *userData = loginData[@"rsm"];
             NSString *uid = [userData[@"uid"] stringValue];
@@ -51,6 +51,7 @@
     [wjCacheManager removeCacheDataForKey:@"userData"];
     [wjCacheManager removeCacheDataForKey:@"userLoginData"];
     [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"userIsLoggedIn"];
+    [wjDatabaseManager removeDatabase];
 }
 
 + (BOOL)userIsLoggedIn {
@@ -59,6 +60,48 @@
     } else {
         return [[NSUserDefaults standardUserDefaults] boolForKey:@"userIsLoggedIn"];
     }
+}
+
++ (void)profileSettingWithUID:(NSString *)uid nickName:(NSString *)nickName signature:(NSString *)signature birthday:(NSDate *)birthday success:(void (^)())success failure:(void (^)(NSString *))failure {
+    NSDictionary *parameters = @{@"uid": uid,
+                                 @"nick_name": nickName,
+                                 @"signature": signature,
+                                 @"birthday": [NSString stringWithFormat:@"%f", [birthday timeIntervalSince1970]]};
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+    [manager POST:[wjAPIs profileSetting] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSDictionary *dic = (NSDictionary *)responseObject;
+        if ([dic[@"errno"] isEqual:@1]) {
+            success();
+        } else {
+            failure(dic[@"err"]);
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        failure(error.localizedDescription);
+    }];
+}
+
++ (void)uploadAvatar:(id)avatarFile success:(void (^)())success failure:(void (^)(NSString *))failure {
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+    [manager POST:[wjAPIs avatarUpload] parameters:@{@"platform": @"ios"} constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+        [formData appendPartWithFileData:avatarFile name:@"user_avatar" fileName:@"img.jpg" mimeType:@"image/jpg"];
+    } success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSDictionary *dicData = (NSDictionary *)responseObject;
+        if ([dicData[@"errno"] isEqual:@"1"]) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                success();
+            });
+        } else {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                failure(dicData[@"err"]);
+            });
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            failure(error.localizedDescription);
+        });
+    }];
 }
 
 @end

@@ -8,20 +8,23 @@
 
 #import "UserDataManager.h"
 #import "AFNetworking.h"
-#import "JSONKit.h"
 #import "wjAPIs.h"
 #import "data.h"
 #import "wjCacheManager.h"
+#import "MJExtension.h"
+#import "AnswerInfo.h"
+#import "FeedQuestion.h"
+#import "TopicInfo.h"
 
 @implementation UserDataManager
 
-+ (void)getUserDataWithID:(NSString *)uid success:(void (^)(NSDictionary *))success failure:(void (^)(NSString *))failure {
++ (void)getUserDataWithID:(NSString *)uid success:(void (^)(UserInfo *))success failure:(void (^)(NSString *))failure {
     if ([data shareInstance].myUID != nil) {
-        if ([uid integerValue] == [[data shareInstance].myUID integerValue]) {
-            [wjCacheManager loadCacheDataWithKey:@"myProfile" andBlock:^(id myProfileCache, NSDate *saveDate) {
-                success(myProfileCache);
-            }];
-        }
+//        if ([uid integerValue] == [[data shareInstance].myUID integerValue]) {
+//            [wjCacheManager loadCacheDataWithKey:@"myProfile" andBlock:^(id myProfileCache, NSDate *saveDate) {
+//                success(myProfileCache);
+//            }];
+//        }
     }
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
@@ -30,14 +33,14 @@
                                  @"platform": @"ios"};
     [manager GET:[wjAPIs viewUser] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
-        NSDictionary *userDic = [operation.responseString objectFromJSONString];
+        NSDictionary *userDic = (NSDictionary *)responseObject;
         if ([userDic[@"errno"] isEqual:@1]) {
             dispatch_async(dispatch_get_main_queue(), ^{
-                success(userDic[@"rsm"]);
+                success([UserInfo objectWithKeyValues:userDic[@"rsm"]]);
             });
-            if ([uid integerValue] == [[data shareInstance].myUID integerValue]) {
-                [wjCacheManager saveCacheData:userDic[@"rsm"] withKey:@"myProfile"];
-            }
+//            if ([uid integerValue] == [[data shareInstance].myUID integerValue]) {
+//                [wjCacheManager saveCacheData:[UserInfo objectWithKeyValues:userDic[@"rsm"]] withKey:@"myProfile"];
+//            }
             [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         } else {
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -63,11 +66,11 @@
     NSString *queueURL = (operation == 0) ? [wjAPIs myFollowUser] : [wjAPIs myFansUser];
     [manager GET:queueURL parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
-        NSDictionary *dicData = [operation.responseString objectFromJSONString];
+        NSDictionary *dicData = (NSDictionary *)responseObject;
         if ([dicData[@"errno"] isEqual:@1]) {
             NSInteger totalRows = [(dicData[@"rsm"])[@"total_rows"] integerValue];
             if (totalRows != 0) {
-                NSArray *rowsData = (dicData[@"rsm"])[@"rows"];
+                NSArray *rowsData = [UserInfo objectArrayWithKeyValuesArray:(dicData[@"rsm"])[@"rows"]];
                 dispatch_async(dispatch_get_main_queue(), ^{
                     success(totalRows, rowsData);
                 });
@@ -91,7 +94,7 @@
     }];
 }
 
-+ (void)getUserFeedWithType:(NSInteger)feedType userID:(NSString *)uid page:(NSInteger)page success:(void (^)(NSUInteger, NSArray *))success failure:(void (^)(NSString *))failure {
++ (void)getUserFeedWithType:(UserFeedType)feedType userID:(NSString *)uid page:(NSInteger)page success:(void (^)(NSUInteger, NSArray *))success failure:(void (^)(NSString *))failure {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     NSDictionary *parameters = @{@"uid": uid,
@@ -100,13 +103,17 @@
     NSArray *queueURLArray = @[[wjAPIs myQuestions], [wjAPIs myAnswers], [wjAPIs myFollowQuestions]];
     [manager GET:queueURLArray[feedType] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
-        NSDictionary *dicData = [operation.responseString objectFromJSONString];
+        NSDictionary *dicData = (NSDictionary *)responseObject;
         if ([dicData[@"errno"] isEqual:@1]) {
             NSInteger totalRows = [(dicData[@"rsm"])[@"total_rows"] integerValue];
             if (totalRows != 0) {
-                NSArray *rowsData = (dicData[@"rsm"])[@"rows"];
+                NSArray *rawData = (dicData[@"rsm"])[@"rows"];
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    success(totalRows, rowsData);
+                    if (feedType == UserFeedTypeAnswer) {
+                        success(totalRows, [AnswerInfo objectArrayWithKeyValuesArray:rawData]);
+                    } else {
+                        success(totalRows, [FeedQuestion objectArrayWithKeyValuesArray:rawData]);
+                    }
                 });
             } else {
                 NSArray *rowsData = @[];
@@ -134,11 +141,11 @@
                                  @"page": [NSNumber numberWithInteger:page],
                                  @"platform": @"ios"};
     [manager GET:[wjAPIs myFollowTopics] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSDictionary *dicData = [operation.responseString objectFromJSONString];
+        NSDictionary *dicData = (NSDictionary *)responseObject;
         if ([dicData[@"errno"] isEqual:@1]) {
             NSInteger totalRows = [(dicData[@"rsm"])[@"total_rows"] integerValue];
             if (totalRows != 0) {
-                NSArray *rowsData = (dicData[@"rsm"])[@"rows"];
+                NSArray *rowsData = [TopicInfo objectArrayWithKeyValuesArray:(dicData[@"rsm"])[@"rows"]];
                 dispatch_async(dispatch_get_main_queue(), ^{
                     success(totalRows, rowsData);
                 });

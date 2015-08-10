@@ -10,7 +10,7 @@
 #import "NotLoggedInView.h"
 #import "wjAppearanceManager.h"
 
-@interface MainTabBarController : UITabBarController<NotLoggedInViewDelegate>
+@interface MainTabBarController : UITabBarController <NotLoggedInViewDelegate>
 
 @property (nonatomic) BOOL showNotLoggedInView;
 

@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AnswerDraft.h"
 
 @interface PostAnswerViewController : UIViewController<UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 @property (strong, nonatomic) UITextView *answerView;
 @property (strong, nonatomic) NSString *questionId;
+@property (strong, nonatomic) AnswerDraft *draftToBeLoaded;
 
 @end

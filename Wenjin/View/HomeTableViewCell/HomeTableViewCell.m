@@ -7,7 +7,7 @@
 //
 
 #import "HomeTableViewCell.h"
-#import "ALActionBlocks.h"
+#import <BlocksKit/BlocksKit+UIKit.h>
 #import "UIImageView+AFNetworking.h"
 #import "wjAPIs.h"
 #import "wjAppearanceManager.h"
@@ -23,7 +23,7 @@
 
 - (void)awakeFromNib {
     // Initialization code
-    UITapGestureRecognizer *userTapRecognizer = [[UITapGestureRecognizer alloc]initWithBlock:^(id weakSender) {
+    UITapGestureRecognizer *userTapRecognizer = [[UITapGestureRecognizer alloc] bk_initWithHandler:^(id weakSender, UIGestureRecognizerState state, CGPoint location) {
         UITapGestureRecognizer *tapRecognizer = (UITapGestureRecognizer *)weakSender;
         [delegate pushUserControllerWithRow:tapRecognizer.view.tag];
     }];
@@ -32,7 +32,7 @@
     actionLabel.userInteractionEnabled = YES;
     [actionLabel addGestureRecognizer:userTapRecognizer];
     
-    UITapGestureRecognizer *userTapRecognizer2 = [[UITapGestureRecognizer alloc]initWithBlock:^(id weakSender) {
+    UITapGestureRecognizer *userTapRecognizer2 = [[UITapGestureRecognizer alloc] bk_initWithHandler:^(id weakSender, UIGestureRecognizerState state, CGPoint location) {
         UITapGestureRecognizer *tapRecognizer = (UITapGestureRecognizer *)weakSender;
         [delegate pushUserControllerWithRow:tapRecognizer.view.tag];
     }];
@@ -41,7 +41,7 @@
     avatarView.userInteractionEnabled = YES;
     [avatarView addGestureRecognizer:userTapRecognizer2];
     
-    UITapGestureRecognizer *titleTapRecognizer = [[UITapGestureRecognizer alloc]initWithBlock:^(id weakSender) {
+    UITapGestureRecognizer *titleTapRecognizer = [[UITapGestureRecognizer alloc] bk_initWithHandler:^(id weakSender, UIGestureRecognizerState state, CGPoint location) {
         UITapGestureRecognizer *tapRecognizer = (UITapGestureRecognizer *)weakSender;
         [delegate pushQuestionControllerWithRow:tapRecognizer.view.tag];
     }];
@@ -50,7 +50,7 @@
     questionLabel.userInteractionEnabled = YES;
     [questionLabel addGestureRecognizer:titleTapRecognizer];
     
-    UITapGestureRecognizer *detailTapRecognizer = [[UITapGestureRecognizer alloc]initWithBlock:^(id weakSender) {
+    UITapGestureRecognizer *detailTapRecognizer = [[UITapGestureRecognizer alloc] bk_initWithHandler:^(id weakSender, UIGestureRecognizerState state, CGPoint location) {
         UITapGestureRecognizer *tapRecognizer = (UITapGestureRecognizer *)weakSender;
         [delegate pushAnswerControllerWithRow:tapRecognizer.view.tag];
     }];
@@ -73,6 +73,10 @@
 
 - (void)loadAvatarImageWithApartURL:(NSString *)urlStr {
     [self.avatarView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", [wjAPIs avatarPath], urlStr]] placeholderImage:[UIImage imageNamed:@"placeholderAvatar.png"]];
+}
+
+- (void)loadTopicImageWithApartURL:(NSString *)urlStr {
+    [self.avatarView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", [wjAPIs topicImagePath], urlStr]] placeholderImage:[UIImage imageNamed:@"placeholderTopic.png"]];
 }
 
 @end

@@ -1,40 +1,42 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7531" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="56" id="KGk-i7-Jjw" customClass="AnswerCommentTableViewCell">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="56"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="67" id="KGk-i7-Jjw" customClass="AnswerCommentTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="67"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a14-gT-OMc">
-                        <rect key="frame" x="8" y="8" width="304" height="17"/>
+                        <rect key="frame" x="8" y="8" width="304" height="22"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="17" id="S8h-l3-RLJ"/>
+                            <constraint firstAttribute="height" constant="22" id="Z5E-0h-Eyr"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ghS-eX-fCs">
-                        <rect key="frame" x="8" y="33" width="304" height="20"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ghS-eX-fCs">
+                        <rect key="frame" x="8" y="38" width="304" height="20"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="ghS-eX-fCs" firstAttribute="top" secondItem="a14-gT-OMc" secondAttribute="bottom" constant="8" id="1np-ux-LZs"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="ghS-eX-fCs" secondAttribute="bottom" constant="0.5" id="H4h-hc-Utp"/>
                     <constraint firstItem="a14-gT-OMc" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="P47-CW-ahU"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="ghS-eX-fCs" secondAttribute="bottom" constant="0.5" id="Pow-cH-WS1"/>
                     <constraint firstItem="ghS-eX-fCs" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="Wkr-oa-Bie"/>
                     <constraint firstItem="ghS-eX-fCs" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="aUN-HN-hPU"/>
+                    <constraint firstItem="ghS-eX-fCs" firstAttribute="top" secondItem="a14-gT-OMc" secondAttribute="bottom" constant="8" id="bL4-cr-zaT"/>
                     <constraint firstItem="a14-gT-OMc" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="cxW-BP-yYt"/>
                     <constraint firstItem="a14-gT-OMc" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="l41-dH-1zY"/>
                 </constraints>
@@ -43,7 +45,7 @@
                 <outlet property="commentLabel" destination="ghS-eX-fCs" id="57Z-9a-XKn"/>
                 <outlet property="usernameLabel" destination="a14-gT-OMc" id="et6-oZ-LVR"/>
             </connections>
-            <point key="canvasLocation" x="553" y="359"/>
+            <point key="canvasLocation" x="552" y="368.5"/>
         </tableViewCell>
     </objects>
 </document>

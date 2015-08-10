@@ -17,6 +17,7 @@
 #import "UserListTableViewController.h"
 #import "UserFeedTableViewController.h"
 #import "TopicListTableViewController.h"
+#import "DraftTableViewController.h"
 
 @interface UserViewController ()
 
@@ -32,22 +33,19 @@
 @synthesize userTableView;
 @synthesize userData;
 
+#pragma mark - Life Cycle
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.navigationController.view.backgroundColor = [UIColor whiteColor];
-    /*
-    if (userId == nil) {
-        self.title = @"我";
-        if ([data shareInstance].myUID != nil) {
-            userId = [data shareInstance].myUID;
-        }
-    }
-    */
+
     self.userTableView.dataSource = self;
     self.userTableView.delegate = self;
     
     cellArray = @[];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshAvatar) name:@"refreshAvatar" object:nil];
     
     /*
     if ([self respondsToSelector:@selector(automaticallyAdjustsScrollViewInsets)]) {
@@ -85,25 +83,40 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"pushSetting"] || [segue.identifier isEqualToString:@"pushProfileEdit"]) {
+        self.navigationController.view.backgroundColor = [UIColor whiteColor];
+        UIViewController *des = segue.destinationViewController;
+        des.hidesBottomBarWhenPushed = YES;
+    }
+}
+
+#pragma mark - Private Methods
+
 - (void)refreshData {
     if (userId != nil) {
-        [UserDataManager getUserDataWithID:userId success:^(NSDictionary *_userData) {
+        [UserDataManager getUserDataWithID:userId success:^(UserInfo *_userData) {
             userData = _userData;
             
             UserHeaderView *headerView = [[UserHeaderView alloc]init];
             headerView.delegate = self;
-            headerView.usernameLabel.text = userData[@"nick_name"];
-            headerView.userSigLabel.text = (userData[@"signature"] == [NSNull null]) ? @"" : userData[@"signature"];
-            NSUInteger agreeCount = [userData[@"agree_count"] integerValue];
-            NSUInteger thanksCount = [userData[@"thanks_count"] integerValue];
-            headerView.agreeCountLabel.text = (agreeCount >= 1000) ? [NSString stringWithFormat:@"%ldK", agreeCount/1000] : [userData[@"agree_count"] stringValue];
-            headerView.thanksCountLabel.text = (thanksCount >= 1000) ? [NSString stringWithFormat:@"%ldK", thanksCount/1000] : [userData[@"thanks_count"] stringValue];
-            [headerView loadAvatarImageWithApartURLString:userData[@"avatar_file"]];
+            headerView.usernameLabel.text = userData.nickName;
+            headerView.userSigLabel.text = userData.signature;
+            NSUInteger agreeCount = userData.agreeCount;
+            NSUInteger thanksCount = userData.thanksCount;
+            headerView.agreeCountLabel.text = (agreeCount >= 1000) ? [NSString stringWithFormat:@"%ldK", agreeCount/1000] : [NSString stringWithFormat:@"%ld", userData.agreeCount];
+            headerView.thanksCountLabel.text = (thanksCount >= 1000) ? [NSString stringWithFormat:@"%ldK", thanksCount/1000] : [NSString stringWithFormat:@"%ld", userData.thanksCount];
+            [headerView loadAvatarImageWithApartURLString:userData.avatarFile];
             
-            userName = userData[@"nick_name"];
-            userAvatar = userData[@"avatar_file"];
+            userName = userData.nickName;
+            userAvatar = userData.avatarFile;
             
-            if ([userData[@"has_focus"] isEqual:@1]) {
+            if (userData.hasFocus == 1) {
                 [headerView.followButton setTitle:@"取消关注" forState:UIControlStateNormal];
             } else {
                 [headerView.followButton setTitle:@"关注" forState:UIControlStateNormal];
@@ -112,11 +125,14 @@
             
             if ([userId integerValue] == [[data shareInstance].myUID integerValue]) {
                 headerView.followButton.hidden = YES;
-                cellArray = @[@[@"我的提问", @"我的回答", @"我关注的问题", @"我关注的话题"], @[@"我关注的", @"关注我的"]];
+                cellArray = @[@[@"我的提问", @"我的回答", @"我关注的问题", @"我关注的话题"], @[@"我关注的", @"关注我的"], @[@"草稿箱"]];
                 self.title = @"我";
+                [data shareInstance].myInfo = @{@"nickname": userName,
+                                                @"avatar": headerView.userAvatarView.image,
+                                                @"signature": headerView.userSigLabel.text};
             } else {
                 cellArray = @[@[@"Ta 的提问", @"Ta 的回答", @"Ta 关注的问题", @"Ta 关注的话题"], @[@"Ta 关注的", @"关注 Ta 的"]];
-                self.title = userData[@"nick_name"];
+                self.title = userData.nickName;
             }
             
             [userTableView reloadData];
@@ -127,6 +143,13 @@
         }];
     }
 }
+
+- (void)refreshAvatar {
+    UserHeaderView *headerView = (UserHeaderView *)self.userTableView.tableHeaderView;
+    [headerView reloadAvatarImageWithApartURLString:userAvatar];
+}
+
+#pragma mark - Table View Delegate & Data Source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return [cellArray count];
@@ -149,16 +172,18 @@
     cell.textLabel.text = (cellArray[section])[row];
     if (section == 0) {
         if (row == 0) {
-            cell.detailTextLabel.text = [userData[@"question_count"] stringValue];
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld", userData.questionCount];
         } else if (row == 1) {
-            cell.detailTextLabel.text = [userData[@"answer_count"] stringValue];
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld", userData.answerCount];
         }
     } else if (section == 1) {
         if (row == 0) {
-            cell.detailTextLabel.text = [userData[@"friend_count"] stringValue];
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld", userData.friendCount];
         } else {
-            cell.detailTextLabel.text = [userData[@"fans_count"] stringValue];
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld", userData.fansCount];
         }
+    } else if (section == 2) {
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     return cell;
 }
@@ -168,6 +193,8 @@
         return @"动态";
     } else if (section == 1) {
         return @"用户";
+    } else if (section == 2) {
+        return @"我的";
     } else {
         return @"";
     }
@@ -200,10 +227,17 @@
         userList.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:userList animated:YES];
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    } else if (section == 2) {
+        if (row == 0) {
+            DraftTableViewController *draftTableController = [[DraftTableViewController alloc] initWithStyle:UITableViewStylePlain];
+            draftTableController.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:draftTableController animated:YES];
+            [tableView deselectRowAtIndexPath:indexPath animated:YES];
+        }
     }
 }
 
-// UserHeaderViewDelegate
+#pragma mark - UserHeaderViewDelegate
 
 - (void)followUser {
     [wjOperationManager followPeopleWithUserID:userId success:^(NSString *operationType) {
@@ -220,15 +254,5 @@
         [MsgDisplay showErrorMsg:errStr];
     }];
 }
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"pushSetting"]) {
-        self.navigationController.view.backgroundColor = [UIColor whiteColor];
-        UIViewController *des = segue.destinationViewController;
-        des.hidesBottomBarWhenPushed = YES;
-    }
-}
-
 
 @end

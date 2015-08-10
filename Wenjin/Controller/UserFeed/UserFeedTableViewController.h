@@ -8,10 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "HomeTableViewCell.h"
+#import "UserDataManager.h"
 
 @interface UserFeedTableViewController : UITableViewController<homeTableViewCellDelegate>
 
-@property (nonatomic) NSInteger feedType;
+@property (nonatomic) UserFeedType feedType;
 @property (nonatomic) NSString *userId;
 @property (nonatomic) NSString *userName;
 @property (nonatomic) NSString *userAvatar;

@@ -13,6 +13,8 @@
 #import "wjCacheManager.h"
 #import "wjAccountManager.h"
 #import <KVOController/FBKVOController.h>
+#import "NotificationManager.h"
+#import "APService.h"
 
 @interface MainTabBarController ()
 
@@ -28,6 +30,12 @@
     // Do any additional setup after loading the view.
     
     //[[self.tabBar.items objectAtIndex:1] setBadgeValue:@"3"];
+    
+    NSString *path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSLog(@"%@", path);
+    
+    // 防止1.0用户闪退
+    [wjCacheManager removeCacheDataForKey:@"homeCache"];
     
     FBKVOController *kvoController = [FBKVOController controllerWithObserver:self];
     self.KVOController = kvoController;
@@ -47,23 +55,14 @@
             [wjCookieManager loadCookieForKey:@"login"];
             [wjCacheManager loadCacheDataWithKey:@"userData" andBlock:^(id userData, NSDate *saveDate) {
                 [data shareInstance].myUID = [userData[@"uid"] stringValue];
+                [APService setAlias:[data shareInstance].myUID callbackSelector:nil object:nil];
             }];
             
-            /*
-            [wjCacheManager loadCacheDataWithKey:@"userLoginData" andBlock:^(id loginData, NSDate *saveDate) {
-                NSDate *now = [NSDate date];
-                if ([now timeIntervalSinceDate:saveDate] >= 1) {
-                    [wjAccountManager loginWithParameters:loginData success:^(NSString *uid, NSString *username, NSString *avatarFile) {
-                        NSLog(@"wtf");
-                    } failure:^(NSString *errorStr) {
-                        
-                    }];
-                }
-            }];
-            */
+            [self refreshNotification];
         }
     }];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshNotification) name:@"newNotification" object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -86,16 +85,40 @@
     // Dispose of any resources that can be recreated.
 }
 
-// NotLoggedInViewDelegate
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+#pragma mark - Custom Accessor
+
+- (UIStatusBarStyle)preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent;
+}
+
+#pragma mark - Pricate Method
+
+- (void)refreshNotification {
+    if ([wjAccountManager userIsLoggedIn]) {
+        [NotificationManager getUnreadNotificationNumberWithSuccess:^(NSUInteger inboxNum, NSUInteger notificationNum) {
+            if (notificationNum > 0) {
+                [[self.tabBar.items objectAtIndex:1] setBadgeValue:[NSString stringWithFormat:@"%lu", (unsigned long)notificationNum]];
+                [APService setBadge:notificationNum];
+            } else if (notificationNum == 0) {
+                [[self.tabBar.items objectAtIndex:1] setBadgeValue:nil];
+                [APService resetBadge];
+            }
+        } failure:^(NSString *errStr) {
+            
+        }];
+    }
+}
+
+#pragma mark - NotLoggedInViewDelegate
 
 - (void)presentLoginController {
     LoginViewController *login = [[LoginViewController alloc]initWithNibName:@"LoginViewController" bundle:nil];
     [login setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
     [self presentViewController:login animated:YES completion:nil];
-}
-
-- (UIStatusBarStyle)preferredStatusBarStyle {
-    return UIStatusBarStyleLightContent;
 }
 
 /*

@@ -19,6 +19,8 @@
 #import "UserViewController.h"
 #import "AnswerViewController.h"
 #import "QuestionViewController.h"
+#import "TopicInfo.h"
+#import "TopicBestAnswerCell.h"
 
 @interface TopicBestAnswerViewController ()
 
@@ -55,9 +57,11 @@
     focusTopic.hidden = YES;
     [focusTopic setTitle:@"" forState:UIControlStateNormal];
     
-    UIView *splitLine = [[UIView alloc]initWithFrame:CGRectMake(0, topicHeaderView.frame.size.height - 0.5, [UIScreen mainScreen].bounds.size.width, 0.5)];
-    [splitLine setBackgroundColor:[UIColor colorWithWhite:0.8 alpha:1.0]];
-    [topicHeaderView addSubview:splitLine];
+    [topicHeaderView addSubview:({
+        UIView *splitLine = [[UIView alloc]initWithFrame:CGRectMake(0, topicHeaderView.frame.size.height - 0.5, [UIScreen mainScreen].bounds.size.width, 0.5)];
+        [splitLine setBackgroundColor:[UIColor colorWithWhite:0.8 alpha:1.0]];
+        splitLine;
+    })];
     
     rowsData = [[NSMutableArray alloc]init];
     
@@ -71,6 +75,9 @@
             [focusTopic setTitle:@"关注" forState:UIControlStateNormal];
         }
     }];
+    
+    bestAnswerTableView.estimatedRowHeight = 93;
+    bestAnswerTableView.rowHeight = UITableViewAutomaticDimension;
     
     [TopicDataManager getTopicBestAnswerWithTopicID:topicId success:^(NSUInteger _totalRows, NSArray *_rows) {
         
@@ -92,14 +99,14 @@
         [MsgDisplay showErrorMsg:errStr];
     }];
     
-    [TopicDataManager getTopicInfoWithTopicID:topicId userID:[data shareInstance].myUID success:^(NSDictionary *topicInfo) {
-        self.title = topicInfo[@"topic_title"];
-        topicTitle.text = topicInfo[@"topic_title"];
-        topicDescription.text = topicInfo[@"topic_description"];
-        [topicImage setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", [wjAPIs topicImagePath], topicInfo[@"topic_pic"]]] placeholderImage:[UIImage imageNamed:@"placeholderTopic.png"]];
-        if ([topicInfo[@"has_focus"] isEqual:@0]) {
+    [TopicDataManager getTopicInfoWithTopicID:topicId userID:[data shareInstance].myUID success:^(TopicInfo *topicInfo) {
+        self.title = topicInfo.topicTitle;
+        topicTitle.text = topicInfo.topicTitle;
+        topicDescription.text = topicInfo.topicDescription;
+        [topicImage setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", [wjAPIs topicImagePath], topicInfo.topicPic]] placeholderImage:[UIImage imageNamed:@"placeholderTopic.png"]];
+        if (topicInfo.hasFocus == 0) {
             [self setValue:@NO forKey:@"topicFollowed"];
-        } else if ([topicInfo[@"has_focus"] isEqual:@1]) {
+        } else if (topicInfo.hasFocus == 1) {
             [self setValue:@YES forKey:@"topicFollowed"];
         }
     } failure:^(NSString *errStr) {
@@ -134,12 +141,12 @@
     return [rowsData count];
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSUInteger row = [indexPath row];
-    NSString *questionTitle = ((rowsData[row])[@"question_info"])[@"question_content"];
-    NSString *detailStr = [wjStringProcessor processAnswerDetailString:((rowsData[row])[@"answer_info"])[@"answer_content"]];
-    return 56 + [self heightOfLabelWithTextString:questionTitle fontSize:17.0 andNumberOfLines:0] + [self heightOfLabelWithTextString:detailStr fontSize:15.0 andNumberOfLines:3];
-}
+//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+//    NSUInteger row = [indexPath row];
+//    NSString *questionTitle = ((rowsData[row])[@"question_info"])[@"question_content"];
+//    NSString *detailStr = [wjStringProcessor processAnswerDetailString:((rowsData[row])[@"answer_info"])[@"answer_content"]];
+//    return 56 + [self heightOfLabelWithTextString:questionTitle fontSize:17.0 andNumberOfLines:0] + [self heightOfLabelWithTextString:detailStr fontSize:15.0 andNumberOfLines:3];
+//}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *simpleTableIdentifier = @"SimpleTableCell";
@@ -149,49 +156,50 @@
         cell = [nib objectAtIndex:0];
     }
     NSUInteger row = [indexPath row];
-    NSDictionary *tmp = rowsData[row];
+    TopicBestAnswerCell *tmp = rowsData[row];
     NSString *actionString;
-    if ([(tmp[@"answer_info"])[@"answer_content"] isEqualToString:@""]) {
-        actionString = [NSString stringWithFormat:@"%@ 发布了问题", (tmp[@"answer_info"])[@"nick_name"]];
+    if ([tmp.answerInfo.answerContent isEqualToString:@""]) {
+        actionString = [NSString stringWithFormat:@"%@ 发布了问题", tmp.answerInfo.nickName];
     } else {
-        actionString = [NSString stringWithFormat:@"%@ 回答了问题", (tmp[@"answer_info"])[@"nick_name"]];
+        actionString = [NSString stringWithFormat:@"%@ 回答了问题", tmp.answerInfo.nickName];
     }
     NSMutableAttributedString *str = [[NSMutableAttributedString alloc]initWithString:actionString];
-    [str addAttribute:NSForegroundColorAttributeName value:[wjAppearanceManager userActionTextColor] range:NSMakeRange(0, [(tmp[@"answer_info"])[@"nick_name"] length])];
+    [str addAttribute:NSForegroundColorAttributeName value:[wjAppearanceManager userActionTextColor] range:NSMakeRange(0, [tmp.answerInfo.nickName length])];
     cell.actionLabel.attributedText = str;
-    cell.questionLabel.text = [wjStringProcessor filterHTMLWithString:(tmp[@"question_info"])[@"question_content"]];
-    cell.detailLabel.text = [wjStringProcessor processAnswerDetailString:(tmp[@"answer_info"])[@"answer_content"]];
+    cell.questionLabel.text = [wjStringProcessor filterHTMLWithString:tmp.questionInfo.questionContent];
+    cell.detailLabel.text = [wjStringProcessor getSummaryFromString:tmp.answerInfo.answerContent lengthLimit:70];
     cell.actionLabel.tag = row;
     cell.questionLabel.tag = row;
     cell.detailLabel.tag = row;
     cell.avatarView.tag = row;
     cell.delegate = self;
-    [cell loadAvatarImageWithApartURL:(tmp[@"answer_info"])[@"avatar_file"]];
+    [cell loadAvatarImageWithApartURL:tmp.answerInfo.avatarFile];
     
     return cell;
 
 }
 
-- (CGFloat)heightOfLabelWithTextString:(NSString *)textString fontSize:(CGFloat)fontSize andNumberOfLines:(NSUInteger)lines {
-    CGFloat width = bestAnswerTableView.frame.size.width - 32;
-    
-    UILabel *gettingSizeLabel = [[UILabel alloc]init];
-    gettingSizeLabel.text = textString;
-    gettingSizeLabel.font = [UIFont systemFontOfSize:fontSize];
-    gettingSizeLabel.numberOfLines = lines;
-    gettingSizeLabel.lineBreakMode = NSLineBreakByWordWrapping;
-    CGSize maxSize = CGSizeMake(width, 1000.0);
-    
-    CGSize size = [gettingSizeLabel sizeThatFits:maxSize];
-    return size.height;
-}
+//- (CGFloat)heightOfLabelWithTextString:(NSString *)textString fontSize:(CGFloat)fontSize andNumberOfLines:(NSUInteger)lines {
+//    CGFloat width = bestAnswerTableView.frame.size.width - 32;
+//    
+//    UILabel *gettingSizeLabel = [[UILabel alloc]init];
+//    gettingSizeLabel.text = textString;
+//    gettingSizeLabel.font = [UIFont systemFontOfSize:fontSize];
+//    gettingSizeLabel.numberOfLines = lines;
+//    gettingSizeLabel.lineBreakMode = NSLineBreakByWordWrapping;
+//    CGSize maxSize = CGSizeMake(width, 1000.0);
+//    
+//    CGSize size = [gettingSizeLabel sizeThatFits:maxSize];
+//    return size.height;
+//}
 
 // HomeCellDelegate
 
 - (void)pushUserControllerWithRow:(NSUInteger)row {
-    if (!([((rowsData[row])[@"answer_info"])[@"uid"] integerValue] == -1)) {
+    TopicBestAnswerCell *tmp = rowsData[row];
+    if (tmp.answerInfo.uid != -1) {
         UserViewController *uVC = [[UserViewController alloc]initWithNibName:@"UserViewController" bundle:nil];
-        uVC.userId = [((rowsData[row])[@"answer_info"])[@"uid"] stringValue];
+        uVC.userId = [NSString stringWithFormat:@"%ld", tmp.answerInfo.uid];
         [self.navigationController pushViewController:uVC animated:YES];
     } else {
         [MsgDisplay showErrorMsg:@"无法查看匿名用户~"];
@@ -199,15 +207,19 @@
 }
 
 - (void)pushQuestionControllerWithRow:(NSUInteger)row {
+    TopicBestAnswerCell *tmp = rowsData[row];
     QuestionViewController *qVC = [[QuestionViewController alloc]initWithNibName:@"QuestionViewController" bundle:nil];
-    qVC.questionId = [((rowsData[row])[@"question_info"])[@"question_id"] stringValue];
+    qVC.questionId = [NSString stringWithFormat:@"%ld", tmp.questionInfo.questionId];
     [self.navigationController pushViewController:qVC animated:YES];
 }
 
 - (void)pushAnswerControllerWithRow:(NSUInteger)row {
-    AnswerViewController *aVC = [[AnswerViewController alloc]initWithNibName:@"AnswerViewController" bundle:nil];
-    aVC.answerId = [((rowsData[row])[@"answer_info"])[@"answer_id"] stringValue];
-    [self.navigationController pushViewController:aVC animated:YES];
+    TopicBestAnswerCell *tmp = rowsData[row];
+    if (![tmp.answerInfo.answerContent isEqualToString:@""]) {
+        AnswerViewController *aVC = [[AnswerViewController alloc]initWithNibName:@"AnswerViewController" bundle:nil];
+        aVC.answerId = [NSString stringWithFormat:@"%ld", tmp.answerInfo.answerId];
+        [self.navigationController pushViewController:aVC animated:YES];
+    }
 }
 
 /*

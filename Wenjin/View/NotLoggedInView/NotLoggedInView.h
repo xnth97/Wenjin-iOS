@@ -18,6 +18,4 @@
 
 @property (assign, nonatomic) id<NotLoggedInViewDelegate> delegate;
 
-//- (IBAction)login;
-
 @end

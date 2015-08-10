@@ -7,6 +7,7 @@
 //
 
 #import "wjAppearanceManager.h"
+#import "Chameleon.h"
 
 @implementation wjAppearanceManager
 
@@ -56,8 +57,9 @@
 }
 
 + (UIColor *)segmentedUnselectedTextColor {
-    UIColor * color = [UIColor colorWithRed:89/255.0f green:167/255.0f blue:48/255.0f alpha:1.0f];
+   UIColor * color = [UIColor colorWithRed:89/255.0f green:167/255.0f blue:48/255.0f alpha:1.0f];
     return color;
 }
+
 
 @end

@@ -7,7 +7,7 @@
 //
 
 #import "QuestionAnswerTableViewCell.h"
-#import "ALActionBlocks.h"
+#import "BlocksKit+UIKit.h"
 #import "UIImageView+AFNetworking.h"
 #import "wjAppearanceManager.h"
 #import "wjAPIs.h"
@@ -23,7 +23,7 @@
 
 - (void)awakeFromNib {
     // Initialization code
-    UITapGestureRecognizer *userAvatarRecognizer = [[UITapGestureRecognizer alloc]initWithBlock:^(id weakSender) {
+    UITapGestureRecognizer *userAvatarRecognizer = [[UITapGestureRecognizer alloc] bk_initWithHandler:^(id weakSender, UIGestureRecognizerState state, CGPoint location) {
         UITapGestureRecognizer *tapRecognizer = (UITapGestureRecognizer *)weakSender;
         [delegate pushUserControllerWithRow:tapRecognizer.view.tag];
     }];

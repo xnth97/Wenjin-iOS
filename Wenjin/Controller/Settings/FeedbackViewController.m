@@ -8,7 +8,7 @@
 
 #import "FeedbackViewController.h"
 #import "FeedbackForm.h"
-#import "ALActionBlocks.h"
+#import <BlocksKit/BlocksKit+UIKit.h>
 #import "MsgDisplay.h"
 #import "PostDataManager.h"
 
@@ -34,7 +34,7 @@
     formController.delegate = self;
     formController.form = [[FeedbackForm alloc]init];
     
-    UIBarButtonItem *doneBtn = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemDone block:^(id weakSender) {
+    UIBarButtonItem *doneBtn = [[UIBarButtonItem alloc] bk_initWithBarButtonSystemItem:UIBarButtonSystemItemDone handler:^(id weakSender) {
         FeedbackForm *form = (FeedbackForm *)self.formController.form;
         NSString *titleStr = form.title;
         NSString *msgStr = form.message;

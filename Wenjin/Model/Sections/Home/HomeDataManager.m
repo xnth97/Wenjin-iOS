@@ -10,7 +10,8 @@
 #import "wjAPIs.h"
 #import "wjCacheManager.h"
 #import "AFNetworking.h"
-#import "JSONKit.h"
+#import "TWTDataChecker.h"
+#import "HomeCell.h"
 
 @implementation HomeDataManager
 
@@ -21,22 +22,24 @@
                                  @"per_page": @20,
                                  @"platform": @"ios"};
     if (page == 0) {
-        [wjCacheManager loadCacheDataWithKey:@"homeCache" andBlock:^(NSArray *rows, NSDate *saveDate) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                success(rows, NO);
-            });
-        }];
+//        [wjCacheManager loadCacheDataWithKey:@"homeCache" andBlock:^(NSArray *rows, NSDate *saveDate) {
+//            if (rows != nil) {
+//                dispatch_async(dispatch_get_main_queue(), ^{
+//                    success(rows, NO);
+//                });
+//            }
+//        }];
     }
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     [manager GET:[wjAPIs homeURL] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
-        NSDictionary *responseDic = [operation.responseString objectFromJSONString];
+        NSDictionary *responseDic = (NSDictionary *)responseObject;
         if ([responseDic[@"errno"] isEqual: @1]) {
-            NSArray *rows = (responseDic[@"rsm"])[@"rows"];
+            NSArray *rows = [HomeCell objectArrayWithKeyValuesArray:(responseDic[@"rsm"])[@"rows"]];
             if (page == 0) {
-                [wjCacheManager saveCacheData:rows withKey:@"homeCache"];
+                //[wjCacheManager saveCacheData:rows withKey:@"homeCache"];
             }
             if ([(responseDic[@"rsm"])[@"total_rows"] isEqual: @0]) {
                 dispatch_async(dispatch_get_main_queue(), ^{
