@@ -228,6 +228,7 @@
                                 @"105": @"评论了你在问题中的回复",
                                 @"116": @"在问题回答评论中提到了你",
                                 @"107": @"赞同了你",
+                                @"108": @"感谢了你的回答",
                                 @"117": @"评论了文章"};
     NSString *actionString = [NSString stringWithFormat:@"%@ %@", tmp.nickName, actionDic[actionType]];
     NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:actionString];

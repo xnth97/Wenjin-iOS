@@ -75,11 +75,16 @@ Wenjin-iOS
 * SVProgressHUD
 * SVPullToRefresh
 * POP
+* PopMenu
 * KVOController
 * FXForms
 * NYSegmentedControl
 * TLTagsControl
 * Realm
+* DZNEmptyDataSet
+* SlackTextViewController
+* FDFullscreenPopGesture
+* FIR.im
 
 为适应 问津 的需求，部分代码被做出了一些更改并 fork 到我自己的分支中（而未通过 Cocoapods 进行管理）。具体详见代码。
 
