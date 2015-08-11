@@ -1,16 +1,16 @@
 Wenjin-iOS
 ======================
-问津社区 iOS 版客户端
+The iOS Client of WENJIN
 
-# 简介
+# Introduction
 
 > 寻师讲道，结友问津。
 
-问津 是天外天工作室出品的天津大学校内问答社区。本项目为问津社区 iOS 客户端，适配 iPhone, iPod touch, iPad 平台。
+WENJIN(问津) is a question-and-answer community developed by TWT Studio, Tianjin University. This project is intend to build an iOS client for WENJIN Community in Objective-C.
 
-# 项目架构
+# Project Structure
 
-本项目遵循 MVC 架构规范。项目结构主要为：
+The structure of this project follows the standard of MVC pattern as below.
 
 * Main
 	* AppDelegate
@@ -19,22 +19,23 @@ Wenjin-iOS
 	* info.plist
 	* Base.lproj & zh-Hans.lproj
 * Model
-	* 数据模型
-	* 各模块数据管理器
-	* 消息显示模块
-	* 本地数据管理
-		* 缓存管理
-		* Cookie 管理
-		* 数据库管理
-		* 数据库数据模型
-	* 字符串处理
-	* App 外观颜色管理
-	* API 调用及加密模块
-	* 单例模式实现
+	* Data Model
+	* Data Manager
+	* Message Display
+	* Local Data Manager
+		* Cache Manager
+		* Cookie Manager
+		* Database Manager
+		* Database Data Model
+	* String Processor
+	* Appearance Manager
+	* APIs
+	* Encryption
+	* Singleton
 	* UIActivity
 * View
-	* UITableViewCell
-	* 各种自定义 View
+	* Table View Cells
+	* Custom Views
 * Controller
 	* MainTabBarController
 	* UIViewController
@@ -42,21 +43,21 @@ Wenjin-iOS
 	* XIB
 * Resource
 	* Images.xcassets
-	* Bootstrap
-	* 第三方 framework
+	* Built-in Bootstrap
+	* 3rd Party Frameworks
 
-# 数据结构
+# Data Structure
 
-## 问题草稿
+## Question Draft
 
 * questionTitle __String__
 * questionDetail __String__
-* topicArrData __NSData__: 使用 NSKeyedArchiver 打包的 NSArray
+* topicArrData __NSData__: NSKeyedArchiver-archived NSArray
 * attachAccessKey __NSString__
 * anonymous __NSInteger__
 * time __NSDate__
 
-## 答案草稿
+## Answer Draft
 
 * questionId __NSString__
 * answerContent __NSString__
@@ -64,33 +65,10 @@ Wenjin-iOS
 * anonymous __NSInteger__
 * time __NSDate__
 
-# 开源项目
+# Acknowledgements
 
-衷心感谢以下开源项目为 问津 作出的不可磨灭的贡献。
+I would like to extend my sincere gratitude to the included open-source projects, without which this project would never be completed.
 
-* CocoaPods
-* AFNetworking
-* BlocksKit
-* MJExtension
-* SVProgressHUD
-* SVPullToRefresh
-* POP
-* PopMenu
-* KVOController
-* FXForms
-* NYSegmentedControl
-* TLTagsControl
-* Realm
-* DZNEmptyDataSet
-* SlackTextViewController
-* FDFullscreenPopGesture
-* FIR.im
+To meet specific demands of this project, some open-source projects were modified manually and forked into my own repositories instead of being managed by CocoaPods. 
 
-为适应 问津 的需求，部分代码被做出了一些更改并 fork 到我自己的分支中（而未通过 Cocoapods 进行管理）。具体详见代码。
-
-
-
-
-
-
-
+> Copyright 2002-2015 TWT Studio
