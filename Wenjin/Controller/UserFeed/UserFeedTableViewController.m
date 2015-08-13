@@ -42,7 +42,7 @@
     self.tableView.tableFooterView = [[UIView alloc]init];
     self.tableView.allowsSelection = NO;
     
-    if ([self respondsToSelector:@selector(automaticallyAdjustsScrollViewInsets)]) {
+    if ([self respondsToSelector:@selector(automaticallyAdjustsScrollViewInsets)] && self.navigationController.navigationBar.translucent == YES) {
         self.automaticallyAdjustsScrollViewInsets = NO;
         
         UIEdgeInsets insets = self.tableView.contentInset;
@@ -122,33 +122,6 @@
     return [dataInTable count];
 }
 
-//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-//    // feedType = 0：提问；1：回答；2：关注
-//    NSUInteger row = [indexPath row];
-//    NSDictionary *tmp = dataInTable[row];
-//    NSString *title = @"";
-//    NSString *detail = @"";
-//    switch (feedType) {
-//        case 0:
-//            title = tmp[@"title"];
-//            detail = [wjStringProcessor processAnswerDetailString:tmp[@"detail"]];
-//            break;
-//            
-//        case 1:
-//            title = tmp[@"question_title"];
-//            detail = [wjStringProcessor processAnswerDetailString:tmp[@"answer_content"]];
-//            break;
-//            
-//        case 2:
-//            title = tmp[@"title"];
-//            break;
-//            
-//        default:
-//            break;
-//    }
-//    return 56 + [self heightOfLabelWithTextString:title] + [self heightOfLabelWithTextString:detail];
-//}
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *simpleTableIdentifier = @"SimpleTableCell";
     HomeTableViewCell *cell = (HomeTableViewCell *)[tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
@@ -195,7 +168,7 @@
     [attriStr addAttribute:NSForegroundColorAttributeName value:[wjAppearanceManager userActionTextColor] range:NSMakeRange(0, userName.length)];
     cell.actionLabel.attributedText = attriStr;
     cell.questionLabel.text = title;
-    cell.detailLabel.text = detail;
+    cell.detailLabel.text = [wjStringProcessor getSummaryFromString:detail lengthLimit:70];
     [cell loadAvatarImageWithApartURL:userAvatar];
     cell.actionLabel.tag = row;
     cell.questionLabel.tag = row;
@@ -225,16 +198,16 @@
     if (feedType == UserFeedTypeAnswer) {
         AnswerInfo *tmp = dataInTable[row];
         AnswerViewController *aVC = [[AnswerViewController alloc]initWithNibName:@"AnswerViewController" bundle:nil];
-        aVC.answerId = [NSString stringWithFormat:@"%ld", tmp.answerId];
+        aVC.answerId = [NSString stringWithFormat:@"%ld", (long)tmp.answerId];
         [self.navigationController pushViewController:aVC animated:YES];
     } else if (feedType == UserFeedTypeQuestion) {
         QuestionViewController *qVC = [[QuestionViewController alloc]initWithNibName:@"QuestionViewController" bundle:nil];
         if ((feedType == UserFeedTypeQuestion) || (feedType == UserFeedTypeFollowQuestion)) {
             FeedQuestion *tmp = dataInTable[row];
-            qVC.questionId = [NSString stringWithFormat:@"%ld", tmp.feedId];
+            qVC.questionId = [NSString stringWithFormat:@"%ld", (long)tmp.feedId];
         } else if (feedType == UserFeedTypeAnswer) {
             AnswerInfo *tmp = dataInTable[row];
-            qVC.questionId = [NSString stringWithFormat:@"%ld", tmp.questionId];
+            qVC.questionId = [NSString stringWithFormat:@"%ld", (long)tmp.questionId];
         }
         [self.navigationController pushViewController:qVC animated:YES];
     }
@@ -244,10 +217,10 @@
     QuestionViewController *qVC = [[QuestionViewController alloc]initWithNibName:@"QuestionViewController" bundle:nil];
     if ((feedType == UserFeedTypeQuestion) || (feedType == UserFeedTypeFollowQuestion)) {
         FeedQuestion *tmp = dataInTable[row];
-        qVC.questionId = [NSString stringWithFormat:@"%ld", tmp.feedId];
+        qVC.questionId = [NSString stringWithFormat:@"%ld", (long)tmp.feedId];
     } else if (feedType == UserFeedTypeAnswer) {
         AnswerInfo *tmp = dataInTable[row];
-        qVC.questionId = [NSString stringWithFormat:@"%ld", tmp.questionId];
+        qVC.questionId = [NSString stringWithFormat:@"%ld", (long)tmp.questionId];
     }
     [self.navigationController pushViewController:qVC animated:YES];
 }

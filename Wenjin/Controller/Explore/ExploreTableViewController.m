@@ -56,7 +56,7 @@
     [segmentedControl sizeToFit];
     [self.navigationItem setTitleView:segmentedControl];
     
-    if ([self respondsToSelector:@selector(automaticallyAdjustsScrollViewInsets)]) {
+    if ([self respondsToSelector:@selector(automaticallyAdjustsScrollViewInsets)] && self.navigationController.navigationBar.translucent == YES) {
         self.automaticallyAdjustsScrollViewInsets = NO;
         
         UIEdgeInsets insets = self.tableView.contentInset;
@@ -254,7 +254,7 @@
             uid = answerInfo.uid;
             UserViewController *uVC = [[UserViewController alloc]initWithNibName:@"UserViewController" bundle:nil];
             uVC.hidesBottomBarWhenPushed = YES;
-            uVC.userId = [NSString stringWithFormat:@"%ld", uid];
+            uVC.userId = [NSString stringWithFormat:@"%ld", (long)uid];
             [self.navigationController pushViewController:uVC animated:YES];
         } else {
             [MsgDisplay showErrorMsg:@"无法查看匿名用户~"];
@@ -264,7 +264,7 @@
             uid = tmp.userInfo.uid;
             UserViewController *uVC = [[UserViewController alloc]initWithNibName:@"UserViewController" bundle:nil];
             uVC.hidesBottomBarWhenPushed = YES;
-            uVC.userId = [NSString stringWithFormat:@"%ld", uid];
+            uVC.userId = [NSString stringWithFormat:@"%ld", (long)uid];
             [self.navigationController pushViewController:uVC animated:YES];
         } else {
             [MsgDisplay showErrorMsg:@"无法查看匿名用户~"];
@@ -277,12 +277,12 @@
     if ([tmp.postType isEqualToString:@"question"]) {
         // 是提问的
         QuestionViewController *qVC = [[QuestionViewController alloc]initWithNibName:@"QuestionViewController" bundle:nil];
-        qVC.questionId = [NSString stringWithFormat:@"%ld", tmp.questionId];
+        qVC.questionId = [NSString stringWithFormat:@"%ld", (long)tmp.questionId];
         qVC.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:qVC animated:YES];
     } else if ([tmp.postType isEqualToString:@"article"]) {
         AnswerViewController *aVC = [[AnswerViewController alloc] initWithNibName:@"AnswerViewController" bundle:nil];
-        aVC.answerId = [NSString stringWithFormat:@"%ld", tmp.id];
+        aVC.answerId = [NSString stringWithFormat:@"%ld", (long)tmp.id];
         aVC.detailType = DetailTypeArticle;
         aVC.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:aVC animated:YES];
@@ -293,7 +293,7 @@
 - (void)pushAnswerControllerWithRow:(NSUInteger)row {
     ExploreCell *tmp = dataInTable[row];
     AnswerViewController *aVC = [[AnswerViewController alloc] initWithNibName:@"AnswerViewController" bundle:nil];
-    aVC.answerId = [NSString stringWithFormat:@"%ld", ((AnswerInfo *)tmp.answerUsers[0]).answerId];
+    aVC.answerId = [NSString stringWithFormat:@"%ld", (long)((AnswerInfo *)tmp.answerUsers[0]).answerId];
     aVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:aVC animated:YES];
 }

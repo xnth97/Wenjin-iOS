@@ -67,7 +67,7 @@
 }
 
 + (void)readNotificationWithNotificationID:(NSInteger)notificationId {
-    NSDictionary *parameters = @{@"notification_id": [NSString stringWithFormat:@"%ld", notificationId],
+    NSDictionary *parameters = @{@"notification_id": [NSString stringWithFormat:@"%ld", (long)notificationId],
                                  @"platform": @"ios"};
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];

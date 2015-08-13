@@ -58,7 +58,7 @@
     
     currentPage = 1;
     
-    if ([self respondsToSelector:@selector(automaticallyAdjustsScrollViewInsets)]) {
+    if ([self respondsToSelector:@selector(automaticallyAdjustsScrollViewInsets)] && self.navigationController.navigationBar.translucent == YES) {
         self.automaticallyAdjustsScrollViewInsets = NO;
         
         UIEdgeInsets insets = self.tableView.contentInset;

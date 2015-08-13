@@ -48,7 +48,7 @@
     self.tableView.emptyDataSetSource = self;
     self.tableView.emptyDataSetDelegate = self;
     
-    if ([self respondsToSelector:@selector(automaticallyAdjustsScrollViewInsets)]) {
+    if ([self respondsToSelector:@selector(automaticallyAdjustsScrollViewInsets)] && self.navigationController.navigationBar.translucent == YES) {
         self.automaticallyAdjustsScrollViewInsets = NO;
         
         UIEdgeInsets insets = self.tableView.contentInset;
@@ -221,7 +221,7 @@
     
     NSInteger row = [indexPath row];
     NotificationCell *tmp = dataInView[row];
-    NSString *actionType = [NSString stringWithFormat:@"%ld", tmp.actionType];
+    NSString *actionType = [NSString stringWithFormat:@"%ld", (long)tmp.actionType];
     NSDictionary *actionDic = @{@"101": @"关注了你",
                                 @"102": @"回复了问题",
                                 @"104": @"邀请你回答问题",
@@ -265,7 +265,7 @@
     if (tmp.uid != -1) {
         UserViewController *uVC = [[UserViewController alloc]initWithNibName:@"UserViewController" bundle:nil];
         uVC.hidesBottomBarWhenPushed = YES;
-        uVC.userId = [NSString stringWithFormat:@"%ld", tmp.uid];
+        uVC.userId = [NSString stringWithFormat:@"%ld", (long)tmp.uid];
         [self.navigationController pushViewController:uVC animated:YES];
         if (tmp.actionType == 101 || tmp.actionType == 107) {
             if (notificationIsReadOrNot == NO) {
@@ -285,7 +285,7 @@
     if (tmp.actionType == 104) {
         // 被邀请
         QuestionViewController *qVC = [[QuestionViewController alloc]initWithNibName:@"QuestionViewController" bundle:nil];
-        qVC.questionId = [NSString stringWithFormat:@"%ld", tmp.related.questionId];
+        qVC.questionId = [NSString stringWithFormat:@"%ld", (long)tmp.related.questionId];
         qVC.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:qVC animated:YES];
         if (notificationIsReadOrNot == NO) {
@@ -299,7 +299,7 @@
         AnswerViewController *aVC = [[AnswerViewController alloc]initWithNibName:@"AnswerViewController" bundle:nil];
         aVC.hidesBottomBarWhenPushed = YES;
         aVC.detailType = DetailTypeArticle;
-        aVC.answerId = [NSString stringWithFormat:@"%ld", tmp.keyUrl];
+        aVC.answerId = [NSString stringWithFormat:@"%ld", (long)tmp.keyUrl];
         [self.navigationController pushViewController:aVC animated:YES];
         if (notificationIsReadOrNot == NO) {
             [NotificationManager readNotificationWithNotificationID:tmp.notificationId];
@@ -317,7 +317,7 @@
     if (tmp.related != nil) {
         AnswerViewController *aVC = [[AnswerViewController alloc]initWithNibName:@"AnswerViewController" bundle:nil];
         aVC.hidesBottomBarWhenPushed = YES;
-        aVC.answerId = [NSString stringWithFormat:@"%ld", tmp.related.answerId];
+        aVC.answerId = [NSString stringWithFormat:@"%ld", (long)tmp.related.answerId];
         [self.navigationController pushViewController:aVC animated:YES];
     }
     if (notificationIsReadOrNot == NO) {

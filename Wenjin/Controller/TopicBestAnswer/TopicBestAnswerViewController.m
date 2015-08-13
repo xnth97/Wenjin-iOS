@@ -199,7 +199,7 @@
     TopicBestAnswerCell *tmp = rowsData[row];
     if (tmp.answerInfo.uid != -1) {
         UserViewController *uVC = [[UserViewController alloc]initWithNibName:@"UserViewController" bundle:nil];
-        uVC.userId = [NSString stringWithFormat:@"%ld", tmp.answerInfo.uid];
+        uVC.userId = [NSString stringWithFormat:@"%ld", (long)tmp.answerInfo.uid];
         [self.navigationController pushViewController:uVC animated:YES];
     } else {
         [MsgDisplay showErrorMsg:@"无法查看匿名用户~"];
@@ -209,7 +209,7 @@
 - (void)pushQuestionControllerWithRow:(NSUInteger)row {
     TopicBestAnswerCell *tmp = rowsData[row];
     QuestionViewController *qVC = [[QuestionViewController alloc]initWithNibName:@"QuestionViewController" bundle:nil];
-    qVC.questionId = [NSString stringWithFormat:@"%ld", tmp.questionInfo.questionId];
+    qVC.questionId = [NSString stringWithFormat:@"%ld", (long)tmp.questionInfo.questionId];
     [self.navigationController pushViewController:qVC animated:YES];
 }
 
@@ -217,7 +217,7 @@
     TopicBestAnswerCell *tmp = rowsData[row];
     if (![tmp.answerInfo.answerContent isEqualToString:@""]) {
         AnswerViewController *aVC = [[AnswerViewController alloc]initWithNibName:@"AnswerViewController" bundle:nil];
-        aVC.answerId = [NSString stringWithFormat:@"%ld", tmp.answerInfo.answerId];
+        aVC.answerId = [NSString stringWithFormat:@"%ld", (long)tmp.answerInfo.answerId];
         [self.navigationController pushViewController:aVC animated:YES];
     }
 }

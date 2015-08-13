@@ -15,6 +15,7 @@ pod 'PopMenu'
 pod 'DZNEmptyDataSet'
 pod 'ChameleonFramework'
 pod 'SlackTextViewController'
+pod 'SVWebViewController', :head
 
 target 'Wenjin' do
 

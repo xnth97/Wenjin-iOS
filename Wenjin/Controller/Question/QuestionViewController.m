@@ -62,7 +62,7 @@
     }];
     [self.navigationItem setRightBarButtonItem:shareBtn];
     
-    if ([self respondsToSelector:@selector(automaticallyAdjustsScrollViewInsets)]) {
+    if ([self respondsToSelector:@selector(automaticallyAdjustsScrollViewInsets)] && self.navigationController.navigationBar.translucent == YES) {
         self.automaticallyAdjustsScrollViewInsets = NO;
         
         UIEdgeInsets insets = self.questionTableView.contentInset;
@@ -149,7 +149,7 @@
     AnswerInfo *tmp = (AnswerInfo *)questionAnswersData[row];
     cell.userNameLabel.text = tmp.nickName;
     cell.answerContentLabel.text = [wjStringProcessor processAnswerDetailString:tmp.answerContent];
-    cell.agreeCountLabel.text = (tmp.agreeCount >= 1000) ? [NSString stringWithFormat:@"%ldK", tmp.agreeCount] : [NSString stringWithFormat:@"%ld", tmp.agreeCount];
+    cell.agreeCountLabel.text = (tmp.agreeCount >= 1000) ? [NSString stringWithFormat:@"%ldK", (long)tmp.agreeCount] : [NSString stringWithFormat:@"%ld", tmp.agreeCount];
     [cell loadAvatarWithURL:tmp.avatarFile];
     cell.userAvatarView.tag = row;
     cell.delegate = self;
@@ -175,7 +175,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     AnswerViewController *aVC = [[AnswerViewController alloc]initWithNibName:@"AnswerViewController" bundle:nil];
     AnswerInfo *tmpAns = (AnswerInfo *)questionAnswersData[row];
-    aVC.answerId = [NSString stringWithFormat:@"%ld", tmpAns.answerId];
+    aVC.answerId = [NSString stringWithFormat:@"%ld", (long)tmpAns.answerId];
     [self.navigationController pushViewController:aVC animated:YES];
 }
 
@@ -185,7 +185,7 @@
     if (tmp.uid != -1) {
         UserViewController *uVC = [[UserViewController alloc]initWithNibName:@"UserViewController" bundle:nil];
         AnswerInfo *tmpAns = (AnswerInfo *)questionAnswersData[row];
-        uVC.userId = [NSString stringWithFormat:@"%ld", tmpAns.uid];
+        uVC.userId = [NSString stringWithFormat:@"%ld", (long)tmpAns.uid];
         [self.navigationController pushViewController:uVC animated:YES];
     } else {
         [MsgDisplay showErrorMsg:@"无法查看匿名用户~"];
@@ -195,7 +195,7 @@
 // Question Header View Delegate
 - (void)presentPostAnswerController {
     PostAnswerViewController *postAnswer = [[PostAnswerViewController alloc]init];
-    postAnswer.questionId = [NSString stringWithFormat:@"%ld", questionInfo.questionId];
+    postAnswer.questionId = [NSString stringWithFormat:@"%ld", (long)questionInfo.questionId];
     UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:postAnswer];
     [self presentViewController:nav animated:YES completion:nil];
 }
@@ -207,7 +207,7 @@
 }
 
 - (void)tagTappedAtIndex:(NSInteger)index {
-    NSString *topicId = [NSString stringWithFormat:@"%ld", ((TopicInfo *)questionTopics[index]).topicId];
+    NSString *topicId = [NSString stringWithFormat:@"%ld", (long)((TopicInfo *)questionTopics[index]).topicId];
     TopicBestAnswerViewController *tBA = [[TopicBestAnswerViewController alloc]initWithNibName:@"TopicBestAnswerViewController" bundle:nil];
     tBA.topicId = topicId;
     [self.navigationController pushViewController:tBA animated:YES];

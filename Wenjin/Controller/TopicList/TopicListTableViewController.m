@@ -60,7 +60,7 @@
         [self.navigationItem setTitleView:segmentedControl];
     }
     
-    if ([self respondsToSelector:@selector(automaticallyAdjustsScrollViewInsets)]) {
+    if ([self respondsToSelector:@selector(automaticallyAdjustsScrollViewInsets)] && self.navigationController.navigationBar.translucent == YES) {
         self.automaticallyAdjustsScrollViewInsets = NO;
         
         UIEdgeInsets insets = self.tableView.contentInset;
@@ -199,7 +199,7 @@
     NSUInteger row = [indexPath row];
     TopicInfo *tmp = dataInTable[row];
     TopicBestAnswerViewController *topicBestAnswer = [[TopicBestAnswerViewController alloc]initWithNibName:@"TopicBestAnswerViewController" bundle:nil];
-    topicBestAnswer.topicId = [NSString stringWithFormat:@"%ld", tmp.topicId];
+    topicBestAnswer.topicId = [NSString stringWithFormat:@"%ld", (long)tmp.topicId];
     topicBestAnswer.hidesBottomBarWhenPushed = YES;
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     [self.navigationController pushViewController:topicBestAnswer animated:YES];

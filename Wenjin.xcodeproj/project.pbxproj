@@ -74,6 +74,7 @@
 		E99577691AE76282002E5107 /* NSTimer+Blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = E99577651AE76282002E5107 /* NSTimer+Blocks.m */; };
 		E995776A1AE76282002E5107 /* OpenInSafariActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = E99577681AE76282002E5107 /* OpenInSafariActivity.m */; };
 		E995776D1AE76F57002E5107 /* ShowNotLoggedInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E995776C1AE76F57002E5107 /* ShowNotLoggedInViewController.m */; };
+		E995BBD01B7C6F4000146157 /* WebModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E995BBCF1B7C6F4000146157 /* WebModalViewController.m */; };
 		E9AC9E561AD3A4840016CA23 /* wjOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E9AC9E551AD3A4840016CA23 /* wjOperationManager.m */; };
 		E9C1A1C01ACAF21F00892B60 /* QuestionDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E9C1A1BF1ACAF21F00892B60 /* QuestionDataManager.m */; };
 		E9C1A1C41ACBCBB000892B60 /* QuestionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = E9C1A1C31ACBCBB000892B60 /* QuestionHeaderView.m */; };
@@ -108,7 +109,6 @@
 		E9DB26F91AD55D3E00C3C60D /* AnswerCommentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E9DB26F71AD55D3E00C3C60D /* AnswerCommentTableViewCell.m */; };
 		E9DB26FA1AD55D3E00C3C60D /* AnswerCommentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9DB26F81AD55D3E00C3C60D /* AnswerCommentTableViewCell.xib */; };
 		E9DCE9481B5CF10000076CA3 /* ArticleInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = E9DCE9471B5CF10000076CA3 /* ArticleInfo.m */; };
-		E9DCE9511B5D4CBD00076CA3 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9DCE9501B5D4CBD00076CA3 /* WebViewController.m */; };
 		E9E286C61AC7F632005B6ED7 /* HomeDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E9E286C51AC7F632005B6ED7 /* HomeDataManager.m */; };
 		E9E286C81AC805F2005B6ED7 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E9E286C71AC805F2005B6ED7 /* Localizable.strings */; };
 		E9E38F361ADA288400136161 /* ExploreTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9E38F351ADA288400136161 /* ExploreTableViewController.m */; };
@@ -256,6 +256,8 @@
 		E99577681AE76282002E5107 /* OpenInSafariActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenInSafariActivity.m; sourceTree = "<group>"; };
 		E995776B1AE76F57002E5107 /* ShowNotLoggedInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShowNotLoggedInViewController.h; path = Controller/Settings/ShowNotLoggedInViewController.h; sourceTree = "<group>"; };
 		E995776C1AE76F57002E5107 /* ShowNotLoggedInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ShowNotLoggedInViewController.m; path = Controller/Settings/ShowNotLoggedInViewController.m; sourceTree = "<group>"; };
+		E995BBCE1B7C6F4000146157 /* WebModalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WebModalViewController.h; path = Controller/WebController/WebModalViewController.h; sourceTree = "<group>"; };
+		E995BBCF1B7C6F4000146157 /* WebModalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WebModalViewController.m; path = Controller/WebController/WebModalViewController.m; sourceTree = "<group>"; };
 		E9AC9E541AD3A4840016CA23 /* wjOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = wjOperationManager.h; path = Model/OperationManager/wjOperationManager.h; sourceTree = "<group>"; };
 		E9AC9E551AD3A4840016CA23 /* wjOperationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = wjOperationManager.m; path = Model/OperationManager/wjOperationManager.m; sourceTree = "<group>"; };
 		E9C1A1BE1ACAF21F00892B60 /* QuestionDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QuestionDataManager.h; path = Model/Sections/Question/QuestionDataManager.h; sourceTree = "<group>"; };
@@ -310,8 +312,6 @@
 		E9DB26F81AD55D3E00C3C60D /* AnswerCommentTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AnswerCommentTableViewCell.xib; path = View/AnswerCommentCell/AnswerCommentTableViewCell.xib; sourceTree = "<group>"; };
 		E9DCE9461B5CF10000076CA3 /* ArticleInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ArticleInfo.h; path = Model/DataModel/ArticleInfo.h; sourceTree = "<group>"; };
 		E9DCE9471B5CF10000076CA3 /* ArticleInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ArticleInfo.m; path = Model/DataModel/ArticleInfo.m; sourceTree = "<group>"; };
-		E9DCE94F1B5D4CBD00076CA3 /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WebViewController.h; path = Controller/WebView/WebViewController.h; sourceTree = "<group>"; };
-		E9DCE9501B5D4CBD00076CA3 /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WebViewController.m; path = Controller/WebView/WebViewController.m; sourceTree = "<group>"; };
 		E9E286C41AC7F632005B6ED7 /* HomeDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomeDataManager.h; path = Model/Sections/Home/HomeDataManager.h; sourceTree = "<group>"; };
 		E9E286C51AC7F632005B6ED7 /* HomeDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomeDataManager.m; path = Model/Sections/Home/HomeDataManager.m; sourceTree = "<group>"; };
 		E9E286C71AC805F2005B6ED7 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
@@ -989,8 +989,8 @@
 		E9DCE9491B5D4B0100076CA3 /* WebViewController */ = {
 			isa = PBXGroup;
 			children = (
-				E9DCE94F1B5D4CBD00076CA3 /* WebViewController.h */,
-				E9DCE9501B5D4CBD00076CA3 /* WebViewController.m */,
+				E995BBCE1B7C6F4000146157 /* WebModalViewController.h */,
+				E995BBCF1B7C6F4000146157 /* WebModalViewController.m */,
 			);
 			name = WebViewController;
 			sourceTree = "<group>";
@@ -1264,7 +1264,6 @@
 			files = (
 				E9C1A1C41ACBCBB000892B60 /* QuestionHeaderView.m in Sources */,
 				E9203E781B5EBEA300C17F10 /* NotificationCell.m in Sources */,
-				E9DCE9511B5D4CBD00076CA3 /* WebViewController.m in Sources */,
 				E91D17E61B47D14B003A532E /* AnswerDraft.m in Sources */,
 				E9203E721B5EB3AC00C17F10 /* FeedQuestion.m in Sources */,
 				E9C9C6FE1AC71D4A00CC228A /* data.m in Sources */,
@@ -1304,6 +1303,7 @@
 				E9C1A1C01ACAF21F00892B60 /* QuestionDataManager.m in Sources */,
 				E93063C21ACA4E69000140C1 /* PostDataManager.m in Sources */,
 				E9DCE9481B5CF10000076CA3 /* ArticleInfo.m in Sources */,
+				E995BBD01B7C6F4000146157 /* WebModalViewController.m in Sources */,
 				E91D17E21B47CE79003A532E /* wjDatabaseManager.m in Sources */,
 				E90FBB8E1B4829F8005DD1B6 /* DraftTableViewCell.m in Sources */,
 				E9203E6C1B5EA12D00C17F10 /* ExploreCell.m in Sources */,

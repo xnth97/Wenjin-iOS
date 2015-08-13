@@ -129,7 +129,7 @@
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     NSDictionary *parameters = @{@"type": @"article",
                                  @"item_id": articleId,
-                                 @"rating": [NSString stringWithFormat:@"%ld", rating]};
+                                 @"rating": [NSString stringWithFormat:@"%ld", (long)rating]};
     [manager POST:[NSString stringWithFormat:@"%@?platform=ios", [wjAPIs voteArticle]] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSDictionary *respObj = (NSDictionary *)responseObject;
         if ([respObj[@"errno"] isEqual: @1]) {

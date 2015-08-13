@@ -14,7 +14,7 @@
 #import "wjAppearanceManager.h"
 #import "data.h"
 #import <POP/POP.h>
-#import "WebViewController.h"
+#import "WebModalViewController.h"
 
 @interface LoginViewController ()
 
@@ -95,9 +95,8 @@
 }
 
 - (IBAction)signIn {
-    WebViewController *webController = [[WebViewController alloc] init];
-    UINavigationController *webNav = [[UINavigationController alloc] initWithRootViewController:webController];
-    [self presentViewController:webNav animated:YES completion:nil];
+    WebModalViewController *webController = [[WebModalViewController alloc] initWithAddress:@"http://wenjin.in/account/green/"];
+    [self presentViewController:webController animated:YES completion:nil];
 }
 
 - (IBAction)cancel {

@@ -15,13 +15,15 @@
     [[UITabBar appearance] setTintColor:[self mainTintColor]];
     [[UINavigationBar appearance] setBarTintColor:[self mainTintColor]];
     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
-    [[UINavigationBar appearance] setBarStyle:UIBarStyleBlackTranslucent];
+    [[UINavigationBar appearance] setBarStyle:UIBarStyleBlackOpaque];
+    [[UINavigationBar appearance] setTranslucent:NO];
     [[UIToolbar appearance] setTintColor:[self buttonColor]];
     [[UIButton appearance] setTintColor:[self buttonColor]];
 }
 
 + (UIColor *)mainTintColor {
-    UIColor * color = [UIColor colorWithRed:71/255.0f green:156/255.0f blue:27/255.0f alpha:1.0f];
+    UIColor *color = [UIColor colorWithRed:26/255.0f green:156/255.0f blue:27/255.0f alpha:1.0f];
+//    UIColor *color = [UIColor colorWithRed:26/255.0f green:188/255.0f blue:156/255.0f alpha:1.0f];
     return color;
 }
 

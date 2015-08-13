@@ -13,6 +13,7 @@
 + (NSString *)processAnswerDetailString:(NSString *)detailString {
     detailString = [self filterHTMLWithString:detailString];
     detailString = [detailString stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+    detailString = [detailString stringByReplacingOccurrencesOfString:@"\r" withString:@""];
     
     NSString *imgStr;
     NSString *imgHeaderStr = @"<img src='http://";

@@ -48,7 +48,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshAvatar) name:@"refreshAvatar" object:nil];
     
     /*
-    if ([self respondsToSelector:@selector(automaticallyAdjustsScrollViewInsets)]) {
+    if ([self respondsToSelector:@selector(automaticallyAdjustsScrollViewInsets)] && self.navigationController.navigationBar.translucent == YES) {
         self.automaticallyAdjustsScrollViewInsets = NO;
         
         UIEdgeInsets insets = self.userTableView.contentInset;
@@ -109,8 +109,8 @@
             headerView.userSigLabel.text = userData.signature;
             NSUInteger agreeCount = userData.agreeCount;
             NSUInteger thanksCount = userData.thanksCount;
-            headerView.agreeCountLabel.text = (agreeCount >= 1000) ? [NSString stringWithFormat:@"%ldK", agreeCount/1000] : [NSString stringWithFormat:@"%ld", userData.agreeCount];
-            headerView.thanksCountLabel.text = (thanksCount >= 1000) ? [NSString stringWithFormat:@"%ldK", thanksCount/1000] : [NSString stringWithFormat:@"%ld", userData.thanksCount];
+            headerView.agreeCountLabel.text = (agreeCount >= 1000) ? [NSString stringWithFormat:@"%luK", agreeCount/1000] : [NSString stringWithFormat:@"%ld", userData.agreeCount];
+            headerView.thanksCountLabel.text = (thanksCount >= 1000) ? [NSString stringWithFormat:@"%luK", thanksCount/1000] : [NSString stringWithFormat:@"%ld", userData.thanksCount];
             [headerView loadAvatarImageWithApartURLString:userData.avatarFile];
             
             userName = userData.nickName;
@@ -172,15 +172,15 @@
     cell.textLabel.text = (cellArray[section])[row];
     if (section == 0) {
         if (row == 0) {
-            cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld", userData.questionCount];
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld", (long)userData.questionCount];
         } else if (row == 1) {
-            cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld", userData.answerCount];
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld", (long)userData.answerCount];
         }
     } else if (section == 1) {
         if (row == 0) {
-            cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld", userData.friendCount];
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld", (long)userData.friendCount];
         } else {
-            cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld", userData.fansCount];
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld", (long)userData.fansCount];
         }
     } else if (section == 2) {
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;

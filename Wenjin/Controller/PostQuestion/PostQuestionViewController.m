@@ -40,7 +40,7 @@
     [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
     
     // Instaces init.
-    [data shareInstance].postQuestionDetail = nil;
+    [data shareInstance].postQuestionDetail = [[NSMutableAttributedString alloc] initWithString:@""];
     topicsArr = [[NSMutableArray alloc]init];
     tagsControlHeight = 24.0;
     [data shareInstance].attachAccessKey = [self MD5FromNowDate];

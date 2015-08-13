@@ -35,7 +35,7 @@
     self.title = @"关注";
     self.tableView.tableFooterView = [[UIView alloc]init];
     
-    if ([self respondsToSelector:@selector(automaticallyAdjustsScrollViewInsets)]) {
+    if ([self respondsToSelector:@selector(automaticallyAdjustsScrollViewInsets)] && self.navigationController.navigationBar.translucent == YES) {
         self.automaticallyAdjustsScrollViewInsets = NO;
         
         UIEdgeInsets insets = self.tableView.contentInset;
@@ -138,7 +138,7 @@
     NSUInteger row = [indexPath row];
     UserInfo *tmp = dataInTable[row];
     UserViewController *uVC = [[UserViewController alloc]initWithNibName:@"UserViewController" bundle:nil];
-    uVC.userId = [NSString stringWithFormat:@"%ld", tmp.uid];
+    uVC.userId = [NSString stringWithFormat:@"%ld", (long)tmp.uid];
     [self.navigationController pushViewController:uVC animated:YES];
 }
 

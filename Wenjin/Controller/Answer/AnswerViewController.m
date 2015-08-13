@@ -107,7 +107,7 @@
         if ((detailType == DetailTypeAnswer && questionId != nil && summaryString != nil) || (detailType == DetailTypeArticle && answerId != nil && summaryString != nil)) {
             NSURL *shareURL;
             if (detailType == DetailTypeAnswer) {
-                shareURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://wenjin.in/?/question/%@?answer_id=%@&single=TRUE", questionId, answerId]];
+                shareURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://wenjin.in/m/question/id-%@__answer_id-%@__single-TRUE", questionId, answerId]];
             } else {
                 shareURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://wenjin.in/article/%@", answerId]];
             }
@@ -143,13 +143,13 @@
             thankValue = ansData.thankValue;
             uninterestedValue = ansData.uninterested;
             [self setValue:@(ansData.agreeCount) forKey:@"agreeCount"];
-            questionId = [NSString stringWithFormat:@"%ld", ansData.questionId];
+            questionId = [NSString stringWithFormat:@"%ld", (long)ansData.questionId];
             uid = ansData.uid;
             avatarFile = ansData.avatarFile;
             timeStamp = ansData.addTime;
             
             if (ansData.commentCount > 0) {
-                [commentItem setTitle:[NSString stringWithFormat:@"评论 (%ld)", ansData.commentCount]];
+                [commentItem setTitle:[NSString stringWithFormat:@"评论 (%ld)", (long)ansData.commentCount]];
             }
             
             titleString = [NSString stringWithFormat:@"%@ 的回答", nickName];
@@ -236,7 +236,7 @@
     UITapGestureRecognizer *userTapRecognizer = [[UITapGestureRecognizer alloc] bk_initWithHandler:^(id weakSender, UIGestureRecognizerState state, CGPoint location) {
         if (uid != -1) {
             UserViewController *uVC = [[UserViewController alloc]initWithNibName:@"UserViewController" bundle:nil];
-            uVC.userId = [NSString stringWithFormat:@"%ld", uid];
+            uVC.userId = [NSString stringWithFormat:@"%ld", (long)uid];
             [self.navigationController pushViewController:uVC animated:YES];
         } else {
             [MsgDisplay showErrorMsg:@"无法查看匿名用户哦~"];

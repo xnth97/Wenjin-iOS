@@ -87,7 +87,7 @@
         focusQuestion.frame = CGRectMake(0, 42 + questionTitle.frame.size.height + detailView.frame.size.height, 0.5 * width, 30);
         [focusQuestion bk_addEventHandler:^(id weakSender) {
             NSLog(@"Focus Action");
-            [wjOperationManager followQuestionWithQuestionID:[NSString stringWithFormat:@"%ld", questionInfo.questionId] success:^(NSString *operationType) {
+            [wjOperationManager followQuestionWithQuestionID:[NSString stringWithFormat:@"%ld", (long)questionInfo.questionId] success:^(NSString *operationType) {
                 
                 if ([operationType isEqualToString:@"remove"]) {
                     [focusQuestion setTitle:@"关注问题" forState:UIControlStateNormal];
