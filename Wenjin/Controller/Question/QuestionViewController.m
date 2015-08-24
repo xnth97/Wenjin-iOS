@@ -23,8 +23,12 @@
 #import "OpenInSafariActivity.h"
 #import "WeChatMomentsActivity.h"
 #import "WeChatSessionActivity.h"
+#import "WebViewJavascriptBridge.h"
+#import "IDMPhotoBrowser.h"
 
 @interface QuestionViewController ()
+
+@property WebViewJavascriptBridge *bridge;
 
 @end
 
@@ -38,6 +42,7 @@
 @synthesize questionTableView;
 @synthesize questionId;
 @synthesize shouldRefresh;
+@synthesize bridge;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -45,7 +50,7 @@
     
     self.questionTableView.dataSource = self;
     self.questionTableView.delegate = self;
-    self.questionTableView.tableFooterView = [[UIView alloc]init];
+    self.questionTableView.tableFooterView = [[UIView alloc] init];
     questionSummary = @"";
     
     UIBarButtonItem *shareBtn = [[UIBarButtonItem alloc] bk_initWithBarButtonSystemItem:UIBarButtonSystemItemAction handler:^(id weakSender) {

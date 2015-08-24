@@ -34,6 +34,7 @@
 @interface QuestionHeaderView : UIView<UIWebViewDelegate, TLTagsControlDelegate>
 
 @property (assign, nonatomic) id<QuestionHeaderViewDelegate> delegate;
+@property (strong, nonatomic) UIWebView *detailView;
 
 - (id)initWithQuestionInfo:(QuestionInfo *)questionInfo andTopics:(NSArray *)topics;
 

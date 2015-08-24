@@ -71,10 +71,11 @@
     }];
 }
 
-+ (void)getTopicBestAnswerWithTopicID:(NSString *)topicId success:(void (^)(NSUInteger, NSArray *))success failure:(void (^)(NSString *))failure {
++ (void)getTopicBestAnswerWithTopicID:(NSString *)topicId page:(NSInteger)page success:(void (^)(NSUInteger, NSArray *))success failure:(void (^)(NSString *))failure {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     NSDictionary *parameters = @{@"id": topicId,
+                                 @"page": @(page),
                                  @"platform": @"ios"};
     [manager GET:[wjAPIs topicBestAnswer] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSDictionary *dicData = (NSDictionary *)responseObject;

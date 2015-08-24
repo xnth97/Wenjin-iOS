@@ -41,6 +41,8 @@
     self.title = @"动态";
     self.tableView.tableFooterView = [[UIView alloc]init];
     self.tableView.allowsSelection = NO;
+    self.tableView.emptyDataSetDelegate = self;
+    self.tableView.emptyDataSetSource = self;
     
     if ([self respondsToSelector:@selector(automaticallyAdjustsScrollViewInsets)] && self.navigationController.navigationBar.translucent == YES) {
         self.automaticallyAdjustsScrollViewInsets = NO;
@@ -227,6 +229,14 @@
 
 - (void)pushUserControllerWithRow:(NSUInteger)row {
     
+}
+#pragma mark - EmptyDataSet
+
+- (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView {
+    NSString *text = @"暂无内容";
+    NSDictionary *attributes = @{NSFontAttributeName: [UIFont systemFontOfSize:18.0],
+                                 NSForegroundColorAttributeName: [UIColor darkGrayColor]};
+    return [[NSAttributedString alloc] initWithString:text attributes:attributes];
 }
 
 @end

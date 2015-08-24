@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UIScrollView+EmptyDataSet.h"
 
-@interface UserListTableViewController : UITableViewController
+@interface UserListTableViewController : UITableViewController <DZNEmptyDataSetDelegate, DZNEmptyDataSetSource>
 
 @property (nonatomic) NSInteger userType;
 @property (nonatomic) NSString *userId;

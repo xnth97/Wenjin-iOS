@@ -14,12 +14,12 @@
 #import "wjAPIs.h"
 #import "wjAppearanceManager.h"
 #import "FBKVOController.h"
+#import "IDMPhotoBrowser.h"
 
 @implementation QuestionHeaderView {
     int _borderDist;
     
     UILabel *questionTitle;
-    UIWebView *detailView;
     UIButton *focusQuestion;
     UIButton *addAnswer;
     CGFloat width;
@@ -28,6 +28,7 @@
 }
 
 @synthesize delegate;
+@synthesize detailView;
 
 - (id)init {
     if (self = [super init]) {
