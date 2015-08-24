@@ -17,7 +17,7 @@
 #import "wjOperationManager.h"
 #import "wjAppearanceManager.h"
 #import "UserViewController.h"
-#import "AnswerViewController.h"
+#import "DetailViewController.h"
 #import "QuestionViewController.h"
 #import "TopicInfo.h"
 #import "TopicBestAnswerCell.h"
@@ -43,6 +43,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
     bestAnswerTableView.delegate = self;
     bestAnswerTableView.dataSource = self;
     bestAnswerTableView.tableFooterView = [[UIView alloc]init];
@@ -213,10 +214,10 @@
     [self.navigationController pushViewController:qVC animated:YES];
 }
 
-- (void)pushAnswerControllerWithRow:(NSUInteger)row {
+- (void)pushDetailControllerWithRow:(NSUInteger)row {
     TopicBestAnswerCell *tmp = rowsData[row];
     if (![tmp.answerInfo.answerContent isEqualToString:@""]) {
-        AnswerViewController *aVC = [[AnswerViewController alloc]initWithNibName:@"AnswerViewController" bundle:nil];
+        DetailViewController *aVC = [[DetailViewController alloc]initWithNibName:@"DetailViewController" bundle:nil];
         aVC.answerId = [NSString stringWithFormat:@"%ld", (long)tmp.answerInfo.answerId];
         [self.navigationController pushViewController:aVC animated:YES];
     }

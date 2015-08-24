@@ -9,6 +9,7 @@
 #import "QuestionDataManager.h"
 #import "wjAPIs.h"
 #import "AFNetworking.h"
+#import <UIKit/UIKit.h>
 
 @implementation QuestionDataManager
 

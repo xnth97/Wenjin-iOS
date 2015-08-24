@@ -13,7 +13,7 @@
 #import "wjStringProcessor.h"
 #import "UserViewController.h"
 #import "QuestionViewController.h"
-#import "AnswerViewController.h"
+#import "DetailViewController.h"
 #import "NYSegmentedControl.h"
 #import "wjAppearanceManager.h"
 #import "ExploreCell.h"
@@ -281,7 +281,7 @@
         qVC.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:qVC animated:YES];
     } else if ([tmp.postType isEqualToString:@"article"]) {
-        AnswerViewController *aVC = [[AnswerViewController alloc] initWithNibName:@"AnswerViewController" bundle:nil];
+        DetailViewController *aVC = [[DetailViewController alloc] initWithNibName:@"DetailViewController" bundle:nil];
         aVC.answerId = [NSString stringWithFormat:@"%ld", (long)tmp.id];
         aVC.detailType = DetailTypeArticle;
         aVC.hidesBottomBarWhenPushed = YES;
@@ -290,9 +290,9 @@
     
 }
 
-- (void)pushAnswerControllerWithRow:(NSUInteger)row {
+- (void)pushDetailControllerWithRow:(NSUInteger)row {
     ExploreCell *tmp = dataInTable[row];
-    AnswerViewController *aVC = [[AnswerViewController alloc] initWithNibName:@"AnswerViewController" bundle:nil];
+    DetailViewController *aVC = [[DetailViewController alloc] initWithNibName:@"DetailViewController" bundle:nil];
     aVC.answerId = [NSString stringWithFormat:@"%ld", (long)((AnswerInfo *)tmp.answerUsers[0]).answerId];
     aVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:aVC animated:YES];

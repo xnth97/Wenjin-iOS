@@ -13,7 +13,7 @@
 #import "wjStringProcessor.h"
 #import "UserViewController.h"
 #import "QuestionViewController.h"
-#import "AnswerViewController.h"
+#import "DetailViewController.h"
 #import "data.h"
 #import "wjAppearanceManager.h"
 #import "MsgDisplay.h"
@@ -296,7 +296,7 @@
         }
     } else if (tmp.actionType == 117) {
         // 评论了文章
-        AnswerViewController *aVC = [[AnswerViewController alloc]initWithNibName:@"AnswerViewController" bundle:nil];
+        DetailViewController *aVC = [[DetailViewController alloc]initWithNibName:@"DetailViewController" bundle:nil];
         aVC.hidesBottomBarWhenPushed = YES;
         aVC.detailType = DetailTypeArticle;
         aVC.answerId = [NSString stringWithFormat:@"%ld", (long)tmp.keyUrl];
@@ -308,14 +308,14 @@
             [self.tableView reloadData];
         }
     } else {
-        [self pushAnswerControllerWithRow:row];
+        [self pushDetailControllerWithRow:row];
     }
 }
 
-- (void)pushAnswerControllerWithRow:(NSUInteger)row {
+- (void)pushDetailControllerWithRow:(NSUInteger)row {
     NotificationCell *tmp = dataInView[row];
     if (tmp.related != nil) {
-        AnswerViewController *aVC = [[AnswerViewController alloc]initWithNibName:@"AnswerViewController" bundle:nil];
+        DetailViewController *aVC = [[DetailViewController alloc]initWithNibName:@"DetailViewController" bundle:nil];
         aVC.hidesBottomBarWhenPushed = YES;
         aVC.answerId = [NSString stringWithFormat:@"%ld", (long)tmp.related.answerId];
         [self.navigationController pushViewController:aVC animated:YES];

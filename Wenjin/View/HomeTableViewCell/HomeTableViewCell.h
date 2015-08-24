@@ -29,7 +29,7 @@
  *
  *  @param row 点击 cell 行数
  */
-- (void)pushAnswerControllerWithRow:(NSUInteger)row;
+- (void)pushDetailControllerWithRow:(NSUInteger)row;
 
 @end
 

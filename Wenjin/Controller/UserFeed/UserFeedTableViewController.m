@@ -10,7 +10,7 @@
 #import "SVPullToRefresh.h"
 #import "MsgDisplay.h"
 #import "wjStringProcessor.h"
-#import "AnswerViewController.h"
+#import "DetailViewController.h"
 #import "QuestionViewController.h"
 #import "wjAppearanceManager.h"
 #import "AnswerInfo.h"
@@ -194,10 +194,10 @@
 
 // HomeCellDelegate
 
-- (void)pushAnswerControllerWithRow:(NSUInteger)row {
+- (void)pushDetailControllerWithRow:(NSUInteger)row {
     if (feedType == UserFeedTypeAnswer) {
         AnswerInfo *tmp = dataInTable[row];
-        AnswerViewController *aVC = [[AnswerViewController alloc]initWithNibName:@"AnswerViewController" bundle:nil];
+        DetailViewController *aVC = [[DetailViewController alloc]initWithNibName:@"DetailViewController" bundle:nil];
         aVC.answerId = [NSString stringWithFormat:@"%ld", (long)tmp.answerId];
         [self.navigationController pushViewController:aVC animated:YES];
     } else if (feedType == UserFeedTypeQuestion) {

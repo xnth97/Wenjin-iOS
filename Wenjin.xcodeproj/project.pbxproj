@@ -42,8 +42,8 @@
 		E93063C81ACA966E000140C1 /* AddDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E93063C71ACA966E000140C1 /* AddDetailViewController.m */; };
 		E93063D21ACAAB81000140C1 /* QuestionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E93063D01ACAAB81000140C1 /* QuestionViewController.m */; };
 		E93063D31ACAAB81000140C1 /* QuestionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E93063D11ACAAB81000140C1 /* QuestionViewController.xib */; };
-		E93063D71ACAABC7000140C1 /* AnswerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E93063D51ACAABC7000140C1 /* AnswerViewController.m */; };
-		E93063D81ACAABC7000140C1 /* AnswerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E93063D61ACAABC7000140C1 /* AnswerViewController.xib */; };
+		E93063D71ACAABC7000140C1 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E93063D51ACAABC7000140C1 /* DetailViewController.m */; };
+		E93063D81ACAABC7000140C1 /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E93063D61ACAABC7000140C1 /* DetailViewController.xib */; };
 		E93063DC1ACAABD9000140C1 /* UserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E93063DA1ACAABD9000140C1 /* UserViewController.m */; };
 		E93063DD1ACAABD9000140C1 /* UserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E93063DB1ACAABD9000140C1 /* UserViewController.xib */; };
 		E9479EE31AE2AB42003BCE97 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9479EE11AE2AB42003BCE97 /* AboutViewController.m */; };
@@ -61,7 +61,6 @@
 		E96F092C1AD7E3BA00847E5E /* TopicDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E96F092B1AD7E3B900847E5E /* TopicDataManager.m */; };
 		E96F092F1AD7F44100847E5E /* SettingTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E96F092E1AD7F44100847E5E /* SettingTableViewController.m */; };
 		E96F09361AD8FF7700847E5E /* ExploreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E96F09351AD8FF7700847E5E /* ExploreDataManager.m */; };
-		E97F7A421B29FED700746E0B /* MDSwipePageView.m in Sources */ = {isa = PBXBuildFile; fileRef = E97F7A411B29FED700746E0B /* MDSwipePageView.m */; };
 		E98EBE761B51558100710B38 /* HomeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E98EBE751B51558100710B38 /* HomeCell.m */; };
 		E98EBE791B51565000710B38 /* UserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = E98EBE781B51565000710B38 /* UserInfo.m */; };
 		E98EBE7C1B5156E400710B38 /* TopicInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = E98EBE7B1B5156E400710B38 /* TopicInfo.m */; };
@@ -197,9 +196,9 @@
 		E93063CF1ACAAB81000140C1 /* QuestionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QuestionViewController.h; path = Controller/Question/QuestionViewController.h; sourceTree = "<group>"; };
 		E93063D01ACAAB81000140C1 /* QuestionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QuestionViewController.m; path = Controller/Question/QuestionViewController.m; sourceTree = "<group>"; };
 		E93063D11ACAAB81000140C1 /* QuestionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = QuestionViewController.xib; path = Controller/Question/QuestionViewController.xib; sourceTree = "<group>"; };
-		E93063D41ACAABC7000140C1 /* AnswerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AnswerViewController.h; path = Controller/Answer/AnswerViewController.h; sourceTree = "<group>"; };
-		E93063D51ACAABC7000140C1 /* AnswerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AnswerViewController.m; path = Controller/Answer/AnswerViewController.m; sourceTree = "<group>"; };
-		E93063D61ACAABC7000140C1 /* AnswerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AnswerViewController.xib; path = Controller/Answer/AnswerViewController.xib; sourceTree = "<group>"; };
+		E93063D41ACAABC7000140C1 /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DetailViewController.h; path = Controller/Answer/DetailViewController.h; sourceTree = "<group>"; };
+		E93063D51ACAABC7000140C1 /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DetailViewController.m; path = Controller/Answer/DetailViewController.m; sourceTree = "<group>"; };
+		E93063D61ACAABC7000140C1 /* DetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DetailViewController.xib; path = Controller/Answer/DetailViewController.xib; sourceTree = "<group>"; };
 		E93063D91ACAABD9000140C1 /* UserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserViewController.h; path = Controller/User/UserViewController.h; sourceTree = "<group>"; };
 		E93063DA1ACAABD9000140C1 /* UserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserViewController.m; path = Controller/User/UserViewController.m; sourceTree = "<group>"; };
 		E93063DB1ACAABD9000140C1 /* UserViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UserViewController.xib; path = Controller/User/UserViewController.xib; sourceTree = "<group>"; };
@@ -231,8 +230,6 @@
 		E96F092E1AD7F44100847E5E /* SettingTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingTableViewController.m; path = Controller/Settings/SettingTableViewController.m; sourceTree = "<group>"; };
 		E96F09341AD8FF7700847E5E /* ExploreDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ExploreDataManager.h; path = Model/Sections/Explore/ExploreDataManager.h; sourceTree = "<group>"; };
 		E96F09351AD8FF7700847E5E /* ExploreDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ExploreDataManager.m; path = Model/Sections/Explore/ExploreDataManager.m; sourceTree = "<group>"; };
-		E97F7A401B29FED700746E0B /* MDSwipePageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDSwipePageView.h; sourceTree = "<group>"; };
-		E97F7A411B29FED700746E0B /* MDSwipePageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDSwipePageView.m; sourceTree = "<group>"; };
 		E98EBE741B51558100710B38 /* HomeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomeCell.h; path = Model/DataModel/HomeCell.h; sourceTree = "<group>"; };
 		E98EBE751B51558100710B38 /* HomeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomeCell.m; path = Model/DataModel/HomeCell.m; sourceTree = "<group>"; };
 		E98EBE771B51565000710B38 /* UserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserInfo.h; path = Model/DataModel/UserInfo.h; sourceTree = "<group>"; };
@@ -482,7 +479,6 @@
 		E93063B01ACA394E000140C1 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				E97F7A3F1B29FED700746E0B /* MDSwipePageView */,
 				E96F09211AD7D29700847E5E /* TLTagsContol */,
 				E9DB26F51AD55D1E00C3C60D /* AnswerCommentCell */,
 				E9ED1ABD1B663DCB00B5C2DC /* CommentTextView */,
@@ -559,14 +555,14 @@
 			name = QuestionViewController;
 			sourceTree = "<group>";
 		};
-		E93063CB1ACAAB3C000140C1 /* AnswerViewController */ = {
+		E93063CB1ACAAB3C000140C1 /* DetailViewController */ = {
 			isa = PBXGroup;
 			children = (
-				E93063D41ACAABC7000140C1 /* AnswerViewController.h */,
-				E93063D51ACAABC7000140C1 /* AnswerViewController.m */,
-				E93063D61ACAABC7000140C1 /* AnswerViewController.xib */,
+				E93063D41ACAABC7000140C1 /* DetailViewController.h */,
+				E93063D51ACAABC7000140C1 /* DetailViewController.m */,
+				E93063D61ACAABC7000140C1 /* DetailViewController.xib */,
 			);
-			name = AnswerViewController;
+			name = DetailViewController;
 			sourceTree = "<group>";
 		};
 		E9642E821AC5714800FF7875 = {
@@ -662,16 +658,6 @@
 				E96F09351AD8FF7700847E5E /* ExploreDataManager.m */,
 			);
 			name = Explore;
-			sourceTree = "<group>";
-		};
-		E97F7A3F1B29FED700746E0B /* MDSwipePageView */ = {
-			isa = PBXGroup;
-			children = (
-				E97F7A401B29FED700746E0B /* MDSwipePageView.h */,
-				E97F7A411B29FED700746E0B /* MDSwipePageView.m */,
-			);
-			name = MDSwipePageView;
-			path = View/MDSwipePageView;
 			sourceTree = "<group>";
 		};
 		E97F7A481B2A003700746E0B /* Notification */ = {
@@ -840,7 +826,7 @@
 				E9C9C6E81AC6AA8400CC228A /* MainTabBarController */,
 				E9C9C6F01AC6B35B00CC228A /* Home */,
 				E97F7A481B2A003700746E0B /* Notification */,
-				E93063CB1ACAAB3C000140C1 /* AnswerViewController */,
+				E93063CB1ACAAB3C000140C1 /* DetailViewController */,
 				E9EB5C4A1B664FA00011559F /* Comment */,
 				E93063CA1ACAAB33000140C1 /* QuestionViewController */,
 				E9D56EFD1ADE865D00C54466 /* TopicBestAnswerViewController */,
@@ -1205,7 +1191,7 @@
 				E9DB26FA1AD55D3E00C3C60D /* AnswerCommentTableViewCell.xib in Resources */,
 				E9DB26EB1AD4F44B00C3C60D /* UserListTableViewCell.xib in Resources */,
 				E9C804C71B0786390021C388 /* PushConfig.plist in Resources */,
-				E93063D81ACAABC7000140C1 /* AnswerViewController.xib in Resources */,
+				E93063D81ACAABC7000140C1 /* DetailViewController.xib in Resources */,
 				E9C1A1CB1ACC080700892B60 /* bootstrap.min.js in Resources */,
 				E9EB618B1ACC187A001F5DA3 /* QuestionAnswerTableViewCell.xib in Resources */,
 				E9C1A1CA1ACC080700892B60 /* bootstrap.css in Resources */,
@@ -1299,7 +1285,6 @@
 				E9C9C6F61AC719FC00CC228A /* MainTabBarController.m in Sources */,
 				E90F42781ACE6A4E00263622 /* UserHeaderView.m in Sources */,
 				E9C9C7181AC7256700CC228A /* wjCacheManager.m in Sources */,
-				E97F7A421B29FED700746E0B /* MDSwipePageView.m in Sources */,
 				E9C1A1C01ACAF21F00892B60 /* QuestionDataManager.m in Sources */,
 				E93063C21ACA4E69000140C1 /* PostDataManager.m in Sources */,
 				E9DCE9481B5CF10000076CA3 /* ArticleInfo.m in Sources */,
@@ -1311,7 +1296,7 @@
 				E9DB26E51AD4F32200C3C60D /* UserListTableViewController.m in Sources */,
 				E96F09241AD7D29700847E5E /* TLTagsControl.m in Sources */,
 				E98EBE7C1B5156E400710B38 /* TopicInfo.m in Sources */,
-				E93063D71ACAABC7000140C1 /* AnswerViewController.m in Sources */,
+				E93063D71ACAABC7000140C1 /* DetailViewController.m in Sources */,
 				E995776D1AE76F57002E5107 /* ShowNotLoggedInViewController.m in Sources */,
 				E9C9C7151AC7249900CC228A /* MsgDisplay.m in Sources */,
 				E9203E751B5EBACD00C17F10 /* CommentInfo.m in Sources */,
@@ -1398,6 +1383,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1441,6 +1427,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_NS_ASSERTIONS = NO;

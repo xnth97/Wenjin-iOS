@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "AnswerViewController.h"
+#import "DetailViewController.h"
 #import "SLKTextViewController.h"
 
 @interface CommentViewController : SLKTextViewController

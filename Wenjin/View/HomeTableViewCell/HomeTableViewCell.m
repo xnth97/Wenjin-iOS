@@ -52,7 +52,7 @@
     
     UITapGestureRecognizer *detailTapRecognizer = [[UITapGestureRecognizer alloc] bk_initWithHandler:^(id weakSender, UIGestureRecognizerState state, CGPoint location) {
         UITapGestureRecognizer *tapRecognizer = (UITapGestureRecognizer *)weakSender;
-        [delegate pushAnswerControllerWithRow:tapRecognizer.view.tag];
+        [delegate pushDetailControllerWithRow:tapRecognizer.view.tag];
     }];
     [detailTapRecognizer setNumberOfTapsRequired:1];
     [detailTapRecognizer setDelegate:self];

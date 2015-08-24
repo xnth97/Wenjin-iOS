@@ -14,7 +14,7 @@
 #import "wjStringProcessor.h"
 #import "UserViewController.h"
 #import "QuestionViewController.h"
-#import "AnswerViewController.h"
+#import "DetailViewController.h"
 #import "TopicBestAnswerViewController.h"
 #import "data.h"
 #import "wjAppearanceManager.h"
@@ -186,7 +186,8 @@
     } else {
         // 是话题的
         NSString *actionIDString = [NSString stringWithFormat:@"%ld", (long)tmp.associateAction];
-        NSDictionary *actionDiction = @{@"201": @"话题新增了回复",
+        NSDictionary *actionDiction = @{@"101": @"话题新增了问题",
+                                        @"201": @"话题新增了回复",
                                         @"204": @"话题新增了回复赞同"};
         NSString *actionString = [NSString stringWithFormat:@"%@ %@", tmp.topicInfo.topicTitle, actionDiction[actionIDString]];
         NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc] initWithString:actionString];
@@ -231,7 +232,7 @@
     if (cell.associateAction == 501 || cell.associateAction == 502 || cell.associateAction == 503) {
         // 文章
         NSLog(@"%ld", (long)cell.articleInfo.aid);
-        AnswerViewController *aVC = [[AnswerViewController alloc] initWithNibName:@"AnswerViewController" bundle:nil];
+        DetailViewController *aVC = [[DetailViewController alloc] initWithNibName:@"DetailViewController" bundle:nil];
         aVC.detailType = DetailTypeArticle;
         aVC.answerId = [NSString stringWithFormat:@"%ld", (long)cell.articleInfo.aid];
         aVC.hidesBottomBarWhenPushed = YES;
@@ -243,8 +244,8 @@
     }
 }
 
-- (void)pushAnswerControllerWithRow:(NSUInteger)row {
-    AnswerViewController *aVC = [[AnswerViewController alloc]initWithNibName:@"AnswerViewController" bundle:nil];
+- (void)pushDetailControllerWithRow:(NSUInteger)row {
+    DetailViewController *aVC = [[DetailViewController alloc]initWithNibName:@"DetailViewController" bundle:nil];
     aVC.hidesBottomBarWhenPushed = YES;
     HomeCell *cell = (HomeCell *)dataInView[row];
     aVC.answerId = [NSString stringWithFormat:@"%ld", (long)cell.answerInfo.answerId];

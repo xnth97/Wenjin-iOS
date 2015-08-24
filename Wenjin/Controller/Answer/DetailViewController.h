@@ -13,7 +13,7 @@ typedef NS_ENUM(NSInteger, DetailType) {
     DetailTypeArticle = 1,
 };
 
-@interface AnswerViewController : UIViewController<UIWebViewDelegate>
+@interface DetailViewController : UIViewController<UIWebViewDelegate>
 
 @property (strong, nonatomic) NSString *answerId;
 @property (nonatomic) DetailType detailType;

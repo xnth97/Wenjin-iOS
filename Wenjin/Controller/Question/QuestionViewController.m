@@ -11,7 +11,7 @@
 #import "MsgDisplay.h"
 #import "wjStringProcessor.h"
 #import "UserViewController.h"
-#import "AnswerViewController.h"
+#import "DetailViewController.h"
 #import "PostAnswerViewController.h"
 #import "SVPullToRefresh.h"
 #import "TopicBestAnswerViewController.h"
@@ -173,7 +173,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSUInteger row = [indexPath row];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    AnswerViewController *aVC = [[AnswerViewController alloc]initWithNibName:@"AnswerViewController" bundle:nil];
+    DetailViewController *aVC = [[DetailViewController alloc]initWithNibName:@"DetailViewController" bundle:nil];
     AnswerInfo *tmpAns = (AnswerInfo *)questionAnswersData[row];
     aVC.answerId = [NSString stringWithFormat:@"%ld", (long)tmpAns.answerId];
     [self.navigationController pushViewController:aVC animated:YES];

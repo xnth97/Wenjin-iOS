@@ -16,6 +16,9 @@ pod 'DZNEmptyDataSet'
 pod 'ChameleonFramework'
 pod 'SlackTextViewController'
 pod 'SVWebViewController', :head
+pod 'JZNavigationExtension'
+pod 'WebViewJavascriptBridge'
+pod 'IDMPhotoBrowser'
 
 target 'Wenjin' do
 
