@@ -60,4 +60,8 @@
     });
 }
 
++ (void)removeRealmFile {
+    [[NSFileManager defaultManager] removeItemAtPath:[RLMRealm defaultRealmPath] error:nil];
+}
+
 @end

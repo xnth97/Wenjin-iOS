@@ -35,7 +35,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.automaticallyAdjustsScrollViewInsets = YES;
+    self.automaticallyAdjustsScrollViewInsets = NO;
     
     // Do any additional setup after loading the view.
     [self.navigationController.navigationBar setTintColor:[wjAppearanceManager mainTintColor]];

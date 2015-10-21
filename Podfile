@@ -17,7 +17,6 @@ pod 'JZNavigationExtension'
 pod 'WebViewJavascriptBridge'
 pod 'IDMPhotoBrowser'
 pod 'CRToast'
-pod 'JSPatch'
 
 target 'Wenjin' do
 

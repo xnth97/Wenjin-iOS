@@ -157,7 +157,7 @@
     AnswerInfo *tmp = (AnswerInfo *)questionAnswersData[row];
     cell.userNameLabel.text = tmp.nickName;
     cell.answerContentLabel.text = [wjStringProcessor processAnswerDetailString:tmp.answerContent];
-    cell.agreeCountLabel.text = (tmp.agreeCount >= 1000) ? [NSString stringWithFormat:@"%ldK", (long)tmp.agreeCount] : [NSString stringWithFormat:@"%ld", tmp.agreeCount];
+    cell.agreeCountLabel.text = (tmp.agreeCount >= 1000) ? [NSString stringWithFormat:@"%ldK", (long)tmp.agreeCount] : [NSString stringWithFormat:@"%ld", (long)tmp.agreeCount];
     [cell loadAvatarWithURL:tmp.avatarFile];
     cell.userAvatarView.tag = row;
     cell.delegate = self;

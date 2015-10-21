@@ -9,8 +9,9 @@
 #import "AppDelegate.h"
 #import "wjAPIs.h"
 #import "HotfixKit.h"
-#import "JPEngine.h"
+//#import "JPEngine.h"
 #import "NotificationManager.h"
+#import "data.h"
 
 @interface AppDelegate ()
 
@@ -33,7 +34,7 @@
     [APService setupWithOption:launchOptions];
     
     // HotFix - Experimental
-//    [HotfixKit hotfixWithRootURL:@"" newCacheCompletionBlock:^{
+//    [HotfixKit hotfixWithRootURL:@"http://wj.oursays.com/?/api/update/hotfix/" newCacheCompletionBlock:^{
 //        
 //    }];
 //    NSString *docPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];

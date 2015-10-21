@@ -15,6 +15,7 @@
 #import "PostQuestionViewController.h"
 #import "PostAnswerViewController.h"
 #import "UIScrollView+EmptyDataSet.h"
+#import "wjDatabaseManager.h"
 
 #define draftTypeQuestion 0
 #define draftTypeAnswer 1
@@ -38,6 +39,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    if ([[NSUserDefaults standardUserDefaults] objectForKey:@"realmDataHasBeenCleared"] == nil) {
+        [wjDatabaseManager removeRealmFile];
+    }
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"realmDataHasBeenCleared"];
     
     self.clearsSelectionOnViewWillAppear = YES;
     self.tableView.tableFooterView = [[UIView alloc]init];
