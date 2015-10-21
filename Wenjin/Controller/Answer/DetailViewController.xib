@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="15A262e" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DetailViewController">
@@ -20,11 +21,11 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hfd-Ha-o5k">
-                    <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                     <animations/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <connections>
@@ -32,7 +33,7 @@
                     </connections>
                 </webView>
                 <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iHH-dC-5wF">
-                    <rect key="frame" x="0.0" y="492" width="600" height="44"/>
+                    <rect key="frame" x="0.0" y="556" width="600" height="44"/>
                     <animations/>
                     <items>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="KRS-TJ-Sdg"/>
@@ -52,9 +53,9 @@
                     </items>
                 </toolbar>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LML-qB-C5r">
-                    <rect key="frame" x="0.0" y="0.0" width="600" height="62"/>
+                    <rect key="frame" x="0.0" y="64" width="600" height="62"/>
                     <subviews>
-                        <visualEffectView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aPR-ey-9Cw">
+                        <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aPR-ey-9Cw">
                             <rect key="frame" x="0.0" y="0.0" width="600" height="62"/>
                             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="163-4R-XmU">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="62"/>
@@ -62,6 +63,9 @@
                                 <animations/>
                             </view>
                             <animations/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="62" id="92J-wk-UEP"/>
+                            </constraints>
                             <blurEffect style="light"/>
                         </visualEffectView>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholderAvatar" translatesAutoresizingMaskIntoConstraints="NO" id="URu-vY-CRR">
@@ -123,12 +127,15 @@
                         <constraint firstItem="iEU-J5-ujA" firstAttribute="leading" secondItem="URu-vY-CRR" secondAttribute="trailing" constant="8" id="BPt-hN-ivP"/>
                         <constraint firstItem="dGw-mV-eSB" firstAttribute="top" secondItem="LML-qB-C5r" secondAttribute="top" constant="8" id="DMI-hJ-5p9"/>
                         <constraint firstItem="URu-vY-CRR" firstAttribute="top" secondItem="LML-qB-C5r" secondAttribute="top" constant="8" id="IP9-VT-2NZ"/>
+                        <constraint firstAttribute="trailing" secondItem="aPR-ey-9Cw" secondAttribute="trailing" id="T73-N1-Log"/>
                         <constraint firstItem="lhU-uQ-ZbX" firstAttribute="top" secondItem="LML-qB-C5r" secondAttribute="top" constant="8" id="TZf-E5-mMC"/>
                         <constraint firstAttribute="trailing" secondItem="lhU-uQ-ZbX" secondAttribute="trailing" id="Tog-tS-Rsw"/>
                         <constraint firstItem="URu-vY-CRR" firstAttribute="leading" secondItem="LML-qB-C5r" secondAttribute="leading" constant="8" id="gYG-Ug-pZU"/>
                         <constraint firstItem="iEU-J5-ujA" firstAttribute="top" secondItem="dGw-mV-eSB" secondAttribute="bottom" constant="3" id="pAH-eY-u2K"/>
+                        <constraint firstItem="aPR-ey-9Cw" firstAttribute="leading" secondItem="LML-qB-C5r" secondAttribute="leading" id="rev-00-UBn"/>
                         <constraint firstItem="Eh8-CX-r6a" firstAttribute="leading" secondItem="dGw-mV-eSB" secondAttribute="trailing" constant="13" id="ueQ-BB-7GO"/>
                         <constraint firstItem="dGw-mV-eSB" firstAttribute="leading" secondItem="URu-vY-CRR" secondAttribute="trailing" constant="8" id="upK-ue-bo7"/>
+                        <constraint firstItem="aPR-ey-9Cw" firstAttribute="top" secondItem="LML-qB-C5r" secondAttribute="top" id="ydP-8U-Qoy"/>
                         <constraint firstAttribute="height" constant="62" id="zOO-wH-Mpn"/>
                     </constraints>
                 </view>
@@ -139,11 +146,10 @@
                 <constraint firstAttribute="trailing" secondItem="LML-qB-C5r" secondAttribute="trailing" id="3h1-W3-Zuo"/>
                 <constraint firstAttribute="trailing" secondItem="iHH-dC-5wF" secondAttribute="trailing" id="7z1-mr-FKX"/>
                 <constraint firstAttribute="trailing" secondItem="hfd-Ha-o5k" secondAttribute="trailing" id="961-gg-wVG"/>
-                <constraint firstItem="LML-qB-C5r" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="CXa-ve-nwb"/>
                 <constraint firstItem="LML-qB-C5r" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="EGD-mL-qKx"/>
                 <constraint firstAttribute="bottom" secondItem="hfd-Ha-o5k" secondAttribute="bottom" id="H4y-sY-zHA"/>
                 <constraint firstItem="LML-qB-C5r" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="HRS-Td-aNU"/>
-                <constraint firstItem="LML-qB-C5r" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="QL7-NF-qeg"/>
+                <constraint firstItem="LML-qB-C5r" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="64" id="OP3-g5-VOm"/>
                 <constraint firstItem="hfd-Ha-o5k" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="QnS-mS-OJF"/>
                 <constraint firstAttribute="trailing" secondItem="LML-qB-C5r" secondAttribute="trailing" id="nPR-0X-7ap"/>
                 <constraint firstItem="hfd-Ha-o5k" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="pKY-qX-EXF"/>
@@ -151,8 +157,8 @@
                 <constraint firstAttribute="bottom" secondItem="iHH-dC-5wF" secondAttribute="bottom" id="syj-bJ-ANW"/>
                 <constraint firstItem="hfd-Ha-o5k" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="zhK-mj-lAE"/>
             </constraints>
-            <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
-            <point key="canvasLocation" x="553" y="332"/>
+            <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+            <point key="canvasLocation" x="538" y="313"/>
         </view>
     </objects>
     <resources>

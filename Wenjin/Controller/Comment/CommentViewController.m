@@ -203,26 +203,11 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSUInteger row = [indexPath row];
-    UIAlertController *replyAlert = [UIAlertController alertControllerWithTitle:@"评论回复" message:@"" preferredStyle:UIAlertControllerStyleActionSheet];
-    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", nil) style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
-        [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
-    }];
-    UIAlertAction *replyAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Reply", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-        
-        CommentInfo *tmp = rowsData[row];
-        NSString *replyName = (detailType == DetailTypeAnswer) ? tmp.nickName : tmp.artComNickName;
-        replyName = [replyName stringByReplacingOccurrencesOfString:@"(作者)" withString:@""];
-        self.textView.text = [NSString stringWithFormat:@"@%@:", replyName];
-        [self.textView becomeFirstResponder];
-    }];
-    [replyAlert addAction:cancelAction];
-    [replyAlert addAction:replyAction];
-    [replyAlert setModalPresentationStyle:UIModalPresentationPopover];
-    [replyAlert.popoverPresentationController setPermittedArrowDirections:0];
-    CGRect rect = self.view.frame;
-    replyAlert.popoverPresentationController.sourceView = self.view;
-    replyAlert.popoverPresentationController.sourceRect = rect;
-    [self presentViewController:replyAlert animated:YES completion:nil];
+    CommentInfo *tmp = rowsData[row];
+    NSString *replyName = (detailType == DetailTypeAnswer) ? tmp.nickName : tmp.artComNickName;
+    replyName = [replyName stringByReplacingOccurrencesOfString:@"(作者)" withString:@""];
+    self.textView.text = [NSString stringWithFormat:@"@%@:", replyName];
+    [self.textView becomeFirstResponder];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
@@ -233,6 +218,10 @@
     NSDictionary *attributes = @{NSFontAttributeName: [UIFont systemFontOfSize:18.0],
                                  NSForegroundColorAttributeName: [UIColor darkGrayColor]};
     return [[NSAttributedString alloc] initWithString:text attributes:attributes];
+}
+
+- (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView {
+    return [UIImage imageNamed:@"desperateSmile"];
 }
 
 @end

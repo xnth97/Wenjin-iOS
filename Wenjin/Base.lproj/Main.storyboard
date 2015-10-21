@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BH6-Mm-uy7">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BH6-Mm-uy7">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -9,10 +10,12 @@
         <scene sceneID="SvX-ST-kmX">
             <objects>
                 <tabBarController hidesBottomBarWhenPushed="YES" id="BH6-Mm-uy7" customClass="MainTabBarController" sceneMemberID="viewController">
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="qRm-bb-iWh">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
@@ -35,6 +38,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="cES-wS-WZR">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
                     </navigationBar>
                     <connections>
                         <segue destination="gYk-VO-Prx" kind="relationship" relationship="rootViewController" id="57T-1o-ufb"/>
@@ -44,6 +48,104 @@
             </objects>
             <point key="canvasLocation" x="1210" y="1079"/>
         </scene>
+        <!--Empty Data Set Delegate-->
+        <scene sceneID="vB1-8J-tDm">
+            <objects>
+                <viewController id="2cd-qG-R47" customClass="SearchViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="rt2-7x-7Rm"/>
+                        <viewControllerLayoutGuide type="bottom" id="oPJ-Lf-Mzq"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Gcy-gX-fOQ">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="PVd-rI-bS1">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="2cd-qG-R47" id="bQ8-pM-JyB"/>
+                                    <outlet property="delegate" destination="2cd-qG-R47" id="94z-02-eGZ"/>
+                                    <outlet property="emptyDataSetDelegate" destination="2cd-qG-R47" id="H0u-rF-JjP"/>
+                                    <outlet property="emptyDataSetSource" destination="2cd-qG-R47" id="NDl-GX-DpQ"/>
+                                </connections>
+                            </tableView>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="70h-Pl-6ri">
+                                <rect key="frame" x="0.0" y="64" width="600" height="40"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="ALy-gO-L65">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="40"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="wWB-BI-oGZ">
+                                            <rect key="frame" x="180" y="6" width="240" height="29"/>
+                                            <animations/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="28" id="kIQ-fi-HRJ"/>
+                                                <constraint firstAttribute="width" constant="240" id="lUW-W3-t3C"/>
+                                            </constraints>
+                                            <segments>
+                                                <segment title="问题"/>
+                                                <segment title="话题"/>
+                                                <segment title="用户"/>
+                                            </segments>
+                                            <connections>
+                                                <action selector="segmentedSelected:" destination="2cd-qG-R47" eventType="valueChanged" id="1QM-qr-2A1"/>
+                                            </connections>
+                                        </segmentedControl>
+                                    </subviews>
+                                    <animations/>
+                                    <constraints>
+                                        <constraint firstItem="wWB-BI-oGZ" firstAttribute="centerX" secondItem="ALy-gO-L65" secondAttribute="centerX" id="Bbu-B8-89n"/>
+                                        <constraint firstItem="wWB-BI-oGZ" firstAttribute="centerY" secondItem="ALy-gO-L65" secondAttribute="centerY" id="sIU-k9-XoE"/>
+                                    </constraints>
+                                </view>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="2hy-gQ-7qg"/>
+                                </constraints>
+                                <blurEffect style="light"/>
+                            </visualEffectView>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="70h-Pl-6ri" firstAttribute="top" secondItem="rt2-7x-7Rm" secondAttribute="bottom" id="1Ow-HM-mZK"/>
+                            <constraint firstItem="70h-Pl-6ri" firstAttribute="top" secondItem="rt2-7x-7Rm" secondAttribute="bottom" id="9WU-Dq-fNi"/>
+                            <constraint firstItem="70h-Pl-6ri" firstAttribute="leading" secondItem="Gcy-gX-fOQ" secondAttribute="leading" id="Ewv-M0-f2s"/>
+                            <constraint firstItem="PVd-rI-bS1" firstAttribute="top" secondItem="Gcy-gX-fOQ" secondAttribute="top" id="HLn-qH-xO0"/>
+                            <constraint firstAttribute="trailing" secondItem="PVd-rI-bS1" secondAttribute="trailing" id="Lpf-RI-qFw"/>
+                            <constraint firstAttribute="trailing" secondItem="70h-Pl-6ri" secondAttribute="trailing" id="rd0-uK-DPB"/>
+                            <constraint firstItem="oPJ-Lf-Mzq" firstAttribute="top" secondItem="PVd-rI-bS1" secondAttribute="bottom" id="ucR-nh-bMA"/>
+                            <constraint firstItem="PVd-rI-bS1" firstAttribute="leading" secondItem="Gcy-gX-fOQ" secondAttribute="leading" id="xv7-cF-d1W"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="lsx-ym-p4z">
+                        <nil key="title"/>
+                        <textField key="titleView" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="搜索问题、话题或用户" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" id="Q5a-98-xz1">
+                            <rect key="frame" x="180" y="7" width="240" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <animations/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits" returnKeyType="search"/>
+                            <connections>
+                                <action selector="search:" destination="2cd-qG-R47" eventType="editingDidEndOnExit" id="FPG-S4-qF8"/>
+                            </connections>
+                        </textField>
+                    </navigationItem>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="bottomConstraint" destination="ucR-nh-bMA" id="WRc-Jj-cCg"/>
+                        <outlet property="resultsTableView" destination="PVd-rI-bS1" id="tyt-z7-dIf"/>
+                        <outlet property="searchTextField" destination="Q5a-98-xz1" id="5l7-9P-tFz"/>
+                        <outlet property="typeSegmentedControl" destination="wWB-BI-oGZ" id="106-R0-HKL"/>
+                        <outlet property="veView" destination="ALy-gO-L65" id="vXr-mi-L8P"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hgP-bB-Pgu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2675" y="2572"/>
+        </scene>
         <!--动态-->
         <scene sceneID="Fqn-Fk-CEQ">
             <objects>
@@ -51,6 +153,7 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Cxq-MK-B4R">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <connections>
                             <outlet property="dataSource" destination="gYk-VO-Prx" id="oA3-Jd-FPV"/>
@@ -58,31 +161,65 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="动态" id="xuS-cM-48d">
+                        <barButtonItem key="leftBarButtonItem" systemItem="search" id="n4V-zJ-VwG">
+                            <connections>
+                                <segue destination="2cd-qG-R47" kind="show" identifier="presentSearch" id="3ii-Ep-PQY"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="VpQ-Rw-JgJ">
                             <connections>
                                 <segue destination="UuO-pZ-86Q" kind="presentation" id="KUp-et-7gn"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="searchDisplayController" destination="agq-jV-jCP" id="Srx-fK-BGW"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AUB-Is-pdC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="agq-jV-jCP">
+                    <connections>
+                        <outlet property="delegate" destination="gYk-VO-Prx" id="HAt-OU-dyb"/>
+                        <outlet property="searchContentsController" destination="gYk-VO-Prx" id="woU-IJ-TdW"/>
+                        <outlet property="searchResultsDataSource" destination="gYk-VO-Prx" id="SZr-4t-efD"/>
+                        <outlet property="searchResultsDelegate" destination="gYk-VO-Prx" id="MIL-0M-cEj"/>
+                    </connections>
+                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="1915" y="1079"/>
         </scene>
-        <!--消息-->
+        <!--Notification Table View Controller-->
         <scene sceneID="fMr-s7-Ubd">
             <objects>
                 <tableViewController id="OyI-9l-k5X" customClass="NotificationTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="K0A-2x-eNf">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <connections>
                             <outlet property="dataSource" destination="OyI-9l-k5X" id="VN1-T1-DB3"/>
                             <outlet property="delegate" destination="OyI-9l-k5X" id="J1y-jU-8xe"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="消息" id="frB-Mb-0OS"/>
+                    <navigationItem key="navigationItem" id="frB-Mb-0OS">
+                        <nil key="title"/>
+                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="Amg-Vc-aJ1">
+                            <rect key="frame" x="225" y="7" width="150" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <animations/>
+                            <segments>
+                                <segment title="未读"/>
+                                <segment title="已读"/>
+                            </segments>
+                            <connections>
+                                <action selector="segmentedIndexChanged:" destination="OyI-9l-k5X" eventType="valueChanged" id="B0n-QG-3UT"/>
+                            </connections>
+                        </segmentedControl>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="segmentedControl" destination="Amg-Vc-aJ1" id="nyi-My-nQS"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FYq-pN-LgS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -96,6 +233,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="RBU-tH-JC7">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
                     </navigationBar>
                     <connections>
                         <segue destination="OyI-9l-k5X" kind="relationship" relationship="rootViewController" id="Scq-Eo-Jzm"/>
@@ -112,13 +250,33 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="iZH-0e-un2">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <connections>
                             <outlet property="dataSource" destination="pw4-sm-7bG" id="2jc-ib-H6W"/>
                             <outlet property="delegate" destination="pw4-sm-7bG" id="KBs-lx-4h0"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="ehb-n2-yft"/>
+                    <navigationItem key="navigationItem" id="ehb-n2-yft">
+                        <nil key="title"/>
+                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="ve5-kP-US5">
+                            <rect key="frame" x="167" y="7" width="266" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <animations/>
+                            <segments>
+                                <segment title="最新"/>
+                                <segment title="热门"/>
+                                <segment title="推荐"/>
+                                <segment title="待回复"/>
+                            </segments>
+                            <connections>
+                                <action selector="segmentedChanged:" destination="pw4-sm-7bG" eventType="valueChanged" id="348-uj-Fap"/>
+                            </connections>
+                        </segmentedControl>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="segmentedControl" destination="ve5-kP-US5" id="Fy0-kz-tvo"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vSM-Rr-VOJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -135,6 +293,7 @@
                     <view key="view" contentMode="scaleToFill" id="WVN-HQ-qX5">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="发起问题" id="IWJ-L7-CVg">
@@ -162,6 +321,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="m7G-0a-e5s">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
                     </navigationBar>
                     <connections>
                         <segue destination="ESh-CL-caT" kind="relationship" relationship="rootViewController" id="dkI-JS-wD2"/>
@@ -178,6 +338,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="UIK-Tv-QcE">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
                     </navigationBar>
                     <connections>
                         <segue destination="ldz-M3-pk8" kind="relationship" relationship="rootViewController" id="6zW-KC-Dmp"/>
@@ -198,6 +359,7 @@
                     <view key="view" contentMode="scaleToFill" id="MV5-kq-izv">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="添加描述" id="wFF-KK-ocg">
@@ -221,24 +383,39 @@
         <scene sceneID="dT6-DE-oW1">
             <objects>
                 <tableViewController id="XZD-gk-4J7" customClass="TopicListTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="BCg-jv-BMB">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="128" sectionHeaderHeight="22" sectionFooterHeight="22" id="BCg-jv-BMB">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="JUB-Eh-vcN">
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="JUB-Eh-vcN" id="E5c-xj-lih">
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="XZD-gk-4J7" id="wcv-gV-Hy2"/>
                             <outlet property="delegate" destination="XZD-gk-4J7" id="GaJ-jM-Pre"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="dnB-ft-NJP"/>
+                    <navigationItem key="navigationItem" id="dnB-ft-NJP">
+                        <nil key="title"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="search" id="9Lp-qW-aMk">
+                            <connections>
+                                <segue destination="2cd-qG-R47" kind="show" identifier="presentSearch" id="vjO-Yf-MrC"/>
+                            </connections>
+                        </barButtonItem>
+                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="akK-cI-7iT">
+                            <rect key="frame" x="225" y="7" width="150" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <animations/>
+                            <segments>
+                                <segment title="热门"/>
+                                <segment title="我关注的"/>
+                            </segments>
+                            <connections>
+                                <action selector="segmentedChanged:" destination="XZD-gk-4J7" eventType="valueChanged" id="piY-QY-MPH"/>
+                            </connections>
+                        </segmentedControl>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="segmentedControl" destination="akK-cI-7iT" id="Q1e-o3-KhZ"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fap-4i-NXi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -252,6 +429,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="QwC-6g-Maz">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
                     </navigationBar>
                     <connections>
                         <segue destination="DE9-zZ-tIq" kind="relationship" relationship="rootViewController" id="T0H-hn-HOL"/>
@@ -274,7 +452,8 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="1ex-53-8zL">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
+                                <animations/>
                                 <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <outlet property="dataSource" destination="DE9-zZ-tIq" id="gjc-Zh-xda"/>
@@ -282,12 +461,13 @@
                                 </connections>
                             </tableView>
                         </subviews>
+                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="1ex-53-8zL" secondAttribute="trailing" constant="-16" id="8GU-J4-aNA"/>
-                            <constraint firstItem="1ex-53-8zL" firstAttribute="bottom" secondItem="4ho-GJ-k8E" secondAttribute="bottomMargin" id="d7z-51-L3X"/>
-                            <constraint firstItem="1ex-53-8zL" firstAttribute="top" secondItem="4ho-GJ-k8E" secondAttribute="topMargin" id="l6B-Dg-XIJ"/>
-                            <constraint firstItem="1ex-53-8zL" firstAttribute="leading" secondItem="4ho-GJ-k8E" secondAttribute="leadingMargin" constant="-16" id="l9f-Bs-NUr"/>
+                            <constraint firstItem="1ex-53-8zL" firstAttribute="leading" secondItem="4ho-GJ-k8E" secondAttribute="leadingMargin" constant="-20" id="0gf-ld-sjY"/>
+                            <constraint firstItem="1ex-53-8zL" firstAttribute="top" secondItem="4ho-GJ-k8E" secondAttribute="topMargin" id="JN1-Yz-wrA"/>
+                            <constraint firstItem="0bB-Lj-xtN" firstAttribute="top" secondItem="1ex-53-8zL" secondAttribute="bottom" id="RUs-ji-WRQ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="1ex-53-8zL" secondAttribute="trailing" constant="-20" id="S58-qR-ATh"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="我" id="pRK-Ih-5fZ">
@@ -317,6 +497,7 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="AfM-h1-zUB">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
                         <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                         <connections>
                             <outlet property="dataSource" destination="Gbi-lA-BFC" id="tqe-jH-Ph5"/>
@@ -336,6 +517,7 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="Kxg-ca-QCa">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
                         <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                         <connections>
                             <outlet property="dataSource" destination="LsP-x6-Wrf" id="tNj-Tq-KiE"/>
@@ -362,6 +544,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ISe-dO-wn4">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
                     </navigationBar>
                     <connections>
                         <segue destination="XZD-gk-4J7" kind="relationship" relationship="rootViewController" id="j1A-vU-2GM"/>
@@ -379,6 +562,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="y7J-Db-Jwm">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
                     </navigationBar>
                     <connections>
                         <segue destination="pw4-sm-7bG" kind="relationship" relationship="rootViewController" id="Lvy-Cm-dew"/>
@@ -396,4 +580,7 @@
         <image name="notification" width="30" height="30"/>
         <image name="topic" width="30" height="30"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="vjO-Yf-MrC"/>
+    </inferredMetricsTieBreakers>
 </document>

@@ -13,12 +13,14 @@
 
 + (void)setTintColor {
     [[UITabBar appearance] setTintColor:[self mainTintColor]];
-    [[UINavigationBar appearance] setBarTintColor:[self mainTintColor]];
-    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
-    [[UINavigationBar appearance] setBarStyle:UIBarStyleBlackOpaque];
-    [[UINavigationBar appearance] setTranslucent:NO];
-    [[UIToolbar appearance] setTintColor:[self buttonColor]];
-    [[UIButton appearance] setTintColor:[self buttonColor]];
+//    [[UINavigationBar appearance] setBarTintColor:[self mainTintColor]];
+//    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+//    [[UINavigationBar appearance] setBarStyle:UIBarStyleBlackOpaque];
+//    [[UINavigationBar appearance] setTranslucent:NO];
+    [[UINavigationBar appearance] setTintColor:[self mainTintColor]];
+    [[UIToolbar appearance] setTintColor:[self mainTintColor]];
+    [[UIButton appearance] setTintColor:[self mainTintColor]];
+    [[UISegmentedControl appearance] setTintColor:[self mainTintColor]];
 }
 
 + (UIColor *)mainTintColor {

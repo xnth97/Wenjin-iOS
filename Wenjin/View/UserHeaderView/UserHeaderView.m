@@ -37,13 +37,13 @@
         [userThanksView setTintColor:[UIColor lightGrayColor]];
         
         [self addSubview:({
-            UIView *splitLine = [[UIView alloc]initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 0.5)];
+            UIView *splitLine = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 1024, 0.5)];
             [splitLine setBackgroundColor:[UIColor colorWithWhite:0.8 alpha:1.0]];
             splitLine;
         })];
         
         [self addSubview:({
-            UIView *splitLine = [[UIView alloc]initWithFrame:CGRectMake(0, self.frame.size.height - 0.5, [UIScreen mainScreen].bounds.size.width, 0.5)];
+            UIView *splitLine = [[UIView alloc]initWithFrame:CGRectMake(0, self.frame.size.height - 0.5, 1024, 0.5)];
             [splitLine setBackgroundColor:[UIColor colorWithWhite:0.8 alpha:1.0]];
             splitLine;
         })];

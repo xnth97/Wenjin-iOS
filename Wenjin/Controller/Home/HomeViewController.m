@@ -15,12 +15,16 @@
 #import "UserViewController.h"
 #import "QuestionViewController.h"
 #import "DetailViewController.h"
-#import "TopicBestAnswerViewController.h"
+#import "TopicViewController.h"
 #import "data.h"
 #import "wjAppearanceManager.h"
 #import "HomeCell.h"
+#import "UINavigationController+JZExtension.h"
+#import "UIScrollView+EmptyDataSet.h"
+#import "SearchViewController.h"
+#import "TopicViewController.h"
 
-@interface HomeViewController ()
+@interface HomeViewController () <DZNEmptyDataSetDelegate, DZNEmptyDataSetSource>
 
 @end
 
@@ -35,7 +39,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.navigationController.view.backgroundColor = [UIColor whiteColor];
-    
+    self.navigationController.fullScreenInteractivePopGestureRecognizer = YES;
     if (shouldRefresh) {
         [self.tableView triggerPullToRefresh];
     }
@@ -69,6 +73,10 @@
     rowsData = [[NSMutableArray alloc]init];
     dataInView = [[NSMutableArray alloc]init];
     currentPage = 0;
+    
+    self.tableView.emptyDataSetDelegate = self;
+    self.tableView.emptyDataSetSource = self;
+    self.tableView.tableFooterView = [UIView new];
     
     __weak HomeViewController *weakSelf = self;
     [self.tableView addPullToRefreshWithActionHandler:^{
@@ -219,7 +227,7 @@
             [MsgDisplay showErrorMsg:@"无法查看匿名用户~"];
         }
     } else {
-        TopicBestAnswerViewController *topicVC = [[TopicBestAnswerViewController alloc] initWithNibName:@"TopicBestAnswerViewController" bundle:nil];
+        TopicViewController *topicVC = [[TopicViewController alloc] initWithNibName:@"TopicViewController" bundle:nil];
         topicVC.hidesBottomBarWhenPushed = YES;
         topicVC.topicId = [NSString stringWithFormat:@"%ld", (long)cell.topicInfo.topicId];
         [self.navigationController pushViewController:topicVC animated:YES];
@@ -227,7 +235,6 @@
 }
 
 - (void)pushQuestionControllerWithRow:(NSUInteger)row {
-    QuestionViewController *qVC = [[QuestionViewController alloc]initWithNibName:@"QuestionViewController" bundle:nil];
     HomeCell *cell = (HomeCell *)dataInView[row];
     if (cell.associateAction == 501 || cell.associateAction == 502 || cell.associateAction == 503) {
         // 文章
@@ -238,9 +245,11 @@
         aVC.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:aVC animated:YES];
     } else {
+        QuestionViewController *qVC = [[QuestionViewController alloc]initWithNibName:@"QuestionViewController" bundle:nil];
         qVC.questionId = [NSString stringWithFormat:@"%ld", (long)cell.questionInfo.questionId];
         qVC.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:qVC animated:YES];
+//        [self showViewController:qVC sender:nil];
     }
 }
 
@@ -252,6 +261,19 @@
     [self.navigationController pushViewController:aVC animated:YES];
 }
 
+#pragma mark - EmptyDataSet
+
+- (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView {
+    NSString *text = @"暂时无法显示内容\n\n请稍后再试";
+    NSDictionary *attributes = @{NSFontAttributeName: [UIFont systemFontOfSize:18.0],
+                                 NSForegroundColorAttributeName: [UIColor lightGrayColor]};
+    return [[NSAttributedString alloc] initWithString:text attributes:attributes];
+}
+
+- (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView {
+    return [UIImage imageNamed:@"desperateCry"];
+}
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -259,6 +281,10 @@
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
     [segue.destinationViewController setHidesBottomBarWhenPushed:YES];
+    if ([segue.identifier isEqualToString:@"presentSearch"]) {
+        SearchViewController *des = (SearchViewController *)segue.destinationViewController;
+        des.searchType = 0;
+    }
 }
 
 

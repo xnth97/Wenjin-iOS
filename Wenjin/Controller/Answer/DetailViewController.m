@@ -27,6 +27,8 @@
 #import "QuestionViewController.h"
 #import "WebViewJavascriptBridge.h"
 #import "IDMPhotoBrowser.h"
+#import <SafariServices/SafariServices.h>
+#import "WebModalViewController.h"
 
 @interface DetailViewController () <IDMPhotoBrowserDelegate>
 
@@ -441,7 +443,13 @@
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
     if (navigationType == UIWebViewNavigationTypeLinkClicked) {
-        [[UIApplication sharedApplication] openURL:[request URL]];
+        if ([[[UIDevice currentDevice] systemVersion] doubleValue] >= 9.0) {
+            SFSafariViewController *safariVC = [[SFSafariViewController alloc] initWithURL:[request URL]];
+            [self presentViewController:safariVC animated:YES completion:nil];
+        } else {
+            WebModalViewController *webViewController = [[WebModalViewController alloc] initWithURL:[request URL]];
+            [self presentViewController:webViewController animated:YES completion:nil];
+        }
         return NO;
     } else {
         return YES;

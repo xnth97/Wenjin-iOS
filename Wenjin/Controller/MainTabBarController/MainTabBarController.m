@@ -8,6 +8,7 @@
 
 #import "MainTabBarController.h"
 #import "wjCookieManager.h"
+#import "wjDatabaseManager.h"
 #import "LoginViewController.h"
 #import "data.h"
 #import "wjCacheManager.h"
@@ -63,6 +64,7 @@
     }];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshNotification) name:@"newNotification" object:nil];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -89,12 +91,6 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-#pragma mark - Custom Accessor
-
-- (UIStatusBarStyle)preferredStatusBarStyle {
-    return UIStatusBarStyleLightContent;
-}
-
 #pragma mark - Pricate Method
 
 - (void)refreshNotification {
@@ -103,9 +99,11 @@
             if (notificationNum > 0) {
                 [[self.tabBar.items objectAtIndex:1] setBadgeValue:[NSString stringWithFormat:@"%lu", (unsigned long)notificationNum]];
                 [APService setBadge:notificationNum];
+                [[UIApplication sharedApplication] setApplicationIconBadgeNumber:notificationNum];
             } else if (notificationNum == 0) {
                 [[self.tabBar.items objectAtIndex:1] setBadgeValue:nil];
                 [APService resetBadge];
+                [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
             }
         } failure:^(NSString *errStr) {
             

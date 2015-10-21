@@ -36,4 +36,7 @@
     [self.avatarView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", [wjAPIs topicImagePath], urlStr]] placeholderImage:[UIImage imageNamed:@"placeholderTopic.png"]];
 }
 
+- (void)loadImageWithURL:(NSString *)urlStr {
+    [self.avatarView setImageWithURL:[NSURL URLWithString:urlStr] placeholderImage:[UIImage imageNamed:@"placeholderTopic.png"]];
+}
 @end

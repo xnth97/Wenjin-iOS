@@ -116,6 +116,7 @@
     
     NSString *cssPath = [[NSBundle mainBundle]pathForResource:@"bootstrap" ofType:@"css"];
     NSString *jsPath = [[NSBundle mainBundle]pathForResource:@"bootstrap.min" ofType:@"js"];
+    NSString *jqueryPath = [[NSBundle mainBundle] pathForResource:@"jquery.min" ofType:@"js"];
     NSString *load = [NSString stringWithFormat:@"<!DOCTYPE html> \n"
                       "<html> \n"
                       "<head> \n"
@@ -127,12 +128,13 @@
                       "<body> \n"
                       "<div class=\"container\"> \n"
                       "<div class=\"row\"> \n"
-                      "<div class=\"col-sm-12\" style=\"margin-left:8px; margin-right:8px; font-size:16px; line-height:1.5;\"> <br><br> \n" // 这个 br 用来换行到 userInfoView 以下
+                      "<div class=\"col-sm-12\" style=\"margin-left:8px; margin-right:8px; font-size:16px; line-height:1.5;\"> <br><br><br> \n" // 这个 br 用来换行到 userInfoView 以下
                       "%@ \n"
                       "</div></div><br><br></div> \n" // 这个 br 用于不被 toolbar 遮挡
                       "<script src=\"%@\"></script> \n"
+                      "<script src=\"%@\"></script> \n"
                       "</body> \n"
-                      "</html>" , cssPath, contentStr, jsPath];
+                      "</html>" , cssPath, contentStr, jsPath, jqueryPath];
     
     return load;
 }
@@ -147,6 +149,7 @@
     
     NSString *cssPath = [[NSBundle mainBundle]pathForResource:@"bootstrap" ofType:@"css"];
     NSString *jsPath = [[NSBundle mainBundle]pathForResource:@"bootstrap.min" ofType:@"js"];
+    NSString *jqueryPath = [[NSBundle mainBundle] pathForResource:@"jquery.min" ofType:@"js"];
     NSString *load = [NSString stringWithFormat:@"<!DOCTYPE html> \n"
                       "<html> \n"
                       "<head> \n"
@@ -158,14 +161,15 @@
                       "<body> \n"
                       "<div class=\"container\"> \n"
                       "<div class=\"row\"> \n"
-                      "<div class=\"col-sm-12\" style=\"margin-left:8px; margin-right:8px; font-size:16px; line-height:1.5; font-family: sans-serif;\"> <br><br> \n" // 这个 br 用来换行到 userInfoView 以下
+                      "<div class=\"col-sm-12\" style=\"margin-left:8px; margin-right:8px; font-size:16px; line-height:1.5; font-family: sans-serif;\"> <br><br><br> \n" // 这个 br 用来换行到 userInfoView 以下
                       "%@ \n"
                       "</div><br>"
                       "<div class=\"row\"><div class=\"col-sm-12\" style=\"margin-left:8px; margin-right:8px; font-size:16px; line-height:1.5; text-align: right; font-family: sans-serif; color: #999999;\">%@</div></div>"
                       "<br><br></div></div> \n" // 这个 br 用于不被 toolbar 遮挡
                       "<script src=\"%@\"></script> \n"
+                      "<script src=\"%@\"></script> \n"
                       "</body> \n"
-                      "</html>" , cssPath, contentStr, dateString, jsPath];
+                      "</html>" , cssPath, contentStr, dateString, jsPath, jqueryPath];
     
     return load;
 }

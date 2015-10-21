@@ -44,7 +44,7 @@
 }
 
 - (void)logout {
-    UIAlertController *logoutAlert = [UIAlertController alertControllerWithTitle:@"注销" message:@"确定要注销吗？" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *logoutAlert = [UIAlertController alertControllerWithTitle:@"" message:@"确定要注销吗？" preferredStyle:UIAlertControllerStyleActionSheet];
     UIAlertAction *confirmAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"OK", nil) style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
         [wjAccountManager logout];
         [self.tabBarController setValue:@YES forKey:@"showNotLoggedInView"];
@@ -54,6 +54,10 @@
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", nil) style:UIAlertActionStyleCancel handler:nil];
     [logoutAlert addAction:cancelAction];
     [logoutAlert addAction:confirmAction];
+    [logoutAlert setModalPresentationStyle:UIModalPresentationPopover];
+    logoutAlert.popoverPresentationController.permittedArrowDirections = 0;
+    logoutAlert.popoverPresentationController.sourceView = self.view;
+    logoutAlert.popoverPresentationController.sourceRect = self.view.frame;
     [self presentViewController:logoutAlert animated:YES completion:nil];
 }
 
@@ -88,7 +92,7 @@
             AboutViewController *about = [[AboutViewController alloc]initWithNibName:@"AboutViewController" bundle:nil];
             [self.navigationController pushViewController:about animated:YES];
         } else if (row == 1) {
-            FeedbackViewController *feedback = [[FeedbackViewController alloc]init];
+            FeedbackViewController *feedback = [[FeedbackViewController alloc] initWithStyle:UITableViewStyleGrouped];
             [self.navigationController pushViewController:feedback animated:YES];
         } else if (row == 2) {
             ShowNotLoggedInViewController *show = [[ShowNotLoggedInViewController alloc]init];

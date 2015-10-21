@@ -18,4 +18,6 @@
 + (void)readNotificationWithNotificationID:(NSInteger)notificationId;
 + (void)readAllNotificationsWithCompletionBlock:(void(^)())block;
 
++ (void)handleNotification:(NSDictionary *)dic;
+
 @end

@@ -14,10 +14,10 @@
 #import "UserViewController.h"
 #import "QuestionViewController.h"
 #import "DetailViewController.h"
-#import "NYSegmentedControl.h"
 #import "wjAppearanceManager.h"
 #import "ExploreCell.h"
 #import "AnswerInfo.h"
+#import "UINavigationController+JZExtension.h"
 
 @interface ExploreTableViewController ()
 
@@ -27,11 +27,12 @@
     NSMutableArray *rowsData;
     NSMutableArray *dataInTable;
     NSInteger currentPage;
-    NYSegmentedControl *segmentedControl;
     
     NSString *expType;
     NSInteger isRecommended;
 }
+
+@synthesize segmentedControl;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -39,22 +40,10 @@
     self.clearsSelectionOnViewWillAppear = YES;
     self.tableView.tableFooterView = [[UIView alloc]init];
     self.navigationController.view.backgroundColor = [UIColor whiteColor];
+    self.navigationController.fullScreenInteractivePopGestureRecognizer = YES;
     
     expType = @"new";
     isRecommended = 0;
-    
-    segmentedControl = [[NYSegmentedControl alloc]initWithItems:@[@"最新",@"热门",@"推荐",@"待回复"]];
-    [segmentedControl addTarget:self action:@selector(segmentedSelected) forControlEvents:UIControlEventValueChanged];
-    segmentedControl.selectedSegmentIndex = 0;
-    segmentedControl.borderWidth = 0.0f;
-    segmentedControl.segmentIndicatorBorderWidth = 0.0f;
-    segmentedControl.backgroundColor = [wjAppearanceManager segmentedUnselectedColor];
-    segmentedControl.segmentIndicatorBackgroundColor = [wjAppearanceManager segmentedSelectedColor];
-    segmentedControl.segmentIndicatorInset = 0.0f;
-    segmentedControl.titleTextColor = [wjAppearanceManager segmentedUnselectedTextColor];
-    segmentedControl.selectedTitleTextColor = [UIColor whiteColor];
-    [segmentedControl sizeToFit];
-    [self.navigationItem setTitleView:segmentedControl];
     
     if ([self respondsToSelector:@selector(automaticallyAdjustsScrollViewInsets)] && self.navigationController.navigationBar.translucent == YES) {
         self.automaticallyAdjustsScrollViewInsets = NO;
@@ -87,7 +76,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)segmentedSelected {
+- (IBAction)segmentedChanged:(id)sender {
     NSUInteger index = segmentedControl.selectedSegmentIndex;
     switch (index) {
         case 0:
@@ -202,7 +191,7 @@
         NSMutableAttributedString *str = [[NSMutableAttributedString alloc]initWithString:actionString];
         [str addAttribute:NSForegroundColorAttributeName value:[wjAppearanceManager userActionTextColor] range:NSMakeRange(0, [answerInfo.nickName length])];
         cell.actionLabel.attributedText = str;
-        cell.detailLabel.text = answerInfo.answerContent;
+        cell.detailLabel.text = [wjStringProcessor processAnswerDetailString:answerInfo.answerContent];
         cell.questionLabel.text = [wjStringProcessor filterHTMLWithString:tmp.questionContent];
         [cell loadAvatarImageWithApartURL:answerInfo.avatarFile];
     } else {

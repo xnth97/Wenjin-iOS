@@ -15,6 +15,7 @@
 #import "data.h"
 #import <POP/POP.h>
 #import "WebModalViewController.h"
+#import <SafariServices/SafariServices.h>
 
 @interface LoginViewController ()
 
@@ -95,8 +96,14 @@
 }
 
 - (IBAction)signIn {
-    WebModalViewController *webController = [[WebModalViewController alloc] initWithAddress:@"http://wenjin.in/account/green/"];
-    [self presentViewController:webController animated:YES completion:nil];
+    NSURL *url = [NSURL URLWithString:@"http://wenjin.in/account/green/"];
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 9.0) {
+        SFSafariViewController *webController = [[SFSafariViewController alloc] initWithURL:url];
+        [self presentViewController:webController animated:YES completion:nil];
+    } else {
+        WebModalViewController *webController = [[WebModalViewController alloc] initWithURL:url];
+        [self presentViewController:webController animated:YES completion:nil];
+    }
 }
 
 - (IBAction)cancel {

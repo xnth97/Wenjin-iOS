@@ -147,8 +147,12 @@
 - (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView {
     NSString *text = @"暂无内容";
     NSDictionary *attributes = @{NSFontAttributeName: [UIFont systemFontOfSize:18.0],
-                                 NSForegroundColorAttributeName: [UIColor darkGrayColor]};
+                                 NSForegroundColorAttributeName: [UIColor lightGrayColor]};
     return [[NSAttributedString alloc] initWithString:text attributes:attributes];
+}
+
+- (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView {
+    return [UIImage imageNamed:@"desperateSmile"];
 }
 
 @end

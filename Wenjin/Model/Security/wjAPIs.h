@@ -121,6 +121,9 @@
 // 修改用户头像
 + (NSString *)avatarUpload;
 
+// 搜索
++ (NSString *)search;
+
 // Bug HD Key
 + (NSString *)firKey;
 

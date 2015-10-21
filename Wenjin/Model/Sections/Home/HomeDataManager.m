@@ -10,7 +10,6 @@
 #import "wjAPIs.h"
 #import "wjCacheManager.h"
 #import "AFNetworking.h"
-#import "TWTDataChecker.h"
 #import "HomeCell.h"
 
 @implementation HomeDataManager

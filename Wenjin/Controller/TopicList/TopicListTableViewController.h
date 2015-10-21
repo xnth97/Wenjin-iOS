@@ -11,5 +11,8 @@
 @interface TopicListTableViewController : UITableViewController
 
 @property (strong, nonatomic) NSString *uid;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
+
+- (IBAction)segmentedChanged:(id)sender;
 
 @end

@@ -18,6 +18,9 @@
 #import "UserFeedTableViewController.h"
 #import "TopicListTableViewController.h"
 #import "DraftTableViewController.h"
+#import "UINavigationController+JZExtension.h"
+
+#define HEADER_VIEW_HEIGHT 132
 
 @interface UserViewController ()
 
@@ -39,9 +42,10 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.navigationController.view.backgroundColor = [UIColor whiteColor];
-
     self.userTableView.dataSource = self;
     self.userTableView.delegate = self;
+//    self.navigationController.navigationBarBackgroundHidden = YES;
+    self.navigationController.fullScreenInteractivePopGestureRecognizer = YES;
     
     cellArray = @[];
     
@@ -67,15 +71,26 @@
     [self refreshData];
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     if (self.navigationController.viewControllers[0] == self) {
         self.title = @"我";
         if ([data shareInstance].myUID != nil) {
             userId = [data shareInstance].myUID;
         }
     }
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
     [self refreshData];
+}
+
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
+    [super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
+    UserHeaderView *headerView = (UserHeaderView *)self.userTableView.tableHeaderView;
+    [headerView setFrame:CGRectMake(0, 0, self.view.frame.size.width, HEADER_VIEW_HEIGHT)];
+    [headerView layoutSubviews];
 }
 
 - (void)didReceiveMemoryWarning {

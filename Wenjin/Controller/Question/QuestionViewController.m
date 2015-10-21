@@ -14,10 +14,11 @@
 #import "DetailViewController.h"
 #import "PostAnswerViewController.h"
 #import "SVPullToRefresh.h"
-#import "TopicBestAnswerViewController.h"
+#import "TopicViewController.h"
 #import "BlocksKit+UIKit.h"
 #import "QuestionInfo.h"
 #import "TopicInfo.h"
+#import "TopicViewController.h"
 #import "AnswerInfo.h"
 #import "MJExtension.h"
 #import "OpenInSafariActivity.h"
@@ -25,6 +26,8 @@
 #import "WeChatSessionActivity.h"
 #import "WebViewJavascriptBridge.h"
 #import "IDMPhotoBrowser.h"
+#import <SafariServices/SafariServices.h>
+#import "WebModalViewController.h"
 
 @interface QuestionViewController ()
 
@@ -213,9 +216,27 @@
 
 - (void)tagTappedAtIndex:(NSInteger)index {
     NSString *topicId = [NSString stringWithFormat:@"%ld", (long)((TopicInfo *)questionTopics[index]).topicId];
-    TopicBestAnswerViewController *tBA = [[TopicBestAnswerViewController alloc]initWithNibName:@"TopicBestAnswerViewController" bundle:nil];
+    TopicViewController *tBA = [[TopicViewController alloc]initWithNibName:@"TopicViewController" bundle:nil];
     tBA.topicId = topicId;
     [self.navigationController pushViewController:tBA animated:YES];
+}
+
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
+    // This should be fixed by Autolayout!!!!!
+    [super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
+    QuestionHeaderView *headerView = [[QuestionHeaderView alloc]initWithQuestionInfo:questionInfo andTopics:questionTopics];
+    headerView.delegate = self;
+    questionTableView.tableHeaderView = headerView;
+}
+
+- (void)URLClicked:(NSURL *)url {
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 9.0) {
+        SFSafariViewController *safariViewController = [[SFSafariViewController alloc] initWithURL:url];
+        [self presentViewController:safariViewController animated:YES completion:nil];
+    } else {
+        WebModalViewController *webViewController = [[WebModalViewController alloc] initWithURL:url];
+        [self presentViewController:webViewController animated:YES completion:nil];
+    }
 }
 
 /*

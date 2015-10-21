@@ -18,7 +18,6 @@
 
 @implementation FeedbackViewController
 
-@synthesize feedbackView;
 @synthesize formController;
 
 - (void)viewDidLoad {
@@ -26,11 +25,8 @@
     // Do any additional setup after loading the view.
     self.title = @"反馈";
     
-    feedbackView = [[UITableView alloc]initWithFrame:self.view.frame style:UITableViewStyleGrouped];
-    [self.view addSubview:feedbackView];
-    
     formController = [[FXFormController alloc]init];
-    formController.tableView = feedbackView;
+    formController.tableView = self.tableView;
     formController.delegate = self;
     formController.form = [[FeedbackForm alloc]init];
     
@@ -55,7 +51,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [feedbackView reloadData];
+    [self.tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning {

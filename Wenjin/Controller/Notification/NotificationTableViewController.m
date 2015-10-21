@@ -22,7 +22,7 @@
 #import "BlocksKit+UIKit.h"
 #import "APService.h"
 #import "UIScrollView+EmptyDataSet.h"
-#import "NYSegmentedControl.h"
+#import "UINavigationController+JZExtension.h"
 
 @interface NotificationTableViewController () <homeTableViewCellDelegate, DZNEmptyDataSetDelegate, DZNEmptyDataSetSource>
 
@@ -35,10 +35,11 @@
     
     BOOL fetchingData;
     BOOL notificationIsReadOrNot;
-    
-    NYSegmentedControl *segmentedControl;
+
     UIBarButtonItem *clearAllBtn;
 }
+
+@synthesize segmentedControl;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -47,6 +48,7 @@
     self.tableView.tableFooterView = [UIView new];
     self.tableView.emptyDataSetSource = self;
     self.tableView.emptyDataSetDelegate = self;
+    self.navigationController.fullScreenInteractivePopGestureRecognizer = YES;
     
     if ([self respondsToSelector:@selector(automaticallyAdjustsScrollViewInsets)] && self.navigationController.navigationBar.translucent == YES) {
         self.automaticallyAdjustsScrollViewInsets = NO;
@@ -63,18 +65,6 @@
     fetchingData = NO;
     
     notificationIsReadOrNot = NO;
-    segmentedControl = [[NYSegmentedControl alloc]initWithItems:@[@"未读", @"已读"]];
-    [segmentedControl addTarget:self action:@selector(segmentedSelected) forControlEvents:UIControlEventValueChanged];
-    segmentedControl.selectedSegmentIndex = 0;
-    segmentedControl.borderWidth = 0.0f;
-    segmentedControl.segmentIndicatorBorderWidth = 0.0f;
-    segmentedControl.backgroundColor = [wjAppearanceManager segmentedUnselectedColor];
-    segmentedControl.segmentIndicatorBackgroundColor = [wjAppearanceManager segmentedSelectedColor];
-    segmentedControl.segmentIndicatorInset = 0.0f;
-    segmentedControl.titleTextColor = [wjAppearanceManager segmentedUnselectedTextColor];
-    segmentedControl.selectedTitleTextColor = [UIColor whiteColor];
-    [segmentedControl sizeToFit];
-    [self.navigationItem setTitleView:segmentedControl];
     
     __weak NotificationTableViewController *weakSelf = self;
     [self.tableView addPullToRefreshWithActionHandler:^{
@@ -90,7 +80,7 @@
     self.navigationItem.leftBarButtonItem = refreshBtn;
     
     clearAllBtn = [[UIBarButtonItem alloc] bk_initWithImage:[UIImage imageNamed:@"clearAll"] style:UIBarButtonItemStylePlain handler:^(id sender) {
-        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"全部清除" message:@"是否要清除全部未读消息？" preferredStyle: UIAlertControllerStyleAlert];
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"全部清除" message:@"是否要清除全部未读消息？" preferredStyle: UIAlertControllerStyleActionSheet];
         UIAlertAction *cancel = [UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", nil) style:UIAlertActionStyleCancel handler:nil];
         UIAlertAction *clearAll = [UIAlertAction actionWithTitle:@"全部清除" style: UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
             [NotificationManager readAllNotificationsWithCompletionBlock:^{
@@ -101,6 +91,11 @@
         }];
         [alertController addAction:cancel];
         [alertController addAction:clearAll];
+        [alertController setModalPresentationStyle:UIModalPresentationPopover];
+        [alertController.popoverPresentationController setPermittedArrowDirections:0];
+        CGRect rect = self.view.frame;
+        alertController.popoverPresentationController.sourceRect = rect;
+        alertController.popoverPresentationController.sourceView = self.view;
         [self presentViewController:alertController animated:YES completion:nil];
     }];
     self.navigationItem.rightBarButtonItem = clearAllBtn;
@@ -131,20 +126,23 @@
 
 - (void)getList {
     fetchingData = YES;
+    __block BOOL currentNotificationReadMark = notificationIsReadOrNot;
     [NotificationManager getNotificationDataReadOrNot:notificationIsReadOrNot page:currentPage success:^(NSArray *_rowsData) {
         if (_rowsData.count > 0) {
-            if (currentPage == 0) {
-                rowsData = [[NSMutableArray alloc] initWithArray:_rowsData];
-                dataInView = rowsData;
-                [self.tableView reloadData];
-                [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
-            } else {
-                [rowsData addObjectsFromArray:_rowsData];
-                dataInView = rowsData;
-                [self.tableView reloadData];
+            if (notificationIsReadOrNot == currentNotificationReadMark) {
+                if (currentPage == 0) {
+                    rowsData = [[NSMutableArray alloc] initWithArray:_rowsData];
+                    dataInView = rowsData;
+                    [self.tableView reloadData];
+                    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
+                } else {
+                    [rowsData addObjectsFromArray:_rowsData];
+                    dataInView = rowsData;
+                    [self.tableView reloadData];
+                }
             }
         } else {
-            if (rowsData.count > 0) {
+            if (rowsData.count > 0 && currentPage > 1) {
                 [MsgDisplay showErrorMsg:@"已经到最后一页了喔"];
             }
             currentPage --;
@@ -177,7 +175,7 @@
     }
 }
 
-- (void)segmentedSelected {
+- (IBAction)segmentedIndexChanged:(id)sender {
     if (segmentedControl.selectedSegmentIndex == 0) {
         notificationIsReadOrNot = NO;
         self.navigationItem.rightBarButtonItem = clearAllBtn;
@@ -333,8 +331,12 @@
 - (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView {
     NSString *text = notificationIsReadOrNot ? @"暂无已读消息" : @"暂无未读消息";
     NSDictionary *attributes = @{NSFontAttributeName: [UIFont systemFontOfSize:18.0],
-                                 NSForegroundColorAttributeName: [UIColor darkGrayColor]};
+                                 NSForegroundColorAttributeName: [UIColor lightGrayColor]};
     return [[NSAttributedString alloc] initWithString:text attributes:attributes];
+}
+
+- (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView {
+    return [UIImage imageNamed:@"desperateSmile"];
 }
 
 

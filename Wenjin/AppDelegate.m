@@ -8,7 +8,9 @@
 
 #import "AppDelegate.h"
 #import "wjAPIs.h"
-#import <FIR/FIR.h>
+#import "HotfixKit.h"
+#import "JPEngine.h"
+#import "NotificationManager.h"
 
 @interface AppDelegate ()
 
@@ -18,14 +20,31 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    [FIR handleCrashWithKey:[wjAPIs firKey]];
+//    [FIR handleCrashWithKey:[wjAPIs firKey]];
+    
+    // WeChat SDK
     [WXApi registerApp:[wjAPIs wechatAppID]];
+    
+    // JPush
     [APService registerForRemoteNotificationTypes:(UIUserNotificationTypeBadge |
                                                        UIUserNotificationTypeSound |
                                                        UIUserNotificationTypeAlert)
                                            categories:nil];
     [APService setupWithOption:launchOptions];
     
+    // HotFix - Experimental
+//    [HotfixKit hotfixWithRootURL:@"" newCacheCompletionBlock:^{
+//        
+//    }];
+//    NSString *docPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+//    NSString *jsPath = [docPath stringByAppendingPathComponent:@"patch.js"];
+//    if ([[NSFileManager defaultManager] fileExistsAtPath:jsPath]) {
+//        [JPEngine startEngine];
+//        NSString *js = [NSString stringWithContentsOfFile:jsPath encoding:NSUTF8StringEncoding error:nil];
+//        [JPEngine evaluateScript:js];
+//    }
+    
+    [application setStatusBarStyle:UIStatusBarStyleLightContent];
     return YES;
 }
 
@@ -45,7 +64,7 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
+//    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
@@ -91,7 +110,6 @@
     
     // IOS 7 Support Required
     [APService handleRemoteNotification:userInfo];
-    
     // Process UserInfo
     // UserInfo 结构如下：
 //    {
@@ -107,6 +125,24 @@
     completionHandler(UIBackgroundFetchResultNewData);
     if (application.applicationState == UIApplicationStateActive) {
         [[NSNotificationCenter defaultCenter] postNotificationName:@"newNotification" object:userInfo];
+        UIViewController *appRootVC = [UIApplication sharedApplication].keyWindow.rootViewController;
+        UIViewController *topVC = appRootVC;
+        while (topVC.presentedViewController) {
+            topVC = topVC.presentedViewController;
+        }
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"新消息" message:(userInfo[@"aps"])[@"alert"] preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *cancel = [UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", nil) style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+            
+        }];
+        UIAlertAction *show = [UIAlertAction actionWithTitle:@"查看" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            [NotificationManager handleNotification:userInfo];
+        }];
+        [alert addAction:cancel];
+        [alert addAction:show];
+        [topVC presentViewController:alert animated:YES completion:nil];
+    } else {
+        // Inactive or Background
+        [NotificationManager handleNotification:userInfo];
     }
 }
 

@@ -9,6 +9,7 @@
 #import "AddDetailViewController.h"
 #import "data.h"
 #import "wjStringProcessor.h"
+#import "wjAppearanceManager.h"
 #import "BlocksKit+UIKit.h"
 #import "PostDataManager.h"
 #import "MsgDisplay.h"
@@ -25,7 +26,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
+    [self.navigationController.navigationBar setTintColor:[wjAppearanceManager mainTintColor]];
     
     detailTextView = [[UITextView alloc]initWithFrame:CGRectMake(0, 0, 0, 0)];
     detailTextView.font = [UIFont systemFontOfSize:17.0];
@@ -48,8 +49,9 @@
             if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
                 UIImagePickerController *picker = [[UIImagePickerController alloc]init];
                 picker.delegate = self;
-                //picker.allowsEditing = YES;
+//                picker.allowsEditing = YES;
                 picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+//                picker.modalPresentationStyle = UIModalPresentationFormSheet;
                 [self presentViewController:picker animated:YES completion:nil];
             } else {
                 [MsgDisplay showErrorMsg:@"相机不可用"];
@@ -59,8 +61,9 @@
             if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]) {
                 UIImagePickerController *picker = [[UIImagePickerController alloc]init];
                 picker.delegate = self;
-                //picker.allowsEditing = YES;
+//                picker.allowsEditing = YES;
                 picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+//                picker.modalPresentationStyle = UIModalPresentationFormSheet;
                 [self presentViewController:picker animated:YES completion:nil];
             } else {
                 [MsgDisplay showErrorMsg:@"图库不可用"];
@@ -90,13 +93,13 @@
     // float animationDuration = [[[notification userInfo] valueForKey:UIKeyboardAnimationDurationUserInfoKey] floatValue];
     [UIView animateWithDuration:0.3 animations:^{
         CGFloat keyboardHeight = [[[notification userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size.height;
-        [detailTextView setFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - keyboardHeight)];
+        [detailTextView setFrame:CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height - keyboardHeight - 64)];
     }];
 }
 
 - (void)keyboardWillHide:(NSNotification *)notification {
     [UIView animateWithDuration:0.3 animations:^{
-        [detailTextView setFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 44)];
+        [detailTextView setFrame:CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height - 44 - 64)];
     }];
 }
 

@@ -49,7 +49,7 @@
     [isAnonymousControl sizeToFit];
     
     UIBarButtonItem *cancelBtn = [[UIBarButtonItem alloc] bk_initWithBarButtonSystemItem:UIBarButtonSystemItemCancel handler:^(id weakSender) {
-        if ([answerView.text isEqualToString:@""]) {
+        if (answerView.attributedText.length == 0) {
             [self.navigationController dismissViewControllerAnimated:YES completion:nil];
         } else {
             UIAlertController *cancelAlert = [UIAlertController alertControllerWithTitle:@"草稿" message:@"还有未发布的内容\n是否要保存草稿？" preferredStyle:UIAlertControllerStyleActionSheet];
@@ -199,9 +199,9 @@
     } else {
         attachIDArr = [attachIDArr sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
             if ([obj1 integerValue] >= [obj2 integerValue]) {
-                return NSOrderedAscending;
-            } else {
                 return NSOrderedDescending;
+            } else {
+                return NSOrderedAscending;
             }
         }];
         plainString = [PostDataManager plainStringConvertedFromAttributedString:answerView.attributedText andAttachIDArray:attachIDArr];

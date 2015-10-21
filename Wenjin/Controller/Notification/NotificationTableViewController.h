@@ -10,4 +10,8 @@
 
 @interface NotificationTableViewController : UITableViewController
 
+@property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
+
+- (IBAction)segmentedIndexChanged:(id)sender;
+
 @end

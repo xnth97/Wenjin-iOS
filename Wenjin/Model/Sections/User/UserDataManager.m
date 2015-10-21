@@ -16,15 +16,17 @@
 #import "FeedQuestion.h"
 #import "TopicInfo.h"
 
+#define MY_PROFILE_CACHE @"myProf"
+
 @implementation UserDataManager
 
 + (void)getUserDataWithID:(NSString *)uid success:(void (^)(UserInfo *))success failure:(void (^)(NSString *))failure {
     if ([data shareInstance].myUID != nil) {
-//        if ([uid integerValue] == [[data shareInstance].myUID integerValue]) {
-//            [wjCacheManager loadCacheDataWithKey:@"myProfile" andBlock:^(id myProfileCache, NSDate *saveDate) {
-//                success(myProfileCache);
-//            }];
-//        }
+        if ([uid integerValue] == [[data shareInstance].myUID integerValue]) {
+            [wjCacheManager loadCacheDataWithKey:MY_PROFILE_CACHE andBlock:^(id myProfileCache, NSDate *saveDate) {
+                success([UserInfo objectWithKeyValues:myProfileCache]);
+            }];
+        }
     }
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
@@ -38,9 +40,9 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                 success([UserInfo objectWithKeyValues:userDic[@"rsm"]]);
             });
-//            if ([uid integerValue] == [[data shareInstance].myUID integerValue]) {
-//                [wjCacheManager saveCacheData:[UserInfo objectWithKeyValues:userDic[@"rsm"]] withKey:@"myProfile"];
-//            }
+            if ([uid integerValue] == [[data shareInstance].myUID integerValue]) {
+                [wjCacheManager saveCacheData:userDic[@"rsm"] withKey:MY_PROFILE_CACHE];
+            }
             [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         } else {
             dispatch_async(dispatch_get_main_queue(), ^{

@@ -35,9 +35,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.automaticallyAdjustsScrollViewInsets = YES;
     
     // Do any additional setup after loading the view.
-    [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
+    [self.navigationController.navigationBar setTintColor:[wjAppearanceManager mainTintColor]];
     
     // Instaces init.
     [data shareInstance].postQuestionDetail = [[NSMutableAttributedString alloc] initWithString:@""];
@@ -72,7 +73,7 @@
     UIBarButtonItem *addDetailBtn = [[UIBarButtonItem alloc] bk_initWithTitle:@"添加描述" style:UIBarButtonItemStylePlain handler:^(id weakSender) {
         UIStoryboard *storyboard = self.storyboard;
         UINavigationController *addDetailNav = [storyboard instantiateViewControllerWithIdentifier:@"detailNav"];
-        //addDetailNav.modalPresentationStyle = UIModalPresentationFormSheet;
+//        addDetailNav.modalPresentationStyle = UIModalPresentationFormSheet;
         [self presentViewController:addDetailNav animated:YES completion:nil];
     }];
     UIBarButtonItem *flexibleSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
@@ -114,16 +115,16 @@
     // float animationDuration = [[[notification userInfo] valueForKey:UIKeyboardAnimationDurationUserInfoKey] floatValue];
     [UIView animateWithDuration:0.3 animations:^{
         CGFloat keyboardHeight = [[[notification userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size.height;
-        [questionView setFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - keyboardHeight - tagsControlHeight - 4)];
-        [questionTagsControl setFrame:CGRectMake(8, questionView.frame.size.height, self.view.frame.size.width - 16, tagsControlHeight)];
+        [questionView setFrame:CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height - keyboardHeight - tagsControlHeight - 4 - 64)];
+        [questionTagsControl setFrame:CGRectMake(8, questionView.frame.size.height + 64, self.view.frame.size.width - 16, tagsControlHeight)];
     }];
     
 }
 
 - (void)keyboardWillHide:(NSNotification *)notification {
     [UIView animateWithDuration:0.3 animations:^{
-        [questionView setFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 44 - tagsControlHeight - 4)];
-        [questionTagsControl setFrame:CGRectMake(8, questionView.frame.size.height, self.view.frame.size.width - 16, tagsControlHeight)];
+        [questionView setFrame:CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height - 44 - tagsControlHeight - 4 - 64)];
+        [questionTagsControl setFrame:CGRectMake(8, questionView.frame.size.height + 64, self.view.frame.size.width - 16, tagsControlHeight)];
     }];
 }
 
@@ -146,20 +147,6 @@
 
 - (IBAction)postQuestion {
     [MsgDisplay showLoading];
-    
-//    topicsArr = questionTagsControl.tags;
-//    
-//    NSString *topicsStr = @"";
-//    if ([topicsArr count] > 0) {
-//        for (int i = 0; i < [topicsArr count]; i ++) {
-//            if (i == 0) {
-//                topicsStr = (topicsArr)[0];
-//            } else {
-//                NSString *topic = (topicsArr)[i];
-//                topicsStr = [NSString stringWithFormat:@"%@,%@", topicsStr, topic];
-//            }
-//        }
-//    }
     
     // 成功提交后需清除单例模式里的数据
     
@@ -270,7 +257,7 @@
 }
 
 - (IBAction)cancelModal {
-    if ([self.questionView.text isEqualToString:@""] && [data shareInstance].postQuestionDetail.length == 0) {
+    if (self.questionView.attributedText.length == 0 && [data shareInstance].postQuestionDetail.length == 0) {
         [self.navigationController dismissViewControllerAnimated:YES completion:nil];
     } else {
         UIAlertController *saveController = [UIAlertController alertControllerWithTitle:@"草稿" message:@"还有未发布的内容\n是否要保存为草稿？" preferredStyle:UIAlertControllerStyleActionSheet];

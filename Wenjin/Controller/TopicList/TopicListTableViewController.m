@@ -11,12 +11,14 @@
 #import "TopicDataManager.h"
 #import "MsgDisplay.h"
 #import "SVPullToRefresh.h"
-#import "TopicBestAnswerViewController.h"
+#import "TopicViewController.h"
 #import "UserDataManager.h"
 #import "UserViewController.h"
-#import "NYSegmentedControl.h"
 #import "wjAppearanceManager.h"
 #import "TopicInfo.h"
+#import "UINavigationController+JZExtension.h"
+#import "SearchViewController.h"
+#import "TopicViewController.h"
 
 @interface TopicListTableViewController ()
 
@@ -30,10 +32,10 @@
     
     NSString *topicType;
     NSArray *topicTypesArray;
-    NYSegmentedControl *segmentedControl;
 }
 
 @synthesize uid;
+@synthesize segmentedControl;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -41,23 +43,15 @@
     self.clearsSelectionOnViewWillAppear = YES;
     self.tableView.tableFooterView = [[UIView alloc]init];
     self.navigationController.view.backgroundColor = [UIColor whiteColor];
+    self.navigationController.fullScreenInteractivePopGestureRecognizer = YES;
     
     topicTypesArray = @[@"hot", @"focus"];
     topicType = topicTypesArray[0];
     
     if (uid == nil) {
-        segmentedControl = [[NYSegmentedControl alloc]initWithItems:@[@"热门", @"我关注的"]];
-        [segmentedControl addTarget:self action:@selector(segmentedSelected) forControlEvents:UIControlEventValueChanged];
-        segmentedControl.selectedSegmentIndex = 0;
-        segmentedControl.borderWidth = 0.0f;
-        segmentedControl.segmentIndicatorBorderWidth = 0.0f;
-        segmentedControl.backgroundColor = [wjAppearanceManager segmentedUnselectedColor];
-        segmentedControl.segmentIndicatorBackgroundColor = [wjAppearanceManager segmentedSelectedColor];
-        segmentedControl.segmentIndicatorInset = 0.0f;
-        segmentedControl.titleTextColor = [wjAppearanceManager segmentedUnselectedTextColor];
-        segmentedControl.selectedTitleTextColor = [UIColor whiteColor];
-        [segmentedControl sizeToFit];
-        [self.navigationItem setTitleView:segmentedControl];
+        segmentedControl.alpha = 1.0;
+    } else {
+        segmentedControl.alpha = 0.0;
     }
     
     if ([self respondsToSelector:@selector(automaticallyAdjustsScrollViewInsets)] && self.navigationController.navigationBar.translucent == YES) {
@@ -88,7 +82,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)segmentedSelected {
+- (IBAction)segmentedChanged:(id)sender {
     NSUInteger index = segmentedControl.selectedSegmentIndex;
     topicType = topicTypesArray[index];
     if (dataInTable.count != 0) {
@@ -198,7 +192,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSUInteger row = [indexPath row];
     TopicInfo *tmp = dataInTable[row];
-    TopicBestAnswerViewController *topicBestAnswer = [[TopicBestAnswerViewController alloc]initWithNibName:@"TopicBestAnswerViewController" bundle:nil];
+    TopicViewController *topicBestAnswer = [[TopicViewController alloc]initWithNibName:@"TopicViewController" bundle:nil];
     topicBestAnswer.topicId = [NSString stringWithFormat:@"%ld", (long)tmp.topicId];
     topicBestAnswer.hidesBottomBarWhenPushed = YES;
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -239,14 +233,19 @@
 }
 */
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqualToString:@"presentSearch"]) {
+        SearchViewController *des = (SearchViewController *)segue.destinationViewController;
+        des.searchType = 1;
+    }
+    segue.destinationViewController.hidesBottomBarWhenPushed = YES;
 }
-*/
+
 
 @end

@@ -9,9 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "FXForms.h"
 
-@interface FeedbackViewController : UIViewController<FXFormControllerDelegate>
+@interface FeedbackViewController : UITableViewController<FXFormControllerDelegate>
 
-@property (strong, nonatomic) UITableView *feedbackView;
 @property (strong, nonatomic) FXFormController *formController;
 
 @end

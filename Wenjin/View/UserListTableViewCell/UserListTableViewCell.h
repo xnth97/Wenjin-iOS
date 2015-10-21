@@ -16,5 +16,6 @@
 
 - (void)loadImageWithApartURL:(NSString *)urlStr;
 - (void)loadTopicImageWithApartURL:(NSString *)urlStr;
+- (void)loadImageWithURL:(NSString *)urlStr;
 
 @end

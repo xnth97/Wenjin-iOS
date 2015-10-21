@@ -29,6 +29,8 @@
  */
 - (void)headerDetailViewFinishLoadingWithView:(id)view;
 
+- (void)URLClicked:(NSURL *)url;
+
 @end
 
 @interface QuestionHeaderView : UIView<UIWebViewDelegate, TLTagsControlDelegate>

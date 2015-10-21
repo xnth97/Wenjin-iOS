@@ -15,10 +15,12 @@
 #import "wjAppearanceManager.h"
 #import "FBKVOController.h"
 #import "IDMPhotoBrowser.h"
+#import <SafariServices/SafariServices.h>
 
 @implementation QuestionHeaderView {
     int _borderDist;
     
+    TLTagsControl *topicsControl;
     UILabel *questionTitle;
     UIButton *focusQuestion;
     UIButton *addAnswer;
@@ -43,14 +45,14 @@
         self.backgroundColor = [UIColor whiteColor];
         
         _borderDist = 12 ;
-        width = [UIApplication sharedApplication].keyWindow.frame.size.width;
+        width = [UIScreen mainScreen].bounds.size.width;
         
         NSMutableArray *topicsArr = [[NSMutableArray alloc]init];
         for (TopicInfo *tmp in topics) {
             [topicsArr addObject:tmp.topicTitle];
         }
         
-        TLTagsControl *topicsControl = [[TLTagsControl alloc]initWithFrame:CGRectMake(16, 8, width - 32, 22)];
+        topicsControl = [[TLTagsControl alloc]initWithFrame:CGRectMake(16, 8, width - 32, 22)];
         // TLTagsControl *topicsControl = [[TLTagsControl alloc]init];
         topicsControl.mode = TLTagsControlModeList;
         topicsControl.tags = topicsArr;
@@ -122,32 +124,29 @@
         
         //self.frame = CGRectMake(0, 0, width, 0);
         
-        /*
-        NSDictionary *views = NSDictionaryOfVariableBindings(topicsControl, questionTitle, detailView, focusQuestion, addAnswer);
-        NSDictionary *metrics = @{@"borderDist": @16,
-                                  @"rowDist": @14};
-        NSString *vfl1 = @"|-borderDist-[topicsControl]-borderDist-|";
-        NSString *vfl2 = @"|-borderDist-[questionTitle]-borderDist-|";
-        NSString *vfl3 = @"|-borderDist-[detailView]-borderDist-|";
-        NSString *vfl4 = @"|-0-[focusQuestion]-0-[addAnswer(focusQuestion)]-0-|";
-        NSString *vfl5 = ([questionInfo[@"question_detail"] isEqualToString:@""]) ? @"V:|-8-[topicsControl(22)]-rowDist-[questionTitle]-rowDist-[detailView(0)]-50-|" : @"V:|-8-[topicsControl(22)]-rowDist-[questionTitle]-rowDist-[detailView]-50-|";
-        NSString *vfl6 = @"V:[focusQuestion(30)]-12-|";
-        NSString *vfl7 = @"V:[addAnswer(30)]-12-|";
-        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:vfl1 options:0 metrics:metrics views:views]];
-        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:vfl2 options:0 metrics:metrics views:views]];
-        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:vfl3 options:0 metrics:metrics views:views]];
-        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:vfl4 options:0 metrics:metrics views:views]];
-        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:vfl5 options:0 metrics:metrics views:views]];
-        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:vfl6 options:0 metrics:metrics views:views]];
-        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:vfl7 options:0 metrics:metrics views:views]];
-        
-        
-        CGFloat headerHeight = [self systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
-        CGRect headerFrame = self.frame;
-        headerFrame.size.height = headerHeight;
-        
-        self.frame = headerFrame;
-         */
+//        NSDictionary *views = NSDictionaryOfVariableBindings(topicsControl, questionTitle, detailView, focusQuestion, addAnswer);
+//        NSDictionary *metrics = @{@"borderDist": @16,
+//                                  @"rowDist": @14};
+//        NSString *vfl1 = @"|-borderDist-[topicsControl]-borderDist-|";
+//        NSString *vfl2 = @"|-borderDist-[questionTitle]-borderDist-|";
+//        NSString *vfl3 = @"|-borderDist-[detailView]-borderDist-|";
+//        NSString *vfl4 = @"|-0-[focusQuestion]-0-[addAnswer(focusQuestion)]-0-|";
+//        NSString *vfl5 = ([questionInfo.questionDetail isEqualToString:@""]) ? @"V:|-8-[topicsControl(22)]-rowDist-[questionTitle]-rowDist-[detailView(0)]-50-|" : @"V:|-8-[topicsControl(22)]-rowDist-[questionTitle]-rowDist-[detailView]-50-|";
+//        NSString *vfl6 = @"V:[focusQuestion(30)]-12-|";
+//        NSString *vfl7 = @"V:[addAnswer(30)]-12-|";
+//        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:vfl1 options:0 metrics:metrics views:views]];
+//        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:vfl2 options:0 metrics:metrics views:views]];
+//        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:vfl3 options:0 metrics:metrics views:views]];
+//        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:vfl4 options:0 metrics:metrics views:views]];
+//        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:vfl5 options:0 metrics:metrics views:views]];
+//        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:vfl6 options:0 metrics:metrics views:views]];
+//        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:vfl7 options:0 metrics:metrics views:views]];
+//        
+//        CGFloat headerHeight = [self systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
+//        CGRect headerFrame = self.frame;
+//        headerFrame.size.height = headerHeight;
+//        
+//        self.frame = headerFrame;
     }
     return self;
 }
@@ -199,7 +198,7 @@
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
     if (navigationType == UIWebViewNavigationTypeLinkClicked) {
-        [[UIApplication sharedApplication] openURL:[request URL]];
+        [delegate URLClicked:[request URL]];
         return NO;
     } else {
         return YES;
@@ -216,5 +215,13 @@
     
 }
 
+- (UIViewController *)appRootViewController {
+    UIViewController *appRootVC = [UIApplication sharedApplication].keyWindow.rootViewController;
+    UIViewController *topVC = appRootVC;
+    while (topVC.presentedViewController) {
+        topVC = topVC.presentedViewController;
+    }
+    return topVC;
+}
 
 @end
