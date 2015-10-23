@@ -32,7 +32,8 @@ The structure of this project follows the standard of MVC pattern as below.
 	* APIs
 	* Encryption
 	* Singleton
-	* UIActivity
+	* FoundationKits
+		* UIActivity
 * View
 	* Table View Cells
 	* Custom Views
@@ -43,8 +44,8 @@ The structure of this project follows the standard of MVC pattern as below.
 	* XIB
 * Resource
 	* Images.xcassets
-	* Built-in Bootstrap
-	* 3rd Party Frameworks
+	* Built-in Bootstrap & JQuery
+	* 3rd Party Frameworks & SDKs
 
 # Data Structure
 
