@@ -15,14 +15,14 @@
 @implementation SearchDataManager
 
 + (void)getSearchDataWithQuery:(NSString *)queryStr type:(NSInteger)type page:(NSInteger)page success:(void (^)(NSArray *))success failure:(void (^)(NSString *))failure {
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     NSDictionary *parameters = @{@"q": queryStr,
                                  @"type": (@[@"questions", @"topics", @"users"])[type],
                                  @"limit": @10,
                                  @"page": @(page),
                                  @"platform": @"ios"};
-    [manager GET:[wjAPIs search] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [manager GET:[wjAPIs search] parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
         NSDictionary *dicData = (NSDictionary *)responseObject;
         if ([dicData[@"errno"] isEqual:@1]) {
             NSArray *rowsData = [SearchCell objectArrayWithKeyValuesArray:(dicData[@"rsm"])[@"info"]];
@@ -34,7 +34,7 @@
                 failure(dicData[@"err"]);
             });
         }
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
             failure(error.localizedDescription);
         });

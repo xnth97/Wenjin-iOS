@@ -15,12 +15,12 @@
 @implementation TopicDataManager
 
 + (void)getTopicListWithType:(NSString *)topicType andPage:(NSInteger)page success:(void (^)(NSUInteger, NSArray *))success failure:(void (^)(NSString *))failure {
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     NSDictionary *parameters = @{@"id": topicType,
                                  @"page": [NSNumber numberWithInteger:page],
                                  @"platform": @"ios"};
-    [manager GET:[wjAPIs topicList] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [manager GET:[wjAPIs topicList] parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
         NSDictionary *dicData = (NSDictionary *)responseObject;
         if ([dicData[@"errno"] isEqual:@1]) {
             NSInteger totalRows = [(dicData[@"rsm"])[@"total_rows"] integerValue];
@@ -40,7 +40,7 @@
                 failure(dicData[@"err"]);
             });
         }
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
             failure(error.localizedDescription);
         });
@@ -48,12 +48,12 @@
 }
 
 + (void)getTopicInfoWithTopicID:(NSString *)topicID userID:(NSString *)uid success:(void (^)(TopicInfo *))success failure:(void (^)(NSString *))failure {
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     NSDictionary *parameters = @{@"uid": uid,
                                  @"topic_id": topicID,
                                  @"platform": @"ios"};
-    [manager GET:[wjAPIs topicInfo] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [manager GET:[wjAPIs topicInfo] parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
         NSDictionary *dicData = (NSDictionary *)responseObject;
         if ([dicData[@"errno"] isEqual:@1]) {
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -64,7 +64,7 @@
                 failure(dicData[@"err"]);
             });
         }
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
             failure(error.localizedDescription);
         });
@@ -72,12 +72,12 @@
 }
 
 + (void)getTopicBestAnswerWithTopicID:(NSString *)topicId page:(NSInteger)page success:(void (^)(NSUInteger, NSArray *))success failure:(void (^)(NSString *))failure {
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     NSDictionary *parameters = @{@"id": topicId,
                                  @"page": @(page),
                                  @"platform": @"ios"};
-    [manager GET:[wjAPIs topicBestAnswer] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [manager GET:[wjAPIs topicBestAnswer] parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
         NSDictionary *dicData = (NSDictionary *)responseObject;
         if ([dicData[@"errno"] isEqual:@1]) {
             NSDictionary *dic = dicData[@"rsm"];
@@ -98,7 +98,7 @@
                 failure(dicData[@"err"]);
             });
         }
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
             failure(error.localizedDescription);
         });

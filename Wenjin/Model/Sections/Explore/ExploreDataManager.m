@@ -15,14 +15,14 @@
 @implementation ExploreDataManager
 
 + (void)getExploreDataWithPage:(NSUInteger)page isRecommended:(NSInteger)recommended sortType:(NSString *)type success:(void (^)(BOOL, NSArray *))success failure:(void (^)(NSString *))failure {
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     NSDictionary *parameters = @{@"page": [NSNumber numberWithInteger:page],
                                  @"day": @30,
                                  @"is_recommend": [NSNumber numberWithInteger:recommended],
                                  @"sort_type": type,
                                  @"platform": @"ios"};
-    [manager GET:[wjAPIs explore] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [manager GET:[wjAPIs explore] parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
         NSDictionary *dicData = (NSDictionary *)responseObject;
         if ([dicData[@"errno"] isEqual:@1]) {
             NSInteger totalRows = [(dicData[@"rsm"])[@"total_rows"] integerValue];
@@ -42,7 +42,7 @@
                 failure(dicData[@"err"]);
             });
         }
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
             failure(error.localizedDescription);
         });

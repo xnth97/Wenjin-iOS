@@ -1,6 +1,6 @@
 platform :ios, '8.0'
 
-pod 'AFNetworking'
+pod 'AFNetworking', '~> 3.0.0-beta.1'
 pod 'pop'
 pod 'SVPullToRefresh'
 pod 'KVOController'
@@ -17,6 +17,7 @@ pod 'JZNavigationExtension'
 pod 'WebViewJavascriptBridge'
 pod 'IDMPhotoBrowser'
 pod 'CRToast'
+pod "FDStackView", "1.0-alpha"
 
 target 'Wenjin' do
 

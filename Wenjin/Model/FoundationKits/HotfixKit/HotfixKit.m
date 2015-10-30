@@ -17,9 +17,9 @@
 @implementation HotfixKit
 
 + (void)hotfixWithRootURL:(NSString *)url newCacheCompletionBlock:(void (^)())block {
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
-    [manager GET:url parameters:@{@"ver": [data appVersion]} success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [manager GET:url parameters:@{@"ver": [data appVersion]} success:^(NSURLSessionDataTask *task, id responseObject) {
         if ([[responseObject objectForKey:@"update"] boolValue] == NO) {
             NSString *docPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
             NSString *jsPath = [docPath stringByAppendingPathComponent:PATCH_NAME];
@@ -47,26 +47,26 @@
                 [self updateJSCacheWithSourceURL:responseObject[@"source"] updateTime:responseObject[@"patchVer"] completionBlock:block];
             }
         }
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
         [MsgDisplay showErrorMsg:error.description];
     }];
 }
 
 + (void)updateJSCacheWithSourceURL: (NSString *)url updateTime:(NSString *)time completionBlock:(void(^)())block {
-    NSString *docPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    NSString *jsPath = [docPath stringByAppendingPathComponent:PATCH_NAME];
-    NSURL *ns_URL = [NSURL URLWithString:url];
-    NSURLRequest *request = [NSURLRequest requestWithURL:ns_URL];
-    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-    operation.inputStream = [NSInputStream inputStreamWithURL:ns_URL];
-    operation.outputStream = [NSOutputStream outputStreamToFileAtPath:jsPath append:NO];
-    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-        [[NSUserDefaults standardUserDefaults] setObject:time forKey:PATCH_VERSION_KEY];
-        block();
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [MsgDisplay showErrorMsg:error.description];
-    }];
-    [operation start];
+//    NSString *docPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+//    NSString *jsPath = [docPath stringByAppendingPathComponent:PATCH_NAME];
+//    NSURL *ns_URL = [NSURL URLWithString:url];
+//    NSURLRequest *request = [NSURLRequest requestWithURL:ns_URL];
+//    AFHTTPses *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+//    operation.inputStream = [NSInputStream inputStreamWithURL:ns_URL];
+//    operation.outputStream = [NSOutputStream outputStreamToFileAtPath:jsPath append:NO];
+//    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+//        [[NSUserDefaults standardUserDefaults] setObject:time forKey:PATCH_VERSION_KEY];
+//        block();
+//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//        [MsgDisplay showErrorMsg:error.description];
+//    }];
+//    [operation start];
 }
 
 @end

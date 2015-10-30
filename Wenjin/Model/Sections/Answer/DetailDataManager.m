@@ -14,11 +14,11 @@
 @implementation DetailDataManager
 
 + (void)getAnswerDataWithAnswerID:(NSString *)answerId success:(void (^)(AnswerInfo *))success failure:(void (^)(NSString *))failure {
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     NSDictionary *parameters = @{@"id": answerId,
                                  @"platform": @"ios"};
-    [manager GET:[wjAPIs viewAnswer] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [manager GET:[wjAPIs viewAnswer] parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
         
         NSDictionary *ansData = (NSDictionary *)responseObject;
         if ([ansData[@"errno"] isEqual:@1]) {
@@ -32,7 +32,7 @@
             });
         }
         
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
             failure(error.localizedDescription);
         });
@@ -40,11 +40,11 @@
 }
 
 + (void)getAnswerCommentWithAnswerID:(NSString *)answerId success:(void (^)(NSArray *))success failure:(void (^)(NSString *))failure {
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     NSDictionary *parameters = @{@"id": answerId,
                                  @"platform": @"ios"};
-    [manager GET:[wjAPIs answerComment] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [manager GET:[wjAPIs answerComment] parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
         
         NSDictionary *commentData = (NSDictionary *)responseObject;
         if ([commentData[@"errno"] isEqual:@1]) {
@@ -64,7 +64,7 @@
             });
         }
         
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
             failure(error.localizedDescription);
         });
@@ -72,11 +72,11 @@
 }
 
 + (void)getArticleDataWithID:(NSString *)aid success:(void (^)(ArticleInfo *))success failure:(void (^)(NSString *))failure {
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     NSDictionary *parameters = @{@"id": aid,
                                  @"platform": @"ios"};
-    [manager GET:[wjAPIs articleDetail] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [manager GET:[wjAPIs articleDetail] parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
         
         NSDictionary *artData = (NSDictionary *)responseObject;
         if ([artData[@"errno"] isEqual:@1]) {
@@ -90,7 +90,7 @@
             });
         }
         
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
             failure(error.localizedDescription);
         });
@@ -98,12 +98,12 @@
 }
 
 + (void)getArticleCommentWithID:(NSString *)aid page:(NSInteger)page success:(void (^)(NSArray *))success failure:(void (^)(NSString *))failure {
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     NSDictionary *parameters = @{@"id": aid,
                                  @"page": @(page),
                                  @"platform": @"ios"};
-    [manager GET:[wjAPIs articleComment] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [manager GET:[wjAPIs articleComment] parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
         
         NSDictionary *commentData = (NSDictionary *)responseObject;
         if ([commentData[@"errno"] isEqual:@1]) {
@@ -123,7 +123,7 @@
             });
         }
         
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
             failure(error.localizedDescription);
         });

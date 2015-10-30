@@ -20,14 +20,6 @@
 		E90FBB8F1B4829F8005DD1B6 /* DraftTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E90FBB8D1B4829F8005DD1B6 /* DraftTableViewCell.xib */; };
 		E91270771B00A7F500E32110 /* NotificationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E91270761B00A7F500E32110 /* NotificationManager.m */; };
 		E9165E9B1BC69BDB00469B57 /* libPushSDK-1.8.5.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E9165E9A1BC69BDB00469B57 /* libPushSDK-1.8.5.a */; };
-		E9165EC51BC6DDAA00469B57 /* FDGapLayoutGuide.m in Sources */ = {isa = PBXBuildFile; fileRef = E9165EB61BC6DDAA00469B57 /* FDGapLayoutGuide.m */; };
-		E9165EC61BC6DDAA00469B57 /* FDLayoutSpacer.m in Sources */ = {isa = PBXBuildFile; fileRef = E9165EB81BC6DDAA00469B57 /* FDLayoutSpacer.m */; };
-		E9165EC71BC6DDAA00469B57 /* FDStackView.m in Sources */ = {isa = PBXBuildFile; fileRef = E9165EBA1BC6DDAA00469B57 /* FDStackView.m */; };
-		E9165EC81BC6DDAA00469B57 /* FDStackViewAlignmentLayoutArrangement.m in Sources */ = {isa = PBXBuildFile; fileRef = E9165EBC1BC6DDAA00469B57 /* FDStackViewAlignmentLayoutArrangement.m */; };
-		E9165EC91BC6DDAA00469B57 /* FDStackViewDistributionLayoutArrangement.m in Sources */ = {isa = PBXBuildFile; fileRef = E9165EBE1BC6DDAA00469B57 /* FDStackViewDistributionLayoutArrangement.m */; };
-		E9165ECA1BC6DDAA00469B57 /* FDStackViewExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = E9165EC01BC6DDAA00469B57 /* FDStackViewExtensions.m */; };
-		E9165ECB1BC6DDAA00469B57 /* FDStackViewLayoutArrangement.m in Sources */ = {isa = PBXBuildFile; fileRef = E9165EC21BC6DDAA00469B57 /* FDStackViewLayoutArrangement.m */; };
-		E9165ECC1BC6DDAA00469B57 /* FDTransformLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = E9165EC41BC6DDAA00469B57 /* FDTransformLayer.m */; };
 		E91D17E21B47CE79003A532E /* wjDatabaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E91D17E11B47CE79003A532E /* wjDatabaseManager.m */; };
 		E91D17E61B47D14B003A532E /* AnswerDraft.m in Sources */ = {isa = PBXBuildFile; fileRef = E91D17E51B47D14B003A532E /* AnswerDraft.m */; };
 		E9203E6C1B5EA12D00C17F10 /* ExploreCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E9203E6B1B5EA12D00C17F10 /* ExploreCell.m */; };
@@ -169,22 +161,6 @@
 		E91270751B00A7F500E32110 /* NotificationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NotificationManager.h; path = Model/Notification/NotificationManager.h; sourceTree = "<group>"; };
 		E91270761B00A7F500E32110 /* NotificationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NotificationManager.m; path = Model/Notification/NotificationManager.m; sourceTree = "<group>"; };
 		E9165E9A1BC69BDB00469B57 /* libPushSDK-1.8.5.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libPushSDK-1.8.5.a"; sourceTree = "<group>"; };
-		E9165EB51BC6DDAA00469B57 /* FDGapLayoutGuide.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDGapLayoutGuide.h; sourceTree = "<group>"; };
-		E9165EB61BC6DDAA00469B57 /* FDGapLayoutGuide.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDGapLayoutGuide.m; sourceTree = "<group>"; };
-		E9165EB71BC6DDAA00469B57 /* FDLayoutSpacer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDLayoutSpacer.h; sourceTree = "<group>"; };
-		E9165EB81BC6DDAA00469B57 /* FDLayoutSpacer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDLayoutSpacer.m; sourceTree = "<group>"; };
-		E9165EB91BC6DDAA00469B57 /* FDStackView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDStackView.h; sourceTree = "<group>"; };
-		E9165EBA1BC6DDAA00469B57 /* FDStackView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDStackView.m; sourceTree = "<group>"; };
-		E9165EBB1BC6DDAA00469B57 /* FDStackViewAlignmentLayoutArrangement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDStackViewAlignmentLayoutArrangement.h; sourceTree = "<group>"; };
-		E9165EBC1BC6DDAA00469B57 /* FDStackViewAlignmentLayoutArrangement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDStackViewAlignmentLayoutArrangement.m; sourceTree = "<group>"; };
-		E9165EBD1BC6DDAA00469B57 /* FDStackViewDistributionLayoutArrangement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDStackViewDistributionLayoutArrangement.h; sourceTree = "<group>"; };
-		E9165EBE1BC6DDAA00469B57 /* FDStackViewDistributionLayoutArrangement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDStackViewDistributionLayoutArrangement.m; sourceTree = "<group>"; };
-		E9165EBF1BC6DDAA00469B57 /* FDStackViewExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDStackViewExtensions.h; sourceTree = "<group>"; };
-		E9165EC01BC6DDAA00469B57 /* FDStackViewExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDStackViewExtensions.m; sourceTree = "<group>"; };
-		E9165EC11BC6DDAA00469B57 /* FDStackViewLayoutArrangement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDStackViewLayoutArrangement.h; sourceTree = "<group>"; };
-		E9165EC21BC6DDAA00469B57 /* FDStackViewLayoutArrangement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDStackViewLayoutArrangement.m; sourceTree = "<group>"; };
-		E9165EC31BC6DDAA00469B57 /* FDTransformLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDTransformLayer.h; sourceTree = "<group>"; };
-		E9165EC41BC6DDAA00469B57 /* FDTransformLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDTransformLayer.m; sourceTree = "<group>"; };
 		E91D17E01B47CE79003A532E /* wjDatabaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = wjDatabaseManager.h; path = Model/LocalDataManager/wjDatabaseManager.h; sourceTree = "<group>"; };
 		E91D17E11B47CE79003A532E /* wjDatabaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = wjDatabaseManager.m; path = Model/LocalDataManager/wjDatabaseManager.m; sourceTree = "<group>"; };
 		E91D17E41B47D14B003A532E /* AnswerDraft.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AnswerDraft.h; path = Model/LocalDataManager/DataModel/AnswerDraft.h; sourceTree = "<group>"; };
@@ -495,30 +471,6 @@
 			name = Notification;
 			sourceTree = "<group>";
 		};
-		E9165EB41BC6DDAA00469B57 /* FDStackView */ = {
-			isa = PBXGroup;
-			children = (
-				E9165EB51BC6DDAA00469B57 /* FDGapLayoutGuide.h */,
-				E9165EB61BC6DDAA00469B57 /* FDGapLayoutGuide.m */,
-				E9165EB71BC6DDAA00469B57 /* FDLayoutSpacer.h */,
-				E9165EB81BC6DDAA00469B57 /* FDLayoutSpacer.m */,
-				E9165EB91BC6DDAA00469B57 /* FDStackView.h */,
-				E9165EBA1BC6DDAA00469B57 /* FDStackView.m */,
-				E9165EBB1BC6DDAA00469B57 /* FDStackViewAlignmentLayoutArrangement.h */,
-				E9165EBC1BC6DDAA00469B57 /* FDStackViewAlignmentLayoutArrangement.m */,
-				E9165EBD1BC6DDAA00469B57 /* FDStackViewDistributionLayoutArrangement.h */,
-				E9165EBE1BC6DDAA00469B57 /* FDStackViewDistributionLayoutArrangement.m */,
-				E9165EBF1BC6DDAA00469B57 /* FDStackViewExtensions.h */,
-				E9165EC01BC6DDAA00469B57 /* FDStackViewExtensions.m */,
-				E9165EC11BC6DDAA00469B57 /* FDStackViewLayoutArrangement.h */,
-				E9165EC21BC6DDAA00469B57 /* FDStackViewLayoutArrangement.m */,
-				E9165EC31BC6DDAA00469B57 /* FDTransformLayer.h */,
-				E9165EC41BC6DDAA00469B57 /* FDTransformLayer.m */,
-			);
-			name = FDStackView;
-			path = View/FDStackView;
-			sourceTree = "<group>";
-		};
 		E91D17E31B47CE7E003A532E /* Data Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -544,7 +496,6 @@
 		E93063B01ACA394E000140C1 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				E9165EB41BC6DDAA00469B57 /* FDStackView */,
 				E96F09211AD7D29700847E5E /* TLTagsContol */,
 				E9DB26F51AD55D1E00C3C60D /* AnswerCommentCell */,
 				E9ED1ABD1B663DCB00B5C2DC /* CommentTextView */,
@@ -1396,7 +1347,6 @@
 				E952E1671AE520DE00F8B7BF /* FeedbackForm.m in Sources */,
 				E93063B51ACA3982000140C1 /* HomeTableViewCell.m in Sources */,
 				E99577691AE76282002E5107 /* NSTimer+Blocks.m in Sources */,
-				E9165EC61BC6DDAA00469B57 /* FDLayoutSpacer.m in Sources */,
 				E9EB618A1ACC187A001F5DA3 /* QuestionAnswerTableViewCell.m in Sources */,
 				E990790F1ACEE371008DCA22 /* NotLoggedInView.m in Sources */,
 				E98EBE791B51565000710B38 /* UserInfo.m in Sources */,
@@ -1415,11 +1365,9 @@
 				E9E38F361ADA288400136161 /* ExploreTableViewController.m in Sources */,
 				E92388F31B46D22B00C3EE3A /* NotificationTableViewController.m in Sources */,
 				E96F09281AD7E2DD00847E5E /* TopicListTableViewController.m in Sources */,
-				E9165EC51BC6DDAA00469B57 /* FDGapLayoutGuide.m in Sources */,
 				E96F092C1AD7E3BA00847E5E /* TopicDataManager.m in Sources */,
 				E952E16A1AE522D500F8B7BF /* FeedbackViewController.m in Sources */,
 				E9F0FB251BD61374009E77F8 /* SearchViewController.m in Sources */,
-				E9165EC81BC6DDAA00469B57 /* FDStackViewAlignmentLayoutArrangement.m in Sources */,
 				E992CA141AE10F75003A9123 /* wjAppearanceManager.m in Sources */,
 				E96F092F1AD7F44100847E5E /* SettingTableViewController.m in Sources */,
 				E9C9C6F61AC719FC00CC228A /* MainTabBarController.m in Sources */,
@@ -1428,7 +1376,6 @@
 				E9C1A1C01ACAF21F00892B60 /* QuestionDataManager.m in Sources */,
 				E93063C21ACA4E69000140C1 /* PostDataManager.m in Sources */,
 				E9DCE9481B5CF10000076CA3 /* ArticleInfo.m in Sources */,
-				E9165EC91BC6DDAA00469B57 /* FDStackViewDistributionLayoutArrangement.m in Sources */,
 				E995BBD01B7C6F4000146157 /* WebModalViewController.m in Sources */,
 				E91D17E21B47CE79003A532E /* wjDatabaseManager.m in Sources */,
 				E93C6DA21BD6476900688A7A /* SearchQuestionTableViewCell.m in Sources */,
@@ -1436,7 +1383,6 @@
 				E93C6D971BD62A8600688A7A /* SearchCell.m in Sources */,
 				E9203E6C1B5EA12D00C17F10 /* ExploreCell.m in Sources */,
 				E92298501AF0E4EF000CC8F7 /* WeChatSessionActivity.m in Sources */,
-				E9165EC71BC6DDAA00469B57 /* FDStackView.m in Sources */,
 				E9DB26E51AD4F32200C3C60D /* UserListTableViewController.m in Sources */,
 				E96F09241AD7D29700847E5E /* TLTagsControl.m in Sources */,
 				E98EBE7C1B5156E400710B38 /* TopicInfo.m in Sources */,
@@ -1444,7 +1390,6 @@
 				E995776D1AE76F57002E5107 /* ShowNotLoggedInViewController.m in Sources */,
 				E9C9C7151AC7249900CC228A /* MsgDisplay.m in Sources */,
 				E9203E751B5EBACD00C17F10 /* CommentInfo.m in Sources */,
-				E9165ECB1BC6DDAA00469B57 /* FDStackViewLayoutArrangement.m in Sources */,
 				E9203E7B1B5EBECC00C17F10 /* Related.m in Sources */,
 				E93063DC1ACAABD9000140C1 /* UserViewController.m in Sources */,
 				E98EBE761B51558100710B38 /* HomeCell.m in Sources */,
@@ -1454,7 +1399,6 @@
 				E93063D21ACAAB81000140C1 /* QuestionViewController.m in Sources */,
 				E90F42741ACD979500263622 /* UserDataManager.m in Sources */,
 				E91270771B00A7F500E32110 /* NotificationManager.m in Sources */,
-				E9165ECC1BC6DDAA00469B57 /* FDTransformLayer.m in Sources */,
 				E92388F01B4695A000C3EE3A /* ProfileEditForm.m in Sources */,
 				E9479EE31AE2AB42003BCE97 /* AboutViewController.m in Sources */,
 				E98EBE7F1B51579B00710B38 /* AnswerInfo.m in Sources */,
@@ -1468,7 +1412,6 @@
 				E9C9C70A1AC71E4200CC228A /* wpyEncryption.m in Sources */,
 				E9203E6F1B5EA93B00C17F10 /* TopicBestAnswerCell.m in Sources */,
 				E9DB26EA1AD4F44B00C3C60D /* UserListTableViewCell.m in Sources */,
-				E9165ECA1BC6DDAA00469B57 /* FDStackViewExtensions.m in Sources */,
 				E9ED1AC01B663DF500B5C2DC /* CommentTextView.m in Sources */,
 				E93063BE1ACA4DAA000140C1 /* PostQuestionViewController.m in Sources */,
 			);

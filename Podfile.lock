@@ -1,24 +1,18 @@
 PODS:
-  - AFNetworking (2.6.1):
-    - AFNetworking/NSURLConnection (= 2.6.1)
-    - AFNetworking/NSURLSession (= 2.6.1)
-    - AFNetworking/Reachability (= 2.6.1)
-    - AFNetworking/Security (= 2.6.1)
-    - AFNetworking/Serialization (= 2.6.1)
-    - AFNetworking/UIKit (= 2.6.1)
-  - AFNetworking/NSURLConnection (2.6.1):
+  - AFNetworking (3.0.0-beta.1):
+    - AFNetworking/NSURLSession (= 3.0.0-beta.1)
+    - AFNetworking/Reachability (= 3.0.0-beta.1)
+    - AFNetworking/Security (= 3.0.0-beta.1)
+    - AFNetworking/Serialization (= 3.0.0-beta.1)
+    - AFNetworking/UIKit (= 3.0.0-beta.1)
+  - AFNetworking/NSURLSession (3.0.0-beta.1):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/NSURLSession (2.6.1):
-    - AFNetworking/Reachability
-    - AFNetworking/Security
-    - AFNetworking/Serialization
-  - AFNetworking/Reachability (2.6.1)
-  - AFNetworking/Security (2.6.1)
-  - AFNetworking/Serialization (2.6.1)
-  - AFNetworking/UIKit (2.6.1):
-    - AFNetworking/NSURLConnection
+  - AFNetworking/Reachability (3.0.0-beta.1)
+  - AFNetworking/Security (3.0.0-beta.1)
+  - AFNetworking/Serialization (3.0.0-beta.1)
+  - AFNetworking/UIKit (3.0.0-beta.1):
     - AFNetworking/NSURLSession
   - BlocksKit (2.2.5):
     - BlocksKit/All (= 2.2.5)
@@ -41,14 +35,15 @@ PODS:
   - CRToast (0.0.9)
   - DACircularProgress (2.3.1)
   - DZNEmptyDataSet (1.7.2)
+  - FDStackView (1.0-alpha)
   - FXForms (1.2.13)
   - IDMPhotoBrowser (1.7):
     - AFNetworking
     - DACircularProgress
     - pop
-  - JZNavigationExtension (1.2.1)
+  - JZNavigationExtension (1.2.5)
   - KVOController (1.0.3)
-  - MJExtension (2.5.14)
+  - MJExtension (2.5.16)
   - NYSegmentedControl (1.0.7)
   - pop (1.0.8)
   - PopMenu (2.4):
@@ -61,11 +56,12 @@ PODS:
   - XHRealTimeBlur (1.7)
 
 DEPENDENCIES:
-  - AFNetworking
+  - AFNetworking (~> 3.0.0-beta.1)
   - BlocksKit
   - ChameleonFramework
   - CRToast
   - DZNEmptyDataSet
+  - FDStackView (= 1.0-alpha)
   - FXForms
   - IDMPhotoBrowser
   - JZNavigationExtension
@@ -80,17 +76,18 @@ DEPENDENCIES:
   - WebViewJavascriptBridge
 
 SPEC CHECKSUMS:
-  AFNetworking: 8e4e60500beb8bec644cf575beee72990a76d399
+  AFNetworking: 1100906802d9479aa0949e8e2cbc1d4e6beba327
   BlocksKit: 7f422b971407001178d181a43b99014ea2591fe6
   ChameleonFramework: 5abe69b1f2a6cc79c3c435fcd9d3d855748225ee
   CRToast: 5a78c22b921c5ed3487488af605bc403a9c92fed
   DACircularProgress: 4dd437c0fc3da5161cb289e07ac449493d41db71
   DZNEmptyDataSet: 0ec00bfc230d7450997b60c127afdd0b9f24f3b6
+  FDStackView: 6abd2cdb128430264d5c6e87277629abad222f20
   FXForms: 22d5ceafd8ca44d2f2be4827afcf00aaf80184a5
   IDMPhotoBrowser: 1155caa03f8705b7943c074c26b55aadd43d71da
-  JZNavigationExtension: 7a0e59bc604587659a9c4d93c0ee4553142e80f8
+  JZNavigationExtension: d9ecf3ddc2b63dffac2db6a8a6eb13b1a42dd89a
   KVOController: 9fd8f0343670994e4b6f9f0b31f5a45663f3e1cf
-  MJExtension: fb8e6e900fb44c9a7be435ba3d72b7fdf5f0994c
+  MJExtension: b8c1321a77d91bcc007b94d38cbf5383c95ea30e
   NYSegmentedControl: 55b4f9eb652767cae9799623ec3e49e50029ef47
   pop: bb773ae2c791ca2629de13b347e7a8b450fa6a57
   PopMenu: 26b97baeaf250070f4f61b93727ca86d127d7bc5
