@@ -51,7 +51,7 @@
 + (void)showLoading {
     dispatch_async(dispatch_get_main_queue(), ^(){
 //        [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeBlack];
-        NSDictionary *options = @{kCRToastNotificationTypeKey: @(CRToastTypeNavigationBar),
+        NSDictionary *options = @{kCRToastNotificationTypeKey: @(CRToastTypeStatusBar),
                                   kCRToastNotificationPresentationTypeKey: @(CRToastPresentationTypeCover),
                                   kCRToastTextKey: NSLocalizedString(@"Loading...", nil),
                                   kCRToastTextAlignmentKey: @(NSTextAlignmentCenter),
@@ -62,8 +62,7 @@
                                   kCRToastAnimationInTypeKey: @(CRToastAnimationTypeLinear),
                                   kCRToastAnimationOutTypeKey: @(CRToastAnimationTypeLinear),
                                   kCRToastAnimationInDirectionKey: @(CRToastAnimationDirectionTop),
-                                  kCRToastAnimationOutDirectionKey: @(CRToastAnimationDirectionTop),
-                                  kCRToastInteractionRespondersKey: @[[CRToastInteractionResponder interactionResponderWithInteractionType:CRToastInteractionTypeTap automaticallyDismiss:YES block:nil]]};
+                                  kCRToastAnimationOutDirectionKey: @(CRToastAnimationDirectionTop)};
         [CRToastManager showNotificationWithOptions:options completionBlock:nil];
     });
 }

@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		CF6A6D91415074A7D8441D4C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 41BFEB2A3405F2318C5DCF7D /* libPods.a */; };
-		E9025AE61BBEBD2200AEF430 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E9025AE21BBEBD2200AEF430 /* libWeChatSDK.a */; settings = {ASSET_TAGS = (); }; };
+		E9025AE61BBEBD2200AEF430 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E9025AE21BBEBD2200AEF430 /* libWeChatSDK.a */; };
 		E90968371AF0B79B00E65F7E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E90968361AF0B79B00E65F7E /* SystemConfiguration.framework */; };
 		E90968391AF0B7A600E65F7E /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E90968381AF0B7A600E65F7E /* libz.dylib */; };
 		E909683B1AF0B7AF00E65F7E /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E909683A1AF0B7AF00E65F7E /* libsqlite3.0.dylib */; };
@@ -19,15 +19,15 @@
 		E90FBB8E1B4829F8005DD1B6 /* DraftTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E90FBB8C1B4829F8005DD1B6 /* DraftTableViewCell.m */; };
 		E90FBB8F1B4829F8005DD1B6 /* DraftTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E90FBB8D1B4829F8005DD1B6 /* DraftTableViewCell.xib */; };
 		E91270771B00A7F500E32110 /* NotificationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E91270761B00A7F500E32110 /* NotificationManager.m */; };
-		E9165E9B1BC69BDB00469B57 /* libPushSDK-1.8.5.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E9165E9A1BC69BDB00469B57 /* libPushSDK-1.8.5.a */; settings = {ASSET_TAGS = (); }; };
-		E9165EC51BC6DDAA00469B57 /* FDGapLayoutGuide.m in Sources */ = {isa = PBXBuildFile; fileRef = E9165EB61BC6DDAA00469B57 /* FDGapLayoutGuide.m */; settings = {ASSET_TAGS = (); }; };
-		E9165EC61BC6DDAA00469B57 /* FDLayoutSpacer.m in Sources */ = {isa = PBXBuildFile; fileRef = E9165EB81BC6DDAA00469B57 /* FDLayoutSpacer.m */; settings = {ASSET_TAGS = (); }; };
-		E9165EC71BC6DDAA00469B57 /* FDStackView.m in Sources */ = {isa = PBXBuildFile; fileRef = E9165EBA1BC6DDAA00469B57 /* FDStackView.m */; settings = {ASSET_TAGS = (); }; };
-		E9165EC81BC6DDAA00469B57 /* FDStackViewAlignmentLayoutArrangement.m in Sources */ = {isa = PBXBuildFile; fileRef = E9165EBC1BC6DDAA00469B57 /* FDStackViewAlignmentLayoutArrangement.m */; settings = {ASSET_TAGS = (); }; };
-		E9165EC91BC6DDAA00469B57 /* FDStackViewDistributionLayoutArrangement.m in Sources */ = {isa = PBXBuildFile; fileRef = E9165EBE1BC6DDAA00469B57 /* FDStackViewDistributionLayoutArrangement.m */; settings = {ASSET_TAGS = (); }; };
-		E9165ECA1BC6DDAA00469B57 /* FDStackViewExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = E9165EC01BC6DDAA00469B57 /* FDStackViewExtensions.m */; settings = {ASSET_TAGS = (); }; };
-		E9165ECB1BC6DDAA00469B57 /* FDStackViewLayoutArrangement.m in Sources */ = {isa = PBXBuildFile; fileRef = E9165EC21BC6DDAA00469B57 /* FDStackViewLayoutArrangement.m */; settings = {ASSET_TAGS = (); }; };
-		E9165ECC1BC6DDAA00469B57 /* FDTransformLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = E9165EC41BC6DDAA00469B57 /* FDTransformLayer.m */; settings = {ASSET_TAGS = (); }; };
+		E9165E9B1BC69BDB00469B57 /* libPushSDK-1.8.5.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E9165E9A1BC69BDB00469B57 /* libPushSDK-1.8.5.a */; };
+		E9165EC51BC6DDAA00469B57 /* FDGapLayoutGuide.m in Sources */ = {isa = PBXBuildFile; fileRef = E9165EB61BC6DDAA00469B57 /* FDGapLayoutGuide.m */; };
+		E9165EC61BC6DDAA00469B57 /* FDLayoutSpacer.m in Sources */ = {isa = PBXBuildFile; fileRef = E9165EB81BC6DDAA00469B57 /* FDLayoutSpacer.m */; };
+		E9165EC71BC6DDAA00469B57 /* FDStackView.m in Sources */ = {isa = PBXBuildFile; fileRef = E9165EBA1BC6DDAA00469B57 /* FDStackView.m */; };
+		E9165EC81BC6DDAA00469B57 /* FDStackViewAlignmentLayoutArrangement.m in Sources */ = {isa = PBXBuildFile; fileRef = E9165EBC1BC6DDAA00469B57 /* FDStackViewAlignmentLayoutArrangement.m */; };
+		E9165EC91BC6DDAA00469B57 /* FDStackViewDistributionLayoutArrangement.m in Sources */ = {isa = PBXBuildFile; fileRef = E9165EBE1BC6DDAA00469B57 /* FDStackViewDistributionLayoutArrangement.m */; };
+		E9165ECA1BC6DDAA00469B57 /* FDStackViewExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = E9165EC01BC6DDAA00469B57 /* FDStackViewExtensions.m */; };
+		E9165ECB1BC6DDAA00469B57 /* FDStackViewLayoutArrangement.m in Sources */ = {isa = PBXBuildFile; fileRef = E9165EC21BC6DDAA00469B57 /* FDStackViewLayoutArrangement.m */; };
+		E9165ECC1BC6DDAA00469B57 /* FDTransformLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = E9165EC41BC6DDAA00469B57 /* FDTransformLayer.m */; };
 		E91D17E21B47CE79003A532E /* wjDatabaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E91D17E11B47CE79003A532E /* wjDatabaseManager.m */; };
 		E91D17E61B47D14B003A532E /* AnswerDraft.m in Sources */ = {isa = PBXBuildFile; fileRef = E91D17E51B47D14B003A532E /* AnswerDraft.m */; };
 		E9203E6C1B5EA12D00C17F10 /* ExploreCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E9203E6B1B5EA12D00C17F10 /* ExploreCell.m */; };
@@ -53,17 +53,17 @@
 		E93063D81ACAABC7000140C1 /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E93063D61ACAABC7000140C1 /* DetailViewController.xib */; };
 		E93063DC1ACAABD9000140C1 /* UserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E93063DA1ACAABD9000140C1 /* UserViewController.m */; };
 		E93063DD1ACAABD9000140C1 /* UserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E93063DB1ACAABD9000140C1 /* UserViewController.xib */; };
-		E93C6D941BD6214800688A7A /* SearchDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E93C6D931BD6214800688A7A /* SearchDataManager.m */; settings = {ASSET_TAGS = (); }; };
-		E93C6D971BD62A8600688A7A /* SearchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E93C6D961BD62A8600688A7A /* SearchCell.m */; settings = {ASSET_TAGS = (); }; };
-		E93C6D9D1BD62B5400688A7A /* SearchDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = E93C6D9C1BD62B5400688A7A /* SearchDetail.m */; settings = {ASSET_TAGS = (); }; };
-		E93C6DA21BD6476900688A7A /* SearchQuestionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E93C6DA01BD6476900688A7A /* SearchQuestionTableViewCell.m */; settings = {ASSET_TAGS = (); }; };
+		E93C6D941BD6214800688A7A /* SearchDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E93C6D931BD6214800688A7A /* SearchDataManager.m */; };
+		E93C6D971BD62A8600688A7A /* SearchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E93C6D961BD62A8600688A7A /* SearchCell.m */; };
+		E93C6D9D1BD62B5400688A7A /* SearchDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = E93C6D9C1BD62B5400688A7A /* SearchDetail.m */; };
+		E93C6DA21BD6476900688A7A /* SearchQuestionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E93C6DA01BD6476900688A7A /* SearchQuestionTableViewCell.m */; };
 		E9479EE31AE2AB42003BCE97 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9479EE11AE2AB42003BCE97 /* AboutViewController.m */; };
 		E9479EE41AE2AB42003BCE97 /* AboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9479EE21AE2AB42003BCE97 /* AboutViewController.xib */; };
 		E952E1671AE520DE00F8B7BF /* FeedbackForm.m in Sources */ = {isa = PBXBuildFile; fileRef = E952E1661AE520DE00F8B7BF /* FeedbackForm.m */; };
 		E952E16A1AE522D500F8B7BF /* FeedbackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E952E1691AE522D500F8B7BF /* FeedbackViewController.m */; };
-		E95537011BA7290F00CAD705 /* jquery.min.js in Resources */ = {isa = PBXBuildFile; fileRef = E95537001BA7290F00CAD705 /* jquery.min.js */; settings = {ASSET_TAGS = (); }; };
-		E958F68F1BD5ED6500F9EA15 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E958F68E1BD5ED6500F9EA15 /* Realm.framework */; settings = {ASSET_TAGS = (); }; };
-		E958F6941BD5F26300F9EA15 /* HotfixKit.m in Sources */ = {isa = PBXBuildFile; fileRef = E958F6931BD5F26300F9EA15 /* HotfixKit.m */; settings = {ASSET_TAGS = (); }; };
+		E95537011BA7290F00CAD705 /* jquery.min.js in Resources */ = {isa = PBXBuildFile; fileRef = E95537001BA7290F00CAD705 /* jquery.min.js */; };
+		E958F68F1BD5ED6500F9EA15 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E958F68E1BD5ED6500F9EA15 /* Realm.framework */; };
+		E958F6941BD5F26300F9EA15 /* HotfixKit.m in Sources */ = {isa = PBXBuildFile; fileRef = E958F6931BD5F26300F9EA15 /* HotfixKit.m */; };
 		E9642E911AC5714800FF7875 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E9642E901AC5714800FF7875 /* main.m */; };
 		E9642E941AC5714800FF7875 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E9642E931AC5714800FF7875 /* AppDelegate.m */; };
 		E9642E9A1AC5714800FF7875 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9642E981AC5714800FF7875 /* Main.storyboard */; };
@@ -130,9 +130,9 @@
 		E9EB618B1ACC187A001F5DA3 /* QuestionAnswerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9EB61891ACC187A001F5DA3 /* QuestionAnswerTableViewCell.xib */; };
 		E9EB618F1ACC2B2D001F5DA3 /* DetailDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E9EB618E1ACC2B2D001F5DA3 /* DetailDataManager.m */; };
 		E9ED1AC01B663DF500B5C2DC /* CommentTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = E9ED1ABF1B663DF500B5C2DC /* CommentTextView.m */; };
-		E9EEA3551BD650E600193204 /* SearchQuestionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9EEA3541BD650E600193204 /* SearchQuestionTableViewCell.xib */; settings = {ASSET_TAGS = (); }; };
-		E9EEA3591BD76D3300193204 /* Notification.m in Sources */ = {isa = PBXBuildFile; fileRef = E9EEA3581BD76D3300193204 /* Notification.m */; settings = {ASSET_TAGS = (); }; };
-		E9F0FB251BD61374009E77F8 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9F0FB241BD61374009E77F8 /* SearchViewController.m */; settings = {ASSET_TAGS = (); }; };
+		E9EEA3551BD650E600193204 /* SearchQuestionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9EEA3541BD650E600193204 /* SearchQuestionTableViewCell.xib */; };
+		E9EEA3591BD76D3300193204 /* Notification.m in Sources */ = {isa = PBXBuildFile; fileRef = E9EEA3581BD76D3300193204 /* Notification.m */; };
+		E9F0FB251BD61374009E77F8 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9F0FB241BD61374009E77F8 /* SearchViewController.m */; };
 		E9FE84AE1B8C63D600482AE4 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9FE84AD1B8C63D600482AE4 /* JavaScriptCore.framework */; };
 /* End PBXBuildFile section */
 

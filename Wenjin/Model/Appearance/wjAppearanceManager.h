@@ -17,8 +17,5 @@
 + (UIColor *)questionTitleLabelTextColor;
 + (UIColor *)userActionTextColor;
 + (UIColor *)buttonColor;
-+ (UIColor *)segmentedSelectedColor;
-+ (UIColor *)segmentedUnselectedColor;
-+ (UIColor *)segmentedUnselectedTextColor;
 
 @end

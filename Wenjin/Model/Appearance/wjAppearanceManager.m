@@ -24,8 +24,8 @@
 }
 
 + (UIColor *)mainTintColor {
-    UIColor *color = [UIColor colorWithRed:26/255.0f green:156/255.0f blue:27/255.0f alpha:1.0f];
-//    UIColor *color = [UIColor colorWithRed:26/255.0f green:188/255.0f blue:156/255.0f alpha:1.0f];
+//    UIColor *color = [UIColor colorWithRed:26/255.0f green:156/255.0f blue:27/255.0f alpha:1.0f];
+    UIColor *color = [UIColor flatMintColorDark];
     return color;
 }
 
@@ -36,7 +36,8 @@
 }
 
 + (UIColor *)buttonColor {
-    UIColor * color = [UIColor colorWithRed:76/255.0f green:137/255.0f blue:45/255.0f alpha:1.0f];
+//    UIColor * color = [UIColor colorWithRed:76/255.0f green:137/255.0f blue:45/255.0f alpha:1.0f];
+    UIColor *color = [UIColor flatMintColorDark];
     return color;
 }
 
@@ -47,21 +48,6 @@
 
 + (UIColor *)tagsControlBackgroundColor {
     UIColor * color = [self mainTintColor];
-    return color;
-}
-
-+ (UIColor *)segmentedSelectedColor {
-    UIColor * color = [UIColor colorWithRed:99/255.0f green:205/255.0f blue:42/255.0f alpha:1.0f];
-    return color;
-}
-
-+ (UIColor *)segmentedUnselectedColor {
-    UIColor * color = [UIColor colorWithRed:65/255.0f green:126/255.0f blue:33/255.0f alpha:1.0f];
-    return color;
-}
-
-+ (UIColor *)segmentedUnselectedTextColor {
-   UIColor * color = [UIColor colorWithRed:89/255.0f green:167/255.0f blue:48/255.0f alpha:1.0f];
     return color;
 }
 
