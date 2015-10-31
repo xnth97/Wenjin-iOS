@@ -25,7 +25,6 @@
 #import "WeChatMomentsActivity.h"
 #import "WeChatSessionActivity.h"
 #import "WebViewJavascriptBridge.h"
-#import "IDMPhotoBrowser.h"
 #import <SafariServices/SafariServices.h>
 #import "WebModalViewController.h"
 

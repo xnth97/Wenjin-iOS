@@ -37,18 +37,22 @@ PODS:
   - DZNEmptyDataSet (1.7.2)
   - FDStackView (1.0-alpha)
   - FXForms (1.2.13)
-  - IDMPhotoBrowser (1.7):
-    - AFNetworking
-    - DACircularProgress
-    - pop
   - JZNavigationExtension (1.2.5)
   - KVOController (1.0.3)
+  - MBProgressHUD (0.9.1)
   - MJExtension (2.5.16)
+  - MWPhotoBrowser (2.1.1):
+    - DACircularProgress (~> 2.3)
+    - MBProgressHUD (~> 0.9)
+    - SDWebImage (!= 3.7.2, ~> 3.7)
   - NYSegmentedControl (1.0.7)
   - pop (1.0.8)
   - PopMenu (2.4):
     - pop
     - XHRealTimeBlur
+  - SDWebImage (3.7.3):
+    - SDWebImage/Core (= 3.7.3)
+  - SDWebImage/Core (3.7.3)
   - SlackTextViewController (1.7.1)
   - SVPullToRefresh (0.4.1)
   - SVWebViewController (HEAD based on 1.0)
@@ -63,10 +67,10 @@ DEPENDENCIES:
   - DZNEmptyDataSet
   - FDStackView (= 1.0-alpha)
   - FXForms
-  - IDMPhotoBrowser
   - JZNavigationExtension
   - KVOController
   - MJExtension
+  - MWPhotoBrowser
   - NYSegmentedControl
   - pop
   - PopMenu
@@ -84,13 +88,15 @@ SPEC CHECKSUMS:
   DZNEmptyDataSet: 0ec00bfc230d7450997b60c127afdd0b9f24f3b6
   FDStackView: 6abd2cdb128430264d5c6e87277629abad222f20
   FXForms: 22d5ceafd8ca44d2f2be4827afcf00aaf80184a5
-  IDMPhotoBrowser: 1155caa03f8705b7943c074c26b55aadd43d71da
   JZNavigationExtension: d9ecf3ddc2b63dffac2db6a8a6eb13b1a42dd89a
   KVOController: 9fd8f0343670994e4b6f9f0b31f5a45663f3e1cf
+  MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
   MJExtension: b8c1321a77d91bcc007b94d38cbf5383c95ea30e
+  MWPhotoBrowser: ba0d0c09ffda3a7ea10093518738c502c1c7141c
   NYSegmentedControl: 55b4f9eb652767cae9799623ec3e49e50029ef47
   pop: bb773ae2c791ca2629de13b347e7a8b450fa6a57
   PopMenu: 26b97baeaf250070f4f61b93727ca86d127d7bc5
+  SDWebImage: 1d2b1a1efda1ade1b00b6f8498865f8ddedc8a84
   SlackTextViewController: 139ffc5b09276ff5ac1609ac78eafab702fc974e
   SVPullToRefresh: ba2e718695a43253d8bea6852d2960097dc15d8c
   SVWebViewController: c36dda7326e81fcae0abf5d02bf7bbf7e41be901

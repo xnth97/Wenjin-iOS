@@ -14,7 +14,6 @@
 #import "wjAPIs.h"
 #import "wjAppearanceManager.h"
 #import "FBKVOController.h"
-#import "IDMPhotoBrowser.h"
 #import <SafariServices/SafariServices.h>
 
 @implementation QuestionHeaderView {

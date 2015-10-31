@@ -21,6 +21,7 @@
     [[UIToolbar appearance] setTintColor:[self mainTintColor]];
     [[UIButton appearance] setTintColor:[self mainTintColor]];
     [[UISegmentedControl appearance] setTintColor:[self mainTintColor]];
+    [[UISwitch appearance] setOnTintColor:[self mainTintColor]];
 }
 
 + (UIColor *)mainTintColor {

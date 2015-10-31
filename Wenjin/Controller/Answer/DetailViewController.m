@@ -26,11 +26,11 @@
 #import "PopMenu.h"
 #import "QuestionViewController.h"
 #import "WebViewJavascriptBridge.h"
-#import "IDMPhotoBrowser.h"
+#import "MWPhotoBrowser.h"
 #import <SafariServices/SafariServices.h>
 #import "WebModalViewController.h"
 
-@interface DetailViewController () <IDMPhotoBrowserDelegate>
+@interface DetailViewController () <MWPhotoBrowserDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *userAvatarView;
 @property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
@@ -65,6 +65,8 @@
     NSString *signature;
     NSString *avatarFile;
     NSInteger timeStamp;
+    
+    NSMutableArray *photos;
 }
 
 @synthesize answerId;
@@ -108,6 +110,7 @@
     userSigLabel.text = @"";
     notVotedColor = [UIColor lightGrayColor];
     votedColor = [wjAppearanceManager mainTintColor];
+    photos = [[NSMutableArray alloc] init];
     
     agreeImageView.image = [agreeImageView.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     [agreeImageView setTintColor:notVotedColor];
@@ -432,11 +435,42 @@
 }
 
 - (void)presentHDImageWithURL:(NSString *)url {
-    IDMPhotoBrowser *browser = [[IDMPhotoBrowser alloc] initWithPhotoURLs:@[[NSURL URLWithString:url]]];
-    browser.displayArrowButton = NO;
-    browser.displayCounterLabel = NO;
-    browser.delegate = self;
-    [self presentViewController:browser animated:YES completion:nil];
+//    IDMPhotoBrowser *browser = [[IDMPhotoBrowser alloc] initWithPhotoURLs:@[[NSURL URLWithString:url]]];
+//    browser.displayArrowButton = NO;
+//    browser.displayCounterLabel = NO;
+//    browser.delegate = self;
+//    [self presentViewController:browser animated:YES completion:nil];
+    [photos removeAllObjects];
+    [photos addObject:[MWPhoto photoWithURL:[NSURL URLWithString:url]]];
+    // Create browser (must be done each time photo browser is
+    // displayed. Photo browser objects cannot be re-used)
+    MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
+    
+    // Set options
+    browser.displayActionButton = YES; // Show action button to allow sharing, copying, etc (defaults to YES)
+    browser.displayNavArrows = NO; // Whether to display left and right nav arrows on toolbar (defaults to NO)
+    browser.displaySelectionButtons = NO; // Whether selection buttons are shown on each image (defaults to NO)
+    browser.zoomPhotosToFill = YES; // Images that almost fill the screen will be initially zoomed to fill (defaults to YES)
+    browser.alwaysShowControls = NO; // Allows to control whether the bars and controls are always visible or whether they fade away to show the photo full (defaults to NO)
+    browser.enableGrid = YES; // Whether to allow the viewing of all the photo thumbnails on a grid (defaults to YES)
+    browser.startOnGrid = NO; // Whether to start on the grid of thumbnails instead of the first photo (defaults to NO)
+    browser.autoPlayOnAppear = NO; // Auto-play first video
+    
+    [self.navigationController pushViewController:browser animated:YES];
+}
+
+#pragma mark - MWPhotoBrowserDelegate
+
+- (NSUInteger)numberOfPhotosInPhotoBrowser:(MWPhotoBrowser *)photoBrowser {
+    return 1;
+}
+
+- (id<MWPhoto>)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index {
+    if (index < photos.count) {
+        return photos[index];
+    } else {
+        return nil;
+    }
 }
 
 #pragma mark - UIWebViewDelegate
