@@ -26,7 +26,7 @@
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     NSDictionary *parameters = @{@"platform": @"ios"};
-    [manager GET:[wjAPIs notificationNumber] parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+    [manager GET:[wjAPIs notificationNumber] parameters:parameters progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         NSDictionary *dicData = (NSDictionary *)responseObject;
         if ([dicData[@"errno"] isEqual:@1]) {
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -52,11 +52,11 @@
                                  @"platform": @"ios"};
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
-    [manager GET:[wjAPIs notificationList] parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+    [manager GET:[wjAPIs notificationList] parameters:parameters progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         
         NSDictionary *responseDic = (NSDictionary *)responseObject;
         if ([responseDic[@"errno"] isEqual:@1]) {
-            NSArray *rows = [NotificationCell objectArrayWithKeyValuesArray:(responseDic[@"rsm"])[@"rows"]];
+            NSArray *rows = [NotificationCell mj_objectArrayWithKeyValuesArray:(responseDic[@"rsm"])[@"rows"]];
             dispatch_async(dispatch_get_main_queue(), ^{
                 success(rows);
             });
@@ -79,13 +79,13 @@
                                  @"platform": @"ios"};
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
-    [manager GET:[wjAPIs readNotification] parameters:parameters success:nil failure:nil];
+    [manager GET:[wjAPIs readNotification] parameters:parameters progress:nil success:nil failure:nil];
 }
 
 + (void)readAllNotificationsWithCompletionBlock:(void (^)())block {
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
-    [manager GET:[wjAPIs readNotification] parameters:@{@"platform": @"ios"} success:^(NSURLSessionDataTask *task, id responseObject) {
+    [manager GET:[wjAPIs readNotification] parameters:@{@"platform": @"ios"} progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         block();
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         
@@ -93,7 +93,7 @@
 }
 
 + (void)handleNotification:(NSDictionary *)dic {
-    Notification *notification = [Notification objectWithKeyValues:dic];
+    Notification *notification = [Notification mj_objectWithKeyValues:dic];
     
     UIViewController *appRootVC = [UIApplication sharedApplication].keyWindow.rootViewController;
     UIViewController *topVC = appRootVC;

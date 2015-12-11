@@ -11,8 +11,8 @@
 
 @implementation SearchCell
 
-+ (NSString *)replacedKeyFromPropertyName121:(NSString *)propertyName {
-    return [propertyName underlineFromCamel];
++ (NSString *)mj_replacedKeyFromPropertyName121:(NSString *)propertyName {
+    return [propertyName mj_underlineFromCamel];
 }
 
 @end

@@ -18,12 +18,12 @@
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     NSDictionary *parameters = @{@"id": answerId,
                                  @"platform": @"ios"};
-    [manager GET:[wjAPIs viewAnswer] parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+    [manager GET:[wjAPIs viewAnswer] parameters:parameters progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         
         NSDictionary *ansData = (NSDictionary *)responseObject;
         if ([ansData[@"errno"] isEqual:@1]) {
             dispatch_async(dispatch_get_main_queue(), ^{
-                AnswerInfo *answerData = [AnswerInfo objectWithKeyValues:ansData[@"rsm"]];
+                AnswerInfo *answerData = [AnswerInfo mj_objectWithKeyValues:ansData[@"rsm"]];
                 success(answerData);
             });
         } else {
@@ -44,14 +44,14 @@
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     NSDictionary *parameters = @{@"id": answerId,
                                  @"platform": @"ios"};
-    [manager GET:[wjAPIs answerComment] parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+    [manager GET:[wjAPIs answerComment] parameters:parameters progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         
         NSDictionary *commentData = (NSDictionary *)responseObject;
         if ([commentData[@"errno"] isEqual:@1]) {
             id dataObj = commentData[@"rsm"];
             if ([dataObj isKindOfClass:[NSArray class]]) {
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    success([CommentInfo objectArrayWithKeyValuesArray:commentData[@"rsm"]]);
+                    success([CommentInfo mj_objectArrayWithKeyValuesArray:commentData[@"rsm"]]);
                 });
             } else {
                 dispatch_async(dispatch_get_main_queue(), ^{
@@ -76,12 +76,12 @@
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     NSDictionary *parameters = @{@"id": aid,
                                  @"platform": @"ios"};
-    [manager GET:[wjAPIs articleDetail] parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+    [manager GET:[wjAPIs articleDetail] parameters:parameters progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         
         NSDictionary *artData = (NSDictionary *)responseObject;
         if ([artData[@"errno"] isEqual:@1]) {
             dispatch_async(dispatch_get_main_queue(), ^{
-                ArticleInfo *articleData = [ArticleInfo objectWithKeyValues:(artData[@"rsm"])[@"article_info"]];
+                ArticleInfo *articleData = [ArticleInfo mj_objectWithKeyValues:(artData[@"rsm"])[@"article_info"]];
                 success(articleData);
             });
         } else {
@@ -103,14 +103,14 @@
     NSDictionary *parameters = @{@"id": aid,
                                  @"page": @(page),
                                  @"platform": @"ios"};
-    [manager GET:[wjAPIs articleComment] parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+    [manager GET:[wjAPIs articleComment] parameters:parameters progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         
         NSDictionary *commentData = (NSDictionary *)responseObject;
         if ([commentData[@"errno"] isEqual:@1]) {
             id dataObj = (commentData[@"rsm"])[@"rows"];
             if ([dataObj isKindOfClass:[NSArray class]]) {
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    success([CommentInfo objectArrayWithKeyValuesArray: dataObj]);
+                    success([CommentInfo mj_objectArrayWithKeyValuesArray: dataObj]);
                 });
             } else {
                 dispatch_async(dispatch_get_main_queue(), ^{

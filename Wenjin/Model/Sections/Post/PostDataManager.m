@@ -10,14 +10,13 @@
 #import "AFNetworking.h"
 #import "wjAPIs.h"
 #import "data.h"
-#import "NSTimer+Blocks.h"
 
 @implementation PostDataManager
 
 + (void)postQuestionWithParameters:(NSDictionary *)parameters success:(void (^)(NSString *))success failure:(void (^)(NSString *))failure {
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
-    [manager POST:[NSString stringWithFormat:@"%@?platform=ios", [wjAPIs postQuestion]] parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+    [manager POST:[NSString stringWithFormat:@"%@?platform=ios", [wjAPIs postQuestion]] parameters:parameters progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         
         NSDictionary *pqDic = (NSDictionary *)responseObject;
         if ([pqDic[@"errno"] isEqual: @1]) {
@@ -40,7 +39,7 @@
 + (void)postAnswerWithParameters:(NSDictionary *)parameters success:(void (^)(NSString *))success failure:(void (^)(NSString *))failure {
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
-    [manager POST:[NSString stringWithFormat:@"%@?platform=ios", [wjAPIs postAnswer]] parameters:parameters success:^(NSURLSessionDataTask *task, id responseObj) {
+    [manager POST:[NSString stringWithFormat:@"%@?platform=ios", [wjAPIs postAnswer]] parameters:parameters progress:nil success:^(NSURLSessionDataTask *task, id responseObj) {
         
         NSDictionary *pqDic = (NSDictionary *)responseObj;
         if ([pqDic[@"errno"] isEqual: @1]) {
@@ -65,7 +64,7 @@
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     NSString *getURLString = [NSString stringWithFormat:@"%@?answer_id=%@&platform=ios", [wjAPIs postAnswerComment], answerId];
     NSDictionary *parameters = @{@"message": message};
-    [manager POST:getURLString parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+    [manager POST:getURLString parameters:parameters progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         NSDictionary *dicData = (NSDictionary *)responseObject;
         if ([dicData[@"errno"] isEqual:@1]) {
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -150,7 +149,7 @@
     NSString *urlString = [NSString stringWithFormat:@"%@&id=%@&attach_access_key=%@&platform=ios", [wjAPIs uploadAttach], type, [data shareInstance].attachAccessKey];
     [manager POST:urlString parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         [formData appendPartWithFileData:file name:@"qqfile" fileName:@"img.jpg" mimeType:@"image/jpg"];
-    } success:^(NSURLSessionDataTask *task, id responseObject) {
+    } progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         NSDictionary *dicData = (NSDictionary *)responseObject;
         if ([dicData[@"errno"] isEqual:@1]) {
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -176,7 +175,7 @@
                                  @"source": [data osVersion]};
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
-    [manager POST:[NSString stringWithFormat:@"%@?platform=ios", [wjAPIs feedback]] parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+    [manager POST:[NSString stringWithFormat:@"%@?platform=ios", [wjAPIs feedback]] parameters:parameters progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         NSDictionary *dicData = (NSDictionary *)responseObject;
         if ([dicData[@"errno"] isEqual:@1]) {
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -199,7 +198,7 @@
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     NSDictionary *parameters = @{@"article_id": articleId,
                                  @"message": message};
-    [manager POST:[NSString stringWithFormat:@"%@?platform=ios", [wjAPIs postArticleComment]] parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+    [manager POST:[NSString stringWithFormat:@"%@?platform=ios", [wjAPIs postArticleComment]] parameters:parameters progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         NSDictionary *dicData = (NSDictionary *)responseObject;
         if ([dicData[@"errno"] isEqual:@1]) {
             dispatch_async(dispatch_get_main_queue(), ^{

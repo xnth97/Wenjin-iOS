@@ -14,7 +14,7 @@
 #import "SearchCell.h"
 #import "UserListTableViewCell.h"
 #import "SearchQuestionTableViewCell.h"
-#import "NSTimer+Blocks.h"
+#import "BlocksKit.h"
 #import "QuestionViewController.h"
 #import "UserViewController.h"
 #import "TopicViewController.h"
@@ -153,13 +153,13 @@
 }
 
 - (void)keyboardWillHide:(NSNotification *)notification {
-    [NSTimer scheduledTimerWithTimeInterval:0.3 block:^{
+    [NSTimer bk_scheduledTimerWithTimeInterval:0.3 block:^(NSTimer *timer) {
         bottomConstraint.constant = 0;
     } repeats:NO];
 }
 
 - (void)keyboardWillShow:(NSNotification *)notification {
-    [NSTimer scheduledTimerWithTimeInterval:0.3 block:^{
+    [NSTimer bk_scheduledTimerWithTimeInterval:0.3 block:^(NSTimer *timer) {
         CGFloat keyboardHeight = [[[notification userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size.height;
         bottomConstraint.constant = keyboardHeight;
     } repeats:NO];

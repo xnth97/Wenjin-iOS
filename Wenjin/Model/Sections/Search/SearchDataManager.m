@@ -22,10 +22,10 @@
                                  @"limit": @10,
                                  @"page": @(page),
                                  @"platform": @"ios"};
-    [manager GET:[wjAPIs search] parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+    [manager GET:[wjAPIs search] parameters:parameters progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         NSDictionary *dicData = (NSDictionary *)responseObject;
         if ([dicData[@"errno"] isEqual:@1]) {
-            NSArray *rowsData = [SearchCell objectArrayWithKeyValuesArray:(dicData[@"rsm"])[@"info"]];
+            NSArray *rowsData = [SearchCell mj_objectArrayWithKeyValuesArray:(dicData[@"rsm"])[@"info"]];
             dispatch_async(dispatch_get_main_queue(), ^{
                 success(rowsData);
             });

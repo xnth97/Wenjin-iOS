@@ -11,7 +11,7 @@
 
 @implementation ArticleInfo
 
-+ (NSDictionary *)replacedKeyFromPropertyName {
++ (NSDictionary *)mj_replacedKeyFromPropertyName {
     return @{@"aid": @"id",
              @"title": @"title",
              @"message": @"message",

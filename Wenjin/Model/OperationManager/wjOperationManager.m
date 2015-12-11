@@ -18,7 +18,7 @@
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     NSDictionary *parameters = @{@"question_id": questionId,
                                  @"platform": @"ios"};
-    [manager GET:[wjAPIs followQuestion] parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+    [manager GET:[wjAPIs followQuestion] parameters:parameters progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         
         NSDictionary *respObj = (NSDictionary *)responseObject;
         if ([respObj[@"errno"] isEqual: @1]) {
@@ -40,7 +40,7 @@
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     NSDictionary *parameters = @{@"uid": uid,
                                  @"platform": @"ios"};
-    [manager GET:[wjAPIs followUser] parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+    [manager GET:[wjAPIs followUser] parameters:parameters progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         
         NSDictionary *respObj = (NSDictionary *)responseObject;
         if ([respObj[@"errno"] isEqual: @1]) {
@@ -63,7 +63,7 @@
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     NSDictionary *parameters = @{@"answer_id": answerId,
                                  @"value": [NSNumber numberWithInteger:operation]};
-    [manager POST:[NSString stringWithFormat:@"%@?platform=ios", [wjAPIs voteAnswer]] parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+    [manager POST:[NSString stringWithFormat:@"%@?platform=ios", [wjAPIs voteAnswer]] parameters:parameters progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         NSDictionary *respObj = (NSDictionary *)responseObject;
         if ([respObj[@"errno"] isEqual: @1]) {
             success();
@@ -84,7 +84,7 @@
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     NSDictionary *parameters = @{@"topic_id": topicId,
                                  @"platform": @"ios"};
-    [manager GET:[wjAPIs followTopic] parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+    [manager GET:[wjAPIs followTopic] parameters:parameters progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         
         NSDictionary *respObj = (NSDictionary *)responseObject;
         if ([respObj[@"errno"] isEqual: @1]) {
@@ -107,7 +107,7 @@
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     NSDictionary *parameters = @{@"answer_id": answerId,
                                  @"type": thankOrUninterested};
-    [manager POST:[NSString stringWithFormat:@"%@?platform=ios", [wjAPIs thankAnswerAndUninterested]] parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+    [manager POST:[NSString stringWithFormat:@"%@?platform=ios", [wjAPIs thankAnswerAndUninterested]] parameters:parameters progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         NSDictionary *respObj = (NSDictionary *)responseObject;
         if ([respObj[@"errno"] isEqual: @1]) {
             success();
@@ -130,7 +130,7 @@
     NSDictionary *parameters = @{@"type": @"article",
                                  @"item_id": articleId,
                                  @"rating": [NSString stringWithFormat:@"%ld", (long)rating]};
-    [manager POST:[NSString stringWithFormat:@"%@?platform=ios", [wjAPIs voteArticle]] parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+    [manager POST:[NSString stringWithFormat:@"%@?platform=ios", [wjAPIs voteArticle]] parameters:parameters progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         NSDictionary *respObj = (NSDictionary *)responseObject;
         if ([respObj[@"errno"] isEqual: @1]) {
             success();

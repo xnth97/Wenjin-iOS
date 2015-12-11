@@ -19,7 +19,7 @@
 + (void)loginWithParameters:(NSDictionary *)parameters success:(void (^)(NSString *, NSString *, NSString *))success failure:(void (^)(NSString *))failure {
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
-    [manager POST:[NSString stringWithFormat:@"%@?platform=ios", [wjAPIs login]] parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+    [manager POST:[NSString stringWithFormat:@"%@?platform=ios", [wjAPIs login]] parameters:parameters progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         
         NSDictionary *loginData = (NSDictionary *)responseObject;
         if ([loginData[@"errno"] isEqual: @1]) {
@@ -69,7 +69,7 @@
                                  @"birthday": [NSString stringWithFormat:@"%f", [birthday timeIntervalSince1970]]};
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
-    [manager POST:[wjAPIs profileSetting] parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+    [manager POST:[wjAPIs profileSetting] parameters:parameters progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         NSDictionary *dic = (NSDictionary *)responseObject;
         if ([dic[@"errno"] isEqual:@1]) {
             success();
@@ -86,7 +86,7 @@
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     [manager POST:[wjAPIs avatarUpload] parameters:@{@"platform": @"ios"} constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         [formData appendPartWithFileData:avatarFile name:@"user_avatar" fileName:@"img.jpg" mimeType:@"image/jpg"];
-    } success:^(NSURLSessionDataTask *task, id responseObject) {
+    } progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         NSDictionary *dicData = (NSDictionary *)responseObject;
         if ([dicData[@"errno"] isEqual:@"1"]) {
             dispatch_async(dispatch_get_main_queue(), ^{

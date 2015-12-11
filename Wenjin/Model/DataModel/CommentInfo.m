@@ -11,7 +11,7 @@
 
 @implementation CommentInfo
 
-+ (NSDictionary *)replacedKeyFromPropertyName {
++ (NSDictionary *)mj_replacedKeyFromPropertyName {
     return @{@"commentId": @"id",
              @"uid": @"uid",
              @"userName": @"user_name",

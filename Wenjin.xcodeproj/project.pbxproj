@@ -55,7 +55,6 @@
 		E952E16A1AE522D500F8B7BF /* FeedbackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E952E1691AE522D500F8B7BF /* FeedbackViewController.m */; };
 		E95537011BA7290F00CAD705 /* jquery.min.js in Resources */ = {isa = PBXBuildFile; fileRef = E95537001BA7290F00CAD705 /* jquery.min.js */; };
 		E958F68F1BD5ED6500F9EA15 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E958F68E1BD5ED6500F9EA15 /* Realm.framework */; };
-		E958F6941BD5F26300F9EA15 /* HotfixKit.m in Sources */ = {isa = PBXBuildFile; fileRef = E958F6931BD5F26300F9EA15 /* HotfixKit.m */; };
 		E9642E911AC5714800FF7875 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E9642E901AC5714800FF7875 /* main.m */; };
 		E9642E941AC5714800FF7875 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E9642E931AC5714800FF7875 /* AppDelegate.m */; };
 		E9642E9A1AC5714800FF7875 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9642E981AC5714800FF7875 /* Main.storyboard */; };
@@ -76,7 +75,6 @@
 		E990790B1ACEE1C7008DCA22 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E990790A1ACEE1C7008DCA22 /* LoginViewController.xib */; };
 		E990790F1ACEE371008DCA22 /* NotLoggedInView.m in Sources */ = {isa = PBXBuildFile; fileRef = E990790E1ACEE371008DCA22 /* NotLoggedInView.m */; };
 		E992CA141AE10F75003A9123 /* wjAppearanceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E992CA131AE10F75003A9123 /* wjAppearanceManager.m */; };
-		E99577691AE76282002E5107 /* NSTimer+Blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = E99577651AE76282002E5107 /* NSTimer+Blocks.m */; };
 		E995776A1AE76282002E5107 /* OpenInSafariActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = E99577681AE76282002E5107 /* OpenInSafariActivity.m */; };
 		E995776D1AE76F57002E5107 /* ShowNotLoggedInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E995776C1AE76F57002E5107 /* ShowNotLoggedInViewController.m */; };
 		E995BBD01B7C6F4000146157 /* WebModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E995BBCF1B7C6F4000146157 /* WebModalViewController.m */; };
@@ -226,8 +224,6 @@
 		E952E1691AE522D500F8B7BF /* FeedbackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FeedbackViewController.m; path = Controller/Settings/FeedbackViewController.m; sourceTree = "<group>"; };
 		E95537001BA7290F00CAD705 /* jquery.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = jquery.min.js; sourceTree = "<group>"; };
 		E958F68E1BD5ED6500F9EA15 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Realm.framework; sourceTree = "<group>"; };
-		E958F6921BD5F26300F9EA15 /* HotfixKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HotfixKit.h; sourceTree = "<group>"; };
-		E958F6931BD5F26300F9EA15 /* HotfixKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HotfixKit.m; sourceTree = "<group>"; };
 		E9642E8B1AC5714800FF7875 /* Wenjin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wenjin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9642E8F1AC5714800FF7875 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E9642E901AC5714800FF7875 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -266,8 +262,6 @@
 		E990790E1ACEE371008DCA22 /* NotLoggedInView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NotLoggedInView.m; path = View/NotLoggedInView/NotLoggedInView.m; sourceTree = "<group>"; };
 		E992CA121AE10F75003A9123 /* wjAppearanceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = wjAppearanceManager.h; path = Model/Appearance/wjAppearanceManager.h; sourceTree = "<group>"; };
 		E992CA131AE10F75003A9123 /* wjAppearanceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = wjAppearanceManager.m; path = Model/Appearance/wjAppearanceManager.m; sourceTree = "<group>"; };
-		E99577641AE76282002E5107 /* NSTimer+Blocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTimer+Blocks.h"; sourceTree = "<group>"; };
-		E99577651AE76282002E5107 /* NSTimer+Blocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTimer+Blocks.m"; sourceTree = "<group>"; };
 		E99577671AE76282002E5107 /* OpenInSafariActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenInSafariActivity.h; sourceTree = "<group>"; };
 		E99577681AE76282002E5107 /* OpenInSafariActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenInSafariActivity.m; sourceTree = "<group>"; };
 		E995776B1AE76F57002E5107 /* ShowNotLoggedInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShowNotLoggedInViewController.h; path = Controller/Settings/ShowNotLoggedInViewController.h; sourceTree = "<group>"; };
@@ -333,6 +327,7 @@
 		E9E286C71AC805F2005B6ED7 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		E9E38F341ADA288400136161 /* ExploreTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ExploreTableViewController.h; path = Controller/Explore/ExploreTableViewController.h; sourceTree = "<group>"; };
 		E9E38F351ADA288400136161 /* ExploreTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ExploreTableViewController.m; path = Controller/Explore/ExploreTableViewController.m; sourceTree = "<group>"; };
+		E9E634451C1A6F2A00BB92ED /* WechatAuthSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WechatAuthSDK.h; sourceTree = "<group>"; };
 		E9EB5C4B1B664FA00011559F /* CommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentViewController.h; sourceTree = "<group>"; };
 		E9EB5C4C1B664FA00011559F /* CommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentViewController.m; sourceTree = "<group>"; };
 		E9EB5C541B6660DA0011559F /* APService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APService.h; sourceTree = "<group>"; };
@@ -417,6 +412,7 @@
 		E9025AE11BBEBD2200AEF430 /* WXSDK */ = {
 			isa = PBXGroup;
 			children = (
+				E9E634451C1A6F2A00BB92ED /* WechatAuthSDK.h */,
 				E9025AE21BBEBD2200AEF430 /* libWeChatSDK.a */,
 				E9025AE41BBEBD2200AEF430 /* WXApi.h */,
 				E9025AE51BBEBD2200AEF430 /* WXApiObject.h */,
@@ -602,15 +598,6 @@
 			name = SearchQuestionCell;
 			sourceTree = "<group>";
 		};
-		E958F6911BD5F26300F9EA15 /* HotfixKit */ = {
-			isa = PBXGroup;
-			children = (
-				E958F6921BD5F26300F9EA15 /* HotfixKit.h */,
-				E958F6931BD5F26300F9EA15 /* HotfixKit.m */,
-			);
-			path = HotfixKit;
-			sourceTree = "<group>";
-		};
 		E958F6951BD60BE900F9EA15 /* Search */ = {
 			isa = PBXGroup;
 			children = (
@@ -772,21 +759,10 @@
 		E99577621AE76282002E5107 /* FoundationKits */ = {
 			isa = PBXGroup;
 			children = (
-				E958F6911BD5F26300F9EA15 /* HotfixKit */,
-				E99577631AE76282002E5107 /* NSTimer-Blocks */,
 				E99577661AE76282002E5107 /* UIActivity */,
 			);
 			name = FoundationKits;
 			path = Model/FoundationKits;
-			sourceTree = "<group>";
-		};
-		E99577631AE76282002E5107 /* NSTimer-Blocks */ = {
-			isa = PBXGroup;
-			children = (
-				E99577641AE76282002E5107 /* NSTimer+Blocks.h */,
-				E99577651AE76282002E5107 /* NSTimer+Blocks.m */,
-			);
-			path = "NSTimer-Blocks";
 			sourceTree = "<group>";
 		};
 		E99577661AE76282002E5107 /* UIActivity */ = {
@@ -1346,7 +1322,6 @@
 				E9EB618F1ACC2B2D001F5DA3 /* DetailDataManager.m in Sources */,
 				E952E1671AE520DE00F8B7BF /* FeedbackForm.m in Sources */,
 				E93063B51ACA3982000140C1 /* HomeTableViewCell.m in Sources */,
-				E99577691AE76282002E5107 /* NSTimer+Blocks.m in Sources */,
 				E9EB618A1ACC187A001F5DA3 /* QuestionAnswerTableViewCell.m in Sources */,
 				E990790F1ACEE371008DCA22 /* NotLoggedInView.m in Sources */,
 				E98EBE791B51565000710B38 /* UserInfo.m in Sources */,
@@ -1402,7 +1377,6 @@
 				E92388F01B4695A000C3EE3A /* ProfileEditForm.m in Sources */,
 				E9479EE31AE2AB42003BCE97 /* AboutViewController.m in Sources */,
 				E98EBE7F1B51579B00710B38 /* AnswerInfo.m in Sources */,
-				E958F6941BD5F26300F9EA15 /* HotfixKit.m in Sources */,
 				E9AC9E561AD3A4840016CA23 /* wjOperationManager.m in Sources */,
 				E9642E911AC5714800FF7875 /* main.m in Sources */,
 				E96F09361AD8FF7700847E5E /* ExploreDataManager.m in Sources */,
@@ -1477,7 +1451,7 @@
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				ENABLE_BITCODE = NO;
+				ENABLE_BITCODE = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -1522,7 +1496,7 @@
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = NO;
-				ENABLE_BITCODE = NO;
+				ENABLE_BITCODE = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -1549,7 +1523,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				ENABLE_BITCODE = NO;
+				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Wenjin/Resource",
@@ -1584,7 +1558,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				ENABLE_BITCODE = NO;
+				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Wenjin/Resource",

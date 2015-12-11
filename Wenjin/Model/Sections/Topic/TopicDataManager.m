@@ -20,12 +20,12 @@
     NSDictionary *parameters = @{@"id": topicType,
                                  @"page": [NSNumber numberWithInteger:page],
                                  @"platform": @"ios"};
-    [manager GET:[wjAPIs topicList] parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+    [manager GET:[wjAPIs topicList] parameters:parameters progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         NSDictionary *dicData = (NSDictionary *)responseObject;
         if ([dicData[@"errno"] isEqual:@1]) {
             NSInteger totalRows = [(dicData[@"rsm"])[@"total_rows"] integerValue];
             if (totalRows != 0) {
-                NSArray *rowsData = [TopicInfo objectArrayWithKeyValuesArray:(dicData[@"rsm"])[@"rows"]];
+                NSArray *rowsData = [TopicInfo mj_objectArrayWithKeyValuesArray:(dicData[@"rsm"])[@"rows"]];
                 dispatch_async(dispatch_get_main_queue(), ^{
                     success(totalRows, rowsData);
                 });
@@ -53,11 +53,11 @@
     NSDictionary *parameters = @{@"uid": uid,
                                  @"topic_id": topicID,
                                  @"platform": @"ios"};
-    [manager GET:[wjAPIs topicInfo] parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+    [manager GET:[wjAPIs topicInfo] parameters:parameters progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         NSDictionary *dicData = (NSDictionary *)responseObject;
         if ([dicData[@"errno"] isEqual:@1]) {
             dispatch_async(dispatch_get_main_queue(), ^{
-                success([TopicInfo objectWithKeyValues:dicData[@"rsm"]]);
+                success([TopicInfo mj_objectWithKeyValues:dicData[@"rsm"]]);
             });
         } else {
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -77,13 +77,13 @@
     NSDictionary *parameters = @{@"id": topicId,
                                  @"page": @(page),
                                  @"platform": @"ios"};
-    [manager GET:[wjAPIs topicBestAnswer] parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+    [manager GET:[wjAPIs topicBestAnswer] parameters:parameters progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         NSDictionary *dicData = (NSDictionary *)responseObject;
         if ([dicData[@"errno"] isEqual:@1]) {
             NSDictionary *dic = dicData[@"rsm"];
             if ([dic count] != 0) {
                 NSInteger totalRows = [(dicData[@"rsm"])[@"total_rows"] integerValue];
-                NSArray *rowsData = [TopicBestAnswerCell objectArrayWithKeyValuesArray:(dicData[@"rsm"])[@"rows"]];
+                NSArray *rowsData = [TopicBestAnswerCell mj_objectArrayWithKeyValuesArray:(dicData[@"rsm"])[@"rows"]];
                 dispatch_async(dispatch_get_main_queue(), ^{
                     success(totalRows, rowsData);
                 });

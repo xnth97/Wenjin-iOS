@@ -8,8 +8,6 @@
 
 #import "AppDelegate.h"
 #import "wjAPIs.h"
-#import "HotfixKit.h"
-//#import "JPEngine.h"
 #import "NotificationManager.h"
 #import "data.h"
 
@@ -32,18 +30,6 @@
                                                        UIUserNotificationTypeAlert)
                                            categories:nil];
     [APService setupWithOption:launchOptions];
-    
-    // HotFix - Experimental
-//    [HotfixKit hotfixWithRootURL:@"http://wj.oursays.com/?/api/update/hotfix/" newCacheCompletionBlock:^{
-//        
-//    }];
-//    NSString *docPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-//    NSString *jsPath = [docPath stringByAppendingPathComponent:@"patch.js"];
-//    if ([[NSFileManager defaultManager] fileExistsAtPath:jsPath]) {
-//        [JPEngine startEngine];
-//        NSString *js = [NSString stringWithContentsOfFile:jsPath encoding:NSUTF8StringEncoding error:nil];
-//        [JPEngine evaluateScript:js];
-//    }
     
     [application setStatusBarStyle:UIStatusBarStyleLightContent];
     return YES;

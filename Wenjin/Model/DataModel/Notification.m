@@ -11,7 +11,7 @@
 
 @implementation Notification
 
-+ (NSDictionary *)replacedKeyFromPropertyName {
++ (NSDictionary *)mj_replacedKeyFromPropertyName {
     return @{@"relatedId": @"id",
              @"nid": @"nid",
              @"type": @"type",

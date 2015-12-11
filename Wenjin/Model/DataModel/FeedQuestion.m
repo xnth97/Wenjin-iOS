@@ -11,7 +11,7 @@
 
 @implementation FeedQuestion
 
-+ (NSDictionary *)replacedKeyFromPropertyName {
++ (NSDictionary *)mj_replacedKeyFromPropertyName {
     return @{@"feedId": @"id",
              @"title": @"title",
              @"detail": @"detail",

@@ -22,12 +22,12 @@
                                  @"is_recommend": [NSNumber numberWithInteger:recommended],
                                  @"sort_type": type,
                                  @"platform": @"ios"};
-    [manager GET:[wjAPIs explore] parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+    [manager GET:[wjAPIs explore] parameters:parameters progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         NSDictionary *dicData = (NSDictionary *)responseObject;
         if ([dicData[@"errno"] isEqual:@1]) {
             NSInteger totalRows = [(dicData[@"rsm"])[@"total_rows"] integerValue];
             if (totalRows != 0) {
-                NSArray *rowsData = [ExploreCell objectArrayWithKeyValuesArray:(dicData[@"rsm"])[@"rows"]];
+                NSArray *rowsData = [ExploreCell mj_objectArrayWithKeyValuesArray:(dicData[@"rsm"])[@"rows"]];
                 dispatch_async(dispatch_get_main_queue(), ^{
                     success(NO, rowsData);
                 });

@@ -11,11 +11,11 @@
 
 @implementation ExploreCell
 
-+ (NSString *)replacedKeyFromPropertyName121:(NSString *)propertyName {
-    return [propertyName underlineFromCamel];
++ (NSString *)mj_replacedKeyFromPropertyName121:(NSString *)propertyName {
+    return [propertyName mj_underlineFromCamel];
 }
 
-+ (NSDictionary *)objectClassInArray {
++ (NSDictionary *)mj_objectClassInArray {
     return @{@"answerUsers": @"AnswerInfo",
              @"topics": @"TopicInfo"};
 }
