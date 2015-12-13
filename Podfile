@@ -18,6 +18,7 @@ pod 'WebViewJavascriptBridge'
 pod 'MWPhotoBrowser'
 pod 'CRToast'
 pod "FDStackView", "1.0-alpha"
+pod 'FMDB'
 
 target 'Wenjin' do
 

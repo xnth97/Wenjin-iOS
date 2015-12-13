@@ -59,7 +59,6 @@
 		E952E1671AE520DE00F8B7BF /* FeedbackForm.m in Sources */ = {isa = PBXBuildFile; fileRef = E952E1661AE520DE00F8B7BF /* FeedbackForm.m */; };
 		E952E16A1AE522D500F8B7BF /* FeedbackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E952E1691AE522D500F8B7BF /* FeedbackViewController.m */; };
 		E95537011BA7290F00CAD705 /* jquery.min.js in Resources */ = {isa = PBXBuildFile; fileRef = E95537001BA7290F00CAD705 /* jquery.min.js */; };
-		E958F68F1BD5ED6500F9EA15 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E958F68E1BD5ED6500F9EA15 /* Realm.framework */; };
 		E9642E911AC5714800FF7875 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E9642E901AC5714800FF7875 /* main.m */; };
 		E9642E941AC5714800FF7875 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E9642E931AC5714800FF7875 /* AppDelegate.m */; };
 		E9642E9A1AC5714800FF7875 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9642E981AC5714800FF7875 /* Main.storyboard */; };
@@ -83,6 +82,7 @@
 		E995776A1AE76282002E5107 /* OpenInSafariActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = E99577681AE76282002E5107 /* OpenInSafariActivity.m */; };
 		E995776D1AE76F57002E5107 /* ShowNotLoggedInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E995776C1AE76F57002E5107 /* ShowNotLoggedInViewController.m */; };
 		E995BBD01B7C6F4000146157 /* WebModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E995BBCF1B7C6F4000146157 /* WebModalViewController.m */; };
+		E9A720E21C1DC19A007DB9EF /* DraftPageController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9A720E11C1DC19A007DB9EF /* DraftPageController.m */; };
 		E9AC9E561AD3A4840016CA23 /* wjOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E9AC9E551AD3A4840016CA23 /* wjOperationManager.m */; };
 		E9C1A1C01ACAF21F00892B60 /* QuestionDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E9C1A1BF1ACAF21F00892B60 /* QuestionDataManager.m */; };
 		E9C1A1C41ACBCBB000892B60 /* QuestionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = E9C1A1C31ACBCBB000892B60 /* QuestionHeaderView.m */; };
@@ -244,7 +244,6 @@
 		E952E1681AE522D500F8B7BF /* FeedbackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FeedbackViewController.h; path = Controller/Settings/FeedbackViewController.h; sourceTree = "<group>"; };
 		E952E1691AE522D500F8B7BF /* FeedbackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FeedbackViewController.m; path = Controller/Settings/FeedbackViewController.m; sourceTree = "<group>"; };
 		E95537001BA7290F00CAD705 /* jquery.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = jquery.min.js; sourceTree = "<group>"; };
-		E958F68E1BD5ED6500F9EA15 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Realm.framework; sourceTree = "<group>"; };
 		E9642E8B1AC5714800FF7875 /* Wenjin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wenjin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9642E8F1AC5714800FF7875 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E9642E901AC5714800FF7875 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -289,6 +288,8 @@
 		E995776C1AE76F57002E5107 /* ShowNotLoggedInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ShowNotLoggedInViewController.m; path = Controller/Settings/ShowNotLoggedInViewController.m; sourceTree = "<group>"; };
 		E995BBCE1B7C6F4000146157 /* WebModalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WebModalViewController.h; path = Controller/WebController/WebModalViewController.h; sourceTree = "<group>"; };
 		E995BBCF1B7C6F4000146157 /* WebModalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WebModalViewController.m; path = Controller/WebController/WebModalViewController.m; sourceTree = "<group>"; };
+		E9A720E01C1DC19A007DB9EF /* DraftPageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DraftPageController.h; path = Controller/DraftTableController/DraftPageController.h; sourceTree = "<group>"; };
+		E9A720E11C1DC19A007DB9EF /* DraftPageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DraftPageController.m; path = Controller/DraftTableController/DraftPageController.m; sourceTree = "<group>"; };
 		E9AC9E541AD3A4840016CA23 /* wjOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = wjOperationManager.h; path = Model/OperationManager/wjOperationManager.h; sourceTree = "<group>"; };
 		E9AC9E551AD3A4840016CA23 /* wjOperationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = wjOperationManager.m; path = Model/OperationManager/wjOperationManager.m; sourceTree = "<group>"; };
 		E9C1A1BE1ACAF21F00892B60 /* QuestionDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QuestionDataManager.h; path = Model/Sections/Question/QuestionDataManager.h; sourceTree = "<group>"; };
@@ -391,7 +392,6 @@
 				E90968371AF0B79B00E65F7E /* SystemConfiguration.framework in Frameworks */,
 				E9D56EF81ADE2AD500C54466 /* QuartzCore.framework in Frameworks */,
 				E9D56EF61ADE2ACE00C54466 /* CoreGraphics.framework in Frameworks */,
-				E958F68F1BD5ED6500F9EA15 /* Realm.framework in Frameworks */,
 				E9D56EF41ADE2AC800C54466 /* Foundation.framework in Frameworks */,
 				E9D56EF21ADE2AC000C54466 /* UIKit.framework in Frameworks */,
 				CF6A6D91415074A7D8441D4C /* libPods.a in Frameworks */,
@@ -501,6 +501,8 @@
 			children = (
 				E90FBB871B4827D0005DD1B6 /* DraftTableViewController.h */,
 				E90FBB881B4827D0005DD1B6 /* DraftTableViewController.m */,
+				E9A720E01C1DC19A007DB9EF /* DraftPageController.h */,
+				E9A720E11C1DC19A007DB9EF /* DraftPageController.m */,
 			);
 			name = DraftTable;
 			sourceTree = "<group>";
@@ -869,7 +871,6 @@
 		E9C1A1C71ACC080700892B60 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
-				E958F68E1BD5ED6500F9EA15 /* Realm.framework */,
 				E9025AE11BBEBD2200AEF430 /* WXSDK */,
 				E9EB5C531B6660DA0011559F /* JPushSDK */,
 				E9642E9B1AC5714800FF7875 /* Images.xcassets */,
@@ -1424,6 +1425,7 @@
 				E91D17E21B47CE79003A532E /* wjDatabaseManager.m in Sources */,
 				E93C6DA21BD6476900688A7A /* SearchQuestionTableViewCell.m in Sources */,
 				E90FBB8E1B4829F8005DD1B6 /* DraftTableViewCell.m in Sources */,
+				E9A720E21C1DC19A007DB9EF /* DraftPageController.m in Sources */,
 				E93C6D971BD62A8600688A7A /* SearchCell.m in Sources */,
 				E9203E6C1B5EA12D00C17F10 /* ExploreCell.m in Sources */,
 				E92298501AF0E4EF000CC8F7 /* WeChatSessionActivity.m in Sources */,

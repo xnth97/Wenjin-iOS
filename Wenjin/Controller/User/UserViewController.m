@@ -17,9 +17,9 @@
 #import "UserListTableViewController.h"
 #import "UserFeedTableViewController.h"
 #import "TopicListTableViewController.h"
-#import "DraftTableViewController.h"
 #import "UINavigationController+JZExtension.h"
 #import "wjAppearanceManager.h"
+#import "DraftPageController.h"
 #import "Chameleon.h"
 
 #define HEADER_VIEW_HEIGHT 215
@@ -284,7 +284,7 @@
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
     } else if (section == 2) {
         if (row == 0) {
-            DraftTableViewController *draftTableController = [[DraftTableViewController alloc] initWithStyle:UITableViewStylePlain];
+            DraftPageController *draftTableController = [[DraftPageController alloc] init];
             draftTableController.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:draftTableController animated:YES];
             [tableView deselectRowAtIndexPath:indexPath animated:YES];

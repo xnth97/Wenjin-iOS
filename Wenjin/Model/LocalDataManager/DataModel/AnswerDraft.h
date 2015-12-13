@@ -6,18 +6,14 @@
 //  Copyright (c) 2015年 TWT Studio. All rights reserved.
 //
 
-#import <Realm/Realm.h>
+#import <Foundation/Foundation.h>
 
-@interface AnswerDraft : RLMObject
+@interface AnswerDraft : NSObject
 
-@property NSString *questionId;
-@property NSData *answerContent;
-@property NSString *attachAccessKey;
-@property NSInteger anonymous;
-@property NSDate *time;
+@property (strong, nonatomic) NSString *questionId;
+@property (strong, nonatomic) NSData *answerContent;
+@property (strong, nonatomic) NSString *attachAccessKey;
+@property (nonatomic) NSInteger anonymous;
+@property (strong, nonatomic) NSDate *time;
 
 @end
-
-// This protocol enables typed collections. i.e.:
-// RLMArray<AnswerDraft>
-RLM_ARRAY_TYPE(AnswerDraft)

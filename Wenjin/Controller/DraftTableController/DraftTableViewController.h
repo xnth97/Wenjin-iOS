@@ -10,4 +10,6 @@
 
 @interface DraftTableViewController : UITableViewController
 
+@property (nonatomic) NSInteger draftType;
+
 @end

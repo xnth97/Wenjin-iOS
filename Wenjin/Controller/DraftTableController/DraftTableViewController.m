@@ -7,7 +7,6 @@
 //
 
 #import "DraftTableViewController.h"
-#import <Realm/Realm.h>
 #import "DraftTableViewCell.h"
 #import "AnswerDraft.h"
 #import "QuestionDraft.h"
@@ -22,15 +21,16 @@
 
 @interface DraftTableViewController () <DZNEmptyDataSetDelegate, DZNEmptyDataSetSource>
 
-@property (strong) RLMNotificationToken *token;
+//@property (strong) RLMNotificationToken *token;
 
 @end
 
 @implementation DraftTableViewController {
-    RLMResults *dataArr;
+    NSMutableArray *dataArr;
     NSMutableArray *dataInTable;
-    UISegmentedControl *segmentedControl;
 }
+
+@synthesize draftType;
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -46,7 +46,15 @@
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"realmDataHasBeenCleared"];
     
     self.clearsSelectionOnViewWillAppear = YES;
-    self.tableView.tableFooterView = [[UIView alloc]init];
+    self.tableView.tableFooterView = [[UIView alloc] init];
+    
+    self.automaticallyAdjustsScrollViewInsets = NO;
+        
+    UIEdgeInsets insets = self.tableView.contentInset;
+    // Don't know why. Just hack.
+    insets.top = self.navigationController.navigationBar.bounds.size.height + [UIApplication sharedApplication].statusBarFrame.size.height + [wjAppearanceManager pageMenuHeight] + ((draftType == draftTypeQuestion) ? 44 : 0);
+    self.tableView.contentInset = insets;
+    self.tableView.scrollIndicatorInsets = insets;
     
     self.tableView.estimatedRowHeight = 66;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
@@ -54,22 +62,7 @@
     self.tableView.emptyDataSetSource = self;
     
     dataInTable = [[NSMutableArray alloc] init];
-    
-    segmentedControl = [[UISegmentedControl alloc]initWithItems:@[@"问题", @"答案"]];
-    [segmentedControl addTarget:self action:@selector(updateTable) forControlEvents:UIControlEventValueChanged];
-    segmentedControl.selectedSegmentIndex = 0;
-    [segmentedControl setFrame:CGRectMake(0, 0, 150, segmentedControl.frame.size.height)];
-    [self.navigationItem setTitleView:segmentedControl];
-    
-    _token = [[RLMRealm defaultRealm] addNotificationBlock:^(NSString *notification, RLMRealm *realm) {
-        if (segmentedControl.selectedSegmentIndex == draftTypeQuestion) {
-            dataArr = [QuestionDraft allObjects];
-        } else if (segmentedControl.selectedSegmentIndex == draftTypeAnswer) {
-            dataArr = [AnswerDraft allObjects];
-        }
-    }];
-    
-    [self updateTable];
+    dataArr = [[NSMutableArray alloc] init];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -79,32 +72,33 @@
 
 - (void)updateTable {
     [dataInTable removeAllObjects];
-    if (segmentedControl.selectedSegmentIndex == draftTypeQuestion) {
-        dataArr = [QuestionDraft allObjects];
-        for (QuestionDraft *tmp in dataArr) {
-            [dataInTable addObject:@{@"time": ({
-                                        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-                                        [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-                                        [dateFormatter stringFromDate:tmp.time];
-                                    }),
-                                     @"content": tmp.questionTitle}];
+    [wjDatabaseManager loadAllDraftWithType:draftType success:^(NSArray *_dataArr) {
+        dataArr = [[NSMutableArray alloc] initWithArray:_dataArr];
+        if (draftType == draftTypeQuestion) {
+            for (QuestionDraft *tmp in dataArr) {
+                [dataInTable addObject:@{@"time": ({
+                    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+                    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+                    [dateFormatter stringFromDate:tmp.time];
+                }),
+                                         @"content": tmp.questionTitle}];
+            }
+            [self.tableView reloadData];
+        } else if (draftType == draftTypeAnswer) {
+            for (AnswerDraft *tmp in dataArr) {
+                [dataInTable addObject:@{@"time": ({
+                    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+                    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+                    [dateFormatter stringFromDate:tmp.time];
+                }),
+                                         @"content": ((NSAttributedString *)[NSKeyedUnarchiver unarchiveObjectWithData:tmp.answerContent]).string}];
+            }
+            [self.tableView reloadData];
         }
-        [self.tableView reloadData];
-    } else if (segmentedControl.selectedSegmentIndex == draftTypeAnswer) {
-        dataArr = [AnswerDraft allObjects];
-        for (AnswerDraft *tmp in dataArr) {
-            [dataInTable addObject:@{@"time": ({
-                                        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-                                        [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-                                        [dateFormatter stringFromDate:tmp.time];
-                                    }),
-                                     @"content": ((NSAttributedString *)[NSKeyedUnarchiver unarchiveObjectWithData:tmp.answerContent]).string}];
-        }
-        [self.tableView reloadData];
-    }
+    }];
 }
 
-#pragma mark - EmptyDataSet 
+#pragma mark - EmptyDataSet
 
 - (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView {
     NSString *text = @"暂无保存的草稿";
@@ -146,13 +140,13 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSUInteger row = [indexPath row];
-    if (segmentedControl.selectedSegmentIndex == draftTypeQuestion) {
+    if (draftType == draftTypeQuestion) {
         QuestionDraft *draft = dataArr[row];
         PostQuestionViewController *postQuestionViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"PostQuestionViewController"];
         postQuestionViewController.draftToBeLoaded = draft;
         UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:postQuestionViewController];
         [self presentViewController:nav animated:YES completion:nil];
-    } else if (segmentedControl.selectedSegmentIndex == draftTypeAnswer) {
+    } else if (draftType == draftTypeAnswer) {
         AnswerDraft *draft = dataArr[row];
         PostAnswerViewController *postAnswerController = [[PostAnswerViewController alloc] init];
         postAnswerController.draftToBeLoaded = draft;
@@ -170,18 +164,22 @@
 */
 
 // Override to support editing the table view.
+//- (NSArray<UITableViewRowAction *> *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath {
+//    
+//}
+
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
         NSUInteger row = [indexPath row];
+        NSObject *draft = [dataArr objectAtIndex:row];
+        [wjDatabaseManager removeDraft:draft type:draftType success:^{
+            
+        }];
+        
         [dataInTable removeObjectAtIndex:row];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
         
-        RLMObject *dataToBeDeleted = dataArr[row];
-        RLMRealm *realm = [RLMRealm defaultRealm];
-        [realm beginWriteTransaction];
-        [realm deleteObject:dataToBeDeleted];
-        [realm commitWriteTransaction];
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }   

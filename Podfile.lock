@@ -36,6 +36,11 @@ PODS:
   - DACircularProgress (2.3.1)
   - DZNEmptyDataSet (1.7.2)
   - FDStackView (1.0-alpha)
+  - FMDB (2.5):
+    - FMDB/standard (= 2.5)
+  - FMDB/common (2.5)
+  - FMDB/standard (2.5):
+    - FMDB/common
   - FXForms (1.2.14)
   - JZNavigationExtension (1.3.0)
   - KVOController (1.0.3)
@@ -60,12 +65,13 @@ PODS:
   - XHRealTimeBlur (1.7)
 
 DEPENDENCIES:
-  - AFNetworking (~> 3.0.0-beta.1)
+  - AFNetworking
   - BlocksKit
   - ChameleonFramework
   - CRToast
   - DZNEmptyDataSet
   - FDStackView (= 1.0-alpha)
+  - FMDB
   - FXForms
   - JZNavigationExtension
   - KVOController
@@ -87,6 +93,7 @@ SPEC CHECKSUMS:
   DACircularProgress: 4dd437c0fc3da5161cb289e07ac449493d41db71
   DZNEmptyDataSet: 0ec00bfc230d7450997b60c127afdd0b9f24f3b6
   FDStackView: 6abd2cdb128430264d5c6e87277629abad222f20
+  FMDB: 96e8f1bcc1329e269330f99770ad4285d9003e52
   FXForms: 724500c0c3f3eb3ba1004b3b83abcee55d3daf18
   JZNavigationExtension: d4573c6461f979a8b4a7ba8c0055e4eb89b9ed1f
   KVOController: 9fd8f0343670994e4b6f9f0b31f5a45663f3e1cf
