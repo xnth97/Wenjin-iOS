@@ -63,13 +63,15 @@
 
 - (void)loadAvatarImageWithApartURLString:(NSString *)urlStr {
     [userAvatarView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", [wjAPIs avatarPath], urlStr]] placeholderImage:[UIImage imageNamed:@"placeholderAvatar.png"]];
+    userAvatarView.layer.masksToBounds = YES;
     userAvatarView.layer.cornerRadius = userAvatarView.frame.size.width / 2;
     userAvatarView.layer.borderColor = [UIColor whiteColor].CGColor;
     userAvatarView.layer.borderWidth = 3.0;
-    userAvatarView.layer.shadowColor = [UIColor blackColor].CGColor;
-    userAvatarView.layer.shadowOffset = CGSizeMake(0, 2.0);
-    userAvatarView.layer.shadowOpacity = 0.5;
-    userAvatarView.clipsToBounds = YES;
+//    userAvatarView.layer.shadowColor = [UIColor blackColor].CGColor;
+//    userAvatarView.layer.shadowOffset = CGSizeMake(0, 0);
+//    userAvatarView.layer.shadowOpacity = 5.0;
+//    userAvatarView.layer.shadowRadius = 1.0;
+    userAvatarView.contentMode = UIViewContentModeScaleAspectFit;
 }
 
 - (void)reloadAvatarImageWithApartURLString:(NSString *)urlStr {
@@ -83,13 +85,15 @@
     } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
         
     }];
+    userAvatarView.layer.masksToBounds = YES;
     userAvatarView.layer.cornerRadius = userAvatarView.frame.size.width / 2;
     userAvatarView.layer.borderColor = [UIColor whiteColor].CGColor;
     userAvatarView.layer.borderWidth = 3.0;
-    userAvatarView.layer.shadowColor = [UIColor blackColor].CGColor;
-    userAvatarView.layer.shadowOffset = CGSizeMake(0, 2.0);
-    userAvatarView.layer.shadowOpacity = 0.3;
-    userAvatarView.clipsToBounds = YES;
+    //    userAvatarView.layer.shadowColor = [UIColor blackColor].CGColor;
+    //    userAvatarView.layer.shadowOffset = CGSizeMake(0, 0);
+    //    userAvatarView.layer.shadowOpacity = 5.0;
+    //    userAvatarView.layer.shadowRadius = 1.0;
+    userAvatarView.contentMode = UIViewContentModeScaleAspectFit;
 }
 
 

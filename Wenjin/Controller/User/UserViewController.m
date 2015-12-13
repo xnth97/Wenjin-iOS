@@ -219,17 +219,26 @@
     if (section == 0) {
         if (row == 0) {
             cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld", (long)userData.questionCount];
+            cell.imageView.image = [UIImage imageNamed:@"tableTopic"];
         } else if (row == 1) {
             cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld", (long)userData.answerCount];
+            cell.imageView.image = [UIImage imageNamed:@"tableQues"];
+        } else if (row == 2) {
+            cell.imageView.image = [UIImage imageNamed:@"tableTopic"];
+        } else if (row == 3) {
+            cell.imageView.image = [UIImage imageNamed:@"tableQues"];
         }
     } else if (section == 1) {
         if (row == 0) {
             cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld", (long)userData.friendCount];
+            cell.imageView.image = [UIImage imageNamed:@"tableUser"];
         } else {
             cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld", (long)userData.fansCount];
+            cell.imageView.image = [UIImage imageNamed:@"tableUser"];
         }
     } else if (section == 2) {
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        cell.imageView.image = [UIImage imageNamed:@"tableDraft"];
     }
     return cell;
 }

@@ -22,5 +22,6 @@
 + (UIColor *)pageShadowColor;
 + (CGSize)pageShadowOffset;
 + (CGFloat)pageShadowOpacity;
++ (CGFloat)pageShadowRadius;
 
 @end

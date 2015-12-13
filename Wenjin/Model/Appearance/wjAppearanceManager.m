@@ -61,11 +61,15 @@
 }
 
 + (CGSize)pageShadowOffset {
-    return CGSizeMake(0, 0.2);
+    return CGSizeMake(0, 0.1);
 }
 
 + (CGFloat)pageShadowOpacity {
     return 1;
+}
+
++ (CGFloat)pageShadowRadius {
+    return 0.5;
 }
 
 @end

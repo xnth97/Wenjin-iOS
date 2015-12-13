@@ -46,6 +46,7 @@
     self.menuView.layer.shadowColor = [wjAppearanceManager pageShadowColor].CGColor;
     self.menuView.layer.shadowOffset = [wjAppearanceManager pageShadowOffset];
     self.menuView.layer.shadowOpacity = [wjAppearanceManager pageShadowOpacity];
+    self.menuView.layer.shadowRadius = [wjAppearanceManager pageShadowRadius];
 }
 
 - (void)didReceiveMemoryWarning {
