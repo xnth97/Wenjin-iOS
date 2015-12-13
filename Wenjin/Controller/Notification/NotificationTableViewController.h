@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#define NOTIFICATION_CLEAR_ALL @"notification_clear_all"
+#define NOTIFICATION_REFRESH @"notification_refresh"
 
 @interface NotificationTableViewController : UITableViewController
 
-@property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
-
-- (IBAction)segmentedIndexChanged:(id)sender;
+@property (nonatomic) BOOL notificationIsReadOrNot;
 
 @end

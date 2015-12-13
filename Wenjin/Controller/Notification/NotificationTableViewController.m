@@ -19,6 +19,7 @@
 #import "MsgDisplay.h"
 #import "NotificationCell.h"
 #import "MJExtension.h"
+#import "BlocksKit.h"
 #import "BlocksKit+UIKit.h"
 #import "APService.h"
 #import "UIScrollView+EmptyDataSet.h"
@@ -34,12 +35,17 @@
     NSInteger currentPage;
     
     BOOL fetchingData;
-    BOOL notificationIsReadOrNot;
 
     UIBarButtonItem *clearAllBtn;
 }
 
-@synthesize segmentedControl;
+@synthesize notificationIsReadOrNot;
+
+- (instancetype)init {
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    self = [storyboard instantiateViewControllerWithIdentifier:@"NotificationTableViewController"];
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -54,7 +60,8 @@
         self.automaticallyAdjustsScrollViewInsets = NO;
         
         UIEdgeInsets insets = self.tableView.contentInset;
-        insets.top = self.navigationController.navigationBar.bounds.size.height + [UIApplication sharedApplication].statusBarFrame.size.height;
+        insets.top = self.navigationController.navigationBar.bounds.size.height + [UIApplication sharedApplication].statusBarFrame.size.height + [wjAppearanceManager pageMenuHeight];
+        insets.bottom = 49;
         self.tableView.contentInset = insets;
         self.tableView.scrollIndicatorInsets = insets;
     }
@@ -64,8 +71,6 @@
     currentPage = 0;
     fetchingData = NO;
     
-    notificationIsReadOrNot = NO;
-    
     __weak NotificationTableViewController *weakSelf = self;
     [self.tableView addPullToRefreshWithActionHandler:^{
         [weakSelf refreshContent];
@@ -74,34 +79,12 @@
         [weakSelf nextPage];
     }];
     
-    UIBarButtonItem *refreshBtn = [[UIBarButtonItem alloc] bk_initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh handler:^(id sender) {
-        [self.tableView triggerPullToRefresh];
-    }];
-    self.navigationItem.leftBarButtonItem = refreshBtn;
-    
-    clearAllBtn = [[UIBarButtonItem alloc] bk_initWithImage:[UIImage imageNamed:@"clearAll"] style:UIBarButtonItemStylePlain handler:^(id sender) {
-        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"全部清除" message:@"是否要清除全部未读消息？" preferredStyle: UIAlertControllerStyleActionSheet];
-        UIAlertAction *cancel = [UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", nil) style:UIAlertActionStyleCancel handler:nil];
-        UIAlertAction *clearAll = [UIAlertAction actionWithTitle:@"全部清除" style: UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
-            [NotificationManager readAllNotificationsWithCompletionBlock:^{
-                [[NSNotificationCenter defaultCenter] postNotificationName:@"newNotification" object:nil];
-                [dataInView removeAllObjects];
-                [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
-            }];
-        }];
-        [alertController addAction:cancel];
-        [alertController addAction:clearAll];
-        [alertController setModalPresentationStyle:UIModalPresentationPopover];
-        [alertController.popoverPresentationController setPermittedArrowDirections:0];
-        CGRect rect = self.view.frame;
-        alertController.popoverPresentationController.sourceRect = rect;
-        alertController.popoverPresentationController.sourceView = self.view;
-        [self presentViewController:alertController animated:YES completion:nil];
-    }];
-    self.navigationItem.rightBarButtonItem = clearAllBtn;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationHandler:) name:NOTIFICATION_REFRESH object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationHandler:) name:NOTIFICATION_CLEAR_ALL object:nil];
     
     self.tableView.estimatedRowHeight = 93;
     //self.tableView.rowHeight = UITableViewAutomaticDimension;
+    
     
     [self.tableView triggerPullToRefresh];
     
@@ -120,6 +103,10 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 #pragma mark - Private Methods
@@ -175,20 +162,29 @@
     }
 }
 
-- (IBAction)segmentedIndexChanged:(id)sender {
-    if (segmentedControl.selectedSegmentIndex == 0) {
-        notificationIsReadOrNot = NO;
-        self.navigationItem.rightBarButtonItem = clearAllBtn;
-    } else {
-        notificationIsReadOrNot = YES;
-        self.navigationItem.rightBarButtonItem = nil;
+- (void)notificationHandler:(NSNotification *)notification {
+    if ([notification.name isEqualToString:NOTIFICATION_REFRESH]) {
+        [self refreshContent];
+    } else if ([notification.name isEqualToString:NOTIFICATION_CLEAR_ALL]) {
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"全部清除" message:@"是否要清除全部未读消息？" preferredStyle: UIAlertControllerStyleActionSheet];
+        UIAlertAction *cancel = [UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", nil) style:UIAlertActionStyleCancel handler:nil];
+        UIAlertAction *clearAll = [UIAlertAction actionWithTitle:@"全部清除" style: UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
+            [NotificationManager readAllNotificationsWithCompletionBlock:^{
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"newNotification" object:nil];
+                if (notificationIsReadOrNot == NO) {
+                    [self refreshContent];
+                }
+            }];
+        }];
+        [alertController addAction:cancel];
+        [alertController addAction:clearAll];
+        [alertController setModalPresentationStyle:UIModalPresentationPopover];
+        [alertController.popoverPresentationController setPermittedArrowDirections:0];
+        CGRect rect = self.view.frame;
+        alertController.popoverPresentationController.sourceRect = rect;
+        alertController.popoverPresentationController.sourceView = self.view;
+        [self presentViewController:alertController animated:YES completion:nil];
     }
-    if (rowsData.count > 0) {
-        [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
-    }
-    [rowsData removeAllObjects];
-    [self.tableView reloadData];
-    [self refreshContent];
 }
 
 #pragma mark - UITableViewDelegate

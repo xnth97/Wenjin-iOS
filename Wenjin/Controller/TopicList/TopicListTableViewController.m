@@ -29,13 +29,16 @@
     NSMutableArray *dataInTable;
     NSInteger currentPage;
     NSInteger totalRows;
-    
-    NSString *topicType;
-    NSArray *topicTypesArray;
 }
 
 @synthesize uid;
-@synthesize segmentedControl;
+@synthesize topicType;
+
+- (instancetype)init {
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    self = [storyboard instantiateViewControllerWithIdentifier:@"TopicListTableViewController"];
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -45,20 +48,17 @@
     self.navigationController.view.backgroundColor = [UIColor whiteColor];
     self.navigationController.fullScreenInteractivePopGestureRecognizer = YES;
     
-    topicTypesArray = @[@"hot", @"focus"];
-    topicType = topicTypesArray[0];
-    
-    if (uid == nil) {
-        segmentedControl.alpha = 1.0;
-    } else {
-        segmentedControl.alpha = 0.0;
-    }
-    
     if ([self respondsToSelector:@selector(automaticallyAdjustsScrollViewInsets)] && self.navigationController.navigationBar.translucent == YES) {
         self.automaticallyAdjustsScrollViewInsets = NO;
         
         UIEdgeInsets insets = self.tableView.contentInset;
-        insets.top = self.navigationController.navigationBar.bounds.size.height + [UIApplication sharedApplication].statusBarFrame.size.height;
+        if (uid == nil) {
+            // tabBar 的那个
+            insets.top = self.navigationController.navigationBar.bounds.size.height + [UIApplication sharedApplication].statusBarFrame.size.height + [wjAppearanceManager pageMenuHeight];
+            insets.bottom = 49;
+        } else {
+            insets.top = self.navigationController.navigationBar.bounds.size.height + [UIApplication sharedApplication].statusBarFrame.size.height;
+        }
         self.tableView.contentInset = insets;
         self.tableView.scrollIndicatorInsets = insets;
     }
@@ -82,15 +82,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)segmentedChanged:(id)sender {
-    NSUInteger index = segmentedControl.selectedSegmentIndex;
-    topicType = topicTypesArray[index];
-    if (dataInTable.count != 0) {
-        [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
-    }
-    [self refreshContent];
-}
-
 - (void)getListData {
     if (uid == nil) {
         [TopicDataManager getTopicListWithType:topicType andPage:currentPage success:^(NSUInteger _totalRows, NSArray *_rowsData) {
@@ -103,14 +94,9 @@
             }
             dataInTable = rowsData;
             
+            [self.tableView reloadData];
             [self.tableView.infiniteScrollingView stopAnimating];
             [self.tableView.pullToRefreshView stopAnimating];
-            
-            if (currentPage == 1) {
-                [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
-            } else {
-                [self.tableView reloadData];
-            }
             
         } failure:^(NSString *errStr) {
             [MsgDisplay showErrorMsg:errStr];
@@ -143,7 +129,7 @@
 
 - (void)refreshContent {
     currentPage = 1;
-    rowsData = [[NSMutableArray alloc]init];
+    rowsData = [[NSMutableArray alloc] init];
     [self getListData];
 }
 
@@ -240,11 +226,6 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
-    if ([segue.identifier isEqualToString:@"presentSearch"]) {
-        SearchViewController *des = (SearchViewController *)segue.destinationViewController;
-        des.searchType = 1;
-    }
-    segue.destinationViewController.hidesBottomBarWhenPushed = YES;
 }
 
 

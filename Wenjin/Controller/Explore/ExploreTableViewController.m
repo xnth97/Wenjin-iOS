@@ -28,11 +28,16 @@
     NSMutableArray *dataInTable;
     NSInteger currentPage;
     
-    NSString *expType;
     NSInteger isRecommended;
 }
 
-@synthesize segmentedControl;
+@synthesize expType;
+
+- (instancetype)init {
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    self = [storyboard instantiateViewControllerWithIdentifier:@"ExploreTableViewController"];
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -42,14 +47,19 @@
     self.navigationController.view.backgroundColor = [UIColor whiteColor];
     self.navigationController.fullScreenInteractivePopGestureRecognizer = YES;
     
-    expType = @"new";
-    isRecommended = 0;
+//    expType = @"new";
+    if (expType.length == 0) {
+        isRecommended = 1;
+    } else {
+        isRecommended = 0;
+    }
     
     if ([self respondsToSelector:@selector(automaticallyAdjustsScrollViewInsets)] && self.navigationController.navigationBar.translucent == YES) {
         self.automaticallyAdjustsScrollViewInsets = NO;
         
         UIEdgeInsets insets = self.tableView.contentInset;
-        insets.top = self.navigationController.navigationBar.bounds.size.height + [UIApplication sharedApplication].statusBarFrame.size.height;
+        insets.top = self.navigationController.navigationBar.bounds.size.height + [UIApplication sharedApplication].statusBarFrame.size.height + [wjAppearanceManager pageMenuHeight];
+        insets.bottom = 49;
         self.tableView.contentInset = insets;
         self.tableView.scrollIndicatorInsets = insets;
     }
@@ -74,38 +84,6 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (IBAction)segmentedChanged:(id)sender {
-    NSUInteger index = segmentedControl.selectedSegmentIndex;
-    switch (index) {
-        case 0:
-            isRecommended = 0;
-            expType = @"new";
-            break;
-            
-        case 1:
-            isRecommended = 0;
-            expType = @"hot";
-            break;
-            
-        case 2:
-            isRecommended = 1;
-            expType = @"";
-            break;
-            
-        case 3:
-            isRecommended = 0;
-            expType = @"unresponsive";
-            break;
-            
-        default:
-            break;
-    }
-    if (dataInTable.count != 0) {
-        [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
-    }
-    [self refreshContent];
 }
 
 - (void)getListData {

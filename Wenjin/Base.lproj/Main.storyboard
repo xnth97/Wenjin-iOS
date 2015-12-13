@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BH6-Mm-uy7">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BH6-Mm-uy7">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -15,7 +15,6 @@
                     <tabBar key="tabBar" contentMode="scaleToFill" id="qRm-bb-iWh">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <animations/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
@@ -38,7 +37,6 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="cES-wS-WZR">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <animations/>
                     </navigationBar>
                     <connections>
                         <segue destination="gYk-VO-Prx" kind="relationship" relationship="rootViewController" id="57T-1o-ufb"/>
@@ -62,7 +60,6 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="PVd-rI-bS1">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="dataSource" destination="2cd-qG-R47" id="bQ8-pM-JyB"/>
@@ -79,7 +76,6 @@
                                     <subviews>
                                         <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="wWB-BI-oGZ">
                                             <rect key="frame" x="180" y="6" width="240" height="29"/>
-                                            <animations/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="28" id="kIQ-fi-HRJ"/>
                                                 <constraint firstAttribute="width" constant="240" id="lUW-W3-t3C"/>
@@ -94,20 +90,17 @@
                                             </connections>
                                         </segmentedControl>
                                     </subviews>
-                                    <animations/>
                                     <constraints>
                                         <constraint firstItem="wWB-BI-oGZ" firstAttribute="centerX" secondItem="ALy-gO-L65" secondAttribute="centerX" id="Bbu-B8-89n"/>
                                         <constraint firstItem="wWB-BI-oGZ" firstAttribute="centerY" secondItem="ALy-gO-L65" secondAttribute="centerY" id="sIU-k9-XoE"/>
                                     </constraints>
                                 </view>
-                                <animations/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="2hy-gQ-7qg"/>
                                 </constraints>
                                 <blurEffect style="light"/>
                             </visualEffectView>
                         </subviews>
-                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="70h-Pl-6ri" firstAttribute="top" secondItem="rt2-7x-7Rm" secondAttribute="bottom" id="1Ow-HM-mZK"/>
@@ -125,7 +118,6 @@
                         <textField key="titleView" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="搜索问题、话题或用户" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" id="Q5a-98-xz1">
                             <rect key="frame" x="180" y="7" width="240" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <animations/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits" returnKeyType="search"/>
                             <connections>
@@ -144,7 +136,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hgP-bB-Pgu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2675" y="2572"/>
+            <point key="canvasLocation" x="3457" y="3266"/>
         </scene>
         <!--动态-->
         <scene sceneID="Fqn-Fk-CEQ">
@@ -153,7 +145,6 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Cxq-MK-B4R">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <connections>
                             <outlet property="dataSource" destination="gYk-VO-Prx" id="oA3-Jd-FPV"/>
@@ -191,11 +182,10 @@
         <!--Notification Table View Controller-->
         <scene sceneID="fMr-s7-Ubd">
             <objects>
-                <tableViewController id="OyI-9l-k5X" customClass="NotificationTableViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="NotificationTableViewController" id="OyI-9l-k5X" customClass="NotificationTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="K0A-2x-eNf">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <connections>
                             <outlet property="dataSource" destination="OyI-9l-k5X" id="VN1-T1-DB3"/>
@@ -207,23 +197,16 @@
                         <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="Amg-Vc-aJ1">
                             <rect key="frame" x="225" y="7" width="150" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <animations/>
                             <segments>
                                 <segment title="未读"/>
                                 <segment title="已读"/>
                             </segments>
-                            <connections>
-                                <action selector="segmentedIndexChanged:" destination="OyI-9l-k5X" eventType="valueChanged" id="B0n-QG-3UT"/>
-                            </connections>
                         </segmentedControl>
                     </navigationItem>
-                    <connections>
-                        <outlet property="segmentedControl" destination="Amg-Vc-aJ1" id="nyi-My-nQS"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FYq-pN-LgS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1915" y="1794"/>
+            <point key="canvasLocation" x="2686" y="1794"/>
         </scene>
         <!--消息-->
         <scene sceneID="OpF-Wq-Q6Y">
@@ -233,24 +216,71 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="RBU-tH-JC7">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <animations/>
                     </navigationBar>
                     <connections>
-                        <segue destination="OyI-9l-k5X" kind="relationship" relationship="rootViewController" id="Scq-Eo-Jzm"/>
+                        <segue destination="l6i-ts-LKk" kind="relationship" relationship="rootViewController" id="9T9-mw-YbT"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zep-ys-hRY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1210" y="1794"/>
         </scene>
+        <!--通知-->
+        <scene sceneID="u9Z-Yg-8jk">
+            <objects>
+                <viewController id="l6i-ts-LKk" customClass="NotificationPageController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="98o-IG-K5B"/>
+                        <viewControllerLayoutGuide type="bottom" id="icN-TE-3kX"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="4qb-4B-GIF">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="通知" id="kH6-Ex-Rcy">
+                        <barButtonItem key="leftBarButtonItem" systemItem="refresh" id="k4U-GQ-916">
+                            <connections>
+                                <action selector="refresh:" destination="l6i-ts-LKk" id="qw3-C2-hzl"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="trash" id="Hey-L1-Kh5">
+                            <connections>
+                                <action selector="clearAll:" destination="l6i-ts-LKk" id="HWH-d3-nVT"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PrV-aO-RUC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1900" y="1794"/>
+        </scene>
+        <!--发现-->
+        <scene sceneID="lX2-Nm-Yti">
+            <objects>
+                <viewController id="fjB-Vk-6vo" customClass="ExplorePageViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Rqt-2f-Q7K"/>
+                        <viewControllerLayoutGuide type="bottom" id="p6M-0B-Ifb"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="kgJ-xg-Mw6">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="发现" id="8Fi-RU-EnC"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BVE-KN-J7k" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1856" y="2514"/>
+        </scene>
         <!--Explore Table View Controller-->
         <scene sceneID="3lh-oB-qN8">
             <objects>
-                <tableViewController id="pw4-sm-7bG" customClass="ExploreTableViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="ExploreTableViewController" id="pw4-sm-7bG" customClass="ExploreTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="iZH-0e-un2">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <connections>
                             <outlet property="dataSource" destination="pw4-sm-7bG" id="2jc-ib-H6W"/>
@@ -259,28 +289,11 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="ehb-n2-yft">
                         <nil key="title"/>
-                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="ve5-kP-US5">
-                            <rect key="frame" x="167" y="7" width="266" height="30"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <animations/>
-                            <segments>
-                                <segment title="最新"/>
-                                <segment title="热门"/>
-                                <segment title="推荐"/>
-                                <segment title="待回复"/>
-                            </segments>
-                            <connections>
-                                <action selector="segmentedChanged:" destination="pw4-sm-7bG" eventType="valueChanged" id="348-uj-Fap"/>
-                            </connections>
-                        </segmentedControl>
                     </navigationItem>
-                    <connections>
-                        <outlet property="segmentedControl" destination="ve5-kP-US5" id="Fy0-kz-tvo"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vSM-Rr-VOJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1915" y="2515"/>
+            <point key="canvasLocation" x="2467" y="2514"/>
         </scene>
         <!--发起问题-->
         <scene sceneID="sfN-yt-cvD">
@@ -293,7 +306,6 @@
                     <view key="view" contentMode="scaleToFill" id="WVN-HQ-qX5">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="发起问题" id="IWJ-L7-CVg">
@@ -321,7 +333,6 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="m7G-0a-e5s">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <animations/>
                     </navigationBar>
                     <connections>
                         <segue destination="ESh-CL-caT" kind="relationship" relationship="rootViewController" id="dkI-JS-wD2"/>
@@ -338,7 +349,6 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="UIK-Tv-QcE">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <animations/>
                     </navigationBar>
                     <connections>
                         <segue destination="ldz-M3-pk8" kind="relationship" relationship="rootViewController" id="6zW-KC-Dmp"/>
@@ -359,7 +369,6 @@
                     <view key="view" contentMode="scaleToFill" id="MV5-kq-izv">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="添加描述" id="wFF-KK-ocg">
@@ -382,11 +391,11 @@
         <!--Topic List Table View Controller-->
         <scene sceneID="dT6-DE-oW1">
             <objects>
-                <tableViewController id="XZD-gk-4J7" customClass="TopicListTableViewController" sceneMemberID="viewController">
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fap-4i-NXi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tableViewController storyboardIdentifier="TopicListTableViewController" id="XZD-gk-4J7" customClass="TopicListTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="128" sectionHeaderHeight="22" sectionFooterHeight="22" id="BCg-jv-BMB">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <connections>
                             <outlet property="dataSource" destination="XZD-gk-4J7" id="wcv-gV-Hy2"/>
@@ -395,31 +404,10 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="dnB-ft-NJP">
                         <nil key="title"/>
-                        <barButtonItem key="leftBarButtonItem" systemItem="search" id="9Lp-qW-aMk">
-                            <connections>
-                                <segue destination="2cd-qG-R47" kind="show" identifier="presentSearch" id="vjO-Yf-MrC"/>
-                            </connections>
-                        </barButtonItem>
-                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="akK-cI-7iT">
-                            <rect key="frame" x="225" y="7" width="150" height="30"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <animations/>
-                            <segments>
-                                <segment title="热门"/>
-                                <segment title="我关注的"/>
-                            </segments>
-                            <connections>
-                                <action selector="segmentedChanged:" destination="XZD-gk-4J7" eventType="valueChanged" id="piY-QY-MPH"/>
-                            </connections>
-                        </segmentedControl>
                     </navigationItem>
-                    <connections>
-                        <outlet property="segmentedControl" destination="akK-cI-7iT" id="Q1e-o3-KhZ"/>
-                    </connections>
                 </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="fap-4i-NXi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1915" y="3232"/>
+            <point key="canvasLocation" x="2551" y="3198"/>
         </scene>
         <!--我-->
         <scene sceneID="vQ7-CS-HIo">
@@ -429,7 +417,6 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="QwC-6g-Maz">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <animations/>
                     </navigationBar>
                     <connections>
                         <segue destination="DE9-zZ-tIq" kind="relationship" relationship="rootViewController" id="T0H-hn-HOL"/>
@@ -453,7 +440,6 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="1ex-53-8zL">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
-                                <animations/>
                                 <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <outlet property="dataSource" destination="DE9-zZ-tIq" id="gjc-Zh-xda"/>
@@ -461,7 +447,6 @@
                                 </connections>
                             </tableView>
                         </subviews>
-                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="1ex-53-8zL" firstAttribute="leading" secondItem="4ho-GJ-k8E" secondAttribute="leadingMargin" constant="-20" id="0gf-ld-sjY"/>
@@ -497,7 +482,6 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="AfM-h1-zUB">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <animations/>
                         <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                         <connections>
                             <outlet property="dataSource" destination="Gbi-lA-BFC" id="tqe-jH-Ph5"/>
@@ -508,7 +492,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XRD-Ye-bdj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2617" y="3794"/>
+            <point key="canvasLocation" x="2695" y="3798"/>
         </scene>
         <!--编辑个人资料-->
         <scene sceneID="JUB-Wa-fII">
@@ -517,7 +501,6 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="Kxg-ca-QCa">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <animations/>
                         <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                         <connections>
                             <outlet property="dataSource" destination="LsP-x6-Wrf" id="tNj-Tq-KiE"/>
@@ -544,15 +527,39 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ISe-dO-wn4">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <animations/>
                     </navigationBar>
                     <connections>
-                        <segue destination="XZD-gk-4J7" kind="relationship" relationship="rootViewController" id="j1A-vU-2GM"/>
+                        <segue destination="LzC-tv-je3" kind="relationship" relationship="rootViewController" id="jXO-0K-MCL"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Uld-xo-qvs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1210" y="3232"/>
+        </scene>
+        <!--话题-->
+        <scene sceneID="7Eg-fi-RHm">
+            <objects>
+                <viewController id="LzC-tv-je3" customClass="TopicPageController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="vGo-vi-xPQ"/>
+                        <viewControllerLayoutGuide type="bottom" id="9J8-kL-f8R"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ezR-Vz-DbC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="话题" id="Jhj-ct-by1">
+                        <barButtonItem key="leftBarButtonItem" systemItem="search" id="bH4-DH-AXW">
+                            <connections>
+                                <segue destination="2cd-qG-R47" kind="show" identifier="presentSearch" id="j6W-dX-Lv5"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gaz-OU-CxT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1856" y="3232"/>
         </scene>
         <!--发现-->
         <scene sceneID="Kwd-YC-88q">
@@ -562,10 +569,9 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="y7J-Db-Jwm">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <animations/>
                     </navigationBar>
                     <connections>
-                        <segue destination="pw4-sm-7bG" kind="relationship" relationship="rootViewController" id="Lvy-Cm-dew"/>
+                        <segue destination="fjB-Vk-6vo" kind="relationship" relationship="rootViewController" id="a4u-eg-9NT"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XuW-WL-UVK" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -581,6 +587,6 @@
         <image name="topic" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="vjO-Yf-MrC"/>
+        <segue reference="j6W-dX-Lv5"/>
     </inferredMetricsTieBreakers>
 </document>

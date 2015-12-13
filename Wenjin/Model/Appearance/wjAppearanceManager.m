@@ -52,5 +52,20 @@
     return color;
 }
 
++ (CGFloat)pageMenuHeight {
+    return 36.0;
+}
+
++ (UIColor *)pageShadowColor {
+    return [UIColor darkGrayColor];
+}
+
++ (CGSize)pageShadowOffset {
+    return CGSizeMake(0, 0.2);
+}
+
++ (CGFloat)pageShadowOpacity {
+    return 1;
+}
 
 @end

@@ -18,4 +18,9 @@
 + (UIColor *)userActionTextColor;
 + (UIColor *)buttonColor;
 
++ (CGFloat)pageMenuHeight;
++ (UIColor *)pageShadowColor;
++ (CGSize)pageShadowOffset;
++ (CGFloat)pageShadowOpacity;
+
 @end

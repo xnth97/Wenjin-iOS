@@ -11,8 +11,6 @@
 
 @interface ExploreTableViewController : UITableViewController<homeTableViewCellDelegate>
 
-@property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
-
-- (IBAction)segmentedChanged:(id)sender;
+@property (strong, nonatomic) NSString *expType;
 
 @end
