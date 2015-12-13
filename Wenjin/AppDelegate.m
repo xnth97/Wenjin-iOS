@@ -30,8 +30,6 @@
                                                        UIUserNotificationTypeAlert)
                                            categories:nil];
     [APService setupWithOption:launchOptions];
-    
-    [application setStatusBarStyle:UIStatusBarStyleLightContent];
     return YES;
 }
 

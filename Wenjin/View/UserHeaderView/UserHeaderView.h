@@ -24,6 +24,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *userAvatarView;
 @property (weak, nonatomic) IBOutlet UIImageView *userAgreeView;
 @property (weak, nonatomic) IBOutlet UIImageView *userThanksView;
+@property (weak, nonatomic) IBOutlet UIImageView *curveView;
 
 @property (assign, nonatomic) id<UserHeaderViewDelegate> delegate;
 

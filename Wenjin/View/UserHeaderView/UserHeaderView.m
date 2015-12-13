@@ -11,6 +11,7 @@
 #import "wjAPIs.h"
 #import "BlocksKit+UIKit.h"
 #import "wjAppearanceManager.h"
+#import "Chameleon.h"
 
 @implementation UserHeaderView
 
@@ -23,6 +24,7 @@
 @synthesize delegate;
 @synthesize userAgreeView;
 @synthesize userThanksView;
+@synthesize curveView;
 
 - (id)init {
     if (self = [super init]) {
@@ -35,17 +37,24 @@
         [userAgreeView setTintColor:[UIColor lightGrayColor]];
         userThanksView.image = [userThanksView.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
         [userThanksView setTintColor:[UIColor lightGrayColor]];
+        curveView.image = [curveView.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+        [curveView setTintColor:[UIColor flatMintColor]];
         
-        [self addSubview:({
-            UIView *splitLine = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 1024, 0.5)];
-            [splitLine setBackgroundColor:[UIColor colorWithWhite:0.8 alpha:1.0]];
-            splitLine;
-        })];
+//        [self addSubview:({
+//            UIView *splitLine = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 1024, 0.5)];
+//            [splitLine setBackgroundColor:[UIColor colorWithWhite:0.8 alpha:1.0]];
+//            splitLine;
+//        })];
         
         [self addSubview:({
             UIView *splitLine = [[UIView alloc]initWithFrame:CGRectMake(0, self.frame.size.height - 0.5, 1024, 0.5)];
             [splitLine setBackgroundColor:[UIColor colorWithWhite:0.8 alpha:1.0]];
             splitLine;
+        })];
+        [self addSubview:({
+            UIView *bg = [[UIView alloc]initWithFrame:CGRectMake(0, -600, 1024, 600)];
+            [bg setBackgroundColor:[UIColor flatMintColor]];
+            bg;
         })];
         
     }
@@ -55,6 +64,11 @@
 - (void)loadAvatarImageWithApartURLString:(NSString *)urlStr {
     [userAvatarView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@", [wjAPIs avatarPath], urlStr]] placeholderImage:[UIImage imageNamed:@"placeholderAvatar.png"]];
     userAvatarView.layer.cornerRadius = userAvatarView.frame.size.width / 2;
+    userAvatarView.layer.borderColor = [UIColor whiteColor].CGColor;
+    userAvatarView.layer.borderWidth = 3.0;
+    userAvatarView.layer.shadowColor = [UIColor blackColor].CGColor;
+    userAvatarView.layer.shadowOffset = CGSizeMake(0, 2.0);
+    userAvatarView.layer.shadowOpacity = 0.5;
     userAvatarView.clipsToBounds = YES;
 }
 
@@ -70,15 +84,39 @@
         
     }];
     userAvatarView.layer.cornerRadius = userAvatarView.frame.size.width / 2;
+    userAvatarView.layer.borderColor = [UIColor whiteColor].CGColor;
+    userAvatarView.layer.borderWidth = 3.0;
+    userAvatarView.layer.shadowColor = [UIColor blackColor].CGColor;
+    userAvatarView.layer.shadowOffset = CGSizeMake(0, 2.0);
+    userAvatarView.layer.shadowOpacity = 0.3;
     userAvatarView.clipsToBounds = YES;
 }
 
-/*
+
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect {
     // Drawing code
+//    NSLog(@"%f %f", rect.size.width, rect.size.height);
+//    CGFloat w = rect.size.width;
+//    CGFloat h = rect.size.height;
+//    
+//    CGContextRef context = UIGraphicsGetCurrentContext();
+//    CGContextSetFillColorWithColor(context, [UIColor flatMintColor].CGColor);
+//    CGContextMoveToPoint(context, 0, 0);
+//    CGContextAddLineToPoint(context, 0, 30);
+//    CGContextMoveToPoint(context, 0, 30);
+//    CGContextAddLineToPoint(context, w, 30);
+//    CGContextMoveToPoint(context, w, 30);
+//    CGContextAddLineToPoint(context, w, 0);
+//    CGContextMoveToPoint(context, w, 0);
+//    CGContextAddLineToPoint(context, 0, 0);
+//    
+//    CGContextAddCurveToPoint(context, 0, 30, 0.5*w, 75, w, 30);
+//    
+//    CGContextClosePath(context);
+//    CGContextFillPath(context);
 }
-*/
+
 
 @end
