@@ -13,7 +13,7 @@
 @implementation wjDatabaseManager
 
 + (void)loadAllDraftWithType:(NSInteger)type success:(void (^)(NSArray *))success {
-    FMDatabase *db = [FMDatabase databaseWithPath:[[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingString:@"draft.db"]];
+    FMDatabase *db = [FMDatabase databaseWithPath:[[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingString:@"draft.db"]];
     if ([db open]) {
         if (type == 0) {
             // Question
@@ -53,7 +53,7 @@
 }
 
 + (void)saveAnswerDraftWithQuestionID:(NSString *)questionId answerContent:(NSAttributedString *)answerContent attachAccessKey:(NSString *)attachAccessKey anonymous:(NSInteger)isAnonymous finishBlock:(void (^)())block {
-    FMDatabase *db = [FMDatabase databaseWithPath:[[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingString:@"draft.db"]];
+    FMDatabase *db = [FMDatabase databaseWithPath:[[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingString:@"draft.db"]];
     if ([db open]) {
         NSString *create = @"create table Answer(time, questionId, content, attachAccessKey, anonymous)";
         [db executeStatements:create];
@@ -66,7 +66,7 @@
 }
 
 + (void)saveQuestionDraftWithTitle:(NSString *)questionTitle detail:(NSAttributedString *)questionDetail topicsArray:(NSArray *)topicsArr attachAccessKey:(NSString *)attachAccessKey anonymous:(NSInteger)isAnonymous finishBlock:(void (^)())block {
-    FMDatabase *db = [FMDatabase databaseWithPath:[[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingString:@"draft.db"]];
+    FMDatabase *db = [FMDatabase databaseWithPath:[[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingString:@"draft.db"]];
     if ([db open]) {
         NSString *create = @"create table Question(time, title, detail, topic, attachAccessKey, anonymous)";
         [db executeStatements:create];
@@ -79,7 +79,7 @@
 }
 
 + (void)removeDraft:(NSObject *)draft type:(NSInteger)type success:(void (^)())success {
-    FMDatabase *db = [FMDatabase databaseWithPath:[[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingString:@"draft.db"]];
+    FMDatabase *db = [FMDatabase databaseWithPath:[[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingString:@"draft.db"]];
     if ([db open]) {
         BOOL result;
         if (type == 0) {
@@ -99,8 +99,8 @@
 
 + (void)removeDatabase {
     NSFileManager *fm = [NSFileManager defaultManager];
-    if ([fm fileExistsAtPath:[[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingString:@"draft.db"]]) {
-        [fm removeItemAtPath:[[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingString:@"draft.db"] error:nil];
+    if ([fm fileExistsAtPath:[[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingString:@"draft.db"]]) {
+        [fm removeItemAtPath:[[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingString:@"draft.db"] error:nil];
     }
 }
 

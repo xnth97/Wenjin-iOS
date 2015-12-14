@@ -1243,7 +1243,7 @@
 		E9642E831AC5714800FF7875 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0620;
+				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = "TWT Studio";
 				TargetAttributes = {
 					E9642E8A1AC5714800FF7875 = {
@@ -1528,6 +1528,7 @@
 				COPY_PHASE_STRIP = NO;
 				ENABLE_BITCODE = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -1620,6 +1621,7 @@
 					"$(PROJECT_DIR)/Wenjin/Resource/WXSDK",
 					"$(PROJECT_DIR)/Wenjin/Resource/JPushSDK",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = "cn.edu.twt.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/Resource/JPushSDK $(SRCROOT)/Resource/WXSDK";
@@ -1655,6 +1657,7 @@
 					"$(PROJECT_DIR)/Wenjin/Resource/WXSDK",
 					"$(PROJECT_DIR)/Wenjin/Resource/JPushSDK",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = "cn.edu.twt.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/Resource/JPushSDK $(SRCROOT)/Resource/WXSDK";
@@ -1676,6 +1679,7 @@
 				);
 				INFOPLIST_FILE = WenjinTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "cn.edu.twt.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Wenjin.app/Wenjin";
 			};
@@ -1692,6 +1696,7 @@
 				);
 				INFOPLIST_FILE = WenjinTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "cn.edu.twt.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Wenjin.app/Wenjin";
 			};

@@ -16,8 +16,11 @@
 + (void)saveQuestionDraftWithTitle:(NSString *)questionTitle detail:(NSAttributedString *)questionDetail topicsArray:(NSArray *)topicsArr attachAccessKey:(NSString *)attachAccessKey anonymous:(NSInteger)isAnonymous finishBlock:(void(^)())block;
 
 + (void)loadAllDraftWithType:(NSInteger)type success:(void(^)(NSArray *dataArr))success;
+
 + (void)removeDraft:(NSObject *)draft type:(NSInteger)type success:(void(^)())success;
+
 + (void)removeDatabase;
+
 + (void)removeRealmFile;
 
 @end

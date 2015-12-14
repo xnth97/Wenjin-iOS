@@ -219,19 +219,19 @@
     if (section == 0) {
         if (row == 0) {
             cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld", (long)userData.questionCount];
-            cell.imageView.image = [UIImage imageNamed:@"tableTopic"];
+            cell.imageView.image = [UIImage imageNamed:@"tableQues"];
         } else if (row == 1) {
             cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld", (long)userData.answerCount];
-            cell.imageView.image = [UIImage imageNamed:@"tableQues"];
+            cell.imageView.image = [UIImage imageNamed:@"tableAns"];
         } else if (row == 2) {
-            cell.imageView.image = [UIImage imageNamed:@"tableTopic"];
+            cell.imageView.image = [UIImage imageNamed:@"tableFocQue"];
         } else if (row == 3) {
-            cell.imageView.image = [UIImage imageNamed:@"tableQues"];
+            cell.imageView.image = [UIImage imageNamed:@"tableFocTop"];
         }
     } else if (section == 1) {
         if (row == 0) {
             cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld", (long)userData.friendCount];
-            cell.imageView.image = [UIImage imageNamed:@"tableUser"];
+            cell.imageView.image = [UIImage imageNamed:@"tableFocUser"];
         } else {
             cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld", (long)userData.fansCount];
             cell.imageView.image = [UIImage imageNamed:@"tableUser"];
