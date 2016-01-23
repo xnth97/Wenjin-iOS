@@ -22,8 +22,8 @@
     if (self) {
         self.viewControllerClasses = @[[NotificationTableViewController class], [NotificationTableViewController class]];
         self.titles = @[@"未读", @"已读"];
-        self.keys = @[@"notificationIsReadOrNot", @"notificationIsReadOrNot"];
-        self.values = @[@NO, @YES];
+        self.keys = [@[@"notificationIsReadOrNot", @"notificationIsReadOrNot"] mutableCopy];
+        self.values = [@[@NO, @YES] mutableCopy];
         
         // customization
         self.pageAnimatable = YES;

@@ -78,6 +78,8 @@
     }
 }
 
+
+
 + (void)removeDraft:(NSObject *)draft type:(NSInteger)type success:(void (^)())success {
     FMDatabase *db = [FMDatabase databaseWithPath:[[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingString:@"draft.db"]];
     if ([db open]) {

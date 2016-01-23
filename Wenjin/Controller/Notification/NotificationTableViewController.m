@@ -167,7 +167,9 @@
         [self refreshContent];
     } else if ([notification.name isEqualToString:NOTIFICATION_CLEAR_ALL]) {
         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"全部清除" message:@"是否要清除全部未读消息？" preferredStyle: UIAlertControllerStyleActionSheet];
-        UIAlertAction *cancel = [UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", nil) style:UIAlertActionStyleCancel handler:nil];
+        UIAlertAction *cancel = [UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel", nil) style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+            
+        }];
         UIAlertAction *clearAll = [UIAlertAction actionWithTitle:@"全部清除" style: UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
             [NotificationManager readAllNotificationsWithCompletionBlock:^{
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"newNotification" object:nil];
@@ -178,10 +180,9 @@
         }];
         [alertController addAction:cancel];
         [alertController addAction:clearAll];
-        [alertController setModalPresentationStyle:UIModalPresentationPopover];
-        [alertController.popoverPresentationController setPermittedArrowDirections:0];
-        CGRect rect = self.view.frame;
-        alertController.popoverPresentationController.sourceRect = rect;
+        alertController.modalPresentationStyle = UIModalPresentationPopover;
+        alertController.popoverPresentationController.permittedArrowDirections = UIPopoverArrowDirectionAny;
+        alertController.popoverPresentationController.barButtonItem = self.parentViewController.navigationItem.rightBarButtonItem;
         alertController.popoverPresentationController.sourceView = self.view;
         [self presentViewController:alertController animated:YES completion:nil];
     }

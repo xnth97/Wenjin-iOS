@@ -23,8 +23,8 @@
     if (self) {
         self.viewControllerClasses = @[[TopicListTableViewController class], [TopicListTableViewController class]];
         self.titles = @[@"热门", @"我关注的"];
-        self.keys = @[@"topicType", @"topicType"];
-        self.values = @[@"hot", @"focus"];
+        self.keys = [@[@"topicType", @"topicType"] mutableCopy];
+        self.values = [@[@"hot", @"focus"] mutableCopy];
         
         // customization
         self.pageAnimatable = YES;

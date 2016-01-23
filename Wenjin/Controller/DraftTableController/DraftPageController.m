@@ -22,8 +22,8 @@
     if (self) {
         self.viewControllerClasses = @[[DraftTableViewController class], [DraftTableViewController class]];
         self.titles = @[@"问题", @"答案"];
-        self.keys = @[@"draftType", @"draftType"];
-        self.values = @[@0, @1];
+        self.keys = [@[@"draftType", @"draftType"] mutableCopy];
+        self.values = [@[@0, @1] mutableCopy];
         
         // customization
         self.pageAnimatable = YES;

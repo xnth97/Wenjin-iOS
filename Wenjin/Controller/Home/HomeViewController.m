@@ -23,6 +23,7 @@
 #import "UIScrollView+EmptyDataSet.h"
 #import "SearchViewController.h"
 #import "TopicViewController.h"
+#import <CoreSpotlight/CoreSpotlight.h>
 
 @interface HomeViewController () <DZNEmptyDataSetDelegate, DZNEmptyDataSetSource>
 

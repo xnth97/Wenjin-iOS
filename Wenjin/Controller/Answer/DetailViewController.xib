@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DetailViewController">
@@ -26,7 +26,6 @@
             <subviews>
                 <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hfd-Ha-o5k">
                     <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                    <animations/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <connections>
                         <outlet property="delegate" destination="-1" id="aSl-IE-bbM"/>
@@ -34,7 +33,6 @@
                 </webView>
                 <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iHH-dC-5wF">
                     <rect key="frame" x="0.0" y="556" width="600" height="44"/>
-                    <animations/>
                     <items>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="KRS-TJ-Sdg"/>
                         <barButtonItem title="原问题" id="e3v-yJ-OoW">
@@ -60,9 +58,7 @@
                             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="163-4R-XmU">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="62"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <animations/>
                             </view>
-                            <animations/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="62" id="92J-wk-UEP"/>
                             </constraints>
@@ -70,7 +66,6 @@
                         </visualEffectView>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholderAvatar" translatesAutoresizingMaskIntoConstraints="NO" id="URu-vY-CRR">
                             <rect key="frame" x="8" y="8" width="46" height="46"/>
-                            <animations/>
                             <constraints>
                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="46" id="JKi-Qt-4oC"/>
                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="46" id="b8O-fu-CN5"/>
@@ -80,7 +75,6 @@
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dGw-mV-eSB">
                             <rect key="frame" x="62" y="8" width="446" height="22"/>
-                            <animations/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="22" id="WDX-5q-7mO"/>
                             </constraints>
@@ -89,7 +83,6 @@
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lhU-uQ-ZbX">
                             <rect key="frame" x="526" y="8" width="74" height="46"/>
-                            <animations/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="74" id="aKU-aJ-Qkh"/>
                                 <constraint firstAttribute="height" constant="46" id="hO0-Sb-j8q"/>
@@ -101,7 +94,6 @@
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User signature" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iEU-J5-ujA">
                             <rect key="frame" x="62" y="33" width="446" height="21"/>
-                            <animations/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="s7e-yR-Qx8"/>
                             </constraints>
@@ -111,14 +103,12 @@
                         </label>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="userAgree" translatesAutoresizingMaskIntoConstraints="NO" id="Eh8-CX-r6a">
                             <rect key="frame" x="521" y="21" width="19" height="19"/>
-                            <animations/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="19" id="7Wl-Mb-pRc"/>
                                 <constraint firstAttribute="height" constant="19" id="JIa-Iq-evS"/>
                             </constraints>
                         </imageView>
                     </subviews>
-                    <animations/>
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstItem="Eh8-CX-r6a" firstAttribute="top" secondItem="LML-qB-C5r" secondAttribute="top" constant="21" id="2eo-GB-ECj"/>
@@ -140,7 +130,6 @@
                     </constraints>
                 </view>
             </subviews>
-            <animations/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="LML-qB-C5r" secondAttribute="trailing" id="3h1-W3-Zuo"/>

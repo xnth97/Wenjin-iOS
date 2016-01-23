@@ -1,18 +1,18 @@
 PODS:
-  - AFNetworking (3.0.0):
-    - AFNetworking/NSURLSession (= 3.0.0)
-    - AFNetworking/Reachability (= 3.0.0)
-    - AFNetworking/Security (= 3.0.0)
-    - AFNetworking/Serialization (= 3.0.0)
-    - AFNetworking/UIKit (= 3.0.0)
-  - AFNetworking/NSURLSession (3.0.0):
+  - AFNetworking (3.0.4):
+    - AFNetworking/NSURLSession (= 3.0.4)
+    - AFNetworking/Reachability (= 3.0.4)
+    - AFNetworking/Security (= 3.0.4)
+    - AFNetworking/Serialization (= 3.0.4)
+    - AFNetworking/UIKit (= 3.0.4)
+  - AFNetworking/NSURLSession (3.0.4):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/Reachability (3.0.0)
-  - AFNetworking/Security (3.0.0)
-  - AFNetworking/Serialization (3.0.0)
-  - AFNetworking/UIKit (3.0.0):
+  - AFNetworking/Reachability (3.0.4)
+  - AFNetworking/Security (3.0.4)
+  - AFNetworking/Serialization (3.0.4)
+  - AFNetworking/UIKit (3.0.4):
     - AFNetworking/NSURLSession
   - BlocksKit (2.2.5):
     - BlocksKit/All (= 2.2.5)
@@ -86,7 +86,7 @@ DEPENDENCIES:
   - WebViewJavascriptBridge
 
 SPEC CHECKSUMS:
-  AFNetworking: 932ff751f9d6fb1dad0b3af58b7e3ffba0a4e7fd
+  AFNetworking: a0075feb321559dc78d9d85b55d11caa19eabb93
   BlocksKit: 7f422b971407001178d181a43b99014ea2591fe6
   ChameleonFramework: a6b466873ff9a4ce3a5196c20bccf1a97ad9f446
   CRToast: 5a78c22b921c5ed3487488af605bc403a9c92fed

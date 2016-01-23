@@ -61,7 +61,48 @@
 }
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
-    return [WXApi handleOpenURL:url delegate:self];
+    NSLog(@"%@", [url scheme]);
+    NSLog(@"%@", [url query]);
+    
+    if ([[url scheme] isEqualToString:@"wenjin"]) {
+        NSMutableDictionary *queryDic = [[NSMutableDictionary alloc] init];
+        NSArray *urlComponents = [[url query] componentsSeparatedByString:@"&"];
+        for (NSString *keyValuePair in urlComponents) {
+            NSArray *pairComponents = [keyValuePair componentsSeparatedByString:@"="];
+            NSString *key = [[pairComponents firstObject] stringByRemovingPercentEncoding];
+            NSString *value = [[pairComponents lastObject] stringByRemovingPercentEncoding];
+            [queryDic setObject:value forKey:key];
+        }
+        
+        NSMutableDictionary *fakeNotification = [[NSMutableDictionary alloc] init];
+        if ([queryDic objectForKey:@"user"] != nil) {
+            [fakeNotification setValue:[queryDic objectForKey:@"user"] forKey:@"id"];
+            [fakeNotification setValue:@"0" forKey:@"nid"];
+            [fakeNotification setValue:@"101" forKey:@"type"];
+            [NotificationManager handleNotification:fakeNotification];
+        } else if ([queryDic objectForKey:@"question"] != nil) {
+            [fakeNotification setValue:[queryDic objectForKey:@"question"] forKey:@"id"];
+            [fakeNotification setValue:@"0" forKey:@"nid"];
+            [fakeNotification setValue:@"104" forKey:@"type"];
+            [NotificationManager handleNotification:fakeNotification];
+        } else if ([queryDic objectForKey:@"answer"] != nil) {
+            [fakeNotification setValue:[queryDic objectForKey:@"answer"] forKey:@"id"];
+            [fakeNotification setValue:@"0" forKey:@"nid"];
+            [fakeNotification setValue:@"102" forKey:@"type"];
+            [NotificationManager handleNotification:fakeNotification];
+        } else if ([queryDic objectForKey:@"article"] != nil) {
+            [fakeNotification setValue:[queryDic objectForKey:@"article"] forKey:@"id"];
+            [fakeNotification setValue:@"0" forKey:@"nid"];
+            [fakeNotification setValue:@"117" forKey:@"type"];
+            [NotificationManager handleNotification:fakeNotification];
+        } else {
+            return NO;
+        }
+        
+        return YES;
+    } else {
+        return [WXApi handleOpenURL:url delegate:self];
+    }
 }
 
 // WeChat SDK Delegate

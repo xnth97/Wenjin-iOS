@@ -22,8 +22,8 @@
     if (self) {
         self.viewControllerClasses = @[[ExploreTableViewController class], [ExploreTableViewController class], [ExploreTableViewController class], [ExploreTableViewController class]];
         self.titles = @[@"最新", @"热门", @"推荐", @"待回复"];
-        self.keys = @[@"expType", @"expType", @"expType", @"expType"];
-        self.values = @[@"new", @"hot", @"", @"unresponsive"];
+        self.keys = [@[@"expType", @"expType", @"expType", @"expType"] mutableCopy];
+        self.values = [@[@"new", @"hot", @"", @"unresponsive"] mutableCopy];
         
         // customization
         self.pageAnimatable = YES;

@@ -17,7 +17,6 @@
 		E90F1C561C1ACA03007E110A /* WMMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = E90F1C4C1C1ACA03007E110A /* WMMenuView.m */; };
 		E90F1C571C1ACA03007E110A /* WMProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = E90F1C4E1C1ACA03007E110A /* WMProgressView.m */; };
 		E90F1C581C1ACA03007E110A /* WMScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = E90F1C501C1ACA03007E110A /* WMScrollView.m */; };
-		E90F1C591C1ACA03007E110A /* WJPageController.m in Sources */ = {isa = PBXBuildFile; fileRef = E90F1C531C1ACA03007E110A /* WJPageController.m */; };
 		E90F42741ACD979500263622 /* UserDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E90F42731ACD979500263622 /* UserDataManager.m */; };
 		E90F42781ACE6A4E00263622 /* UserHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = E90F42771ACE6A4E00263622 /* UserHeaderView.m */; };
 		E90F427A1ACE6E5D00263622 /* UserHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E90F42791ACE6E5D00263622 /* UserHeaderView.xib */; };
@@ -59,6 +58,7 @@
 		E952E1671AE520DE00F8B7BF /* FeedbackForm.m in Sources */ = {isa = PBXBuildFile; fileRef = E952E1661AE520DE00F8B7BF /* FeedbackForm.m */; };
 		E952E16A1AE522D500F8B7BF /* FeedbackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E952E1691AE522D500F8B7BF /* FeedbackViewController.m */; };
 		E95537011BA7290F00CAD705 /* jquery.min.js in Resources */ = {isa = PBXBuildFile; fileRef = E95537001BA7290F00CAD705 /* jquery.min.js */; };
+		E95BDA891C4BFD5100EFC107 /* CoreSpotlight.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E95BDA881C4BFD5100EFC107 /* CoreSpotlight.framework */; };
 		E9642E911AC5714800FF7875 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E9642E901AC5714800FF7875 /* main.m */; };
 		E9642E941AC5714800FF7875 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E9642E931AC5714800FF7875 /* AppDelegate.m */; };
 		E9642E9A1AC5714800FF7875 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9642E981AC5714800FF7875 /* Main.storyboard */; };
@@ -84,6 +84,7 @@
 		E995BBD01B7C6F4000146157 /* WebModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E995BBCF1B7C6F4000146157 /* WebModalViewController.m */; };
 		E9A720E21C1DC19A007DB9EF /* DraftPageController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9A720E11C1DC19A007DB9EF /* DraftPageController.m */; };
 		E9AC9E561AD3A4840016CA23 /* wjOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E9AC9E551AD3A4840016CA23 /* wjOperationManager.m */; };
+		E9BD2C071C34125E009E87AB /* WJPageController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9BD2C061C34125E009E87AB /* WJPageController.m */; };
 		E9C1A1C01ACAF21F00892B60 /* QuestionDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E9C1A1BF1ACAF21F00892B60 /* QuestionDataManager.m */; };
 		E9C1A1C41ACBCBB000892B60 /* QuestionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = E9C1A1C31ACBCBB000892B60 /* QuestionHeaderView.m */; };
 		E9C1A1CA1ACC080700892B60 /* bootstrap.css in Resources */ = {isa = PBXBuildFile; fileRef = E9C1A1C81ACC080700892B60 /* bootstrap.css */; };
@@ -166,8 +167,6 @@
 		E90F1C4F1C1ACA03007E110A /* WMScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMScrollView.h; sourceTree = "<group>"; };
 		E90F1C501C1ACA03007E110A /* WMScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMScrollView.m; sourceTree = "<group>"; };
 		E90F1C511C1ACA03007E110A /* WMPageConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMPageConst.h; sourceTree = "<group>"; };
-		E90F1C521C1ACA03007E110A /* WJPageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WJPageController.h; sourceTree = "<group>"; };
-		E90F1C531C1ACA03007E110A /* WJPageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WJPageController.m; sourceTree = "<group>"; };
 		E90F42721ACD979500263622 /* UserDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserDataManager.h; path = Model/Sections/User/UserDataManager.h; sourceTree = "<group>"; };
 		E90F42731ACD979500263622 /* UserDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserDataManager.m; path = Model/Sections/User/UserDataManager.m; sourceTree = "<group>"; };
 		E90F42761ACE6A4E00263622 /* UserHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserHeaderView.h; path = View/UserHeaderView/UserHeaderView.h; sourceTree = "<group>"; };
@@ -244,6 +243,7 @@
 		E952E1681AE522D500F8B7BF /* FeedbackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FeedbackViewController.h; path = Controller/Settings/FeedbackViewController.h; sourceTree = "<group>"; };
 		E952E1691AE522D500F8B7BF /* FeedbackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FeedbackViewController.m; path = Controller/Settings/FeedbackViewController.m; sourceTree = "<group>"; };
 		E95537001BA7290F00CAD705 /* jquery.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = jquery.min.js; sourceTree = "<group>"; };
+		E95BDA881C4BFD5100EFC107 /* CoreSpotlight.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreSpotlight.framework; path = System/Library/Frameworks/CoreSpotlight.framework; sourceTree = SDKROOT; };
 		E9642E8B1AC5714800FF7875 /* Wenjin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wenjin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9642E8F1AC5714800FF7875 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E9642E901AC5714800FF7875 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -292,6 +292,8 @@
 		E9A720E11C1DC19A007DB9EF /* DraftPageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DraftPageController.m; path = Controller/DraftTableController/DraftPageController.m; sourceTree = "<group>"; };
 		E9AC9E541AD3A4840016CA23 /* wjOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = wjOperationManager.h; path = Model/OperationManager/wjOperationManager.h; sourceTree = "<group>"; };
 		E9AC9E551AD3A4840016CA23 /* wjOperationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = wjOperationManager.m; path = Model/OperationManager/wjOperationManager.m; sourceTree = "<group>"; };
+		E9BD2C051C34125E009E87AB /* WJPageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WJPageController.h; sourceTree = "<group>"; };
+		E9BD2C061C34125E009E87AB /* WJPageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WJPageController.m; sourceTree = "<group>"; };
 		E9C1A1BE1ACAF21F00892B60 /* QuestionDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QuestionDataManager.h; path = Model/Sections/Question/QuestionDataManager.h; sourceTree = "<group>"; };
 		E9C1A1BF1ACAF21F00892B60 /* QuestionDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QuestionDataManager.m; path = Model/Sections/Question/QuestionDataManager.m; sourceTree = "<group>"; };
 		E9C1A1C21ACBCBB000892B60 /* QuestionHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QuestionHeaderView.h; path = View/QuestionHeaderView/QuestionHeaderView.h; sourceTree = "<group>"; };
@@ -380,6 +382,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E95BDA891C4BFD5100EFC107 /* CoreSpotlight.framework in Frameworks */,
 				E9FE84AE1B8C63D600482AE4 /* JavaScriptCore.framework in Frameworks */,
 				E90968391AF0B7A600E65F7E /* libz.dylib in Frameworks */,
 				E9025AE61BBEBD2200AEF430 /* libWeChatSDK.a in Frameworks */,
@@ -411,6 +414,7 @@
 		12540291E620BDA86F3DB73E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E95BDA881C4BFD5100EFC107 /* CoreSpotlight.framework */,
 				E9FE84AD1B8C63D600482AE4 /* JavaScriptCore.framework */,
 				E9C804C41B07856F0021C388 /* Security.framework */,
 				E9C804C21B0785600021C388 /* CoreTelephony.framework */,
@@ -453,8 +457,8 @@
 			children = (
 				E90F1C461C1ACA03007E110A /* WMMenuView */,
 				E90F1C511C1ACA03007E110A /* WMPageConst.h */,
-				E90F1C521C1ACA03007E110A /* WJPageController.h */,
-				E90F1C531C1ACA03007E110A /* WJPageController.m */,
+				E9BD2C051C34125E009E87AB /* WJPageController.h */,
+				E9BD2C061C34125E009E87AB /* WJPageController.m */,
 			);
 			name = WJPageController;
 			path = Controller/WJPageController;
@@ -1420,6 +1424,7 @@
 				E9C1A1C01ACAF21F00892B60 /* QuestionDataManager.m in Sources */,
 				E93063C21ACA4E69000140C1 /* PostDataManager.m in Sources */,
 				E9DCE9481B5CF10000076CA3 /* ArticleInfo.m in Sources */,
+				E9BD2C071C34125E009E87AB /* WJPageController.m in Sources */,
 				E995BBD01B7C6F4000146157 /* WebModalViewController.m in Sources */,
 				E90F1C541C1ACA03007E110A /* WMFooldView.m in Sources */,
 				E91D17E21B47CE79003A532E /* wjDatabaseManager.m in Sources */,
@@ -1448,7 +1453,6 @@
 				E91270771B00A7F500E32110 /* NotificationManager.m in Sources */,
 				E90F1C561C1ACA03007E110A /* WMMenuView.m in Sources */,
 				E92388F01B4695A000C3EE3A /* ProfileEditForm.m in Sources */,
-				E90F1C591C1ACA03007E110A /* WJPageController.m in Sources */,
 				E9479EE31AE2AB42003BCE97 /* AboutViewController.m in Sources */,
 				E98EBE7F1B51579B00710B38 /* AnswerInfo.m in Sources */,
 				E9AC9E561AD3A4840016CA23 /* wjOperationManager.m in Sources */,

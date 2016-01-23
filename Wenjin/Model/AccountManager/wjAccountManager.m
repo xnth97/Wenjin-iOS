@@ -20,7 +20,6 @@
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     [manager POST:[NSString stringWithFormat:@"%@?platform=ios", [wjAPIs login]] parameters:parameters progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        
         NSDictionary *loginData = (NSDictionary *)responseObject;
         if ([loginData[@"errno"] isEqual: @1]) {
             NSDictionary *userData = loginData[@"rsm"];

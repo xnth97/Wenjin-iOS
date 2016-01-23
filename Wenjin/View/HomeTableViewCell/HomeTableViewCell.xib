@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment version="2304" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
@@ -23,7 +23,6 @@
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="user &amp; action" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oN2-7f-pPW">
                                         <rect key="frame" x="0.0" y="0.0" width="306" height="24"/>
-                                        <animations/>
                                         <gestureRecognizers/>
                                         <constraints>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="24" id="dbd-sB-ayu"/>
@@ -45,7 +44,6 @@
                                     </label>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholderAvatar" translatesAutoresizingMaskIntoConstraints="NO" id="k2a-Yo-H13">
                                         <rect key="frame" x="314" y="0.0" width="24" height="24"/>
-                                        <animations/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="24" id="8uf-7d-fA0"/>
                                             <constraint firstAttribute="width" constant="24" id="boG-89-UMN"/>
@@ -55,7 +53,6 @@
                                         </variation>
                                     </imageView>
                                 </subviews>
-                                <animations/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="k2a-Yo-H13" secondAttribute="trailing" id="8gI-Hc-HAw"/>
                                     <constraint firstAttribute="height" constant="24" id="aom-4v-eGF"/>
@@ -74,7 +71,6 @@
                             </stackView>
                             <label opaque="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Question" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="52R-Gc-cnl">
                                 <rect key="frame" x="0.0" y="32" width="338" height="23"/>
-                                <animations/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="widthClass=compact" ambiguous="YES">
@@ -86,7 +82,6 @@
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Detail" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qcZ-fN-dgH">
                                 <rect key="frame" x="0.0" y="63" width="338" height="18"/>
-                                <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -98,7 +93,6 @@
                                 </variation>
                             </label>
                         </subviews>
-                        <animations/>
                         <constraints>
                             <constraint firstItem="Jsm-9v-f2g" firstAttribute="leading" secondItem="PX2-KZ-dpW" secondAttribute="leading" id="De1-Ci-nh4"/>
                             <constraint firstAttribute="trailing" secondItem="Jsm-9v-f2g" secondAttribute="trailing" id="zwp-WF-GJy"/>
@@ -106,7 +100,6 @@
                         <variation key="widthClass=compact" alignment="top"/>
                     </stackView>
                 </subviews>
-                <animations/>
                 <gestureRecognizers/>
                 <constraints>
                     <constraint firstAttribute="trailingMargin" secondItem="PX2-KZ-dpW" secondAttribute="trailing" id="6B7-j9-tyx"/>
@@ -115,7 +108,6 @@
                     <constraint firstItem="PX2-KZ-dpW" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="w8q-oq-bXv"/>
                 </constraints>
             </tableViewCellContentView>
-            <animations/>
             <connections>
                 <outlet property="actionLabel" destination="oN2-7f-pPW" id="8JH-Km-1IS"/>
                 <outlet property="avatarView" destination="k2a-Yo-H13" id="xsF-0F-XLX"/>
