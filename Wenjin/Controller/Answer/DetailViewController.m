@@ -26,11 +26,11 @@
 #import "PopMenu.h"
 #import "QuestionViewController.h"
 #import "WebViewJavascriptBridge.h"
-#import "MWPhotoBrowser.h"
+#import "IDMPhotoBrowser.h"
 #import <SafariServices/SafariServices.h>
 #import "WebModalViewController.h"
 
-@interface DetailViewController () <MWPhotoBrowserDelegate>
+@interface DetailViewController ()<IDMPhotoBrowserDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *userAvatarView;
 @property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
@@ -93,17 +93,13 @@
     
     self.title = @"回答";
     self.automaticallyAdjustsScrollViewInsets = YES;
-    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     
-    [WebViewJavascriptBridge enableLogging];
-    bridge = [WebViewJavascriptBridge bridgeForWebView:answerContentView webViewDelegate:self handler:^(id data, WVJBResponseCallback responseCallback) {
-        NSLog(@"ObjC received message from JS: %@", data);
-        responseCallback(@"Response for message from ObjC");
-    }];
+//    [WebViewJavascriptBridge enableLogging];
+    bridge = [WebViewJavascriptBridge bridgeForWebView:answerContentView];
     [bridge registerHandler:@"imgCallback" handler:^(id data, WVJBResponseCallback responseCallback) {
         NSLog(@"Callback: %@", data);
         [self presentHDImageWithURL:data];
-        responseCallback(@"load successfully");
+        responseCallback(@"jsbridge load successfully");
     }];
     
     userNameLabel.text = @"";
@@ -216,14 +212,16 @@
 
 - (IBAction)pushCommentViewController {
 //    AnswerCommentTableViewController *commentVC = [[AnswerCommentTableViewController alloc] initWithStyle:UITableViewStylePlain];
-    CommentViewController *commentVC = [[CommentViewController alloc] init];
-    commentVC.answerId = answerId;
-    commentVC.detailType = detailType;
-    [self.navigationController pushViewController:commentVC animated:YES];
+    if (answerId != nil) {
+        CommentViewController *commentVC = [[CommentViewController alloc] init];
+        commentVC.answerId = answerId;
+        commentVC.detailType = detailType;
+        [self.navigationController pushViewController:commentVC animated:YES];
+    }
 }
 
 - (IBAction)pushQuestionViewController {
-    if (detailType == DetailTypeAnswer) {
+    if (detailType == DetailTypeAnswer && questionId != nil) {
         QuestionViewController *questionVC = [[QuestionViewController alloc] initWithNibName:@"QuestionViewController" bundle:nil];
         questionVC.questionId = questionId;
         [self.navigationController pushViewController:questionVC animated:YES];
@@ -239,7 +237,7 @@
     } else {
         processedHTML = [wjStringProcessor convertToBootstrapHTMLWithExtraBlankLinesWithContent:content];
     }
-    [answerContentView loadHTMLString:processedHTML baseURL:[NSURL URLWithString:[wjAPIs baseURL]]];
+    [answerContentView loadHTMLString:processedHTML baseURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] resourcePath] isDirectory:YES]];
     
     userNameLabel.text = nickName;
     self.title = titleString;
@@ -435,42 +433,11 @@
 }
 
 - (void)presentHDImageWithURL:(NSString *)url {
-//    IDMPhotoBrowser *browser = [[IDMPhotoBrowser alloc] initWithPhotoURLs:@[[NSURL URLWithString:url]]];
-//    browser.displayArrowButton = NO;
-//    browser.displayCounterLabel = NO;
-//    browser.delegate = self;
-//    [self presentViewController:browser animated:YES completion:nil];
-    [photos removeAllObjects];
-    [photos addObject:[MWPhoto photoWithURL:[NSURL URLWithString:url]]];
-    // Create browser (must be done each time photo browser is
-    // displayed. Photo browser objects cannot be re-used)
-    MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
-    
-    // Set options
-    browser.displayActionButton = YES; // Show action button to allow sharing, copying, etc (defaults to YES)
-    browser.displayNavArrows = NO; // Whether to display left and right nav arrows on toolbar (defaults to NO)
-    browser.displaySelectionButtons = NO; // Whether selection buttons are shown on each image (defaults to NO)
-    browser.zoomPhotosToFill = YES; // Images that almost fill the screen will be initially zoomed to fill (defaults to YES)
-    browser.alwaysShowControls = NO; // Allows to control whether the bars and controls are always visible or whether they fade away to show the photo full (defaults to NO)
-    browser.enableGrid = YES; // Whether to allow the viewing of all the photo thumbnails on a grid (defaults to YES)
-    browser.startOnGrid = NO; // Whether to start on the grid of thumbnails instead of the first photo (defaults to NO)
-    browser.autoPlayOnAppear = NO; // Auto-play first video
-    
-    [self.navigationController pushViewController:browser animated:YES];
-}
-
-#pragma mark - MWPhotoBrowserDelegate
-
-- (NSUInteger)numberOfPhotosInPhotoBrowser:(MWPhotoBrowser *)photoBrowser {
-    return 1;
-}
-
-- (id<MWPhoto>)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index {
-    if (index < photos.count) {
-        return photos[index];
-    } else {
-        return nil;
-    }
+    IDMPhotoBrowser *browser = [[IDMPhotoBrowser alloc] initWithPhotoURLs:@[[NSURL URLWithString:url]]];
+    browser.displayArrowButton = NO;
+    browser.displayCounterLabel = NO;
+    browser.delegate = self;
+    [self presentViewController:browser animated:YES completion:nil];
 }
 
 #pragma mark - UIWebViewDelegate

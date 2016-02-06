@@ -29,39 +29,37 @@ PODS:
   - BlocksKit/UIKit (2.2.5):
     - BlocksKit/Core
     - BlocksKit/DynamicDelegate
-  - ChameleonFramework (2.0.6):
-    - ChameleonFramework/Default (= 2.0.6)
-  - ChameleonFramework/Default (2.0.6)
+  - ChameleonFramework (2.1.0):
+    - ChameleonFramework/Default (= 2.1.0)
+  - ChameleonFramework/Default (2.1.0)
   - CRToast (0.0.9)
   - DACircularProgress (2.3.1)
-  - DZNEmptyDataSet (1.7.2)
+  - DZNEmptyDataSet (1.7.3)
   - FDStackView (1.0-alpha)
-  - FMDB (2.5):
-    - FMDB/standard (= 2.5)
-  - FMDB/common (2.5)
-  - FMDB/standard (2.5):
-    - FMDB/common
+  - FMDB (2.6):
+    - FMDB/standard (= 2.6)
+  - FMDB/standard (2.6)
   - FXForms (1.2.14)
-  - JZNavigationExtension (1.3.0)
+  - IDMPhotoBrowser (1.8.1):
+    - DACircularProgress
+    - pop
+    - SDWebImage
+  - JZNavigationExtension (1.3.4)
   - KVOController (1.0.3)
-  - MBProgressHUD (0.9.1)
-  - MJExtension (3.0.7)
-  - MWPhotoBrowser (2.1.1):
-    - DACircularProgress (~> 2.3)
-    - MBProgressHUD (~> 0.9)
-    - SDWebImage (!= 3.7.2, ~> 3.7)
+  - MJExtension (3.0.10)
   - NYSegmentedControl (1.0.7)
-  - pop (1.0.8)
+  - pop (1.0.9)
   - PopMenu (2.4):
     - pop
     - XHRealTimeBlur
-  - SDWebImage (3.7.3):
-    - SDWebImage/Core (= 3.7.3)
-  - SDWebImage/Core (3.7.3)
-  - SlackTextViewController (1.7.2)
+  - RongCloudIMKit (2.4.0)
+  - SDWebImage (3.7.5):
+    - SDWebImage/Core (= 3.7.5)
+  - SDWebImage/Core (3.7.5)
+  - SlackTextViewController (1.9)
   - SVPullToRefresh (0.4.1)
   - SVWebViewController (HEAD based on 1.0)
-  - WebViewJavascriptBridge (4.1.4)
+  - WebViewJavascriptBridge (5.0.5)
   - XHRealTimeBlur (1.7)
 
 DEPENDENCIES:
@@ -73,13 +71,14 @@ DEPENDENCIES:
   - FDStackView (= 1.0-alpha)
   - FMDB
   - FXForms
+  - IDMPhotoBrowser
   - JZNavigationExtension
   - KVOController
   - MJExtension
-  - MWPhotoBrowser
   - NYSegmentedControl
   - pop
   - PopMenu
+  - RongCloudIMKit (= 2.4.0)
   - SlackTextViewController
   - SVPullToRefresh
   - SVWebViewController (HEAD)
@@ -88,26 +87,26 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   AFNetworking: a0075feb321559dc78d9d85b55d11caa19eabb93
   BlocksKit: 7f422b971407001178d181a43b99014ea2591fe6
-  ChameleonFramework: a6b466873ff9a4ce3a5196c20bccf1a97ad9f446
+  ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
   CRToast: 5a78c22b921c5ed3487488af605bc403a9c92fed
   DACircularProgress: 4dd437c0fc3da5161cb289e07ac449493d41db71
-  DZNEmptyDataSet: 0ec00bfc230d7450997b60c127afdd0b9f24f3b6
+  DZNEmptyDataSet: dd7cca17c1d07dfa78956859b1e70a52505678ef
   FDStackView: 6abd2cdb128430264d5c6e87277629abad222f20
-  FMDB: 96e8f1bcc1329e269330f99770ad4285d9003e52
+  FMDB: c1968bab3ab0aed38f66cb778ae1e7fa9a652b6e
   FXForms: 724500c0c3f3eb3ba1004b3b83abcee55d3daf18
-  JZNavigationExtension: d4573c6461f979a8b4a7ba8c0055e4eb89b9ed1f
+  IDMPhotoBrowser: 99eccfe6431e182f64e2fe57ac654316fbf81576
+  JZNavigationExtension: 63bdb8d2b9fe724ea6ca6dd29bfd0302dea36f79
   KVOController: 9fd8f0343670994e4b6f9f0b31f5a45663f3e1cf
-  MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
-  MJExtension: 290cc966f0f849b12b6391a38e296e0004ae8e5e
-  MWPhotoBrowser: ba0d0c09ffda3a7ea10093518738c502c1c7141c
+  MJExtension: d86aacb740c87519d20e3cca55b6fa4be6cc7548
   NYSegmentedControl: 55b4f9eb652767cae9799623ec3e49e50029ef47
-  pop: bb773ae2c791ca2629de13b347e7a8b450fa6a57
+  pop: f667631a5108a2e60d9e8797c9b32ddaf2080bce
   PopMenu: 26b97baeaf250070f4f61b93727ca86d127d7bc5
-  SDWebImage: 1d2b1a1efda1ade1b00b6f8498865f8ddedc8a84
-  SlackTextViewController: 1f4e8f68c156ef93de73fd422db2b8d5d5b0f4e7
+  RongCloudIMKit: c2cb0013452b98b38267d395b6155665344db96e
+  SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
+  SlackTextViewController: d51503f7be846cb9976a273499dc90f2445e9447
   SVPullToRefresh: ba2e718695a43253d8bea6852d2960097dc15d8c
   SVWebViewController: c36dda7326e81fcae0abf5d02bf7bbf7e41be901
-  WebViewJavascriptBridge: f10ac16f2cd3adf2b941bd79477c55a8f6e01044
+  WebViewJavascriptBridge: a4d502315f1b8d9a51cd6a9174147ed567ec3bc5
   XHRealTimeBlur: 661fadd5691ba2d349758e8fd5fbdb499ac55f8c
 
 COCOAPODS: 0.39.0

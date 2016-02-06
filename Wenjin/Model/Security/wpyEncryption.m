@@ -13,8 +13,7 @@ static char base64[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123
 
 @implementation NSData (wpyEncryption)
 
-- (NSData *)AES256EncryptWithKey:(NSString *)key   //加密
-{
+- (NSData *)AES256EncryptWithKey:(NSString *)key {
     char keyPtr[kCCKeySizeAES256+1];
     bzero(keyPtr, sizeof(keyPtr));
     [key getCString:keyPtr maxLength:sizeof(keyPtr) encoding:NSUTF8StringEncoding];
@@ -37,8 +36,7 @@ static char base64[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123
     return nil;
 }
 
-- (NSData *)AES256DecryptWithKey:(NSString *)key   //解密
-{
+- (NSData *)AES256DecryptWithKey:(NSString *)key {
     char keyPtr[kCCKeySizeAES256+1];
     bzero(keyPtr, sizeof(keyPtr));
     [key getCString:keyPtr maxLength:sizeof(keyPtr) encoding:NSUTF8StringEncoding];
@@ -61,8 +59,7 @@ static char base64[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123
     return nil;
 }
 
-- (NSString *)newStringInBase64FromData            //追加64编码
-{
+- (NSString *)newStringInBase64FromData {
     NSMutableString *dest = [[NSMutableString alloc] initWithString:@""];
     unsigned char * working = (unsigned char *)[self bytes];
     NSInteger srcLen = [self length];
@@ -79,8 +76,7 @@ static char base64[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123
     return dest;
 }
 
-+ (NSString*)base64encode:(NSString*)str
-{
++ (NSString*)base64encode:(NSString*)str {
     if ([str length] == 0)
         return @"";
     const char *source = [str UTF8String];

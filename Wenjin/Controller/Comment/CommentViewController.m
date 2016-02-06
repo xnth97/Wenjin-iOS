@@ -55,6 +55,7 @@
     self.keyboardPanningEnabled = YES;
     self.shouldScrollToBottomAfterKeyboardShows = NO;
     self.inverted = NO;
+//    self.edgesForExtendedLayout = UIRectEdgeNone;
     
     currentPage = 1;
     

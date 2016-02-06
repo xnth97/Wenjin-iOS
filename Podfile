@@ -15,10 +15,11 @@ pod 'SlackTextViewController'
 pod 'SVWebViewController', :head
 pod 'JZNavigationExtension'
 pod 'WebViewJavascriptBridge'
-pod 'MWPhotoBrowser'
+pod 'IDMPhotoBrowser'
 pod 'CRToast'
 pod "FDStackView", "1.0-alpha"
 pod 'FMDB'
+pod 'RongCloudIMKit', '2.4.0'
 
 target 'Wenjin' do
 

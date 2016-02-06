@@ -80,6 +80,7 @@
         NSString *responsiveImgStr = [NSString stringWithFormat:@"<img class=\"img-responsive\" alt=\"Responsive image\" src=\"%@\" width=100%%/>",imgPath];
         
         contentStr = [contentStr stringByReplacingOccurrencesOfString:originalImgStr withString:responsiveImgStr];
+        contentStr = [contentStr stringByReplacingOccurrencesOfString:@"http://wenjin.in/static/js/app/app.js" withString:@""];
     }
     return contentStr;
 }
@@ -114,27 +115,25 @@
 
     contentStr = [self replaceHTMLLabelsFromContent:contentStr];
     
-    NSString *cssPath = [[NSBundle mainBundle]pathForResource:@"bootstrap" ofType:@"css"];
-    NSString *jsPath = [[NSBundle mainBundle]pathForResource:@"bootstrap.min" ofType:@"js"];
-    NSString *jqueryPath = [[NSBundle mainBundle] pathForResource:@"jquery.min" ofType:@"js"];
     NSString *load = [NSString stringWithFormat:@"<!DOCTYPE html> \n"
                       "<html> \n"
                       "<head> \n"
                       "<meta charset=\"utf-8\"> \n"
                       "<meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\"> \n"
                       "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"> \n"
-                      "<link href=\"%@\" rel=\"stylesheet\"> \n"
+                      "<link href=\"bootstrap.css\" rel=\"stylesheet\"> \n"
                       "</head> \n"
                       "<body> \n"
                       "<div class=\"container\"> \n"
                       "<div class=\"row\"> \n"
-                      "<div class=\"col-sm-12\" style=\"margin-left:8px; margin-right:8px; font-size:16px; line-height:1.5;\"> <br><br><br> \n" // 这个 br 用来换行到 userInfoView 以下
+                      "<div class=\"col-sm-12\" style=\"font-size: 16px;\"><br><br><br> \n" // 这个 br 用来换行到 userInfoView 以下
                       "%@ \n"
                       "</div></div><br><br></div> \n" // 这个 br 用于不被 toolbar 遮挡
-                      "<script src=\"%@\"></script> \n"
-                      "<script src=\"%@\"></script> \n"
+                      "<script src=\"bootstrap.min.js\"></script> \n"
+                      "<script src=\"jquery.min.js\"></script> \n"
+                      "<script src=\"bridge.js\" type=\"text/javascript\"></script> \n"
                       "</body> \n"
-                      "</html>" , cssPath, contentStr, jsPath, jqueryPath];
+                      "</html>" , contentStr];
     
     return load;
 }
@@ -147,29 +146,31 @@
     [dateFormatter setDateFormat:@"yyyy年MM月dd日 HH:mm"];
     NSString *dateString = [dateFormatter stringFromDate:date];
     
-    NSString *cssPath = [[NSBundle mainBundle]pathForResource:@"bootstrap" ofType:@"css"];
-    NSString *jsPath = [[NSBundle mainBundle]pathForResource:@"bootstrap.min" ofType:@"js"];
-    NSString *jqueryPath = [[NSBundle mainBundle] pathForResource:@"jquery.min" ofType:@"js"];
+//    NSString *cssPath = [[NSBundle mainBundle] pathForResource:@"bootstrap" ofType:@"css"];
+//    NSString *jsPath = [[NSBundle mainBundle] pathForResource:@"bootstrap.min" ofType:@"js"];
+//    NSString *jqueryPath = [[NSBundle mainBundle] pathForResource:@"jquery.min" ofType:@"js"];
+//    NSString *bridgePath = [[NSBundle mainBundle] pathForResource:@"bridge" ofType:@"js"];
     NSString *load = [NSString stringWithFormat:@"<!DOCTYPE html> \n"
                       "<html> \n"
                       "<head> \n"
                       "<meta charset=\"utf-8\"> \n"
                       "<meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\"> \n"
                       "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"> \n"
-                      "<link href=\"%@\" rel=\"stylesheet\"> \n"
+                      "<link href=\"bootstrap.css\" rel=\"stylesheet\"> \n"
                       "</head> \n"
                       "<body> \n"
                       "<div class=\"container\"> \n"
                       "<div class=\"row\"> \n"
-                      "<div class=\"col-sm-12\" style=\"margin-left:8px; margin-right:8px; font-size:16px; line-height:1.5; font-family: sans-serif;\"> <br><br><br> \n" // 这个 br 用来换行到 userInfoView 以下
+                      "<div class=\"col-sm-12\" style=\"font-size: 16px;\"><br><br><br> \n" // 这个 br 用来换行到 userInfoView 以下
                       "%@ \n"
                       "</div><br>"
-                      "<div class=\"row\"><div class=\"col-sm-12\" style=\"margin-left:8px; margin-right:8px; font-size:16px; line-height:1.5; text-align: right; font-family: sans-serif; color: #999999;\">%@</div></div>"
-                      "<br><br></div></div> \n" // 这个 br 用于不被 toolbar 遮挡
-                      "<script src=\"%@\"></script> \n"
-                      "<script src=\"%@\"></script> \n"
+                      "<div class=\"col-sm-12\" style=\"font-size: 16px; text-align: right; color: #999999;\">%@</div></div>"
+                      "<br><br></div> \n" // 这个 br 用于不被 toolbar 遮挡
+                      "<script src=\"bootstrap.min.js\"></script> \n"
+                      "<script src=\"jquery.min.js\"></script> \n"
+                      "<script src=\"bridge.js\" type=\"text/javascript\"></script> \n"
                       "</body> \n"
-                      "</html>" , cssPath, contentStr, dateString, jsPath, jqueryPath];
+                      "</html>" , contentStr, dateString];
     
     return load;
 }

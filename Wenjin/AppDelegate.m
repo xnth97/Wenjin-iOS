@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "wjAPIs.h"
 #import "NotificationManager.h"
+#import <RongIMKit/RongIMKit.h>
 #import "data.h"
 
 @interface AppDelegate ()
@@ -30,6 +31,10 @@
                                                        UIUserNotificationTypeAlert)
                                            categories:nil];
     [APService setupWithOption:launchOptions];
+    
+    // RongCloud
+    [[RCIM sharedRCIM] initWithAppKey:[wjAPIs rongCloudAppKey]];
+    
     return YES;
 }
 
@@ -74,6 +79,8 @@
             [queryDic setObject:value forKey:key];
         }
         
+        // 构造一个假的 notification 对象从而可以直接调用处理通知的方法
+        // 当然这种方法只是偷懒，之后需要重构
         NSMutableDictionary *fakeNotification = [[NSMutableDictionary alloc] init];
         if ([queryDic objectForKey:@"user"] != nil) {
             [fakeNotification setValue:[queryDic objectForKey:@"user"] forKey:@"id"];
@@ -98,7 +105,6 @@
         } else {
             return NO;
         }
-        
         return YES;
     } else {
         return [WXApi handleOpenURL:url delegate:self];
@@ -134,7 +140,6 @@
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
     
-    // IOS 7 Support Required
     [APService handleRemoteNotification:userInfo];
     // Process UserInfo
     // UserInfo 结构如下：
