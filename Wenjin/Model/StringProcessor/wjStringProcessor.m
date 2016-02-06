@@ -87,26 +87,26 @@
 
 + (NSString *)convertToBootstrapHTMLWithContent:(NSString *)contentStr {
     contentStr = [self replaceHTMLLabelsFromContent:contentStr];
-    
-    NSString *cssPath = [[NSBundle mainBundle]pathForResource:@"bootstrap" ofType:@"css"];
-    NSString *jsPath = [[NSBundle mainBundle]pathForResource:@"bootstrap.min" ofType:@"js"];
+
     NSString *load = [NSString stringWithFormat:@"<!DOCTYPE html> \n"
                       "<html> \n"
                       "<head> \n"
                       "<meta charset=\"utf-8\"> \n"
                       "<meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\"> \n"
                       "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"> \n"
-                      "<link href=\"%@\" rel=\"stylesheet\"> \n"
+                      "<link href=\"bootstrap.css\" rel=\"stylesheet\"> \n"
                       "</head> \n"
                       "<body> \n"
                       "<div class=\"container\"> \n"
                       "<div class=\"row\"> \n"
-                      "<div class=\"col-sm-12\" style=\"margin-left:8px; margin-right:8px; font-size:16px; line-height:1.5; font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;\"> \n"
+                      "<div class=\"col-sm-12\" style=\"font-size:16px;\"> \n"
                       "%@ \n"
                       "</div></div></div> \n"
-                      "<script src=\"%@\"></script> \n"
+                      "<script src=\"bootstrap.min.js\"></script> \n"
+                      "<script src=\"jquery.min.js\"></script> \n"
+                      "<script src=\"bridge.js\"></script> \n"
                       "</body> \n"
-                      "</html>" , cssPath, contentStr, jsPath];
+                      "</html>" , contentStr];
     
     return load;
 }
@@ -146,10 +146,6 @@
     [dateFormatter setDateFormat:@"yyyy年MM月dd日 HH:mm"];
     NSString *dateString = [dateFormatter stringFromDate:date];
     
-//    NSString *cssPath = [[NSBundle mainBundle] pathForResource:@"bootstrap" ofType:@"css"];
-//    NSString *jsPath = [[NSBundle mainBundle] pathForResource:@"bootstrap.min" ofType:@"js"];
-//    NSString *jqueryPath = [[NSBundle mainBundle] pathForResource:@"jquery.min" ofType:@"js"];
-//    NSString *bridgePath = [[NSBundle mainBundle] pathForResource:@"bridge" ofType:@"js"];
     NSString *load = [NSString stringWithFormat:@"<!DOCTYPE html> \n"
                       "<html> \n"
                       "<head> \n"
@@ -165,7 +161,7 @@
                       "%@ \n"
                       "</div><br>"
                       "<div class=\"col-sm-12\" style=\"font-size: 16px; text-align: right; color: #999999;\">%@</div></div>"
-                      "<br><br></div> \n" // 这个 br 用于不被 toolbar 遮挡
+                      "<br><br><br></div> \n" // 这个 br 用于不被 toolbar 遮挡
                       "<script src=\"bootstrap.min.js\"></script> \n"
                       "<script src=\"jquery.min.js\"></script> \n"
                       "<script src=\"bridge.js\" type=\"text/javascript\"></script> \n"

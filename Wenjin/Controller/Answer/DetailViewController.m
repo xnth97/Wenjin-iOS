@@ -211,7 +211,6 @@
 #pragma mark - IBActions
 
 - (IBAction)pushCommentViewController {
-//    AnswerCommentTableViewController *commentVC = [[AnswerCommentTableViewController alloc] initWithStyle:UITableViewStylePlain];
     if (answerId != nil) {
         CommentViewController *commentVC = [[CommentViewController alloc] init];
         commentVC.answerId = answerId;

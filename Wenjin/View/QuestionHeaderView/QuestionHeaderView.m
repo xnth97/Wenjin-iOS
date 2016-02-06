@@ -78,7 +78,7 @@
         [detailView.scrollView addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew context:NULL];
         detailView.frame = CGRectMake(0, 42 + questionTitle.frame.size.height, width, 1);
         if (![questionInfo.questionDetail isEqualToString:@""]) {
-            [detailView loadHTMLString:[wjStringProcessor convertToBootstrapHTMLWithContent:questionInfo.questionDetail] baseURL:[NSURL URLWithString:[wjAPIs baseURL]]];
+            [detailView loadHTMLString:[wjStringProcessor convertToBootstrapHTMLWithContent:questionInfo.questionDetail] baseURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] resourcePath] isDirectory:YES]];
             detailView.delegate = self;
         }
         detailView.hidden = NO;
