@@ -1,18 +1,18 @@
 PODS:
-  - AFNetworking (3.0.4):
-    - AFNetworking/NSURLSession (= 3.0.4)
-    - AFNetworking/Reachability (= 3.0.4)
-    - AFNetworking/Security (= 3.0.4)
-    - AFNetworking/Serialization (= 3.0.4)
-    - AFNetworking/UIKit (= 3.0.4)
-  - AFNetworking/NSURLSession (3.0.4):
+  - AFNetworking (3.1.0):
+    - AFNetworking/NSURLSession (= 3.1.0)
+    - AFNetworking/Reachability (= 3.1.0)
+    - AFNetworking/Security (= 3.1.0)
+    - AFNetworking/Serialization (= 3.1.0)
+    - AFNetworking/UIKit (= 3.1.0)
+  - AFNetworking/NSURLSession (3.1.0):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/Reachability (3.0.4)
-  - AFNetworking/Security (3.0.4)
-  - AFNetworking/Serialization (3.0.4)
-  - AFNetworking/UIKit (3.0.4):
+  - AFNetworking/Reachability (3.1.0)
+  - AFNetworking/Security (3.1.0)
+  - AFNetworking/Serialization (3.1.0)
+  - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
   - BlocksKit (2.2.5):
     - BlocksKit/All (= 2.2.5)
@@ -32,33 +32,32 @@ PODS:
   - ChameleonFramework (2.1.0):
     - ChameleonFramework/Default (= 2.1.0)
   - ChameleonFramework/Default (2.1.0)
-  - CRToast (0.0.9)
   - DACircularProgress (2.3.1)
-  - DZNEmptyDataSet (1.7.3)
-  - FDStackView (1.0-alpha)
-  - FMDB (2.6):
-    - FMDB/standard (= 2.6)
-  - FMDB/standard (2.6)
+  - DZNEmptyDataSet (1.8)
+  - FDStackView (1.0)
+  - FMDB (2.6.2):
+    - FMDB/standard (= 2.6.2)
+  - FMDB/standard (2.6.2)
   - FXForms (1.2.14)
-  - IDMPhotoBrowser (1.8.1):
+  - IDMPhotoBrowser (1.8.4):
     - DACircularProgress
     - pop
     - SDWebImage
-  - JZNavigationExtension (1.3.4)
-  - KVOController (1.0.3)
+  - JZNavigationExtension (1.4.7)
+  - KVOController (1.1.0)
   - MJExtension (3.0.10)
   - NYSegmentedControl (1.0.7)
   - pop (1.0.9)
   - PopMenu (2.4):
     - pop
     - XHRealTimeBlur
-  - RongCloudIMKit (2.4.0)
   - SDWebImage (3.7.5):
     - SDWebImage/Core (= 3.7.5)
   - SDWebImage/Core (3.7.5)
-  - SlackTextViewController (1.9)
+  - SlackTextViewController (1.9.2)
+  - SVProgressHUD (2.0.3)
   - SVPullToRefresh (0.4.1)
-  - SVWebViewController (HEAD based on 1.0)
+  - SVWebViewController (1.0)
   - WebViewJavascriptBridge (5.0.5)
   - XHRealTimeBlur (1.7)
 
@@ -66,9 +65,8 @@ DEPENDENCIES:
   - AFNetworking
   - BlocksKit
   - ChameleonFramework
-  - CRToast
   - DZNEmptyDataSet
-  - FDStackView (= 1.0-alpha)
+  - FDStackView
   - FMDB
   - FXForms
   - IDMPhotoBrowser
@@ -78,35 +76,36 @@ DEPENDENCIES:
   - NYSegmentedControl
   - pop
   - PopMenu
-  - RongCloudIMKit (= 2.4.0)
   - SlackTextViewController
+  - SVProgressHUD
   - SVPullToRefresh
-  - SVWebViewController (HEAD)
+  - SVWebViewController
   - WebViewJavascriptBridge
 
 SPEC CHECKSUMS:
-  AFNetworking: a0075feb321559dc78d9d85b55d11caa19eabb93
+  AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   BlocksKit: 7f422b971407001178d181a43b99014ea2591fe6
   ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
-  CRToast: 5a78c22b921c5ed3487488af605bc403a9c92fed
   DACircularProgress: 4dd437c0fc3da5161cb289e07ac449493d41db71
-  DZNEmptyDataSet: dd7cca17c1d07dfa78956859b1e70a52505678ef
-  FDStackView: 6abd2cdb128430264d5c6e87277629abad222f20
-  FMDB: c1968bab3ab0aed38f66cb778ae1e7fa9a652b6e
+  DZNEmptyDataSet: d2351b2e8daefa40433ef292e246e21f6be31a7b
+  FDStackView: 3a4bbe0ce9c35e974246a585168b9da8c32213f1
+  FMDB: 854a0341b4726e53276f2a8996f06f1b80f9259a
   FXForms: 724500c0c3f3eb3ba1004b3b83abcee55d3daf18
-  IDMPhotoBrowser: 99eccfe6431e182f64e2fe57ac654316fbf81576
-  JZNavigationExtension: 63bdb8d2b9fe724ea6ca6dd29bfd0302dea36f79
-  KVOController: 9fd8f0343670994e4b6f9f0b31f5a45663f3e1cf
+  IDMPhotoBrowser: b574fe3229754e701f32df271afbc4ac7e4e1997
+  JZNavigationExtension: 235f57793791de029dd3e6cf785821abf75eeff1
+  KVOController: 321b5fc59300fcaabd42c0f679baa7a27efbb2fd
   MJExtension: d86aacb740c87519d20e3cca55b6fa4be6cc7548
   NYSegmentedControl: 55b4f9eb652767cae9799623ec3e49e50029ef47
   pop: f667631a5108a2e60d9e8797c9b32ddaf2080bce
   PopMenu: 26b97baeaf250070f4f61b93727ca86d127d7bc5
-  RongCloudIMKit: c2cb0013452b98b38267d395b6155665344db96e
   SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
-  SlackTextViewController: d51503f7be846cb9976a273499dc90f2445e9447
+  SlackTextViewController: bac3350ccc639bc446bb14cbd09da238f5e01f32
+  SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
   SVPullToRefresh: ba2e718695a43253d8bea6852d2960097dc15d8c
   SVWebViewController: c36dda7326e81fcae0abf5d02bf7bbf7e41be901
   WebViewJavascriptBridge: a4d502315f1b8d9a51cd6a9174147ed567ec3bc5
   XHRealTimeBlur: 661fadd5691ba2d349758e8fd5fbdb499ac55f8c
 
-COCOAPODS: 0.39.0
+PODFILE CHECKSUM: 3ceaf41d6bcb77fda01ac90ba3d3a6b56c624a27
+
+COCOAPODS: 1.0.0.rc.2

@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CF6A6D91415074A7D8441D4C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 41BFEB2A3405F2318C5DCF7D /* libPods.a */; };
+		757BB0A1638B5F456A8CF908 /* libPods-Wenjin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 220E5C70796A1DAD97E3FE83 /* libPods-Wenjin.a */; };
+		94D18CFD9E73FE1F628C7DE9 /* libPods-WenjinTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A805F5C3AC6EAEEF34AC41A3 /* libPods-WenjinTests.a */; };
 		E9025AE61BBEBD2200AEF430 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E9025AE21BBEBD2200AEF430 /* libWeChatSDK.a */; };
 		E90968371AF0B79B00E65F7E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E90968361AF0B79B00E65F7E /* SystemConfiguration.framework */; };
 		E90968391AF0B7A600E65F7E /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E90968381AF0B7A600E65F7E /* libz.dylib */; };
@@ -164,9 +165,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		41BFEB2A3405F2318C5DCF7D /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		99C1D034404BBB2CDDB8DD79 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
-		9CFC932D72517F9951FCBB16 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		220E5C70796A1DAD97E3FE83 /* libPods-Wenjin.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Wenjin.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		494EDC600261442283ABA86F /* Pods-Wenjin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wenjin.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Wenjin/Pods-Wenjin.debug.xcconfig"; sourceTree = "<group>"; };
+		7CC70EA511072F1AB807A811 /* Pods-Wenjin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wenjin.release.xcconfig"; path = "Pods/Target Support Files/Pods-Wenjin/Pods-Wenjin.release.xcconfig"; sourceTree = "<group>"; };
+		A805F5C3AC6EAEEF34AC41A3 /* libPods-WenjinTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WenjinTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BAD956E3962216B7E5B13BDC /* Pods-WenjinTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WenjinTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-WenjinTests/Pods-WenjinTests.release.xcconfig"; sourceTree = "<group>"; };
+		D255A371A9EE0164C5567CDA /* Pods-WenjinTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WenjinTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WenjinTests/Pods-WenjinTests.debug.xcconfig"; sourceTree = "<group>"; };
 		E9025AE21BBEBD2200AEF430 /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
 		E9025AE41BBEBD2200AEF430 /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
 		E9025AE51BBEBD2200AEF430 /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
@@ -447,7 +451,7 @@
 				E9D56EF81ADE2AD500C54466 /* QuartzCore.framework in Frameworks */,
 				E9D56EF41ADE2AC800C54466 /* Foundation.framework in Frameworks */,
 				E9D56EF21ADE2AC000C54466 /* UIKit.framework in Frameworks */,
-				CF6A6D91415074A7D8441D4C /* libPods.a in Frameworks */,
+				757BB0A1638B5F456A8CF908 /* libPods-Wenjin.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -455,6 +459,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				94D18CFD9E73FE1F628C7DE9 /* libPods-WenjinTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -493,16 +498,19 @@
 				E9D56EF51ADE2ACE00C54466 /* CoreGraphics.framework */,
 				E9D56EF31ADE2AC800C54466 /* Foundation.framework */,
 				E9D56EF11ADE2AC000C54466 /* UIKit.framework */,
-				41BFEB2A3405F2318C5DCF7D /* libPods.a */,
+				220E5C70796A1DAD97E3FE83 /* libPods-Wenjin.a */,
+				A805F5C3AC6EAEEF34AC41A3 /* libPods-WenjinTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		77EC5A48F92AC3FA825FB183 /* Pods */ = {
+		CCAA5AEB2A38B37878059521 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				9CFC932D72517F9951FCBB16 /* Pods.debug.xcconfig */,
-				99C1D034404BBB2CDDB8DD79 /* Pods.release.xcconfig */,
+				494EDC600261442283ABA86F /* Pods-Wenjin.debug.xcconfig */,
+				7CC70EA511072F1AB807A811 /* Pods-Wenjin.release.xcconfig */,
+				D255A371A9EE0164C5567CDA /* Pods-WenjinTests.debug.xcconfig */,
+				BAD956E3962216B7E5B13BDC /* Pods-WenjinTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -742,8 +750,8 @@
 				E9642E8D1AC5714800FF7875 /* Wenjin */,
 				E9642EA71AC5714800FF7875 /* WenjinTests */,
 				E9642E8C1AC5714800FF7875 /* Products */,
-				77EC5A48F92AC3FA825FB183 /* Pods */,
 				12540291E620BDA86F3DB73E /* Frameworks */,
+				CCAA5AEB2A38B37878059521 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1274,12 +1282,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E9642EAE1AC5714800FF7875 /* Build configuration list for PBXNativeTarget "Wenjin" */;
 			buildPhases = (
-				F1DEEB7BA95FD97BB5627C4C /* Check Pods Manifest.lock */,
+				56434D55ED309489163E30CC /* 📦 Check Pods Manifest.lock */,
 				E9642E871AC5714800FF7875 /* Sources */,
 				E9642E881AC5714800FF7875 /* Frameworks */,
 				E9642E891AC5714800FF7875 /* Resources */,
-				648E0205E0909D65668AEE32 /* Copy Pods Resources */,
-				F9EF97E5138A9DAB28A74F37 /* Embed Pods Frameworks */,
+				EB4658534099C75CEFA27A32 /* 📦 Embed Pods Frameworks */,
+				8DFC86685039B3357EA1BAE3 /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1294,9 +1302,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E9642EB11AC5714800FF7875 /* Build configuration list for PBXNativeTarget "WenjinTests" */;
 			buildPhases = (
+				E123A32FAAC3B0108A339FF3 /* 📦 Check Pods Manifest.lock */,
 				E9642EA01AC5714800FF7875 /* Sources */,
 				E9642EA11AC5714800FF7875 /* Frameworks */,
 				E9642EA21AC5714800FF7875 /* Resources */,
+				A293C0EB7C3A20799E7CEB18 /* 📦 Embed Pods Frameworks */,
+				BF6946EFAD9C68B265DB48BB /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1394,29 +1405,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		648E0205E0909D65668AEE32 /* Copy Pods Resources */ = {
+		56434D55ED309489163E30CC /* 📦 Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		F1DEEB7BA95FD97BB5627C4C /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
+			name = "📦 Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1424,19 +1420,79 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		F9EF97E5138A9DAB28A74F37 /* Embed Pods Frameworks */ = {
+		8DFC86685039B3357EA1BAE3 /* 📦 Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "📦 Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Wenjin/Pods-Wenjin-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A293C0EB7C3A20799E7CEB18 /* 📦 Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WenjinTests/Pods-WenjinTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BF6946EFAD9C68B265DB48BB /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WenjinTests/Pods-WenjinTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E123A32FAAC3B0108A339FF3 /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		EB4658534099C75CEFA27A32 /* 📦 Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Wenjin/Pods-Wenjin-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1666,7 +1722,7 @@
 		};
 		E9642EAF1AC5714800FF7875 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9CFC932D72517F9951FCBB16 /* Pods.debug.xcconfig */;
+			baseConfigurationReference = 494EDC600261442283ABA86F /* Pods-Wenjin.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -1702,7 +1758,7 @@
 		};
 		E9642EB01AC5714800FF7875 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 99C1D034404BBB2CDDB8DD79 /* Pods.release.xcconfig */;
+			baseConfigurationReference = 7CC70EA511072F1AB807A811 /* Pods-Wenjin.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
@@ -1738,6 +1794,7 @@
 		};
 		E9642EB21AC5714800FF7875 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D255A371A9EE0164C5567CDA /* Pods-WenjinTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				ENABLE_BITCODE = NO;
@@ -1759,6 +1816,7 @@
 		};
 		E9642EB31AC5714800FF7875 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BAD956E3962216B7E5B13BDC /* Pods-WenjinTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				ENABLE_BITCODE = NO;

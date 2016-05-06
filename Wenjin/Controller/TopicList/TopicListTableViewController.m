@@ -16,7 +16,7 @@
 #import "UserViewController.h"
 #import "wjAppearanceManager.h"
 #import "TopicInfo.h"
-#import "UINavigationController+JZExtension.h"
+#import "JZNavigationExtension.h"
 #import "SearchViewController.h"
 #import "TopicViewController.h"
 
@@ -46,7 +46,7 @@
     self.clearsSelectionOnViewWillAppear = YES;
     self.tableView.tableFooterView = [[UIView alloc]init];
     self.navigationController.view.backgroundColor = [UIColor whiteColor];
-    self.navigationController.fullScreenInteractivePopGestureRecognizer = YES;
+    self.jz_navigationBarBackgroundHidden = NO;
     
     if ([self respondsToSelector:@selector(automaticallyAdjustsScrollViewInsets)] && self.navigationController.navigationBar.translucent == YES) {
         self.automaticallyAdjustsScrollViewInsets = NO;

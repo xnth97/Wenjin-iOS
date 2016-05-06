@@ -17,7 +17,7 @@
 #import "UserListTableViewController.h"
 #import "UserFeedTableViewController.h"
 #import "TopicListTableViewController.h"
-#import "UINavigationController+JZExtension.h"
+#import "JZNavigationExtension.h"
 #import "wjAppearanceManager.h"
 #import "DraftPageController.h"
 #import "Chameleon.h"
@@ -48,8 +48,8 @@
     self.navigationController.view.backgroundColor = [UIColor whiteColor];
     self.userTableView.dataSource = self;
     self.userTableView.delegate = self;
-    self.navigationBarBackgroundHidden = YES;
-    self.navigationController.fullScreenInteractivePopGestureRecognizer = YES;
+    
+    self.jz_navigationBarBackgroundHidden = YES;
     
     cellArray = @[];
     
@@ -59,23 +59,16 @@
     bgView.backgroundColor = [UIColor flatMintColor];
     [self.view addSubview:bgView];
     
-    /*
     if ([self respondsToSelector:@selector(automaticallyAdjustsScrollViewInsets)] && self.navigationController.navigationBar.translucent == YES) {
         self.automaticallyAdjustsScrollViewInsets = NO;
         
         UIEdgeInsets insets = self.userTableView.contentInset;
-        insets.top = self.navigationController.navigationBar.bounds.size.height + [UIApplication sharedApplication].statusBarFrame.size.height;
+        insets.top = 64;
+        insets.bottom = 0;
         self.userTableView.contentInset = insets;
         self.userTableView.scrollIndicatorInsets = insets;
     }
     
-    __weak UserViewController *weakSelf = self;
-    [self.userTableView addPullToRefreshWithActionHandler:^{
-        [weakSelf refreshData];
-    }];
-    
-    [self.userTableView triggerPullToRefresh];
-    */
     [self refreshData];
 }
 
@@ -100,7 +93,6 @@
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
     self.navigationController.navigationBar.tintColor = [wjAppearanceManager mainTintColor];
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor blackColor]}];

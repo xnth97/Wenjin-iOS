@@ -22,10 +22,6 @@ static data *INSTANCE;
 }
 
 + (data *)shareInstance {
-//    if (!INSTANCE) {
-//        INSTANCE = [[data alloc]init];
-//    }
-//    return INSTANCE;
     static data *staticInstance = nil;
     static dispatch_once_t onceToken;
     

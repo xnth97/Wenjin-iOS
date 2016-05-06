@@ -11,6 +11,7 @@
 #import "data.h"
 #import "wjAccountManager.h"
 #import "MsgDisplay.h"
+#import "JZNavigationExtension.h"
 
 @interface ProfileEditTableViewController ()
 
@@ -32,6 +33,8 @@
     formController.tableView = self.tableView;
     formController.delegate = self;
     formController.form = [[ProfileEditForm alloc] init];
+    
+    self.jz_navigationBarBackgroundHidden = NO;
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;

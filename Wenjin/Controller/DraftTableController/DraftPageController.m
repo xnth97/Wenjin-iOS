@@ -9,6 +9,7 @@
 #import "DraftPageController.h"
 #import "wjAppearanceManager.h"
 #import "DraftTableViewController.h"
+#import "JZNavigationExtension.h"
 
 @interface DraftPageController ()
 
@@ -46,6 +47,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = @"草稿箱";
+    self.jz_navigationBarBackgroundHidden = NO;
     
     // Appearance Customization
     self.menuView.layer.shadowColor = [wjAppearanceManager pageShadowColor].CGColor;

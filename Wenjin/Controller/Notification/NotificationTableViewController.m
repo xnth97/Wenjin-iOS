@@ -54,7 +54,6 @@
     self.tableView.tableFooterView = [UIView new];
     self.tableView.emptyDataSetSource = self;
     self.tableView.emptyDataSetDelegate = self;
-    self.navigationController.fullScreenInteractivePopGestureRecognizer = YES;
     
     if ([self respondsToSelector:@selector(automaticallyAdjustsScrollViewInsets)] && self.navigationController.navigationBar.translucent == YES) {
         self.automaticallyAdjustsScrollViewInsets = NO;

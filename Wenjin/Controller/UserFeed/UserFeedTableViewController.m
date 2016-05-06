@@ -15,6 +15,7 @@
 #import "wjAppearanceManager.h"
 #import "AnswerInfo.h"
 #import "FeedQuestion.h"
+#import "JZNavigationExtension.h"
 
 @interface UserFeedTableViewController ()
 
@@ -43,6 +44,7 @@
     self.tableView.allowsSelection = NO;
     self.tableView.emptyDataSetDelegate = self;
     self.tableView.emptyDataSetSource = self;
+    self.jz_navigationBarBackgroundHidden = NO;
     
     if ([self respondsToSelector:@selector(automaticallyAdjustsScrollViewInsets)] && self.navigationController.navigationBar.translucent == YES) {
         self.automaticallyAdjustsScrollViewInsets = NO;

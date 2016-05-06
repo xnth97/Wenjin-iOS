@@ -13,6 +13,7 @@
 #import "data.h"
 #import "ShowNotLoggedInViewController.h"
 #import "BlocksKit+UIKit.h"
+#import "JZNavigationExtension.h"
 
 @interface SettingTableViewController ()
 
@@ -31,6 +32,8 @@
     cellValues = @[@[@"关于问津", @"反馈", @"引导页面"], @[@"回答后自动关注"], @[@"注销帐号"]];
     
     autoFocusKey = @"autoFocus";
+    
+    self.jz_navigationBarBackgroundHidden = NO;
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;

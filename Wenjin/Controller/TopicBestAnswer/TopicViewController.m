@@ -24,6 +24,7 @@
 #import "SVPullToRefresh.h"
 #import "UIScrollView+EmptyDataSet.h"
 #import "UINavigationController+JZExtension.h"
+#import <KVOController/NSObject+FBKVOController.h>
 
 @interface TopicViewController () <DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
 

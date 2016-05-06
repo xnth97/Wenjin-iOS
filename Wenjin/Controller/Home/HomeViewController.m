@@ -40,7 +40,6 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.navigationController.view.backgroundColor = [UIColor whiteColor];
-    self.navigationController.fullScreenInteractivePopGestureRecognizer = YES;
     if (shouldRefresh) {
         [self.tableView triggerPullToRefresh];
     }
@@ -67,6 +66,7 @@
         
         UIEdgeInsets insets = self.tableView.contentInset;
         insets.top = self.navigationController.navigationBar.bounds.size.height + [UIApplication sharedApplication].statusBarFrame.size.height;
+        insets.bottom = CGRectGetHeight(self.tabBarController.tabBar.frame);
         self.tableView.contentInset = insets;
         self.tableView.scrollIndicatorInsets = insets;
     }
@@ -97,6 +97,7 @@
 }
 
 - (void)getListData {
+    [MsgDisplay showLoading];
     [HomeDataManager getHomeDataWithPage:currentPage success:^(NSArray *_rowsData, BOOL isLastPage) {
         if (!isLastPage) {
             if (currentPage == 0) {
@@ -115,9 +116,10 @@
         [self.tableView.pullToRefreshView stopAnimating];
         
         self.shouldRefresh = NO;
-        
+        [MsgDisplay dismiss];
     } failure:^(NSString *errStr) {
         if ([errStr isEqualToString:@"请先登录或注册"]) {
+            [MsgDisplay dismiss];
             [wjAccountManager logout];
             [self.tabBarController setValue:@YES forKey:@"showNotLoggedInView"];
         } else {

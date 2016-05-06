@@ -13,6 +13,7 @@
 #import "MsgDisplay.h"
 #import "UserViewController.h"
 #import "UserInfo.h"
+#import "JZNavigationExtension.h"
 
 @interface UserListTableViewController ()
 
@@ -36,6 +37,7 @@
     self.tableView.tableFooterView = [[UIView alloc]init];
     self.tableView.emptyDataSetSource = self;
     self.tableView.emptyDataSetDelegate = self;
+    self.jz_navigationBarBackgroundHidden = NO;
     
     if ([self respondsToSelector:@selector(automaticallyAdjustsScrollViewInsets)] && self.navigationController.navigationBar.translucent == YES) {
         self.automaticallyAdjustsScrollViewInsets = NO;

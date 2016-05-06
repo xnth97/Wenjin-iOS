@@ -16,6 +16,7 @@
 #import <KVOController/FBKVOController.h>
 #import "NotificationManager.h"
 #import "APService.h"
+#import <KVOController/NSObject+FBKVOController.h>
 
 @interface MainTabBarController ()
 

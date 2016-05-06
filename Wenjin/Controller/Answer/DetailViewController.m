@@ -29,6 +29,7 @@
 #import "IDMPhotoBrowser.h"
 #import <SafariServices/SafariServices.h>
 #import "WebModalViewController.h"
+#import <KVOController/NSObject+FBKVOController.h>
 
 @interface DetailViewController ()<IDMPhotoBrowserDelegate>
 

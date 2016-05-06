@@ -45,7 +45,6 @@
     self.clearsSelectionOnViewWillAppear = YES;
     self.tableView.tableFooterView = [[UIView alloc]init];
     self.navigationController.view.backgroundColor = [UIColor whiteColor];
-    self.navigationController.fullScreenInteractivePopGestureRecognizer = YES;
     
 //    expType = @"new";
     if (expType.length == 0) {

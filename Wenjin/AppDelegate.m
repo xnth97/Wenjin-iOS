@@ -9,7 +9,6 @@
 #import "AppDelegate.h"
 #import "wjAPIs.h"
 #import "NotificationManager.h"
-#import <RongIMKit/RongIMKit.h>
 #import "data.h"
 
 @interface AppDelegate ()
@@ -33,7 +32,7 @@
     [APService setupWithOption:launchOptions];
     
     // RongCloud
-    [[RCIM sharedRCIM] initWithAppKey:[wjAPIs rongCloudAppKey]];
+//    [[RCIM sharedRCIM] initWithAppKey:[wjAPIs rongCloudAppKey]];
     
     return YES;
 }

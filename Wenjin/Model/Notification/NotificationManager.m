@@ -112,7 +112,6 @@
         UIViewController *vc = [self properViewControllerWithNotification:notification];
         UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
         nav.view.backgroundColor = [UIColor whiteColor];
-        nav.fullScreenInteractivePopGestureRecognizer = YES;
         vc.navigationItem.leftBarButtonItem = ({
             UIBarButtonItem *cancel = [[UIBarButtonItem alloc] bk_initWithBarButtonSystemItem:UIBarButtonSystemItemCancel handler:^(id sender) {
                 [vc.navigationController dismissViewControllerAnimated:YES completion:nil];
