@@ -33,7 +33,7 @@ PODS:
     - ChameleonFramework/Default (= 2.1.0)
   - ChameleonFramework/Default (2.1.0)
   - DACircularProgress (2.3.1)
-  - DZNEmptyDataSet (1.8)
+  - DZNEmptyDataSet (1.8.1)
   - FDStackView (1.0)
   - FMDB (2.6.2):
     - FMDB/standard (= 2.6.2)
@@ -43,7 +43,7 @@ PODS:
     - DACircularProgress
     - pop
     - SDWebImage
-  - JZNavigationExtension (1.4.7)
+  - JZNavigationExtension (1.4.8)
   - KVOController (1.1.0)
   - MJExtension (3.0.10)
   - NYSegmentedControl (1.0.7)
@@ -51,10 +51,10 @@ PODS:
   - PopMenu (2.4):
     - pop
     - XHRealTimeBlur
-  - SDWebImage (3.7.5):
-    - SDWebImage/Core (= 3.7.5)
-  - SDWebImage/Core (3.7.5)
-  - SlackTextViewController (1.9.2)
+  - SDWebImage (3.8.1):
+    - SDWebImage/Core (= 3.8.1)
+  - SDWebImage/Core (3.8.1)
+  - SlackTextViewController (1.9.3)
   - SVProgressHUD (2.0.3)
   - SVPullToRefresh (0.4.1)
   - SVWebViewController (1.0)
@@ -87,19 +87,19 @@ SPEC CHECKSUMS:
   BlocksKit: 7f422b971407001178d181a43b99014ea2591fe6
   ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
   DACircularProgress: 4dd437c0fc3da5161cb289e07ac449493d41db71
-  DZNEmptyDataSet: d2351b2e8daefa40433ef292e246e21f6be31a7b
+  DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   FDStackView: 3a4bbe0ce9c35e974246a585168b9da8c32213f1
   FMDB: 854a0341b4726e53276f2a8996f06f1b80f9259a
   FXForms: 724500c0c3f3eb3ba1004b3b83abcee55d3daf18
   IDMPhotoBrowser: b574fe3229754e701f32df271afbc4ac7e4e1997
-  JZNavigationExtension: 235f57793791de029dd3e6cf785821abf75eeff1
+  JZNavigationExtension: 7b5a80e01677e949db420cfb887e40a89abe5954
   KVOController: 321b5fc59300fcaabd42c0f679baa7a27efbb2fd
   MJExtension: d86aacb740c87519d20e3cca55b6fa4be6cc7548
   NYSegmentedControl: 55b4f9eb652767cae9799623ec3e49e50029ef47
   pop: f667631a5108a2e60d9e8797c9b32ddaf2080bce
   PopMenu: 26b97baeaf250070f4f61b93727ca86d127d7bc5
-  SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
-  SlackTextViewController: bac3350ccc639bc446bb14cbd09da238f5e01f32
+  SDWebImage: 35f9627a3e44b4f292a8a8ce6a531fa488239b91
+  SlackTextViewController: bd2a34c188d4f7dec93cf42388f38551263fac82
   SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
   SVPullToRefresh: ba2e718695a43253d8bea6852d2960097dc15d8c
   SVWebViewController: c36dda7326e81fcae0abf5d02bf7bbf7e41be901
@@ -108,4 +108,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 3ceaf41d6bcb77fda01ac90ba3d3a6b56c624a27
 
-COCOAPODS: 1.0.0.rc.2
+COCOAPODS: 1.0.0

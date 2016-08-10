@@ -18,6 +18,7 @@
 #import "QuestionViewController.h"
 #import "UserViewController.h"
 #import "TopicViewController.h"
+#import "JZNavigationExtension.h"
 
 #define SEARCH_TYPE_QUESTIONS 0
 #define SEARCH_TYPE_TOPICS 1
@@ -46,6 +47,7 @@
     
     typeSegmentedControl.selectedSegmentIndex = searchType;
     self.automaticallyAdjustsScrollViewInsets = NO;
+    self.jz_navigationBarBackgroundHidden = NO;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];

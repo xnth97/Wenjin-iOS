@@ -8,6 +8,7 @@
 
 #import "ExplorePageViewController.h"
 #import "wjAppearanceManager.h"
+#import "JZNavigationExtension.h"
 #import "ExploreTableViewController.h"
 
 @interface ExplorePageViewController ()
@@ -49,6 +50,7 @@
     self.menuView.layer.shadowOffset = [wjAppearanceManager pageShadowOffset];
     self.menuView.layer.shadowOpacity = [wjAppearanceManager pageShadowOpacity];
     self.menuView.layer.shadowRadius = [wjAppearanceManager pageShadowRadius];
+    self.jz_navigationBarBackgroundHidden = NO;
 }
 
 - (void)didReceiveMemoryWarning {

@@ -23,7 +23,7 @@
 #import "TopicBestAnswerCell.h"
 #import "SVPullToRefresh.h"
 #import "UIScrollView+EmptyDataSet.h"
-#import "UINavigationController+JZExtension.h"
+#import "JZNavigationExtension.h"
 #import <KVOController/NSObject+FBKVOController.h>
 
 @interface TopicViewController () <DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
@@ -49,6 +49,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     currentPage = 1;
+    self.jz_navigationBarBackgroundHidden = NO;
     
     bestAnswerTableView.delegate = self;
     bestAnswerTableView.dataSource = self;

@@ -27,6 +27,7 @@
 #import "WebViewJavascriptBridge.h"
 #import <SafariServices/SafariServices.h>
 #import "WebModalViewController.h"
+#import "JZNavigationExtension.h"
 
 @interface QuestionViewController ()
 
@@ -52,6 +53,7 @@
     
     self.questionTableView.dataSource = self;
     self.questionTableView.delegate = self;
+    self.jz_navigationBarBackgroundHidden = NO;
     self.questionTableView.tableFooterView = [[UIView alloc] init];
     questionSummary = @"";
     

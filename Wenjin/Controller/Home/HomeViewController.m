@@ -23,7 +23,7 @@
 #import "UIScrollView+EmptyDataSet.h"
 #import "SearchViewController.h"
 #import "TopicViewController.h"
-#import <CoreSpotlight/CoreSpotlight.h>
+#import "JZNavigationExtension.h"
 
 @interface HomeViewController () <DZNEmptyDataSetDelegate, DZNEmptyDataSetSource>
 
@@ -55,6 +55,7 @@
     
     self.clearsSelectionOnViewWillAppear = YES;
     self.tableView.allowsSelection = NO;
+    self.jz_navigationBarBackgroundHidden = NO;
     
     if ([[self.navigationController.tabBarController valueForKey:@"showNotLoggedInView"] isEqual: @NO]) {
         [self.tableView triggerPullToRefresh];

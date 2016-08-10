@@ -30,6 +30,7 @@
 #import <SafariServices/SafariServices.h>
 #import "WebModalViewController.h"
 #import <KVOController/NSObject+FBKVOController.h>
+#import "JZNavigationExtension.h"
 
 @interface DetailViewController ()<IDMPhotoBrowserDelegate>
 
@@ -94,9 +95,11 @@
     
     self.title = @"回答";
     self.automaticallyAdjustsScrollViewInsets = YES;
+    self.jz_navigationBarBackgroundHidden = NO;
     
 //    [WebViewJavascriptBridge enableLogging];
     bridge = [WebViewJavascriptBridge bridgeForWebView:answerContentView];
+    [bridge setWebViewDelegate:self];
     [bridge registerHandler:@"imgCallback" handler:^(id data, WVJBResponseCallback responseCallback) {
         NSLog(@"Callback: %@", data);
         [self presentHDImageWithURL:data];
